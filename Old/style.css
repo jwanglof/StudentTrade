@@ -1,0 +1,499 @@
+*{
+margin: 0;
+padding: 0;
+border: 0;
+}
+
+body{
+background: #fff;
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+a{
+text-decoration: none;
+}
+
+#wrapper{
+width: 100%;
+overflow: hidden;
+}
+
+.first{
+min-width: 1150px;
+width: 100%;
+}
+
+header{
+background: #edf3f3 url('img/header_temp.jpg');
+height: 400px;
+}
+
+#firstHeader{
+height: 530px;
+float: left;
+width: 100%;
+}
+
+#firstheader .logo{
+width: 580px;
+height: 132px;
+display: block;
+text-indent: -9999px;
+overflow: hidden;
+position: relative;
+background: url('img/logo.png');
+margin: 80px 0 0 10%;
+}
+
+#firstInfo{
+margin-top: 20px;
+margin-left: -70px;
+overflow: hidden;
+width: 763px;
+}
+#firstInfo .in{
+position: absolute;
+top: 430px;
+left: 330px;
+width: 410px;
+font-family: Arial;
+font-size: 13px;
+}
+
+#firstInfo ul{
+font-size: 18px;
+font-weight: bold;
+line-height: 28px;
+}
+
+#backClouds{
+position: absolute;
+top: 0;
+height: 530px;
+width: 100%;
+min-width: 1150px;
+overflow: hidden;
+background: #06bdef url('img/bkgtop.jpg') bottom repeat-x;
+z-index: -999;
+}
+
+#top{
+height: 20px;
+margin: 10px 0 15px 0;
+padding: 0 10px;
+font-size: 13px;
+font-family: Helvetica, Arial, sans-serif;
+display: block;
+float: left;
+width: 100%;
+}
+
+/* sidonavigation */
+#categories{
+width: 20%;
+float: left;
+margin-right: 2%;
+color: white;
+}
+
+#categories ul.nav{
+list-style: none;
+background: grey;
+height: 310px;
+margin-bottom: 15px;
+}
+
+#categories li{
+padding-left: 20px;
+padding-top: 10px;
+height: 30px;
+background: #007ac7;
+color: #fff;
+border-bottom: 5px white solid;
+}
+
+#categories li:hover{
+background: lightgreen;
+color: #333;
+}
+
+#categories .top{
+display: block;
+padding: 5px 20px;
+margin-bottom: 5px;
+background: grey;
+}
+
+#categories ul.addAnnons{
+
+}
+
+#categories ul.addAnnons li{
+background: lightgreen;
+border-radius: 10px;
+color: #333;
+margin-left: 10px;
+}
+
+#categories .info{
+color: #666;
+margin-left: 20px;
+font-size: 14px;
+}
+
+/* slut på navigation */
+
+/* main */
+#main{
+width: 53%;
+min-width: 500px;
+margin-right: 1%;
+float: left;
+padding: 2%;
+box-shadow: 0px 0px 10px #888888;
+background: #fff;
+}
+
+#main h1 {
+background: #007ac7;
+border-radius: 10px;
+color: white;
+display: block;
+padding: 3px 10px 3px 10px;
+}
+
+/*  annons */
+
+#main ul.annonsList{
+margin-top: 10px;
+list-style: none;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+color: #007ac7;
+}
+
+#main li{
+display: block;
+padding: 10px 0 10px 0;
+min-width: 480px;
+width: 100%;
+border-bottom: 1px #999 dashed;
+}
+
+#main li:hover{
+background: #ececec;
+}
+
+#mainMap{
+width: 330px;
+position: absolute;
+margin-left: 800px;
+z-index: 4;
+}
+#rutor{
+display:block;
+height: 250px;
+width: 100%;
+float: left;
+}
+#rutor .inforuta{
+text-align: center;
+width: 33.33%;
+height: 100%;
+background: #017ac8;
+box-shadow: 5px 5px 10px 5px #006bb0 inset;
+float: left;
+}
+
+/* rutor CSS effekt */
+
+.feature-tenet h3{
+margin-top: 70px;
+}
+
+.feature-tenets-wrapper .wrapper{overflow:visible}
+
+.feature-tenets-wrapper{background:#007ac5 url('img/bkg_border.png') 0 275px repeat-x; height: 303px; color:#fff;-webkit-font-smoothing:antialiased;position:relative;text-align:center;}
+
+.feature-tenets-wrapper .first-tenet{-webkit-box-shadow:inset -40px 0 80px -40px rgba(0,63,100,0.3);-moz-box-shadow:inset -40px 0 80px -40px rgba(0,63,100,0.3);box-shadow:inset -40px 0 80px -40px rgba(0,63,100,0.3)}
+
+.span-4{width:32%}
+
+.row{float:left;position:relative;width:100%}
+
+.col{-webkit-background-clip:padding-box !important;-moz-background-clip:padding-box !important;background-clip:padding-box !important;border:0px solid rgba(0,0,0,0);-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;float:left;margin-left:2%;padding:0 1.5%;position:relative}
+
+.feature-tenets-wrapper .feature-tenet{height:275px;margin:0;position:relative;-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);width:33.33%;z-index:3}
+
+/* lägger allt i mitten */
+.feature-tenet .grower-wrapper{left:50%;margin-left:-23px;top:175px;position:absolute;}
+
+/* Den lilla cirkeln */
+.feature-tenet .grower{background-color:#edead6;-webkit-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;border-radius:50%;height:55px;position:absolute;text-align:center;top:0;left:0;-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;width:55px;z-index:999}
+
+/* tonar ut den lilla cirkeln */
+.feature-tenet .grower:hover{background-color:#fff;height:491px;left:-221px;top:-291px;width:491px}
+
+/* tonar in bilden */
+.feature-tenet .grower:hover .larger{height:491px;left:0;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);opacity:1;overflow:visible;top:0;width:491px;}
+
+/* tar bort bilden från början */
+.feature-tenet .grower .larger{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);opacity:0;position:absolute;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
+
+.ie7 .feature-tenet .grower .larger,.ie7 .feature-tenet .grower .larger-info,.ie8 .feature-tenet .grower .larger,.ie8 .feature-tenet .grower .larger-info{display:none}
+
+.ie7 .feature-tenet .grower:hover .larger,.ie7 .feature-tenet .grower:hover .larger,.ie8 .feature-tenet .grower:hover .larger,.ie8 .feature-tenet .grower:hover .larger{display:block}
+
+.ie7 .feature-tenet .grower:hover .smaller,.ie7 .feature-tenet .grower:hover .smaller,.ie8 .feature-tenet .grower:hover .smaller,.ie8 .feature-tenet .grower:hover .smaller{display:none}
+
+.ie7 .feature-tenet .grower:hover .larger-info,.ie7 .feature-tenet .grower:hover .larger-info,.ie8 .feature-tenet .grower:hover .larger-info,.ie8 .feature-tenet .grower:hover .larger-info{display:block}
+
+.feature-tenet .grower .smaller i{background:#76c34d;display:block;height:28px;left:25px; top: 12px; position:relative;width:4px}
+
+.feature-tenet .grower .smaller i i{height:4px;left:-12px;top:12px;width:28px}
+
+.feature-tenet .grower:hover .smaller{left:50px;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);opacity:0;top:50px}
+
+.feature-tenets-wrapper .feature-tenet:hover{z-index:4}
+
+/* gör så att bilden inte kan vara utanför */
+img{max-width:100%}
+
+
+/* slut på CSS effekt */
+
+/* annonslistor */
+li .first {
+display: inline;
+width: 100px;
+vertical-align: top;
+overflow: hidden;
+margin-right: 2%;
+
+}
+
+li .first .smallDate{
+font-size: 11px;
+color: #999;
+
+}
+
+li .rubrik{
+display: inline-block;
+width: 60%;
+}
+
+li .price{
+display: inline-block;
+text-align: right;
+padding-left: 30px;
+}
+
+/* annonssida */
+
+#main .underrubrik{
+color: #666;
+margin-top: 5px;
+display: inline-block;
+}
+
+#main .beskrivning{
+margin: 20px 0 10px 0;
+display: block;
+font-size: 20px;
+padding-bottom: 30px;
+border-bottom: 1px #999 solid;
+}
+
+#main .annonsDate{
+margin-top: 5px;
+margin-right: 5px;
+color: #666;
+display: inline-block;
+float: right;
+}
+
+#main .btn.contactAnnons{
+background: #007ac7;
+float: right;
+color: white;
+padding: 15px;
+}
+
+#main .endNote{
+margin-top: 20px;
+}
+
+aside{
+float: left;
+}
+
+/* footer */
+footer{
+width: 100%;
+float: left;
+clear: both;
+margin-top: 120px;
+height: 180px;
+background:#edf3f3 url("img/crossBorder.gif") top repeat-x;
+}
+footer.start{
+margin-top: 0; 
+}
+footer .nav{
+width: 800px;
+height: 70px;
+text-align: center;
+margin: 45px auto 5px auto;
+}
+footer .nav ul{
+list-style: none;
+display: inline-table;
+margin-top: 20px;
+}
+footer .nav li{
+display: inline;
+margin: 0 10px;
+}
+
+footer .nav .left{
+float: left;
+}
+footer .nav .right{
+float: right;
+}
+
+.copyright{
+text-align: center;
+font-size: 12px;
+color: #666;
+}
+
+
+
+
+
+
+
+
+
+/* map (bör i framtiden tas bort) */
+.lnkpg{
+top: 440px;
+left: 100px;
+}
+.sthlm{
+top: 400px;
+left: 150px;
+}
+.gbg{
+top: 460px;
+left: 10px;
+}
+.lund{
+top: 550px;
+left: 70px;
+}
+.univ{
+width: 285px; /* if sats om att bli bredare vid större */
+height: 460px;
+z-index: 1;
+top: 70px;
+right: 0;
+position: absolute;
+display: none;
+}
+#liu{background-image: url("img/skolor/liu.jpg"); background-size: 285px 460px;}
+#sthlm{background-image: url("img/skolor/sthlm.jpg"); background-size: 285px 460px;}
+#lund{background-image: url("img/skolor/lund.jpg"); background-size: 285px 460px;}
+#gbg{background-image: url("img/skolor/gbg.jpg"); background-size: 285px 460px;}
+
+.txt{
+background: #fff;
+opacity: 0.7;
+position: absolute;
+font-size: 11px;
+padding: 1px;
+}
+.txt:hover{
+font-size: 13px;
+font-weight: bold;
+}
+
+
+/* form style */
+
+/* ----------- My Form ----------- */
+.myform{
+margin:0;
+width: 500px;
+padding:14px;
+}
+
+/* ----------- stylized ----------- */
+#stylized{
+font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+font-size:12px;
+border:solid 2px #b7ddf2;
+background:#ebf4fb;
+}
+#stylized p, h1, form, button{border:0; margin:0; padding:0;}
+#stylized h1 {
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
+}
+#stylized p{
+font-size:11px;
+color:#666666;
+margin-bottom:20px;
+border-bottom:solid 1px #b7ddf2;
+padding-bottom:10px;
+}
+#stylized label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:140px;
+float:left;
+}
+#stylized .small{
+color:#666666;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
+}
+#stylized input{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:300px;
+margin:2px 0 20px 10px;
+}
+#stylized textarea{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:300px;
+margin:2px 0 20px 10px;
+font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+font-size:12px;
+}
+#stylized button{
+clear:both;
+margin-left:150px;
+width:125px;
+height:31px;
+background:#666666 url(img/button.png) no-repeat;
+text-align:center;
+line-height:31px;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
+}
+
+
