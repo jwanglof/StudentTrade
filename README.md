@@ -1,19 +1,15 @@
 StudentTrade
 ============
-[submenu] (Layouts)
-	[exec] (us) {setxkbmap us}
-	[exec] (se) {setxkbmap se}
-[end]
 Kravspecifikation:
 
 Du kan se hur det ser ut idag på studenttrade.se/modern (sprid inte den adressen). Mycket av det som står är som idag. Det som inte finns idag har jag markerat (nytt). Det viktigaste är att allt är smidigt och enkelt. Det måste vara enkelt att förstå vad sidan har att erbjuda och att lägga upp en annons.
 
 Startsida:
 
-* Möjlighet att välja sitt univeristet i en lista. Man klickar på en ruta där det står ” Vilket universitet läser du på?” och sedan kommer en lista med alternativ upp (nytt)
-* Det ska finnas 3 rutor där ledorden för sidan står: Helt gratis, Snabbt och enkelt och Hitta det du söker. När man för muspekaren över ett grnt plus så ska rutan poppa upp
-* Längst ner på sidan ska det finnas fyra flikar man kan klicka på: Om oss, Så fungerar det, Vanliga frågor och Kontakta oss. När man klickar på dessa ska det komma som en popup ruta med infon. Denna popup ska sedan kunna stängas genom att trycka på ett kryss i hörnet. (nytt)
-* Det ska finnas en ruta där man ser hur många som gillar oss på Facebook samt möjligheten att gilla vår sida direkt (nytt)
+- [ ] Möjlighet att välja sitt univeristet i en lista. Man klickar på en ruta där det står ” Vilket universitet läser du på?” och sedan kommer en lista med alternativ upp (nytt)
+- [ ] Det ska finnas 3 rutor där ledorden för sidan står: Helt gratis, Snabbt och enkelt och Hitta det du söker. När man för muspekaren över ett grnt plus så ska rutan poppa upp
+- [x] Längst ner på sidan ska det finnas fyra flikar man kan klicka på: Om oss, Så fungerar det, Vanliga frågor och Kontakta oss. När man klickar på dessa ska det komma som en popup ruta med infon. Denna popup ska sedan kunna stängas genom att trycka på ett kryss i hörnet. (nytt)
+- [ ] Det ska finnas en ruta där man ser hur många som gillar oss på Facebook samt möjligheten att gilla vår sida direkt (nytt)
 
 Sida för universitet (Samma för alla med små korrigeringar):
 
