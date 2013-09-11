@@ -29,6 +29,7 @@ function __autoload($class_name) {
 // $new_id = $a->insert($a, 'test', '(test, test2)', '(3322, 4432)');
 // $a->update($a, 'test', 'test2=1', 'id='.$new_id);
 // $a->close();
+// <?php include('StudentTrade/Views/switch.php'); 
 ?>
 
 <html>
@@ -87,7 +88,48 @@ function __autoload($class_name) {
 
 		<div class="col-md-12 index content">
 			<div class="row">
-				<?php include('StudentTrade/Views/switch.php'); ?>
+				<div class="col-md-4 box box_image">
+					<h3>Helt gratis</h3>
+					<p>Det kostar inget för dig</p>
+					<!-- <div class="grower-wrapper">
+						<div class="grower">
+							<div class="smaller">
+								<i><i></i></i>
+							</div>
+							<div class="larger">
+								<img src="Old/img/ruta1.png" alt="Manage Expenses">
+							</div>
+						</div>
+					</div> -->
+				</div>
+				<div class="col-md-4 middle box_image">
+					<h3>Snabbt och enkelt</h3>
+					<p>Det ska vara lättåtkomligt och enkelt för dig</p>
+					<!-- <div class="grower-wrapper">
+						<div class="grower">
+							<div class="smaller">
+								<i><i></i></i>
+							</div>
+							<div class="larger">
+								<img src="Old/img/ruta2.png" alt="Grow Savings">
+							</div>
+						</div>
+					</div> -->
+				</div>
+				<div class="col-md-4 box box_image">
+					<h3>Hitta det du söker</h3>
+					<p>Det finns ett stort utbud</p>
+					<!-- <div class="grower-wrapper">
+						<div class="grower">
+							<div class="smaller">
+								<i><i></i></i>
+							</div>
+							<div class="larger">
+								<img src="Old/img/ruta3.png" alt="Receive Guidance">
+							</div>
+						</div>
+					</div> -->
+				</div>
 			</div>
 		</div>
 
@@ -121,7 +163,7 @@ function __autoload($class_name) {
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#far-clouds').pan({fps: 30, speed: 0.7, dir: 'left', depth: 30});
-				$('#near-clouds').pan({fps: 30, speed: 1, dir: 'left', depth: 70});
+				$('#near-clouds').pan({fps: 30, speed: 1, dir: 'right', depth: 70});
 			});    
 		</script>
 	</body>
