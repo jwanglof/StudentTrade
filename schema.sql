@@ -95,9 +95,11 @@ CREATE  TABLE IF NOT EXISTS `StudentTrade`.`ad` (
   `password` INT NOT NULL ,
   `date_created` DATETIME NOT NULL ,
   `valid_to_date` DATETIME NOT NULL ,
+  `fk_ad_type_id` INT NOT NULL ,
   PRIMARY KEY (`id`) ,
-  CONSTRAINT `fk_ad_type`
-    FOREIGN KEY (`id` )
+  INDEX `fk_ad_type_id_idx` (`fk_ad_type_id` ASC) ,
+  CONSTRAINT `fk_ad_type_id`
+    FOREIGN KEY (`fk_ad_type_id` )
     REFERENCES `StudentTrade`.`ad_type` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
