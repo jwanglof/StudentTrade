@@ -47,14 +47,20 @@ class DbSelect {
     			FROM city 
     			INNER JOIN university as uni 
     			INNER JOIN campus as cam
+
+    			SELECT * FROM city
+    			UNION ALL
+    			SELECT * FROM university WHERE fk_city_id = city.id
+    			UNION ALL
+    			SELECT * FROM campus WHERE fk_university_id = university.id
     */
 
     public function getCities() {
     	try {
     		$stmt = $this->dbh->prepare("
-    			SELECT * FROM city
-    			UNION ALL
-    			SELECT * FROM 
+    			SELECT * FROM city c, university u, campus cam
+    			WHERE u.fk_city_id = c.id
+    			AND cam.fk_university_id = u.id
     		");
     		$stmt->execute();
 
