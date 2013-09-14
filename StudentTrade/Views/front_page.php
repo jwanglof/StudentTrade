@@ -1,6 +1,6 @@
 			<?php
 			$dbh = new DbSelect();
-			$cities = $dbh->getCities();
+			$cities = $dbh->getCityIDs();
 			?>
 
 			<div>
@@ -14,17 +14,14 @@
 				<div class='col-md-6 map'>
 					<img src="StudentTrade/Img/map.png" />
 					<?php
-					print_r($cities);
-					// $search = array("å","ä","ö");
-					// $replace = array("a","a","o");
-					// foreach ($cities as $city) {
-					// 	echo str_replace($search, $replace, strtolower($city["name"]));
-					// }
+					$search = array("å","ä","ö");
+					$replace = array("a","a","o");
+					foreach ($cities as $city) {
+						$short_name = str_replace($search, $replace, strtolower($city["short_name"]));
+						echo "<span class=\"". $short_name ."\"><a href=\"?page=city&city=". $short_name ."\">". $city["city_name"] ."</a></span>";
+
+					}
 					?>
-					<span class="linkoping"><a href="?page=city&city=linkoping">Linköping</a></span>
-					<span class="sthlm"><a href="?uni=sthlm">Stockholm</a></span>
-					<span class="gbg"><a href="#">Göteborg</a></span>
-					<span class="lund"><a href="#">Lund</a></span>
 				</div>
 			</div>
 			<div id='infoText'>

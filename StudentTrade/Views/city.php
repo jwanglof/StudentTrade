@@ -1,6 +1,9 @@
 <?php
-$city = $_GET['city'];
+$dbh = new DbSelect();
 
-$pdod = new DbSelect();
-print_r($pdod->login("jwanglof", "asdf")[0]["username"]);
+$city_id = $dbh->getCityID($_GET['city']);
+$universities = $dbh->getUniversitiesFromCityID($city_id["id"]);
+foreach ($universities as $uni) {
+	
+}
 ?>
