@@ -1,8 +1,3 @@
-			<?php
-			$dbh = new DbSelect();
-			$cities = $dbh->getCityIDs();
-			?>
-
 			<div>
 				<div id="far-clouds" class="stage"></div>
 				<div id="near-clouds" class="stage"></div>
@@ -14,10 +9,11 @@
 				<div class='col-md-6 map'>
 					<img src="StudentTrade/Img/map.png" />
 					<?php
-					$search = array("å","ä","ö");
-					$replace = array("a","a","o");
+					$dbh = new DbSelect();
+					$cities = $dbh->getCityIDs();
+
 					foreach ($cities as $city) {
-						$short_name = str_replace($search, $replace, strtolower($city["short_name"]));
+						$short_name = removeSwedishLetters(strtolower($city["short_name"]));
 						echo "<span class=\"". $short_name ."\"><a href=\"?page=city&city=". $short_name ."\">". $city["city_name"] ."</a></span>";
 
 					}
