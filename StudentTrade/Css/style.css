@@ -206,3 +206,12 @@ img.studenttrade_logo {
 	font-size: 12px;
 	color: #666;
 }
+
+.ads .ad {
+	width: 200px;
+	float: left;
+}
+
+.ad.title {
+	font-weight: bold;
+}
