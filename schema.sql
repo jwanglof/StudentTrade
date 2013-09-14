@@ -26,6 +26,7 @@ DROP TABLE IF EXISTS `StudentTrade`.`city` ;
 CREATE  TABLE IF NOT EXISTS `StudentTrade`.`city` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
+  `short_name` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -38,9 +39,11 @@ DROP TABLE IF EXISTS `StudentTrade`.`university` ;
 CREATE  TABLE IF NOT EXISTS `StudentTrade`.`university` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(100) NOT NULL ,
+  `fk_city_id` INT NOT NULL ,
   PRIMARY KEY (`id`) ,
-  CONSTRAINT `fk_city`
-    FOREIGN KEY (`id` )
+  INDEX `fk_city_name_idx` (`fk_city_id` ASC) ,
+  CONSTRAINT `fk_city_id`
+    FOREIGN KEY (`fk_city_id` )
     REFERENCES `StudentTrade`.`city` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -53,11 +56,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `StudentTrade`.`campus` ;
 
 CREATE  TABLE IF NOT EXISTS `StudentTrade`.`campus` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(100) NOT NULL ,
+  `fk_university_id` INT NOT NULL ,
   PRIMARY KEY (`id`) ,
-  CONSTRAINT `fk_university`
-    FOREIGN KEY (`id` )
+  INDEX `fk_university_name_idx` (`fk_university_id` ASC) ,
+  CONSTRAINT `fk_university_id`
+    FOREIGN KEY (`fk_university_id` )
     REFERENCES `StudentTrade`.`university` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -123,3 +128,65 @@ USE `StudentTrade` ;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `StudentTrade`.`ad_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `StudentTrade`;
+INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (1, 'tickets', 'Biljetter');
+INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (2, 'literature', 'Kurslitteratur');
+INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (3, 'house', 'Bostad');
+INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (4, 'work', 'Jobb/arbete');
+INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (5, 'travel', 'Resor/samåkning');
+INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (6, 'other', 'Övrigt');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `StudentTrade`.`city`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `StudentTrade`;
+INSERT INTO `StudentTrade`.`city` (`id`, `name`, `short_name`) VALUES (1, 'Linköping', 'linkoping');
+INSERT INTO `StudentTrade`.`city` (`id`, `name`, `short_name`) VALUES (2, 'Stockholm', 'sthlm');
+INSERT INTO `StudentTrade`.`city` (`id`, `name`, `short_name`) VALUES (3, 'Göteborg', 'gbg');
+INSERT INTO `StudentTrade`.`city` (`id`, `name`, `short_name`) VALUES (4, 'Lund', 'lund');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `StudentTrade`.`university`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `StudentTrade`;
+INSERT INTO `StudentTrade`.`university` (`id`, `name`, `fk_city_id`) VALUES (1, 'Linköpings Universitet', 1);
+INSERT INTO `StudentTrade`.`university` (`id`, `name`, `fk_city_id`) VALUES (2, 'KTH', 2);
+INSERT INTO `StudentTrade`.`university` (`id`, `name`, `fk_city_id`) VALUES (3, 'Chalmers', 3);
+INSERT INTO `StudentTrade`.`university` (`id`, `name`, `fk_city_id`) VALUES (4, 'Lunds Universitet', 4);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `StudentTrade`.`campus`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `StudentTrade`;
+INSERT INTO `StudentTrade`.`campus` (`id`, `name`, `fk_university_id`) VALUES (1, 'Valla', 1);
+INSERT INTO `StudentTrade`.`campus` (`id`, `name`, `fk_university_id`) VALUES (2, 'US', 1);
+INSERT INTO `StudentTrade`.`campus` (`id`, `name`, `fk_university_id`) VALUES (3, 'Norrköping', 1);
+INSERT INTO `StudentTrade`.`campus` (`id`, `name`, `fk_university_id`) VALUES (4, 'Helsingborg', 4);
+INSERT INTO `StudentTrade`.`campus` (`id`, `name`, `fk_university_id`) VALUES (5, 'KTH Campus', 2);
+INSERT INTO `StudentTrade`.`campus` (`id`, `name`, `fk_university_id`) VALUES (6, 'Johanneberg', 3);
+INSERT INTO `StudentTrade`.`campus` (`id`, `name`, `fk_university_id`) VALUES (7, 'Lindholmen', 3);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `StudentTrade`.`admin`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `StudentTrade`;
+INSERT INTO `StudentTrade`.`admin` (`id`, `username`, `password`, `name`) VALUES (1, 'jwanglof', 'asdf', 'Johan Wänglöf');
+
+COMMIT;
