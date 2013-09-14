@@ -87,9 +87,59 @@ class DbSelect {
     	}
     }
 
+    /*
+	 * Ad-related
+     */
     public function getAdTypes() {
     	try {
 			$stmt = $this->dbh->prepare("SELECT * FROM ad_type");
+    		$stmt->execute();
+
+    		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    	} catch (PDOException $e) {
+    		return $e;
+    	}
+    }
+
+    public function getAdTypeFromID($ad_id) {
+    	try {
+			$stmt = $this->dbh->prepare("SELECT * FROM ad_type WHERE id=:ad_id");
+			$stmt->bindValue(":ad_id", $ad_id, PDO::PARAM_INT);
+    		$stmt->execute();
+
+    		return $stmt->fetch(PDO::FETCH_ASSOC);
+    	} catch (PDOException $e) {
+    		return $e;
+    	}
+    }
+
+    public function getAdTypeFromName($ad_name) {
+    	try {
+			$stmt = $this->dbh->prepare("SELECT * FROM ad_type WHERE name=:ad_name");
+			$stmt->bindValue(":ad_name", $ad_name, PDO::PARAM_INT);
+    		$stmt->execute();
+
+    		return $stmt->fetch(PDO::FETCH_ASSOC);
+    	} catch (PDOException $e) {
+    		return $e;
+    	}
+    }
+
+    public function getAds() {
+    	try {
+			$stmt = $this->dbh->prepare("SELECT * FROM ad ORDER BY id DESC");
+    		$stmt->execute();
+
+    		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    	} catch (PDOException $e) {
+    		return $e;
+    	}
+    }
+
+    public function getAdsWithTypeID($ad_type_id) {
+    	try {
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_type_id=:ad_type_id ORDER BY id DESC");
+			$stmt->bindValue(":ad_type_id", $ad_type_id, PDO::PARAM_INT);
     		$stmt->execute();
 
     		return $stmt->fetchAll(PDO::FETCH_ASSOC);
