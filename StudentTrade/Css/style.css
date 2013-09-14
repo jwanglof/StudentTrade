@@ -17,8 +17,6 @@
 	text-align: center;
 
 	z-index: 1;
-
-	border: 1px solid #000;
 }
 
 #infoText .info1 {
@@ -75,7 +73,6 @@
 	text-align: left;
 	color: #000;
 
-	border: 1px solid #000;
 }
 
 img.front_half_circle {
@@ -83,21 +80,17 @@ img.front_half_circle {
 	position: absolute;
 	top: 233px;
 	left: 0px;
-
-	border: 1px solid #000;
 }
 
 img.studenttrade_logo {
 	display: block;
 	padding: 70px 0px 0px 150px;
 
-	border: 1px solid #000;
 }
 
 .map {
 /*	position: relative;*/
-	border: 1px solid #000;
-	width: 400px;
+	width: 500px;
 	float: right;
 }
 .map img {
@@ -105,8 +98,6 @@ img.studenttrade_logo {
 	position: absolute;
 	top: 0px; left: 0px;
 	z-index: 30;
-
-	border: 1px solid #000;
 }
 .map span {
 	background: #fff;
@@ -208,34 +199,6 @@ img.studenttrade_logo {
 
 .font_left {
 	text-align: left;
-}
-
-.ow-overlay {
-	position: fixed;
-	z-index: 50;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-
-	background: #fff;
-	opacity: 0.8;
-
-	color: #000;
-}
-.ow-closed {
-	display: none;
-}
-/* Default class for modal window */
-.modal {
-	position: fixed;
-	z-index: 50;
-	height: 300px;
-	left: 50%;
-	top: 50px;
-	width: 300px;
-
-	background-color: #fff
 }
 
 .copyright{

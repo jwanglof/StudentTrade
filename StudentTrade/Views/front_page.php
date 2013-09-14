@@ -1,4 +1,8 @@
-		
+			<?php
+			$dbh = new DbSelect();
+			$cities = $dbh->getCities();
+			?>
+
 			<div>
 				<div id="far-clouds" class="stage"></div>
 				<div id="near-clouds" class="stage"></div>
@@ -9,9 +13,16 @@
 				</div>
 				<div class='col-md-6 map'>
 					<img src="StudentTrade/Img/map.png" />
-
-					<span class="linkoping"><a href="#">Linköping</a></span>
-					<span class="sthlm"><a href="#">Stockholm</a></span>
+					<?php
+					print_r($cities);
+					// $search = array("å","ä","ö");
+					// $replace = array("a","a","o");
+					// foreach ($cities as $city) {
+					// 	echo str_replace($search, $replace, strtolower($city["name"]));
+					// }
+					?>
+					<span class="linkoping"><a href="?page=city&city=linkoping">Linköping</a></span>
+					<span class="sthlm"><a href="?uni=sthlm">Stockholm</a></span>
 					<span class="gbg"><a href="#">Göteborg</a></span>
 					<span class="lund"><a href="#">Lund</a></span>
 				</div>

@@ -11,7 +11,6 @@ function __autoload($class_name) {
 		'Logic/',
 		'Views'
 	);
-
 	//for each directory
 	foreach($directorys as $directory)
 	{
@@ -39,8 +38,9 @@ function __autoload($class_name) {
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<title>StudentTrade.se</title>
 		<!-- <link rel="stylesheet" type="text/css" href="Old/style.css" /> -->
-		<link rel="stylesheet" type="text/css" href="StudentTrade/CSS/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="StudentTrade/CSS/style.css" />
+		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/avgrund.css" />
+		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/style.css" />
 		<link rel="shortcut icon" href="favicon.ico" />
 		<?php if (!$_GET) { ?>
 		<style type="text/css">
@@ -68,9 +68,6 @@ function __autoload($class_name) {
 		</div>
 
 		<div class="col-md-12 index footer">
-			<div class="ow-overlay ow-closed" id="overlay_text"></div>
-			<div class="modal ow-closed"></div>
-
 			<div class="col-md-4">
 				<ul>
 					<li id="about_us">Om oss</li>
@@ -91,7 +88,7 @@ function __autoload($class_name) {
 
 		<script src="StudentTrade/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 		<script src="StudentTrade/Scripts/jquery.spritely.js" type="text/javascript"></script>
-		<script src="StudentTrade/Scripts/jquery.omniwindow.js" type="text/javascript"></script>
+		<script src="StudentTrade/Scripts/jquery.avgrund.js" type="text/javascript"></script>
 		<script src="StudentTrade/Scripts/scripts.js" type="text/javascript"></script>
 
 		<?php if (!$_GET) { ?>
