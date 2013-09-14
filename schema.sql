@@ -161,9 +161,11 @@ COMMIT;
 START TRANSACTION;
 USE `StudentTrade`;
 INSERT INTO `StudentTrade`.`university` (`id`, `university_name`, `fk_city_id`) VALUES (1, 'Linköpings Universitet', 1);
-INSERT INTO `StudentTrade`.`university` (`id`, `university_name`, `fk_city_id`) VALUES (2, 'KTH', 2);
-INSERT INTO `StudentTrade`.`university` (`id`, `university_name`, `fk_city_id`) VALUES (3, 'Chalmers', 3);
+INSERT INTO `StudentTrade`.`university` (`id`, `university_name`, `fk_city_id`) VALUES (2, 'Kungliga Tekniska högskolan', 2);
+INSERT INTO `StudentTrade`.`university` (`id`, `university_name`, `fk_city_id`) VALUES (3, 'Chalmers tekniska högskola', 3);
 INSERT INTO `StudentTrade`.`university` (`id`, `university_name`, `fk_city_id`) VALUES (4, 'Lunds Universitet', 4);
+INSERT INTO `StudentTrade`.`university` (`id`, `university_name`, `fk_city_id`) VALUES (5, 'Göteborgs universitet', 3);
+INSERT INTO `StudentTrade`.`university` (`id`, `university_name`, `fk_city_id`) VALUES (6, 'Stockholms universitet', 2);
 
 COMMIT;
 
@@ -179,6 +181,8 @@ INSERT INTO `StudentTrade`.`campus` (`id`, `campus_name`, `fk_university_id`) VA
 INSERT INTO `StudentTrade`.`campus` (`id`, `campus_name`, `fk_university_id`) VALUES (5, 'KTH Campus', 2);
 INSERT INTO `StudentTrade`.`campus` (`id`, `campus_name`, `fk_university_id`) VALUES (6, 'Johanneberg', 3);
 INSERT INTO `StudentTrade`.`campus` (`id`, `campus_name`, `fk_university_id`) VALUES (7, 'Lindholmen', 3);
+INSERT INTO `StudentTrade`.`campus` (`id`, `campus_name`, `fk_university_id`) VALUES (8, 'Konradsberg', 6);
+INSERT INTO `StudentTrade`.`campus` (`id`, `campus_name`, `fk_university_id`) VALUES (9, 'Linné', 5);
 
 COMMIT;
 
