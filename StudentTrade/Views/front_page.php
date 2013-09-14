@@ -1,3 +1,4 @@
+		<div class='col-md-12 index top'>
 			<div>
 				<div id="far-clouds" class="stage"></div>
 				<div id="near-clouds" class="stage"></div>
@@ -74,3 +75,4 @@
 					</div> -->
 				</div>
 			</div>
+		</div>
