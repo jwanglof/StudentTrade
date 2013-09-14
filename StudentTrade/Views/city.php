@@ -22,7 +22,7 @@ $adtypes = $dbh->getAdTypes();
 										href=\"?page=city
 										&city=". $_GET["city"] ."
 										&campus=
-										". removeSwedishLetters(strtolower($c["campus_name"])) ."
+										". replaceSwedishLetters(replaceSpecialChars(strtolower($c["campus_name"]))) ."
 										\" class=\"btn btn-default\">
 										". $c["campus_name"] ."
 										</a>";
@@ -46,7 +46,7 @@ $adtypes = $dbh->getAdTypes();
 								href=\"?page=city
 								&city=". $_GET["city"] ."
 								&campus=
-								". removeSwedishLetters(strtolower($_GET["campus"])) ."
+								". replaceSwedishLetters(replaceSpecialChars(strtolower($_GET["campus"]))) ."
 								&type=". $type["name"] ."
 								\">
 								". $type["description"] ."
@@ -68,7 +68,7 @@ $adtypes = $dbh->getAdTypes();
 							href=\"?page=city
 							&city=". $_GET["city"] ."
 							&campus=
-							". removeSwedishLetters(strtolower($_GET["campus"])) ."
+							". replaceSwedishLetters(replaceSpecialChars(strtolower($_GET["campus"]))) ."
 							\">
 							Visa alla
 							</a>";
