@@ -51,10 +51,10 @@ class DbSelect {
     	}
     }
 
-    public function getCityID($city) {
+    public function getCity($short_name) {
     	try {
-    		$stmt = $this->dbh->prepare("SELECT id FROM city WHERE city_name=:city");
-    		$stmt->bindValue(":city", $city, PDO::PARAM_STR);
+    		$stmt = $this->dbh->prepare("SELECT * FROM city WHERE short_name=:short_name");
+    		$stmt->bindValue(":short_name", $short_name, PDO::PARAM_STR);
     		$stmt->execute();
 
     		return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -79,6 +79,17 @@ class DbSelect {
     	try {
     		$stmt = $this->dbh->prepare("SELECT * FROM campus WHERE fk_university_id=:university_id");
     		$stmt->bindValue(":university_id", $university_id, PDO::PARAM_INT);
+    		$stmt->execute();
+
+    		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    	} catch (PDOException $e) {
+    		return $e;
+    	}
+    }
+
+    public function getAdTypes() {
+    	try {
+			$stmt = $this->dbh->prepare("SELECT * FROM ad_type");
     		$stmt->execute();
 
     		return $stmt->fetchAll(PDO::FETCH_ASSOC);
