@@ -23,6 +23,7 @@ function __autoload($class_name) {
 		}            
 	}
 }
+require_once("StudentTrade/Db/functions.php");
 
 // $a = new Mysql('localhost', 'jwanglof', 'testtest', 'jwanglof');
 // $selected = $a->select($a, 'test', 'id=1');
