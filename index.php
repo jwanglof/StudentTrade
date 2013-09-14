@@ -64,9 +64,8 @@ require_once("StudentTrade/Db/functions.php");
 		<?php } ?>
 	</head>
 	<body>
-		<div class='col-md-12 index top'>
-			<?php include('StudentTrade/Views/switch.php'); ?>
-		</div>
+		
+		<?php include('StudentTrade/Views/switch.php'); ?>
 
 		<div class="col-md-12 index footer">
 			<div class="col-md-4">
