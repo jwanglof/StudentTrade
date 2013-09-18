@@ -3,39 +3,67 @@ $(document).ready(function() {
 		$(this).css('cursor', 'pointer');
 	});
 
-	$("#about_us").avgrund({
-		width: 500,
-		height: 350,
-		showClose: true,
-		showCloseText: 'close',
-		template: '<h1>Om oss</h1>' +
-		'Three grabbz'
+	$("img.box1_img")
+		.mouseenter(function() {
+			bootbox.dialog({
+				message: "Juppjupp",
+				onEscape: function() {},
+				backdrop: true,
+				closeButton: true,
+				animate: true
+			});
+		})
+		.mouseleave(function() {
+			$(".bootbox").modal("hide");
+		});
+});
+// $(document).on("mouseenter", ".box1_img", function(e) {
+// 	bootbox.dialog({
+// 		title: "<h1>Om oss</h1>",
+// 		message: "Juppjupp",
+// 		onEscape: function() {},
+// 		backdrop: true,
+// 		closeButton: true,
+// 		animate: true
+// 	});
+// });
+$(document).on("click", "#about_us", function(e) {
+	bootbox.dialog({
+		title: "<h1>Om oss</h1>",
+		message: "Juppjupp",
+		onEscape: function() {},
+		backdrop: true,
+		closeButton: true,
+		animate: true
 	});
-	$("#how_it_works").avgrund({
-		width: 500,
-		height: 350,
-		showClose: true,
-		showCloseText: 'close',
-		template: '<h1>Så fungerar det</h1>' +
-		'Three grabbz <br />' +
-		'Etccccc...'
+});
+$(document).on("click", "#how_it_works", function(e) {
+	bootbox.dialog({
+		title: "<h1>Så fungerar det</h1>",
+		message: "Juppjupp",
+		onEscape: function() {},
+		backdrop: true,
+		closeButton: true,
+		animate: true
 	});
-	$("#faq").avgrund({
-		width: 500,
-		height: 350,
-		showClose: true,
-		showCloseText: 'close',
-		template: '<h1>Vanliga frågor</h1>' +
-		'Three grabbz <br />' +
-		'QUEEEESTIONS'
+});
+$(document).on("click", "#faq", function(e) {
+	bootbox.dialog({
+		title: "<h1>Vanliga frågor</h1>",
+		message: "Juppjupp",
+		onEscape: function() {},
+		backdrop: true,
+		closeButton: true,
+		animate: true
 	});
-	$("#contact_us").avgrund({
-		width: 500,
-		height: 350,
-		showClose: true,
-		showCloseText: 'close',
-		template: '<h1>Kontakta oss</h1>' +
-		'Three grabbz <br />' +
-		'Etccccc...22222'
+});
+$(document).on("click", "#contact_us", function(e) {
+	bootbox.dialog({
+		title: "<h1>Kontakta oss</h1>",
+		message: "Juppjupp",
+		onEscape: function() {},
+		backdrop: true,
+		closeButton: true,
+		animate: true
 	});
 });

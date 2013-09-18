@@ -3,6 +3,11 @@
 	height: 530px;
 	z-index: 0;
 }
+.ad.top {
+	background: #06bdef url('../Img/index_border.png') bottom repeat-x;
+	height: 230px;
+	z-index: 0;
+}
 
 #infoText {
 	border: 0px solid #000;
@@ -19,10 +24,8 @@
 	z-index: 1;
 }
 
-#infoText .info1 {
-	background-color: #C52174;
-
-	width: 270px;
+#infoText .info {
+	width: 450px;
 	height: 40px;
 	display: block;
 
@@ -30,15 +33,12 @@
 	vertical-align: middle;
 }
 
+#infoText .info1 {
+	background-color: #C52174;
+}
+
 #infoText .info2 {
 	background-color: #363636;
-
-	width: 330px;
-	height: 40px;
-	display: block;
-
-	line-height: 40px; 
-	vertical-align: middle;
 
 	position: relative;
 	top: 15px;
@@ -48,16 +48,9 @@
 #infoText .info3 {
 	background-color: #00A651;
 
-	width: 355px;
-	height: 40px;
-	display: block;
-
-	line-height: 40px; 
-	vertical-align: middle;
-
 	position: relative;
 	top: 35px;
-	left: 75px;
+	left: 100px;
 }
 
 #infoText .what {
@@ -142,7 +135,7 @@ img.studenttrade_logo {
 	text-align: center;
 	color: #fff;
 
-	z-index: -250;
+	z-index: -2;
 }
 
 .content h3 {
@@ -151,6 +144,20 @@ img.studenttrade_logo {
 
 .content .box {
 	margin-top: 50px;
+}
+
+.box img {
+	width: 56px;
+	height: 56px;
+	text-align: center;
+	border: 0px solid #000;
+}
+
+.box.box_image {
+	width: 100%;
+	height: 56px;
+	text-align: center;
+	border: 0px solid #000;
 }
 
 .col-md-4.middle {
@@ -162,7 +169,7 @@ img.studenttrade_logo {
 	box-shadow: -40px 0 80px -40px rgba(0,63,100,0.3) inset, 40px 0 80px -40px rgba(0,63,100,0.3) inset;
 }
 
-.box_image .grower-wrapper{position: relative;top: 50px;left: 45%;}
+/*.box_image .grower-wrapper{position: relative;top: 50px;left: 45%;}
 .box_image .grower{background-color:#edead6;-webkit-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;border-radius:50%;height:55px;position:absolute;text-align:center;top:0;left:0;-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;width:55px;z-index:999}
 .box_image .grower:hover{background-color:#fff;height:491px;left:-221px;top:-291px;width:491px}
 .box_image .grower:hover .larger{height:491px;left:0;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);opacity:1;overflow:visible;top:0;width:491px;}
@@ -174,7 +181,7 @@ img.studenttrade_logo {
 .box_image .grower .smaller i{background:#76c34d;display:block;height:28px;left:25px; top: 12px; position:relative;width:4px}
 .box_image .grower .smaller i i{height:4px;left:-12px;top:12px;width:28px}
 .box_image .grower:hover .smaller{left:50px;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);opacity:0;top:50px}
-.grower-wrapper .box_image:hover{z-index:4}
+.grower-wrapper .box_image:hover{z-index:4}*/
 
 .footer {
 	background: url('../Img/index_border2.png') top repeat-x;
@@ -214,4 +221,9 @@ img.studenttrade_logo {
 
 .ad.title {
 	font-weight: bold;
+}
+
+.categoryButton {
+	font-size: 15px;
+	margin-right: 10px;
 }

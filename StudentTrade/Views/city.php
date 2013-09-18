@@ -114,7 +114,7 @@ $adtypes = $dbh->getAdTypes();
 				<div class="col-md-12">
 				<?php
 				foreach ($ads as $ad) {
-					$ad_type = $dbh->getAdTypeFromID($ad["fk_ad_type_id"]);
+					$ad_type = $dbh->getAdTypeFromID($ad["fk_ad_ad_type"]);
 					echo "<div class=\"ad\">". $ad_type["description"] ."</div>";
 					echo "<div class=\"ad\">
 							<a 
