@@ -1,5 +1,9 @@
 StudentTrade
 ============
+[submenu] (Layouts)
+	[exec] (us) {setxkbmap us}
+	[exec] (se) {setxkbmap se}
+[end]
 Kravspecifikation:
 
 Du kan se hur det ser ut idag på studenttrade.se/modern (sprid inte den adressen). Mycket av det som står är som idag. Det som inte finns idag har jag markerat (nytt). Det viktigaste är att allt är smidigt och enkelt. Det måste vara enkelt att förstå vad sidan har att erbjuda och att lägga upp en annons.
