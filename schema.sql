@@ -8,10 +8,12 @@ USE `StudentTrade` ;
 -- -----------------------------------------------------
 -- Table `StudentTrade`.`ad_type`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`ad_type` ;
+
 CREATE  TABLE IF NOT EXISTS `StudentTrade`.`ad_type` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
-  `desc` VARCHAR(45) NOT NULL ,
+  `description` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -19,6 +21,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `StudentTrade`.`city`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`city` ;
+
 CREATE  TABLE IF NOT EXISTS `StudentTrade`.`city` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
@@ -29,9 +33,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `StudentTrade`.`university`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`university` ;
+
 CREATE  TABLE IF NOT EXISTS `StudentTrade`.`university` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `name` VARCHAR(100) NULL ,
+  `name` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`id`) ,
   CONSTRAINT `fk_city`
     FOREIGN KEY (`id` )
@@ -44,6 +50,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `StudentTrade`.`campus`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`campus` ;
+
 CREATE  TABLE IF NOT EXISTS `StudentTrade`.`campus` (
   `id` INT NOT NULL ,
   `name` VARCHAR(100) NOT NULL ,
@@ -59,6 +67,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `StudentTrade`.`admin`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`admin` ;
+
 CREATE  TABLE IF NOT EXISTS `StudentTrade`.`admin` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `username` VARCHAR(45) NOT NULL ,
@@ -71,6 +81,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `StudentTrade`.`ad`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`ad` ;
+
 CREATE  TABLE IF NOT EXISTS `StudentTrade`.`ad` (
   `id` INT NOT NULL ,
   `title` VARCHAR(45) NOT NULL ,
@@ -90,10 +102,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `StudentTrade`.`ad_user_info`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`ad_user_info` ;
+
 CREATE  TABLE IF NOT EXISTS `StudentTrade`.`ad_user_info` (
   `id` INT NOT NULL ,
-  `name` VARCHAR(80) NULL ,
-  `email` VARCHAR(100) NULL ,
+  `name` VARCHAR(80) NOT NULL ,
+  `email` VARCHAR(100) NOT NULL ,
   `address` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
   CONSTRAINT `fk_city`
