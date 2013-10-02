@@ -17,6 +17,8 @@
 	text-align: center;
 
 	z-index: 1;
+
+	border: 1px solid #000;
 }
 
 #infoText .info1 {
@@ -72,6 +74,8 @@
 	font-weight: normal;
 	text-align: left;
 	color: #000;
+
+	border: 1px solid #000;
 }
 
 img.front_half_circle {
@@ -79,21 +83,30 @@ img.front_half_circle {
 	position: absolute;
 	top: 233px;
 	left: 0px;
+
+	border: 1px solid #000;
 }
 
 img.studenttrade_logo {
 	display: block;
 	padding: 70px 0px 0px 150px;
+
+	border: 1px solid #000;
 }
 
 .map {
-	position: relative;
+/*	position: relative;*/
+	border: 1px solid #000;
+	width: 400px;
+	float: right;
 }
 .map img {
 	width: 330px;
 	position: absolute;
 	top: 0px; left: 0px;
 	z-index: 30;
+
+	border: 1px solid #000;
 }
 .map span {
 	background: #fff;

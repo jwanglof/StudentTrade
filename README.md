@@ -7,6 +7,7 @@ Du kan se hur det ser ut idag på studenttrade.se/modern (sprid inte den adresse
 Startsida:
 
 * Möjlighet att välja sitt univeristet i en lista. Man klickar på en ruta där det står ” Vilket universitet läser du på?” och sedan kommer en lista med alternativ upp (nytt)
+** Roll-down till höger om kartan för att välja universitet i en lista
 * Det ska finnas 3 rutor där ledorden för sidan står: Helt gratis, Snabbt och enkelt och Hitta det du söker. När man för muspekaren över ett grnt plus så ska rutan poppa upp
 * ✔ ~~Längst ner på sidan ska det finnas fyra flikar man kan klicka på: Om oss, Så fungerar det, Vanliga frågor och Kontakta oss. När man klickar på dessa ska det komma som en popup ruta med infon. Denna popup ska sedan kunna stängas genom att trycka på ett kryss i hörnet. (nytt)~~
 * Det ska finnas en ruta där man ser hur många som gillar oss på Facebook samt möjligheten att gilla vår sida direkt (nytt)
@@ -28,6 +29,9 @@ Sida för universitet (Samma för alla med små korrigeringar):
 * Längst ner på sidan ska det finnas fyra flikar man kan klicka på: Om oss, Så fungerar det, Vanliga frågor och Kontakta oss. När man klickar på dessa ska det komma som en popup ruta med infon. Denna popup ska sedan kunna stängas genom att trycka på ett kryss i hörnet.
 * Universitetssidan ska kunna lätt expanderas till nya städer när vi expanderar (nytt)
 * Det ska finnas utrymme för annonser
+* Få en pinkod när man skapar en annons och med denna kunna ta bort eller redigera annonsen (nytt)
+* Kunna välja bort en kategori från ett universitet (nytt)
+* Möjlighet att kunna dela annonsen via Facebook (nytt)
 
 Saker som jag har tänk implementrea i framtiden:
 

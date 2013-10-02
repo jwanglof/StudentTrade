@@ -1,4 +1,4 @@
-Options +FollowSymLinks
+#Options +FollowSymLinks
 RewriteEngine On
 RewriteBase /home/johan/public_html/StudentTrade/
 
