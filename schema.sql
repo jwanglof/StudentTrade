@@ -97,20 +97,13 @@ CREATE  TABLE IF NOT EXISTS `StudentTrade`.`ad` (
   `date_created` DATETIME NOT NULL ,
   `valid_to_date` DATETIME NOT NULL ,
   `fk_ad_type_id` INT NOT NULL ,
-  `fk_city_id` INT NULL ,
   `fk_campus_id` INT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_ad_type_id_idx` (`fk_ad_type_id` ASC) ,
-  INDEX `fk_city_id_idx` (`fk_city_id` ASC) ,
   INDEX `fk_campus_id_idx` (`fk_campus_id` ASC) ,
   CONSTRAINT `fk_ad_type_id`
     FOREIGN KEY (`fk_ad_type_id` )
     REFERENCES `StudentTrade`.`ad_type` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_city_id`
-    FOREIGN KEY (`fk_city_id` )
-    REFERENCES `StudentTrade`.`city` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_campus_id`
