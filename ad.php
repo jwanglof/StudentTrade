@@ -28,7 +28,7 @@ require_once("StudentTrade/Db/functions.php");
 
 $dbh = new DbSelect();
 
-$city = $dbh->getCity($_GET['city']);
+$city = (isset($_GET['city']) ? $dbh->getCity($_GET['city']) : $dbh->getCity("linkoping"));
 $universities = $dbh->getUniversitiesFromCityID($city["id"]);
 $campuses = [];
 foreach ($universities as $uni) {
@@ -36,6 +36,7 @@ foreach ($universities as $uni) {
 }
 
 $adtypes = $dbh->getAdTypes();
+$cityID = $city["id"];
 ?>
 
 <html>
@@ -56,12 +57,11 @@ $adtypes = $dbh->getAdTypes();
 					<?php
 					foreach ($campuses as $cam) {
 						foreach ($cam as $c) {
-							echo generateCampusURL($_GET["city"], $c["campus_name"],
+							echo generateCampusURL($city["short_name"], $c["campus_name"],
 								$c["campus_name"],
 								(isset($_GET["type"]) ? $_GET["type"] : NULL));
 						}
 					}
-					echo "\n";
 					?>
 					</div>
 				</div>
@@ -71,17 +71,19 @@ $adtypes = $dbh->getAdTypes();
 				// generateAdURL($page, $city, $nameOnUrl, $campus=NULL, $type=NULL)
 				foreach ($adtypes as $type) {
 					echo "<span class=\"label label-success categoryButton\">";
-					echo generateAdURL("latest", $_GET["city"], $type["description"],
+					echo generateAdURL("latest", $city["short_name"], $type["description"],
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
 								$type["name"]);
 					echo "</span>";
 				}
 				echo "<span class=\"label label-success categoryButton\">";
-				echo generateAdURL("latest", $_GET["city"], "Visa alla",
+				echo generateAdURL("latest", $city["short_name"], "Visa alla",
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL));
 				echo "</span>";
 				echo "<span class=\"label label-success categoryButton\">";
-				echo generateAdURL("ad_new", $_GET["city"], "Lägg till annonser");
+				echo generateAdURL("ad_new", $city["short_name"], "Lägg till annons",
+								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+								(isset($_GET["type"]) ? $_GET["type"] : NULL));
 				echo "</span>";
 				?>
 				</div>

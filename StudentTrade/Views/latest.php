@@ -1,5 +1,5 @@
 				<?php
-				$cityID = $dbh->getCity($_GET["city"])["id"];
+				// $cityID and $city is from ad.php
 				
 				// Make this more pretty some way?
 				if (isset($_GET["type"], $_GET["campus"])) {
@@ -16,8 +16,6 @@
 
 					$ads = $dbh->getAdsFromCampus($campusID, $cityID);
 				} else {
-					$cityID = $dbh->getCity($_GET["city"])["id"];
-
 					$ads = $dbh->getAds($cityID);
 				}
 				?>
@@ -35,12 +33,12 @@
 				foreach ($ads as $ad) {
 					$ad_type = $dbh->getAdTypeFromID($ad["fk_ad_ad_type"]);
 					echo "<div class=\"ad\">";
-					echo generateAdURL("latest", $_GET["city"], $ad_type["description"],
-								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-								$ad_type["name"]);
-					 echo "</div>";
+					echo generateAdURL("latest", $city["short_name"], $ad_type["description"],
+									(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+									$ad_type["name"]);
+					echo "</div>";
 					echo "<div class=\"ad\">";
-					echo generateShowAdURL($_GET["city"], $ad["title"],
+					echo generateShowAdURL($city["short_name"], $ad["title"],
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
 								(isset($_GET["type"]) ? $_GET["type"] : NULL),
 								$ad["id"]);
