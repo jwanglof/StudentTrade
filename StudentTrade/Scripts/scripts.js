@@ -1,4 +1,14 @@
 $(document).ready(function() {
+	if (gup("campus") != "") {		
+		var campus = gup("campus");
+		$("#"+ campus).addClass("campusChosen").append("<span class=\"exit\">x</span>");
+	}
+	$(".campusChosen").click(function() {
+		// Need .text() since an x-character is added when the link is clicked on
+		// See code above
+		$(this).removeClass("campusChosen").text($(this).text().slice(0,-1));
+	});
+
 	$(".footer li").hover(function() {
 		$(this).css('cursor', 'pointer');
 	});
@@ -18,7 +28,7 @@ $(document).ready(function() {
 		});
 
 	$("#city").ready(function() {
-		// Select the correct category if a category is chosen
+		// Select the correct city if a city is chosen
 		if ($('#city').children(':selected').val() > 0)
 			showCampuses($('#city').children(':selected').val());
 	});
@@ -38,7 +48,24 @@ $(document).ready(function() {
 
 function showCampuses(cityID) {
 	$("#campus").empty();
-	$("#campus").append("<option value=\"22\">"+ cityID +"</option>");
+	request = $.ajax({
+		type: "post",
+		url: "http://localhost/~johan/StudentTrade/StudentTrade/Views/ajax.php",
+		data: {get: "campuses", cityID: cityID}
+	});
+
+	request.done(function(response, textStatus, jqXHR) {
+		console.log(response);
+		var objs = JSON.parse(response);
+		for (var key in objs) {
+			// console.log(key +" -- "+ objs[key]);
+			$("#campus").append("<option value="+ key +">"+ objs[key] +"</option>");
+		};
+	});
+	request.fail(function(jqXHR, textStatus, errorThrown) {
+		console.log(errorThrown);
+		// bootbox.alert("Something went wrong!");
+	});
 }
 
 function showAdTypeInputs(adType) {
@@ -73,48 +100,16 @@ function showAdTypeInputs(adType) {
 	}
 }
 
-/*
-$('#school_program').ready(function() {show_school_class();});
-	$('#school_program').change(function() {show_school_class();});
-
-function show_school_class() {
-	var chosen_school_program = $('#school_program').children(':selected').val();
-	var select_objects = new Array();
-	var selected;
-
-	$('#school_class').children('option').each(function() {
-		var school_class_program = $(this).val().split('|')[1];
-
-		// if ($(this).is(':selected') && school_class_program == chosen_school_program) {
-		// 	selected = $(this);
-		// }
-
-		// Hide all options
-		$(this).hide();
-		if (school_class_program == chosen_school_program) {
-			// Show the correct school class option(s)
-			$(this).show();
-			
-			// Add all HTML objects to the array
-			// If there are more than one class for a program
-			// the select-list will always choose the first one
-			select_objects.push(this);
-		}
-	});
-
-	// If the array has more than 1 element it will selected the correct option
-	if (select_objects.length > 1) {
-		for (var i = 0; i < select_objects.length; i++)
-			if ($(select_objects[i]).val() == $('#default_class').val())
-				$(select_objects[i]).prop('selected', true);
-	}
-	else {
-		// Select the first HTML object in the array
-		$(select_objects[0]).prop('selected', true);
-	}
-}
-
-*/
+function gup(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.href);
+    if (results == null)
+        return "";
+    else
+        return results[1];
+} 
 
 $(document).on("click", "#about_us", function(e) {
 	bootbox.dialog({

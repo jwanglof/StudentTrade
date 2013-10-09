@@ -1,5 +1,5 @@
 <?php
-ob_start('ob_tidyhandler');
+session_start();
 error_reporting(-1);
 ini_set('display_errors', 1);
 // Auto load the classes that are called
@@ -25,6 +25,10 @@ function __autoload($class_name) {
 	}
 }
 require_once("StudentTrade/Db/functions.php");
+if (!isset($_SESSION["sessProtector"])) {
+	$_SESSION["sessProtector"] = session_id();
+	session_write_close();
+}
 
 $dbh = new DbSelect();
 
@@ -52,21 +56,27 @@ $cityID = $city["id"];
 		<div class='col-md-12 ad top'>
 			<div class="row">
 				<div class="col-md-6 col-md-offset-6" style="border: 0px solid #000; height: 100px; margin-top: 20px;">
-					Visa bara annonser från campus:
-					<div class="btn-group btn-group-justified">
+					<div class="btn-group btn-group-justified" id="campusChoser">
+					<a href="ad.php?page=latest&city=<?php echo $city["short_name"]; ?>" class="btn btn-info">Se <?php echo $city["city_name"]; ?></a>
 					<?php
 					foreach ($campuses as $cam) {
 						foreach ($cam as $c) {
-							echo generateCampusURL($city["short_name"], $c["campus_name"],
-								$c["campus_name"],
-								(isset($_GET["type"]) ? $_GET["type"] : NULL));
+							if (isset($_GET["campus"]) && compareString($_GET["campus"], $c["campus_name"])) {
+								echo generateCampusURL($city["short_name"], $c["campus_name"],
+									(isset($_GET["type"]) ? $_GET["type"] : NULL),
+									False);
+							} else {
+								echo generateCampusURL($city["short_name"], $c["campus_name"],
+									(isset($_GET["type"]) ? $_GET["type"] : NULL));
+							}
 						}
 					}
 					?>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-12 alert alert-warning" style="border: 0px solid #000">
+
+			<div class="col-md-6 alert alert-warning" id="categories">
 				<?php
 				// generateAdURL($page, $city, $nameOnUrl, $campus=NULL, $type=NULL)
 				foreach ($adtypes as $type) {
@@ -80,13 +90,16 @@ $cityID = $city["id"];
 				echo generateAdURL("latest", $city["short_name"], "Visa alla",
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL));
 				echo "</span>";
-				echo "<span class=\"label label-success categoryButton\">";
+				?>
+			</div>
+			<div class="col-md-2 col-md-offset-4 adNewAd">
+				<?php
+				echo "<span class=\"btn btn-default btn-lg\">";
 				echo generateAdURL("ad_new", $city["short_name"], "Lägg till annons",
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
 								(isset($_GET["type"]) ? $_GET["type"] : NULL));
 				echo "</span>";
 				?>
-				</div>
 			</div>
 		</div>
 

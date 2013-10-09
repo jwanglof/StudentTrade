@@ -227,3 +227,25 @@ img.studenttrade_logo {
 	font-size: 15px;
 	margin-right: 10px;
 }
+
+.adNewAd {
+	text-align: right;
+}
+
+.campusChosen {
+	background: #0078C1;
+	border-color: #0078C1;
+}
+
+.campusChosen .exit {
+	position: absolute; top: 0px; right: 0px;
+	width: 25px;
+	height: 100%;
+	text-align: center;
+	border-left: 2px solid #06BDEF;
+	line-height: 30px;
+}
+
+#categories {
+	text-align: center;
+}
