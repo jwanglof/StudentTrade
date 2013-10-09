@@ -6,11 +6,11 @@ CREATE SCHEMA IF NOT EXISTS `StudentTrade` DEFAULT CHARACTER SET utf8 COLLATE ut
 USE `StudentTrade` ;
 
 -- -----------------------------------------------------
--- Table `StudentTrade`.`ad_type`
+-- Table `StudentTrade`.`adType`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `StudentTrade`.`ad_type` ;
+DROP TABLE IF EXISTS `StudentTrade`.`adType` ;
 
-CREATE  TABLE IF NOT EXISTS `StudentTrade`.`ad_type` (
+CREATE  TABLE IF NOT EXISTS `StudentTrade`.`adType` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
   `description` VARCHAR(45) NOT NULL ,
@@ -96,16 +96,16 @@ CREATE  TABLE IF NOT EXISTS `StudentTrade`.`ad` (
   `price` INT NOT NULL ,
   `date_created` DATETIME NOT NULL ,
   `valid_to_date` DATETIME NOT NULL ,
-  `fk_ad_ad_type` INT NOT NULL ,
+  `fk_ad_adType` INT NOT NULL ,
   `fk_ad_campus` INT NULL ,
   `fk_ad_city` INT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_ad_type_id_idx` (`fk_ad_ad_type` ASC) ,
+  INDEX `fk_ad_type_id_idx` (`fk_ad_adType` ASC) ,
   INDEX `fk_campus_id_idx` (`fk_ad_campus` ASC) ,
   INDEX `fk_city_id_idx` (`fk_ad_city` ASC) ,
   CONSTRAINT `fk_ad_ad_type`
-    FOREIGN KEY (`fk_ad_ad_type` )
-    REFERENCES `StudentTrade`.`ad_type` (`id` )
+    FOREIGN KEY (`fk_ad_adType` )
+    REFERENCES `StudentTrade`.`adType` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ad_campus`
@@ -122,21 +122,132 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `StudentTrade`.`ad_user_info`
+-- Table `StudentTrade`.`adUserInfo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `StudentTrade`.`ad_user_info` ;
+DROP TABLE IF EXISTS `StudentTrade`.`adUserInfo` ;
 
-CREATE  TABLE IF NOT EXISTS `StudentTrade`.`ad_user_info` (
+CREATE  TABLE IF NOT EXISTS `StudentTrade`.`adUserInfo` (
   `id` INT NOT NULL ,
   `name` VARCHAR(80) NOT NULL ,
   `email` VARCHAR(100) NOT NULL ,
   `address` VARCHAR(45) NULL ,
-  `fk_ad_user_info_city` INT NULL ,
+  `fk_adUserInfo_ad` INT NOT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_ad_user_info_city_idx` (`fk_ad_user_info_city` ASC) ,
+  INDEX `fk_ad_user_info_city_idx` (`fk_adUserInfo_ad` ASC) ,
   CONSTRAINT `fk_ad_user_info_city`
-    FOREIGN KEY (`fk_ad_user_info_city` )
-    REFERENCES `StudentTrade`.`city` (`id` )
+    FOREIGN KEY (`fk_adUserInfo_ad` )
+    REFERENCES `StudentTrade`.`ad` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `StudentTrade`.`adTypeTickets`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`adTypeTickets` ;
+
+CREATE  TABLE IF NOT EXISTS `StudentTrade`.`adTypeTickets` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `event` VARCHAR(45) NULL ,
+  `fk_adTypeTickets_adType` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_adTypeTickets_adType_idx` (`fk_adTypeTickets_adType` ASC) ,
+  CONSTRAINT `fk_adTypeTickets_adType`
+    FOREIGN KEY (`fk_adTypeTickets_adType` )
+    REFERENCES `StudentTrade`.`adType` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `StudentTrade`.`adTypeLiterature`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`adTypeLiterature` ;
+
+CREATE  TABLE IF NOT EXISTS `StudentTrade`.`adTypeLiterature` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `isbn` INT NULL ,
+  `fk_adTypeLiterature_adType` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_adTypeLiterature_adType_idx` (`fk_adTypeLiterature_adType` ASC) ,
+  CONSTRAINT `fk_adTypeLiterature_adType`
+    FOREIGN KEY (`fk_adTypeLiterature_adType` )
+    REFERENCES `StudentTrade`.`adType` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `StudentTrade`.`adTypeHousing`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`adTypeHousing` ;
+
+CREATE  TABLE IF NOT EXISTS `StudentTrade`.`adTypeHousing` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `size` INT NULL ,
+  `fk_adTypeHousing_adType` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_adTypeHousing_adType_idx` (`fk_adTypeHousing_adType` ASC) ,
+  CONSTRAINT `fk_adTypeHousing_adType`
+    FOREIGN KEY (`fk_adTypeHousing_adType` )
+    REFERENCES `StudentTrade`.`adType` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `StudentTrade`.`adTypeWork`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`adTypeWork` ;
+
+CREATE  TABLE IF NOT EXISTS `StudentTrade`.`adTypeWork` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `fk_adTypeWork_adType` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_adTypeWork_adType_idx` (`fk_adTypeWork_adType` ASC) ,
+  CONSTRAINT `fk_adTypeWork_adType`
+    FOREIGN KEY (`fk_adTypeWork_adType` )
+    REFERENCES `StudentTrade`.`adType` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `StudentTrade`.`adTypeTravel`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`adTypeTravel` ;
+
+CREATE  TABLE IF NOT EXISTS `StudentTrade`.`adTypeTravel` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `fk_adTypeTravel_adType` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_adTypeHousing_adType_idx` (`fk_adTypeTravel_adType` ASC) ,
+  CONSTRAINT `fk_adTypeTravel_adType`
+    FOREIGN KEY (`fk_adTypeTravel_adType` )
+    REFERENCES `StudentTrade`.`adType` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `StudentTrade`.`adTypeOther`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `StudentTrade`.`adTypeOther` ;
+
+CREATE  TABLE IF NOT EXISTS `StudentTrade`.`adTypeOther` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `fk_adTypeOther_adType` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_adTypeOther_adType_idx` (`fk_adTypeOther_adType` ASC) ,
+  CONSTRAINT `fk_adTypeOther_adType`
+    FOREIGN KEY (`fk_adTypeOther_adType` )
+    REFERENCES `StudentTrade`.`adType` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -149,16 +260,16 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `StudentTrade`.`ad_type`
+-- Data for table `StudentTrade`.`adType`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `StudentTrade`;
-INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (1, 'tickets', 'Biljetter');
-INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (2, 'literature', 'Kurslitteratur');
-INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (3, 'house', 'Bostad');
-INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (4, 'work', 'Jobb/arbete');
-INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (5, 'travel', 'Resor/samåkning');
-INSERT INTO `StudentTrade`.`ad_type` (`id`, `name`, `description`) VALUES (6, 'other', 'Övrigt');
+INSERT INTO `StudentTrade`.`adType` (`id`, `name`, `description`) VALUES (1, 'tickets', 'Biljetter');
+INSERT INTO `StudentTrade`.`adType` (`id`, `name`, `description`) VALUES (2, 'literature', 'Kurslitteratur');
+INSERT INTO `StudentTrade`.`adType` (`id`, `name`, `description`) VALUES (3, 'house', 'Bostad');
+INSERT INTO `StudentTrade`.`adType` (`id`, `name`, `description`) VALUES (4, 'work', 'Jobb/arbete');
+INSERT INTO `StudentTrade`.`adType` (`id`, `name`, `description`) VALUES (5, 'travel', 'Resor/samåkning');
+INSERT INTO `StudentTrade`.`adType` (`id`, `name`, `description`) VALUES (6, 'other', 'Övrigt');
 
 COMMIT;
 
