@@ -53,16 +53,16 @@ require_once("StudentTrade/Db/functions.php");
 		</style>
 	</head>
 	<body>
-		<div class='col-md-12 index top'>
+		<div class='col-xs-12 index top'>
 			<div>
 				<div id="far-clouds" class="stage"></div>
 				<div id="near-clouds" class="stage"></div>
 			</div>
 			<div class='row'>
-				<div class='col-md-6'>
+				<div class='col-xs-6'>
 					<a href="index.php" title="StudentTrade.se"><img src='StudentTrade/Img/studenttrade_logo.png' class='studenttrade_logo' /></a>
 				</div>
-				<div class='col-md-6 map'>
+				<div class='col-xs-6 map'>
 					<img src="StudentTrade/Img/map.png" />
 					<?php
 					$dbh = new DbSelect();
@@ -84,9 +84,9 @@ require_once("StudentTrade/Db/functions.php");
 			<img src="StudentTrade/Img/front_half_circle.png" class='front_half_circle' />	
 		</div>
 
-		<div class="col-md-12 index content">
+		<div class="col-xs-12 index content">
 			<div class="row">
-				<div class="col-md-4 box">
+				<div class="col-xs-4 box">
 					<h3>Helt gratis</h3>
 					<p>Det kostar inget för dig</p>
 					<img class="box1_img" src="StudentTrade/Img/circle_with_plus_sign.png" />
@@ -94,7 +94,7 @@ require_once("StudentTrade/Db/functions.php");
 						En massa text
 					</div>
 				</div>
-				<div class="col-md-4 middle">
+				<div class="col-xs-4 middle">
 					<h3>Snabbt och enkelt</h3>
 					<p>Det ska vara lättåtkomligt och enkelt för dig</p>
 					<img class="box2" src="StudentTrade/Img/circle_with_plus_sign.png" />
@@ -102,7 +102,7 @@ require_once("StudentTrade/Db/functions.php");
 						En massa text
 					</div>
 				</div>
-				<div class="col-md-4 box">
+				<div class="col-xs-4 box">
 					<h3>Hitta det du söker</h3>
 					<p>Det finns ett stort utbud</p>
 					<img class="box3" src="StudentTrade/Img/circle_with_plus_sign.png" />
@@ -113,7 +113,7 @@ require_once("StudentTrade/Db/functions.php");
 			</div>
 		</div>
 
-		<div class="col-md-12 index footer">
+		<div class="col-xs-12 index footer">
 			<?php include_once("StudentTrade/Views/footer.php"); ?>
 		</div>
 

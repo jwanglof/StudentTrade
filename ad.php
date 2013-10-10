@@ -53,9 +53,9 @@ $cityID = $city["id"];
 		<link rel="shortcut icon" href="favicon.ico" />
 	</head>
 	<body>
-		<div class='col-md-12 ad top'>
+		<div class='col-xs-12 ad top'>
 			<div class="row">
-				<div class="col-md-6 col-md-offset-6" style="border: 0px solid #000; height: 100px; margin-top: 20px;">
+				<div class="col-xs-6 col-xs-offset-6" style="border: 0px solid #000; height: 100px; margin-top: 20px; float: right;">
 					<div class="btn-group btn-group-justified" id="campusChoser">
 					<a href="ad.php?page=latest&city=<?php echo $city["short_name"]; ?>" class="btn btn-info">Se <?php echo $city["city_name"]; ?></a>
 					<?php
@@ -76,7 +76,7 @@ $cityID = $city["id"];
 				</div>
 			</div>
 
-			<div class="col-md-6 alert alert-warning" id="categories">
+			<div class="col-xs-6 alert alert-warning" id="categories">
 				<?php
 				// generateAdURL($page, $city, $nameOnUrl, $campus=NULL, $type=NULL)
 				foreach ($adtypes as $type) {
@@ -92,7 +92,7 @@ $cityID = $city["id"];
 				echo "</span>";
 				?>
 			</div>
-			<div class="col-md-2 col-md-offset-4 adNewAd">
+			<div class="col-xs-2 col-xs-offset-4 adNewAd">
 				<?php
 				echo "<span class=\"btn btn-default btn-lg\">";
 				echo generateAdURL("ad_new", $city["short_name"], "Lägg till annons",
@@ -107,7 +107,7 @@ $cityID = $city["id"];
 			<?php include_once('StudentTrade/Views/switch.php'); ?>
 		</div>
 
-		<div class="col-md-12 index footer">
+		<div class="col-xs-12 index footer">
 			<?php include_once("StudentTrade/Views/footer.php"); ?>
 		</div>
 
