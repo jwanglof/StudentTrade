@@ -19,32 +19,47 @@
 					$ads = $dbh->getAds($cityID);
 				}
 				?>
-				<div class="col-md-12 alert alert-danger">
-					<h3><?php
+				<div class="col-xs-12 categoryHeading">
+					<?php
 						echo (isset($_GET["type"]) ? $adType["description"] : "Senaste annonserna");
-					?></h3>
-					<div class="ad title">Kategori</div>
-					<div class="ad title">Titel</div>
-					<div class="ad title">Pris</div>
-					<div class="ad title">Skapad</div>
+					?>
 				</div>
-				<div class="col-md-12">
+				<div class="col-xs-12">
+					<div class="row" id="latestAd">
+
 				<?php
 				foreach ($ads as $ad) {
-					$ad_type = $dbh->getAdTypeFromID($ad["fk_ad_ad_type"]);
-					echo "<div class=\"ad\">";
-					echo generateAdURL("latest", $city["short_name"], $ad_type["description"],
-									(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-									$ad_type["name"]);
-					echo "</div>";
-					echo "<div class=\"ad\">";
-					echo generateShowAdURL($city["short_name"], $ad["title"],
+					$ad_type = $dbh->getAdTypeFromID($ad["fk_ad_adType"]);
+				?>
+						<div class="col-xs-6 latestAd">
+							<div class="categoryLetter" style="background-color: <?php echo $ad_type["color"]; ?>;">
+								<?php echo $ad_type["description"][0]; ?>
+							</div>
+							<div class="adInfo">
+								<h4><?php echo generateShowAdURL($city["short_name"], $ad["title"],
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
 								(isset($_GET["type"]) ? $_GET["type"] : NULL),
-								$ad["id"]);
-					echo "</div>";
-					echo "<div class=\"ad\">". $ad["price"] ."</div>";
-					echo "<div class=\"ad\">". $ad["date_created"] ."</div>";
-					echo "<br />";
+								$ad["id"]); ?></h4>
+								<?php echo $ad["price"]; ?> SEK (<?php echo date_format(date_create($ad["date_created"]), "Y-m-d"); ?>)
+							</div>
+						</div>
+				<?php
+				// 	echo $ad["fk_ad_adType"];
+				// 	echo "<div class=\"ad\">";
+				// 	echo generateAdURL("latest", $city["short_name"], $ad_type["description"],
+				// 					(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+				// 					$ad_type["name"]);
+				// 	echo "</div>";
+				// 	echo "<div class=\"ad\">";
+				// 	echo generateShowAdURL($city["short_name"], $ad["title"],
+				// 				(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+				// 				(isset($_GET["type"]) ? $_GET["type"] : NULL),
+				// 				$ad["id"]);
+				// 	echo "</div>";
+				// 	echo "<div class=\"ad\">". $ad["price"] ."</div>";
+				// 	echo "<div class=\"ad\">". $ad["date_created"] ."</div>";
+				// 	echo "<br />";
 				}
 				?>
+					</div>
+				</div>

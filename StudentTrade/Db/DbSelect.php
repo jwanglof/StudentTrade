@@ -1,7 +1,7 @@
 <?php
 class DbSelect extends DbConfig {
 	private $dbh;
-	public $errors = [];
+	public $errors = array();
 	private $name;
 
 	public function __construct() {
@@ -30,7 +30,7 @@ class DbSelect extends DbConfig {
 	public function getCityIDs() {
 		/*
 			SELECT * FROM city c, university u, campus cam
-			WHERE u.fk_city_id = c.id
+			WHERE u.fk_cityID = c.id
 			AND cam.fk_university_id = u.id
 		*/
 		try {
@@ -43,10 +43,10 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getCity($short_name) {
+	public function getCity($shortName) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM city WHERE short_name=:short_name");
-			$stmt->bindValue(":short_name", $short_name, PDO::PARAM_STR);
+			$stmt = $this->dbh->prepare("SELECT * FROM city WHERE short_name=:shortName");
+			$stmt->bindValue(":shortName", $shortName, PDO::PARAM_STR);
 			$stmt->execute();
 
 			return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -66,10 +66,10 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getUniversitiesFromCityID($city_id) {
+	public function getUniversitiesFromCityID($cityID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM university WHERE fk_university_city=:city_id");
-			$stmt->bindValue(":city_id", $city_id, PDO::PARAM_INT);
+			$stmt = $this->dbh->prepare("SELECT * FROM university WHERE fk_university_city=:cityID");
+			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -107,7 +107,7 @@ class DbSelect extends DbConfig {
 	 */
 	public function getAdTypes() {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad_type");
+			$stmt = $this->dbh->prepare("SELECT * FROM adType");
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -116,10 +116,10 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdTypeFromID($ad_id) {
+	public function getAdTypeFromID($adID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad_type WHERE id=:ad_id");
-			$stmt->bindValue(":ad_id", $ad_id, PDO::PARAM_INT);
+			$stmt = $this->dbh->prepare("SELECT * FROM adType WHERE id=:adID");
+			$stmt->bindValue(":adID", $adID, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -128,10 +128,10 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdTypeFromName($ad_name) {
+	public function getAdTypeFromName($adName) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad_type WHERE name=:ad_name");
-			$stmt->bindValue(":ad_name", $ad_name, PDO::PARAM_INT);
+			$stmt = $this->dbh->prepare("SELECT * FROM adType WHERE name=:adName");
+			$stmt->bindValue(":adName", $adName, PDO::PARAM_STR);
 			$stmt->execute();
 
 			return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -140,10 +140,10 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAds($city_id) {
+	public function getAds($cityID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_city=:city_id ORDER BY id DESC");
-			$stmt->bindValue(":city_id", $city_id, PDO::PARAM_INT);
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_city=:cityID ORDER BY id DESC");
+			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -152,11 +152,11 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdsWithTypeIDFromCity($ad_type_id, $city_id) {
+	public function getAdsWithTypeIDFromCity($adTypeID, $cityID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_ad_type=:ad_type_id AND fk_ad_city=:city_id ORDER BY id DESC");
-			$stmt->bindValue(":ad_type_id", $ad_type_id, PDO::PARAM_INT);
-			$stmt->bindValue(":city_id", $city_id, PDO::PARAM_INT);
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adType=:adTypeID AND fk_ad_city=:cityID ORDER BY id DESC");
+			$stmt->bindValue(":adTypeID", $adTypeID, PDO::PARAM_INT);
+			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -180,7 +180,7 @@ class DbSelect extends DbConfig {
 
 	public function getAdsWithTypeFromCampus($adTypeID, $campusID, $cityID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_ad_type=:adTypeID AND fk_ad_campus=:campusID AND fk_ad_city=:cityID ORDER BY id DESC");
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adType=:adTypeID AND fk_ad_campus=:campusID AND fk_ad_city=:cityID ORDER BY id DESC");
 			$stmt->bindValue(":adTypeID", $adTypeID, PDO::PARAM_INT);
 			$stmt->bindValue(":campusID", $campusID, PDO::PARAM_INT);
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);

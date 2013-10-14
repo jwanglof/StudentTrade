@@ -50,51 +50,67 @@ $cityID = $city["id"];
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/avgrund.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/style.css" />
+
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+
 		<link rel="shortcut icon" href="favicon.ico" />
 	</head>
 	<body>
 		<div class='col-xs-12 ad top'>
-			<div class="row">
-				<div class="col-xs-6 col-xs-offset-6" style="border: 0px solid #000; height: 100px; margin-top: 20px; float: right;">
-					<div class="btn-group btn-group-justified" id="campusChoser">
+			<!--  style="border: 0px solid #000; height: 100px; margin-top: 20px; float: right;" -->
+			<div class="col-xs-6 col-md-offset-6" id="campusChooser">
+				<div class="btn-group btn-group-justified">
 					<a href="ad.php?page=latest&city=<?php echo $city["short_name"]; ?>" class="btn btn-info">Se <?php echo $city["city_name"]; ?></a>
-					<?php
-					foreach ($campuses as $cam) {
-						foreach ($cam as $c) {
-							if (isset($_GET["campus"]) && compareString($_GET["campus"], $c["campus_name"])) {
-								echo generateCampusURL($city["short_name"], $c["campus_name"],
-									(isset($_GET["type"]) ? $_GET["type"] : NULL),
-									False);
-							} else {
-								echo generateCampusURL($city["short_name"], $c["campus_name"],
-									(isset($_GET["type"]) ? $_GET["type"] : NULL));
-							}
+				<?php
+				foreach ($campuses as $cam) {
+					foreach ($cam as $c) {
+						if (isset($_GET["campus"]) && compareString($_GET["campus"], $c["campus_name"])) {
+							echo generateCampusURL($city["short_name"], $c["campus_name"],
+								(isset($_GET["type"]) ? $_GET["type"] : NULL),
+								False);
+						} else {
+							echo generateCampusURL($city["short_name"], $c["campus_name"],
+								(isset($_GET["type"]) ? $_GET["type"] : NULL));
 						}
 					}
-					?>
-					</div>
+				}
+				?>
 				</div>
 			</div>
 
-			<div class="col-xs-6 alert alert-warning" id="categories">
+			<!-- <div class="row" style="border: 1px solid #000; height: 147px;">
+				<div class="col-xs-6">
+					<img src="StudentTrade/Img/studenttrade_logo_wo_text.png" />
+				</div>
+				<div class="col-xs-6">
+					<img src="StudentTrade/Img/far-clouds_small.png" />
+				</div>
+			</div> -->
+			<!-- <div class="col-xs-12" style="border: 1px solid #000; background: #000 url("StudentTrade/Img/far-clouds_small.png"); height: 200px; width: 200px;">
+			qwd
+			</div> -->
+
+			<div class="col-xs-8" id="categories">
 				<?php
 				// generateAdURL($page, $city, $nameOnUrl, $campus=NULL, $type=NULL)
 				foreach ($adtypes as $type) {
-					echo "<span class=\"label label-success categoryButton\">";
-					echo generateAdURL("latest", $city["short_name"], $type["description"],
+					echo "<span style=\"background-color: ". $type["color"] ."\">";
+					echo generateAdURL("latest", $city["short_name"],
+								((isset($_GET["type"]) && $_GET["type"] == $type["name"]) ? ">". $type["description"] : $type["description"]),
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
 								$type["name"]);
 					echo "</span>";
 				}
-				echo "<span class=\"label label-success categoryButton\">";
+				echo "<span class=\"categoryViewAll\">";
 				echo generateAdURL("latest", $city["short_name"], "Visa alla",
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL));
 				echo "</span>";
 				?>
 			</div>
-			<div class="col-xs-2 col-xs-offset-4 adNewAd">
+
+			<div class="col-xs-4 addNew">
 				<?php
-				echo "<span class=\"btn btn-default btn-lg\">";
+				echo "<span>";
 				echo generateAdURL("ad_new", $city["short_name"], "Lägg till annons",
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
 								(isset($_GET["type"]) ? $_GET["type"] : NULL));
@@ -104,7 +120,14 @@ $cityID = $city["id"];
 		</div>
 
 		<div class="ads content">
-			<?php include_once('StudentTrade/Views/switch.php'); ?>
+			<div class="row">
+				<div class="col-xs-8">
+					<?php include_once('StudentTrade/Views/switch.php'); ?>
+				</div>
+				<div class="col-xs-4 rightColumn">
+					Annonser
+				</div>
+			</div>
 		</div>
 
 		<div class="col-xs-12 index footer">

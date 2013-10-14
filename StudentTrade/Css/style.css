@@ -1,3 +1,13 @@
+body,html {
+	font-family: 'Lato', sans-serif;
+	color: #fff;
+}
+
+a {color: #fff;}
+a:hover {color: #fff;}
+a:active {color: #fff;}
+a:visited {color: #fff;}
+
 .container {
 	max-width: none !important;
 	width: 970px;
@@ -6,11 +16,6 @@
 .index.top {
 	background: #06bdef url('../Img/index_border.png') bottom repeat-x;
 	height: 530px;
-	z-index: 0;
-}
-.ad.top {
-	background: #06bdef url('../Img/index_border.png') bottom repeat-x;
-	height: 230px;
 	z-index: 0;
 }
 
@@ -23,7 +28,7 @@
 	font-family: Arial;
 	font-size: 17px;
 	font-weight: bold;
-	color: #fff;
+	
 	text-align: center;
 
 	z-index: 1;
@@ -103,10 +108,13 @@ img.studenttrade_logo {
 	font-size: 11px;
 	padding: 2px 6px;
 }
-.map a:hover{
+.map a{color: #464646;}
+.map a:hover {
 	font-size: 13px;
 	font-weight: bold;
 	text-decoration: none;
+
+	color: #464646;
 }
 
 .map .linkoping {
@@ -138,7 +146,7 @@ img.studenttrade_logo {
 	background-color: #0078C1;
 	height: 300px;
 	text-align: center;
-	color: #fff;
+	
 
 	z-index: -2;
 
@@ -198,6 +206,8 @@ img.studenttrade_logo {
 	font-weight: bold;
 	height: 40px;
 	padding-top: 70px;
+
+	color: #464646;
 }
 
 .footer ul {
@@ -226,18 +236,29 @@ img.studenttrade_logo {
 	float: left;
 }
 
-.ad.title {
+/*.ad.title {
 	font-weight: bold;
+	border: 10px solid #000;
+	display: block;
+}*/
+
+.ad.top {
+	background: #06bdef;
+	background-image: url('../Img/index_border.png'), url('../Img/studenttrade_logo_wo_text.png'), url('../Img/far-clouds.png');
+	background-repeat: repeat-x, no-repeat, no-repeat;
+	background-position: bottom, center left, right bottom;
+
+	height: 230px;
+	z-index: 10;
+	/*border: 1px solid #000;*/
 }
 
-.categoryButton {
-	font-size: 15px;
-	margin-right: 10px;
+#campusChooser {
+	/*border: 1px solid #000;*/
+	height: 200px;
 }
-
-.adNewAd {
-	text-align: right;
-}
+#campusChooser a {color: #464646;}
+#campusChooser div {margin-top: 20px;}
 
 .campusChosen {
 	background: #0078C1;
@@ -254,5 +275,83 @@ img.studenttrade_logo {
 }
 
 #categories {
+	text-align: left;
+	/*border: 1px solid #000;*/
+	padding: 0px;
+}
+
+#categories a {font-weight: bold;}
+#categories a:hover {vertical-align:text-top; text-decoration: none;}
+
+#categories span {
+	margin-right: 20px;
+	padding: 5px 20px;
+
+	font-size: 20px;
+}
+
+#categories .categoryViewAll {background-color: #666666;}
+.addNew {
+	text-align: right;
+	height: 30px;
+	/*border: 1px solid #000;*/
+}
+.addNew a {font-weight: bold;}
+.addNew span {
+	background-color: #39b54a;
+	padding: 20px 20px;
+	line-height: 25px;
+	font-size: 35px;
+}
+
+.categoryHeading {
+	font-size: 40px;
+	background-color: #666666;
+	margin-top: 5px;
+}
+
+.rightColumn {
+	padding-top: 30px;
+}
+
+#latestAd {
+	margin-bottom: 5px;
+}
+
+.col-xs-6.latestAd {
+	border: 0px solid #000;
+	height: 60px;
+	padding: 5px 5px;
+
+	background-color: #f4f4f4;
+}
+
+.col-xs-6.latestAd .categoryLetter {
+	/*border: 1px solid #f00;*/
+	width: 10%;
+	height: 100%;
+	font-size: 50px;
+	font-weight: 700;
 	text-align: center;
+	line-height: 50px;
+
+	float: left;
+}
+
+.adInfo {
+	/*border: 1px solid #0f0;*/
+	background-color: #dbcab5;
+	width: 90%;
+	height: 100%;
+
+	float: left;
+	padding-left: 10px;
+	line-height: 0px;
+
+	color: #464646;
+}
+.adInfo a {color: #464646;}
+.adInfo h4 {
+	font-size: 1.25em;
+	font-weight: 700;
 }
