@@ -36,12 +36,12 @@ $(document).ready(function() {
 		showCampuses($(this).val());
 	});
 
-	$("#adCategory").ready(function() {
+	$("#adType").ready(function() {
 		// Select the correct category if a category is chosen
-		if ($('#adCategory').children(':selected').val() > 0)
-			showAdTypeInputs($('#adCategory').children(':selected').val());
+		if ($('#adType').children(':selected').val() > 0)
+			showAdTypeInputs($('#adType').children(':selected').val());
 	});
-	$("#adCategory").click(function() {
+	$("#adType").click(function() {
 		showAdTypeInputs($(this).val());
 	});
 });
@@ -57,9 +57,10 @@ function showCampuses(cityID) {
 	request.done(function(response, textStatus, jqXHR) {
 		console.log(response);
 		var objs = JSON.parse(response);
+		$("#campus").append("<option value=\"0\">Inget campus</option>");
 		for (var key in objs) {
 			// console.log(key +" -- "+ objs[key]);
-			$("#campus").append("<option value="+ key +">"+ objs[key] +"</option>");
+			$("#campus").append("<option value=\""+ key +"\">"+ objs[key] +"</option>");
 		};
 	});
 	request.fail(function(jqXHR, textStatus, errorThrown) {
@@ -72,32 +73,27 @@ function showAdTypeInputs(adType) {
 	// Clear the div
 	$("#adInput").empty();
 
-	switch(parseInt(adType, 10)) {
-		case 0:
-			break;
-		case 1:
-			$("#adInput").append("<label for=\"address\" class=\"col-lg-1 control-label\">Adress</label>");
-			$("#adInput").append("<div class=\"col-lg-5\"><input type=\"text\" class=\"form-control\" id=\"address\" name=\"address\" placeholder=\"Adress\"></div>");
-			break;
-		case 2:
-			$("#adInput").append("<h1>2</h1>");
-			break;
-		case 3:
-			$("#adInput").append("<h1>3</h1>");
-			break;
-		case 4:
-			$("#adInput").append("<h1>4</h1>");
-			break;
-		case 5:
-			$("#adInput").append("<h1>5</h1>");
-			break;
-		case 6:
-			$("#adInput").append("<h1>6</h1>");
-			break;
-		default:
-			bootbox.alert("Inte en giltig kategori.");
-			break;
-	}
+	request = $.ajax({
+		type: "post",
+		url: "http://localhost/~johan/StudentTrade/StudentTrade/Views/ajax.php",
+		data: {get: "adTypeInfo", adType: adType}
+	});
+
+	request.done(function(response, textStatus, jqXHR) {
+		console.log(response);
+
+		var objs = JSON.parse(response);
+		for (var value in objs) {
+			$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
+			$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\"text\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
+			$("#adInput").append("<br /><br />");
+		}
+	});
+	request.fail(function(jqXHR, textStatus, errorThrown) {
+		console.log(errorThrown);
+	});
+	// $("#adInput").append("<label for=\"address\" class=\"col-lg-1 control-label\">Adress</label>");
+	// $("#adInput").append("<div class=\"col-lg-5\"><input type=\"text\" class=\"form-control\" id=\"address\" name=\"address\" placeholder=\"Adress\"></div>");
 }
 
 function gup(name) {
@@ -113,8 +109,8 @@ function gup(name) {
 
 $(document).on("click", "#about_us", function(e) {
 	bootbox.dialog({
-		title: "<h1>Om oss</h1>",
-		message: "Juppjupp",
+		title: "<h1 style=\"color: #000;\">Om oss</h1>",
+		message: "<span style=\"color: #000;\">StudentTrade.se är en köp- och sälj sajt enbart för studenter. Hos oss kan du köpa och sälja saker som har studentlivet till. StudentTrade.se startades hösten 2013 av tre stundenter på Linköpings Universitet.</span>",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,
@@ -123,8 +119,8 @@ $(document).on("click", "#about_us", function(e) {
 });
 $(document).on("click", "#how_it_works", function(e) {
 	bootbox.dialog({
-		title: "<h1>Så fungerar det</h1>",
-		message: "Juppjupp",
+		title: "<h1 style=\"color: #000;\">Så fungerar det</h1>",
+		message: "<span style=\"color: #000;\">Hos oss är det lätt att både lägga upp annons och att hitta det du söker. Börja med att välja din studentstad på startsidan. Väl inne på sidan kan du sedan lätt sortera annonserna efter kategori och lägga upp annons genom att klicka på ”Lägg upp annons”. Annonsen kommer direkt upp i flödet och blir tillgänlig för andra studenter.</span>",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,
@@ -133,8 +129,8 @@ $(document).on("click", "#how_it_works", function(e) {
 });
 $(document).on("click", "#faq", function(e) {
 	bootbox.dialog({
-		title: "<h1>Vanliga frågor</h1>",
-		message: "Juppjupp",
+		title: "<h1 style=\"color: #000;\">Vanliga frågor och svar</h1>",
+		message: "<span style=\"color: #000;\"><p>Kostar det något att lägga upp en annons? <br /> Nej, tillskillnad från Blocket och andra sajter är det helt gratis att lägga upp en annons hos oss. Vi är också studenter och tycker inte man ska betala för att lägga upp en annons. </p> Hur tar jag bort min annons? <br /> När du lägger upp din annons får du en fyrsiffrig kod till den e-mail adress du angett. Om du vill ta bort din annons går du in på den, klickar på ”Ta bort annons” och anger din kod. Snabbt och enkelt! <p style=\"margin-top: 10px;\"> Vad gör jag om jag tycker att en annons är olämplig? <br /> Om du ser en annons som du inte tycker är olämplig kan du anmäla den till oss. Vi ser då om den bryter mot ”Regler kring annonsering” och beslutar med detta som grund om hurvida annonser ska bli borttagen eller inte. Om du vill veta vilka regler som gäller kring annonsering så hittar du det här: www.studenttrade.se/regler_kring_annonsering</span>",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,
@@ -143,8 +139,8 @@ $(document).on("click", "#faq", function(e) {
 });
 $(document).on("click", "#contact_us", function(e) {
 	bootbox.dialog({
-		title: "<h1>Kontakta oss</h1>",
-		message: "Juppjupp",
+		title: "<h1 style=\"color: #000;\">Kontakta oss</h1>",
+		message: "<span style=\"color: #000;\">Är det något du undrar över är det bara höra av sig till: kontakt@stundenttrade.se <br />	Eller kontakta:	<p>	Fredrik Palmér på 0735200511, <br /> Erik Hidrup på 070, eller<br /> Johan Wänglöf på 070-86 01 911</p></span>",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,

@@ -18,6 +18,9 @@ if ($_SESSION["sessProtector"] == session_id()) {
 	// // print_r($campuses);
 	// echo json_encode($campuses);
 
+	// $adType = $dbh->getAdTypeInfoFromAdTypeID(2);
+	// print_r($adType);
+
 	if (isset($_POST["get"])) {
 		if ($_POST["get"] == "campuses") {
 			$universities = $dbh->getUniversitiesFromCityID($_POST["cityID"]);
@@ -30,6 +33,9 @@ if ($_SESSION["sessProtector"] == session_id()) {
 				}
 			}
 			echo json_encode($campuses);
+		} else if ($_POST["get"] == "adTypeInfo") {
+			$adType = $dbh->getAdTypeInfoFromAdTypeID($_POST["adType"]);
+			echo json_encode($adType);
 		} else {
 			return false;
 		}

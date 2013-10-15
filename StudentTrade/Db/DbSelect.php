@@ -203,5 +203,28 @@ class DbSelect extends DbConfig {
 			return $e;
 		}
 	}
+
+	public function getAdTypeInfoFromAdTypeID($adTypeID) {
+		try {
+			$stmt = $this->dbh->prepare("SELECT * FROM adTypeInfo WHERE fk_adTypeInfo_adType=:adTypeID ORDER BY id DESC");
+			$stmt->bindValue(":adTypeID", $adTypeID, PDO::PARAM_INT);
+			$stmt->execute();
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
+
+	public function getAdTypeInfoShortNames() {
+		try {
+			$stmt = $this->dbh->prepare("SELECT short_name FROM adTypeInfo");
+			$stmt->execute();
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
 }
 ?>

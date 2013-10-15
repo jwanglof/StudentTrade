@@ -184,20 +184,6 @@ img.studenttrade_logo {
 	box-shadow: -40px 0 80px -40px rgba(0,63,100,0.3) inset, 40px 0 80px -40px rgba(0,63,100,0.3) inset;
 }
 
-/*.box_image .grower-wrapper{position: relative;top: 50px;left: 45%;}
-.box_image .grower{background-color:#edead6;-webkit-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;border-radius:50%;height:55px;position:absolute;text-align:center;top:0;left:0;-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;width:55px;z-index:999}
-.box_image .grower:hover{background-color:#fff;height:491px;left:-221px;top:-291px;width:491px}
-.box_image .grower:hover .larger{height:491px;left:0;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);opacity:1;overflow:visible;top:0;width:491px;}
-.box_image .grower .larger{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);opacity:0;position:absolute;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
-.ie7 .box_image .grower .larger,.ie7 .box_image .grower .larger-info,.ie8 .box_image .grower .larger,.ie8 .box_image .grower .larger-info{display:none}
-.ie7 .box_image .grower:hover .larger,.ie7 .box_image .grower:hover .larger,.ie8 .box_image .grower:hover .larger,.ie8 .box_image .grower:hover .larger{display:block}
-.ie7 .box_image .grower:hover .smaller,.ie7 .box_image .grower:hover .smaller,.ie8 .box_image .grower:hover .smaller,.ie8 .box_image .grower:hover .smaller{display:none}
-.ie7 .box_image .grower:hover .larger-info,.ie7 .box_image .grower:hover .larger-info,.ie8 .box_image .grower:hover .larger-info,.ie8 .box_image .grower:hover .larger-info{display:block}
-.box_image .grower .smaller i{background:#76c34d;display:block;height:28px;left:25px; top: 12px; position:relative;width:4px}
-.box_image .grower .smaller i i{height:4px;left:-12px;top:12px;width:28px}
-.box_image .grower:hover .smaller{left:50px;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);opacity:0;top:50px}
-.grower-wrapper .box_image:hover{z-index:4}*/
-
 .footer {
 	background: url('../Img/index_border2.png') top repeat-x;
 
@@ -235,12 +221,6 @@ img.studenttrade_logo {
 	width: 200px;
 	float: left;
 }
-
-/*.ad.title {
-	font-weight: bold;
-	border: 10px solid #000;
-	display: block;
-}*/
 
 .ad.top {
 	background: #06bdef;
@@ -312,6 +292,7 @@ img.studenttrade_logo {
 
 .rightColumn {
 	padding-top: 30px;
+	color: #464646;
 }
 
 #latestAd {
@@ -354,4 +335,8 @@ img.studenttrade_logo {
 .adInfo h4 {
 	font-size: 1.25em;
 	font-weight: 700;
+}
+
+.form-group label {
+	width: 150px;
 }

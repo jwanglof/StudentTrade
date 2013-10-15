@@ -1,9 +1,9 @@
 <?php
 ?>
-<div class="col-md-12">
+<div class="col-xs-12" style="color: #464646;">
 	<form method="post" action="ad.php?page=ad_add" class="form-horizontal" role="form">
 		<fieldset>
-			<legend>Personliga uppgifter</legend>
+			<legend>Personuppgifter</legend>
 
 			<div class="form-group">
 				<label for="name" class="col-lg-1 control-label">Namn *</label>
@@ -16,13 +16,6 @@
 				<label for="email" class="col-lg-1 control-label">E-post *</label>
 				<div class="col-lg-5">
 					<input type="email" class="form-control" id="email" name="email" placeholder="E-post">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="address" class="col-lg-1 control-label">Adress</label>
-				<div class="col-lg-5">
-					<input type="text" class="form-control" id="address" name="address" placeholder="Adress">
 				</div>
 			</div>
 
@@ -48,7 +41,6 @@
 				<label for="campus" class="col-lg-1 control-label">Campus</label>
 				<div class="col-lg-5">
 					<select id="campus" name="campus" class="form-control">
-						<option value="0"></option>
 						<?php
 						// foreach ($dbh->getCampuses() as $value) {
 						// 	$selected = "";
@@ -64,13 +56,20 @@
 			</div>
 
 
-			<legend>Annonsens uppgifter</legend>
+			<legend>Annonsuppgifter</legend>
 
 			<div class="form-group">
-				<label for="city" class="col-lg-1 control-label">Kategori *</label>
+				<label for="info" class="col-lg-1 control-label">Beskrivning *</label>
 				<div class="col-lg-5">
-					<select id="adCategory" name="adCategory" class="form-control">
-						<option value="0">Kategori</option>
+					<textarea id="info" name="info" class="form-control" style="width: 100%; height: 200px;"></textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="city" class="col-lg-1 control-label">Typ av annons *</label>
+				<div class="col-lg-5">
+					<select id="adType" name="adType" class="form-control">
+						<option value="0">Typ av annons</option>
 						<?php
 						foreach ($dbh->getAdTypes() as $value) {
 							$selected = "";

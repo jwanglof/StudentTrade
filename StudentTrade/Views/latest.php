@@ -33,7 +33,7 @@
 				?>
 						<div class="col-xs-6 latestAd">
 							<div class="categoryLetter" style="background-color: <?php echo $ad_type["color"]; ?>;">
-								<?php echo $ad_type["description"][0]; ?>
+								<?php echo mb_substr($ad_type["description"], 0, 1, "UTF-8"); ?>
 							</div>
 							<div class="adInfo">
 								<h4><?php echo generateShowAdURL($city["short_name"], $ad["title"],
