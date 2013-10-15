@@ -21,7 +21,7 @@ class DbSelect extends DbConfig {
 			$stmt->bindValue(":password", $password, PDO::PARAM_STR);
 			$stmt->execute();
 
-			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $stmt->fetch(PDO::FETCH_ASSOC);
 		} catch (PDOException $e) {
 			return $e;
 		}
@@ -211,6 +211,18 @@ class DbSelect extends DbConfig {
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
+
+	public function getAdTypeInfoIDFromAdTypeInfoName($adTypeInfoName) {
+		try {
+			$stmt = $this->dbh->prepare("SELECT id FROM adTypeInfo WHERE short_name=:adTypeInfoName");
+			$stmt->bindValue(":adTypeInfoName", $adTypeInfoName, PDO::PARAM_STR);
+			$stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
 		} catch (PDOException $e) {
 			return $e;
 		}

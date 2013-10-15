@@ -84,6 +84,8 @@ function showAdTypeInputs(adType) {
 
 		var objs = JSON.parse(response);
 		for (var value in objs) {
+			// $("#adInput").append("<label for=\"adTypeInfo_"+ objs[value]["id"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
+			// $("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\"text\" class=\"form-control\" id=\"adTypeInfo_"+ objs[value]["id"] +"\" name=\"adTypeInfo_"+ objs[value]["id"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
 			$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
 			$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\"text\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
 			$("#adInput").append("<br /><br />");

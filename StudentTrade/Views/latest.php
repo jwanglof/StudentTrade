@@ -2,9 +2,12 @@
 				// $cityID and $city is from ad.php
 				
 				// Make this more pretty some way?
+				$dbh = new DbSelect();
+				
 				if (isset($_GET["type"], $_GET["campus"])) {
 					$adType = $dbh->getAdTypeFromName($_GET["type"]);
-					$campusID = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True))["id"];
+					$campusID = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
+					$campusID = $campusID["id"];
 
 					$ads = $dbh->getAdsWithTypeFromCampus($adType["id"], $campusID, $cityID);
 				} elseif (isset($_GET["type"]) && !isset($_GET["campus"])) {
@@ -12,7 +15,8 @@
 
 					$ads = $dbh->getAdsWithTypeIDFromCity($adType["id"], $cityID);
 				} elseif (isset($_GET["campus"]) && !isset($_GET["type"])) {
-					$campusID = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True))["id"];
+					$campusID = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
+					$campusID = $campusID["id"];
 
 					$ads = $dbh->getAdsFromCampus($campusID, $cityID);
 				} else {

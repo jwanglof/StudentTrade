@@ -12,17 +12,17 @@
 	}
 
 	function generateAdURL($page, $city, $name_on_url, $campus=NULL, $type=NULL) {
-		return "<a href=\"ad.php?page=$page&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) ."" : "") ."". (($type != NULL) ? "&type=$type" : "") ."\">$name_on_url</a>";
+		return "<a href=\"front.php?page=$page&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) ."" : "") ."". (($type != NULL) ? "&type=$type" : "") ."\">$name_on_url</a>";
 	}
 
 	function generateCampusURL($city, $name_on_url, $type=NULL, $showCampus=True) {
 		$campus = replaceSwedishLetters(replaceSpecialChars(strtolower($name_on_url)));
 		
-		return "<a href=\"ad.php?page=latest&city=$city". ($showCampus ? "&campus=$campus" : "") ."". (($type != NULL) ? "&type=$type" : "") ."\" class=\"btn btn-default\" id=\"$campus\">$name_on_url</a>";
+		return "<a href=\"front.php?page=latest&city=$city". ($showCampus ? "&campus=$campus" : "") ."". (($type != NULL) ? "&type=$type" : "") ."\" class=\"btn btn-default\" id=\"$campus\">$name_on_url</a>";
 	}
 
 	function generateShowAdURL($city, $name_on_url, $campus=NULL, $type=NULL, $adID) {
-		return "<a href=\"ad.php?page=ad_show&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) ."" : "") ."". (($type != NULL) ? "&type=$type" : "") ."&aid=". $adID ."\">$name_on_url</a>";
+		return "<a href=\"front.php?page=ad_show&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) ."" : "") ."". (($type != NULL) ? "&type=$type" : "") ."&aid=". $adID ."\">$name_on_url</a>";
 	}
 
 	function generateRandomString($length = 10) {
@@ -36,5 +36,39 @@
 
 	function compareString($string1, $string2) {
 		return (replaceSwedishLetters(replaceSpecialChars(strtolower($string1))) == replaceSwedishLetters(replaceSpecialChars(strtolower($string2))));
+	}
+
+	function testPOSTInput($input) {
+		$input = trim($input);
+		$input = stripslashes($input);
+		$input = htmlspecialchars($input);
+		return $input;
+	}
+
+	/*
+	 * Returns how many input-fields are left in $requiredInputs after
+	 * deleting the required ones
+	 * If it returns 0 it means that the user has typed in all
+	 * required fields,
+	 * else it will return >0
+	 */
+	function checkRequiredInput($postData, $requiredInputs) {
+		foreach ($postData as $key => $value) {
+			$found = array_search($key, $requiredInputs);
+			if ($found >= 0) {
+				if (!empty($value))
+					unset($requiredInputs[$found]);
+			}
+		}
+		return ((count($requiredInputs) == 0) ? 0 : $requiredInputs);
+
+		// $adTypeInfoShortNames = array();
+
+		// $dbh = new DbSelect();
+		// foreach($dbh->getAdTypeInfoShortNames() as $val) {
+		// 	foreach ($val as $key => $value) {
+		// 		array_push($adTypeInfoShortNames, $value);
+		// 	}
+		// }
 	}
 ?>

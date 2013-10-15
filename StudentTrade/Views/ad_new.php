@@ -1,7 +1,8 @@
 <?php
+$dbh = new DbSelect();
 ?>
 <div class="col-xs-12" style="color: #464646;">
-	<form method="post" action="ad.php?page=ad_add" class="form-horizontal" role="form">
+	<form method="post" action="front.php?page=ad_add" class="form-horizontal" role="form">
 		<fieldset>
 			<legend>Personuppgifter</legend>
 
@@ -16,6 +17,13 @@
 				<label for="email" class="col-lg-1 control-label">E-post *</label>
 				<div class="col-lg-5">
 					<input type="email" class="form-control" id="email" name="email" placeholder="E-post">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="phonenumber" class="col-lg-1 control-label">Telefonnummer</label>
+				<div class="col-lg-5">
+					<input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="Telefonnummer">
 				</div>
 			</div>
 
@@ -41,16 +49,6 @@
 				<label for="campus" class="col-lg-1 control-label">Campus</label>
 				<div class="col-lg-5">
 					<select id="campus" name="campus" class="form-control">
-						<?php
-						// foreach ($dbh->getCampuses() as $value) {
-						// 	$selected = "";
-						// 	if (isset($_GET["campus"])) {
-						// 		if ($_GET["campus"] == $value["short_name"])
-						// 			$selected = "selected";
-						// 	}
-						// 	echo "<option value=\"". $value["id"] ."\" $selected>". $value["campus_name"] ."</option>";
-						// }
-						?>
 					</select>
 				</div>
 			</div>
@@ -59,9 +57,23 @@
 			<legend>Annonsuppgifter</legend>
 
 			<div class="form-group">
+				<label for="title" class="col-lg-1 control-label">Rubrik *</label>
+				<div class="col-lg-5">
+					<input type="text" class="form-control" id="title" name="title" placeholder="Rubrik">
+				</div>
+			</div>
+
+			<div class="form-group">
 				<label for="info" class="col-lg-1 control-label">Beskrivning *</label>
 				<div class="col-lg-5">
 					<textarea id="info" name="info" class="form-control" style="width: 100%; height: 200px;"></textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="price" class="col-lg-1 control-label">Pris (SEK) *</label>
+				<div class="col-lg-5">
+					<input type="number" class="form-control" id="price" name="price" placeholder="Pris">
 				</div>
 			</div>
 

@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 error_reporting(-1);
 ini_set('display_errors', 1);
 // Auto load the classes that are called
@@ -70,7 +71,7 @@ require_once("StudentTrade/Db/functions.php");
 
 					foreach ($cities as $city) {
 						$short_name = replaceSwedishLetters(strtolower($city["short_name"]));
-						echo "<span class=\"". $short_name ."\"><a href=\"ad.php?page=latest&city=". $short_name ."\">". $city["city_name"] ."</a></span>";
+						echo "<span class=\"". $short_name ."\"><a href=\"front.php?page=latest&city=". $short_name ."\">". $city["city_name"] ."</a></span>";
 					}
 					?>
 				</div>

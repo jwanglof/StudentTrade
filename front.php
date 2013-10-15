@@ -20,9 +20,9 @@ function __autoload($class_name) {
 		if(file_exists($base_dir.$directory.$class_name . '.php'))
 		{
 			require_once($base_dir.$directory.$class_name . '.php');
-			//only require the class once, so quit after to save effort (if you got more, then name them something else 
+			//only require the class once, so quit after to save effort (if you got more, then name them something else
 			return;
-		}            
+		}
 	}
 }
 require_once("StudentTrade/Db/functions.php");
@@ -35,13 +35,15 @@ $dbh = new DbSelect();
 
 $city = (isset($_GET['city']) ? $dbh->getCity($_GET['city']) : $dbh->getCity("linkoping"));
 $universities = $dbh->getUniversitiesFromCityID($city["id"]);
-$campuses = [];
+$campuses = array();
 foreach ($universities as $uni) {
 	array_push($campuses, $dbh->getCampusFromUniversityID($uni["id"]));
 }
 
 $adtypes = $dbh->getAdTypes();
 $cityID = $city["id"];
+
+$dbh = null;
 ?>
 
 <html>
@@ -61,7 +63,7 @@ $cityID = $city["id"];
 			<!--  style="border: 0px solid #000; height: 100px; margin-top: 20px; float: right;" -->
 			<div class="col-xs-6 col-md-offset-6" id="campusChooser">
 				<div class="btn-group btn-group-justified">
-					<a href="ad.php?page=latest&city=<?php echo $city["short_name"]; ?>" class="btn btn-info">Se <?php echo $city["city_name"]; ?></a>
+					<a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>" class="btn btn-info">Se <?php echo $city["city_name"]; ?></a>
 				<?php
 				foreach ($campuses as $cam) {
 					foreach ($cam as $c) {
@@ -103,7 +105,8 @@ $cityID = $city["id"];
 					echo "</span>";
 				}
 				echo "<span class=\"categoryViewAll\">";
-				echo generateAdURL("latest", $city["short_name"], "Visa alla",
+				echo generateAdURL("latest", $city["short_name"], 
+								(!isset($_GET["type"]) ? "> Visa alla" : "Visa alla"),
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL));
 				echo "</span>";
 				?>

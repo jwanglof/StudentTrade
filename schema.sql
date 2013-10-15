@@ -90,51 +90,11 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db1162056_st`.`adUserInfo` ;
 
 CREATE  TABLE IF NOT EXISTS `db1162056_st`.`adUserInfo` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(80) NOT NULL ,
   `email` VARCHAR(100) NOT NULL ,
   `phonenumber` INT NULL ,
   PRIMARY KEY (`id`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `db1162056_st`.`adTypeInfo`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `db1162056_st`.`adTypeInfo` ;
-
-CREATE  TABLE IF NOT EXISTS `db1162056_st`.`adTypeInfo` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `fk_adTypeInfo_adType` INT NOT NULL ,
-  `name` VARCHAR(20) NOT NULL ,
-  `short_name` VARCHAR(45) NOT NULL ,
-  `description` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id`) ,
-  INDEX `fk_adTypeInfo_adType_idx` (`fk_adTypeInfo_adType` ASC) ,
-  CONSTRAINT `fk_adTypeInfo_adType`
-    FOREIGN KEY (`fk_adTypeInfo_adType` )
-    REFERENCES `db1162056_st`.`adType` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `db1162056_st`.`adInfo`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `db1162056_st`.`adInfo` ;
-
-CREATE  TABLE IF NOT EXISTS `db1162056_st`.`adInfo` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `fk_adInfo_adTypeInfo` INT NOT NULL ,
-  `value` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`id`) ,
-  INDEX `fk_adInfo_adTypeInfo_idx` (`fk_adInfo_adTypeInfo` ASC) ,
-  CONSTRAINT `fk_adInfo_adTypeInfo`
-    FOREIGN KEY (`fk_adInfo_adTypeInfo` )
-    REFERENCES `db1162056_st`.`adTypeInfo` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -144,7 +104,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db1162056_st`.`ad` ;
 
 CREATE  TABLE IF NOT EXISTS `db1162056_st`.`ad` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT ,
   `title` VARCHAR(45) NOT NULL ,
   `info` TEXT NOT NULL ,
   `password` INT NOT NULL ,
@@ -156,13 +116,11 @@ CREATE  TABLE IF NOT EXISTS `db1162056_st`.`ad` (
   `fk_ad_campus` INT NULL ,
   `fk_ad_city` INT NULL ,
   `fk_ad_adUserInfo` INT NOT NULL ,
-  `fk_ad_adInfo` INT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_ad_type_id_idx` (`fk_ad_adType` ASC) ,
   INDEX `fk_campus_id_idx` (`fk_ad_campus` ASC) ,
   INDEX `fk_city_id_idx` (`fk_ad_city` ASC) ,
   INDEX `fk_ad_adUserInfo_idx` (`fk_ad_adUserInfo` ASC) ,
-  INDEX `fk_ad_adInfo_idx` (`fk_ad_adInfo` ASC) ,
   CONSTRAINT `fk_ad_ad_type`
     FOREIGN KEY (`fk_ad_adType` )
     REFERENCES `db1162056_st`.`adType` (`id` )
@@ -182,10 +140,52 @@ CREATE  TABLE IF NOT EXISTS `db1162056_st`.`ad` (
     FOREIGN KEY (`fk_ad_adUserInfo` )
     REFERENCES `db1162056_st`.`adUserInfo` (`id` )
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db1162056_st`.`adTypeInfo`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db1162056_st`.`adTypeInfo` ;
+
+CREATE  TABLE IF NOT EXISTS `db1162056_st`.`adTypeInfo` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `name` VARCHAR(20) NOT NULL ,
+  `short_name` VARCHAR(45) NOT NULL ,
+  `description` VARCHAR(45) NULL ,
+  `fk_adTypeInfo_adType` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_adTypeInfo_adType_idx` (`fk_adTypeInfo_adType` ASC) ,
+  CONSTRAINT `fk_adTypeInfo_adType`
+    FOREIGN KEY (`fk_adTypeInfo_adType` )
+    REFERENCES `db1162056_st`.`adType` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db1162056_st`.`adInfo`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db1162056_st`.`adInfo` ;
+
+CREATE  TABLE IF NOT EXISTS `db1162056_st`.`adInfo` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `value` VARCHAR(100) NOT NULL ,
+  `fk_adInfo_adTypeInfo` INT NOT NULL ,
+  `fk_adInfo_ad` INT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_adInfo_adTypeInfo_idx` (`fk_adInfo_adTypeInfo` ASC) ,
+  INDEX `fk_adInfo_ad_idx` (`fk_adInfo_ad` ASC) ,
+  CONSTRAINT `fk_adInfo_adTypeInfo`
+    FOREIGN KEY (`fk_adInfo_adTypeInfo` )
+    REFERENCES `db1162056_st`.`adTypeInfo` (`id` )
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ad_adInfo`
-    FOREIGN KEY (`fk_ad_adInfo` )
-    REFERENCES `db1162056_st`.`adInfo` (`id` )
+  CONSTRAINT `fk_adInfo_ad`
+    FOREIGN KEY (`fk_adInfo_ad` )
+    REFERENCES `db1162056_st`.`ad` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -264,27 +264,18 @@ INSERT INTO `db1162056_st`.`admin` (`id`, `username`, `password`, `name`) VALUES
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `db1162056_st`.`adUserInfo`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `db1162056_st`;
-INSERT INTO `db1162056_st`.`adUserInfo` (`id`, `name`, `email`, `phonenumber`) VALUES (1, 'Johan Wänglöf', 'jwanglof@gmail.com', 0708601911);
-
-COMMIT;
-
--- -----------------------------------------------------
 -- Data for table `db1162056_st`.`adTypeInfo`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `db1162056_st`;
-INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `fk_adTypeInfo_adType`, `name`, `short_name`, `description`) VALUES (1, 1, 'Evenemang', 'event', NULL);
-INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `fk_adTypeInfo_adType`, `name`, `short_name`, `description`) VALUES (2, 2, 'ISBN', 'isbn', NULL);
-INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `fk_adTypeInfo_adType`, `name`, `short_name`, `description`) VALUES (3, 2, 'Författare', 'author', NULL);
-INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `fk_adTypeInfo_adType`, `name`, `short_name`, `description`) VALUES (4, 2, 'Skick', 'condition', NULL);
-INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `fk_adTypeInfo_adType`, `name`, `short_name`, `description`) VALUES (5, 3, 'Adress', 'address', NULL);
-INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `fk_adTypeInfo_adType`, `name`, `short_name`, `description`) VALUES (6, 3, 'Kvadratmeter (m2)', 'size', NULL);
-INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `fk_adTypeInfo_adType`, `name`, `short_name`, `description`) VALUES (7, 4, 'Företag', 'company', NULL);
-INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `fk_adTypeInfo_adType`, `name`, `short_name`, `description`) VALUES (8, 5, 'Från', 'travel_from', NULL);
-INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `fk_adTypeInfo_adType`, `name`, `short_name`, `description`) VALUES (9, 5, 'Till', 'travel_to', NULL);
+INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `name`, `short_name`, `description`, `fk_adTypeInfo_adType`) VALUES (1, 'Evenemang', 'event', NULL, 1);
+INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `name`, `short_name`, `description`, `fk_adTypeInfo_adType`) VALUES (2, 'ISBN', 'isbn', NULL, 2);
+INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `name`, `short_name`, `description`, `fk_adTypeInfo_adType`) VALUES (3, 'Författare', 'author', NULL, 2);
+INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `name`, `short_name`, `description`, `fk_adTypeInfo_adType`) VALUES (4, 'Skick', 'condition', NULL, 2);
+INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `name`, `short_name`, `description`, `fk_adTypeInfo_adType`) VALUES (5, 'Adress', 'address', NULL, 3);
+INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `name`, `short_name`, `description`, `fk_adTypeInfo_adType`) VALUES (6, 'Kvadratmeter (m2)', 'size', NULL, 3);
+INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `name`, `short_name`, `description`, `fk_adTypeInfo_adType`) VALUES (7, 'Företag', 'company', NULL, 4);
+INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `name`, `short_name`, `description`, `fk_adTypeInfo_adType`) VALUES (8, 'Från', 'travel_from', NULL, 5);
+INSERT INTO `db1162056_st`.`adTypeInfo` (`id`, `name`, `short_name`, `description`, `fk_adTypeInfo_adType`) VALUES (9, 'Till', 'travel_to', NULL, 5);
 
 COMMIT;
