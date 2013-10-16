@@ -142,7 +142,7 @@ $(document).on("click", "#faq", function(e) {
 $(document).on("click", "#contact_us", function(e) {
 	bootbox.dialog({
 		title: "<h1 style=\"color: #000;\">Kontakta oss</h1>",
-		message: "<span style=\"color: #000;\">Är det något du undrar över är det bara höra av sig till: kontakt@stundenttrade.se <br />	Eller kontakta:	<p>	Fredrik Palmér på 0735200511, <br /> Erik Hidrup på 070, eller<br /> Johan Wänglöf på 070-86 01 911</p></span>",
+		message: "<span style=\"color: #000;\">Är det något du undrar över är det bara höra av sig till: kontakt@stundenttrade.se <br />	Eller kontakta:	<p>	Fredrik Palmér på 073-52 00 511, <br /> Erik Hidrup på 073-07 33 077, <br /> Johan Wänglöf på 070-86 01 911</p></span>",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,
