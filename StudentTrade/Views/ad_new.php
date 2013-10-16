@@ -1,5 +1,9 @@
 <?php
 $dbh = new DbSelect();
+$cities = $dbh->getCityIDs();
+$adCategories = $dbh->getAdCategories();
+$adTypes = $dbh->getAdTypes();
+$dbh = null;
 ?>
 <div class="col-xs-12" style="color: #464646;">
 	<form method="post" action="front.php?page=ad_add" class="form-horizontal" role="form">
@@ -32,7 +36,7 @@ $dbh = new DbSelect();
 				<div class="col-lg-5">
 					<select id="city" name="city" class="form-control">
 						<?php
-						foreach ($dbh->getCityIDs() as $value) {
+						foreach ($cities as $value) {
 							$selected = "";
 							if (isset($_GET["city"])) {
 								if ($_GET["city"] == $value["short_name"])
@@ -57,6 +61,19 @@ $dbh = new DbSelect();
 			<legend>Annonsuppgifter</legend>
 
 			<div class="form-group">
+				<label for="adType" class="col-lg-1 control-label">Typ av annons *</label>
+				<div class="col-lg-5">
+					<select id="adType" name="adType" class="form-control">
+						<?php
+						foreach ($adTypes as $value) {
+							echo "<option value=\"". $value["id"] ."\">". $value["name"] ."</option>";
+						}
+						?>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
 				<label for="title" class="col-lg-1 control-label">Rubrik *</label>
 				<div class="col-lg-5">
 					<input type="text" class="form-control" id="title" name="title" placeholder="Rubrik">
@@ -78,12 +95,12 @@ $dbh = new DbSelect();
 			</div>
 
 			<div class="form-group">
-				<label for="city" class="col-lg-1 control-label">Typ av annons *</label>
+				<label for="adCategory" class="col-lg-1 control-label">Kategori *</label>
 				<div class="col-lg-5">
-					<select id="adType" name="adType" class="form-control">
-						<option value="0">Typ av annons</option>
+					<select id="adCategory" name="adCategory" class="form-control">
+						<option value="0">Kategori</option>
 						<?php
-						foreach ($dbh->getAdTypes() as $value) {
+						foreach ($adCategories as $value) {
 							$selected = "";
 							if (isset($_GET["type"])) {
 								if ($_GET["type"] == $value["name"])

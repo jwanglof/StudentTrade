@@ -16,73 +16,74 @@ class DbInsert extends DbConfig {
 
 	public function insertIntoAdUserInfo($name, $email, $phonenumber) {
 		try {
+			$this->dbh->beginTransaction();
+
 			$stmt = $this->dbh->prepare("INSERT INTO adUserInfo(`name`, `email`, `phonenumber`) VALUES(:name, :email, :phonenumber)");
 			$stmt->bindParam(":name", $name, PDO::PARAM_STR);
 			$stmt->bindParam(":email", $email, PDO::PARAM_STR);
 			$stmt->bindParam(":phonenumber", $phonenumber, PDO::PARAM_INT);
 			$stmt->execute();
+	
+			$newID = $this->dbh->lastInsertId();
 
-			return $this->dbh->lastInsertId();
+			$this->dbh->commit();
+
+			return $newID;
 		} catch (PDOException $e) {
+			$this->dbh->rollback();
 			return $e;
 		}
 	}
 
-	public function insertIntoAd($title, $info, $price, $fk_adType, $fk_campus, $fk_city, $fk_adUserInfo) {
+	public function insertIntoAd($title, $info, $password, $price, $date_created, $date_expired, $fk_adCategory, $fk_campus, $fk_city, $fk_adUserInfo, $fk_adType) {
 		try {
-			// date("Y-m-d H:i:s")
-			// generatePin()
-			$now = date("Y-m-d H:i:s");
-			$monthFromNow = date("Y-m-d H:i:s", strtotime("+1 month"));
-			$password = 1234;
+			$this->dbh->beginTransaction();
 
-			$stmt = $this->dbh->prepare("INSERT INTO ad(`title`, `info`, `password`, `price`, `date_created`, `date_expired`, `fk_ad_adType`, `fk_ad_campus`, `fk_ad_city`, `fk_ad_adUserInfo`) 
-				VALUES(:title, :info, :password, :price, :date_created, :date_expired, :fk_adType, :fk_campus, :fk_city, :fk_adUserInfo)");
+			$stmt = $this->dbh->prepare("INSERT INTO ad(`title`, `info`, `password`, `price`, `date_created`, `date_expired`, `fk_ad_adCategory`, `fk_ad_campus`, `fk_ad_city`, `fk_ad_adUserInfo`, `fk_ad_adType`) 
+				VALUES(:title, :info, :password, :price, :date_created, :date_expired, :fk_adCategory, :fk_campus, :fk_city, :fk_adUserInfo, :fk_adType)");
 			$stmt->bindParam(":title", $title, PDO::PARAM_STR);
 			$stmt->bindParam(":info", $info, PDO::PARAM_STR);
-			$stmt->bindParam(":password", $password, PDO::PARAM_INT);
+			$stmt->bindParam(":password", $password, PDO::PARAM_STR);
 			$stmt->bindParam(":price", $price, PDO::PARAM_INT);
-			$stmt->bindParam(":date_created", $now, PDO::PARAM_STR);
-			$stmt->bindParam(":date_expired", $monthFromNow, PDO::PARAM_STR);
-			$stmt->bindParam(":fk_adType", $fk_adType, PDO::PARAM_INT);
+			$stmt->bindParam(":date_created", $date_created, PDO::PARAM_STR);
+			$stmt->bindParam(":date_expired", $date_expired, PDO::PARAM_STR);
+			$stmt->bindParam(":fk_adCategory", $fk_adCategory, PDO::PARAM_INT);
 			$stmt->bindParam(":fk_campus", $fk_campus, PDO::PARAM_INT);
 			$stmt->bindParam(":fk_city", $fk_city, PDO::PARAM_INT);
 			$stmt->bindParam(":fk_adUserInfo", $fk_adUserInfo, PDO::PARAM_INT);
+			$stmt->bindParam(":fk_adType", $fk_adType, PDO::PARAM_INT);
 			$stmt->execute();
+	
+			$newID = $this->dbh->lastInsertId();
+			
+			$this->dbh->commit();
 
-			return $this->dbh->lastInsertId();
+			return $newID;
 		} catch (PDOException $e) {
+			$this->dbh->rollback();
 			return $e;
 		}
 	}
 
-	public function insertIntoAdInfo($value, $fk_adTypeInfo, $fk_ad) {
+	public function insertIntoAdInfo($value, $fk_adSubCategory, $fk_ad) {
 		try {
-			$stmt = $this->dbh->prepare("INSERT INTO adInfo(`value`, `fk_adInfo_adTypeInfo`, `fk_adInfo_ad`) VALUES(:value, :fk_adTypeInfo, :fk_ad)");
+			$this->dbh->beginTransaction();
+
+			$stmt = $this->dbh->prepare("INSERT INTO adInfo(`value`, `fk_adInfo_adSubCategory`, `fk_adInfo_ad`) VALUES(:value, :fk_adSubCategory, :fk_ad)");
 			$stmt->bindParam(":value", $value, PDO::PARAM_STR);
-			$stmt->bindParam(":fk_adTypeInfo", $fk_adTypeInfo, PDO::PARAM_STR);
+			$stmt->bindParam(":fk_adSubCategory", $fk_adSubCategory, PDO::PARAM_INT);
 			$stmt->bindParam(":fk_ad", $fk_ad, PDO::PARAM_INT);
 			$stmt->execute();
+	
+			$newID = $this->dbh->lastInsertId();
+			
+			$this->dbh->commit();
 
-			return $this->dbh->lastInsertId();
+			return $newID;
 		} catch (PDOException $e) {
+			$this->dbh->rollback();
 			return $e;
 		}
 	}
-
-	/*
-	public function login($username, $password) {
-		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM admin WHERE username=:username AND password=:password");
-			$stmt->bindValue(":username", $username, PDO::PARAM_STR);
-			$stmt->bindValue(":password", $password, PDO::PARAM_STR);
-			$stmt->execute();
-
-			return $stmt->fetch(PDO::FETCH_ASSOC);
-		} catch (PDOException $e) {
-			return $e;
-		}
-	}
-	*/
 }
 ?>

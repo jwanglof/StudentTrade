@@ -1,7 +1,7 @@
 <div style="color: #000;">
 <?php
 
-// SET FOREIGN_KEY_CHECKS=0;TRUNCATE adUserInfo;SET FOREIGN_KEY_CHECKS=1;
+// SET FOREIGN_KEY_CHECKS=0;TRUNCATE adUserInfo;TRUNCATE ad;TRUNCATE adInfo;SET FOREIGN_KEY_CHECKS=1;
 // print_r($requiredInputs);
 // print_r($adTypeInfoShortNames);
 // print_r($_POST);
@@ -33,10 +33,9 @@ function checkRequiredInput($postData, $requiredInputs) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$success = true;
 	print_r($_POST);
-	echo "<br />";
-
-	$checkInput = checkRequiredInput($_POST, array("name", "email", "city", "adType", "info", "price", "title"));
+	$checkInput = checkRequiredInput($_POST, array("name", "email", "city", "adType", "title", "info", "price", "adCategory"));
 	if ($checkInput == 0) {
 		/*
 		 * Check the input values so it doesn't contain any illegal characters
@@ -44,35 +43,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		foreach ($_POST as $key => $value) {
 			$_POST[$key] = checkPOSTInput($_POST[$key]);
 		}
-
 		$dbInsert = new DbInsert();
 		$adUserInfoID = $dbInsert->insertIntoAdUserInfo($_POST["name"], $_POST["email"], $_POST["phonenumber"]);
-		echo $adUserInfoID;
-		// $title, $info, $price, $fk_adType, $fk_campus, $fk_city, $fk_adUserInfo
-		$adID = $dbInsert->insertIntoAd($_POST["title"], $_POST["info"], $_POST["price"], $_POST["adType"], $_POST["campus"], $_POST["city"], $adUserInfoID);
-		echo $adID;
+		echo 1 . $adUserInfoID . "--- ";
 
-		$adTypeInfoShortNames = array();
+		$password = generateRandomString(4);
+		$adID = $dbInsert->insertIntoAd($_POST["title"], nl2br($_POST["info"]), $password, $_POST["price"], 
+			date("Y-m-d H:i:s"), date("Y-m-d H:i:s", strtotime("+1 month")), $_POST["adType"], 
+			$_POST["campus"], $_POST["city"], $adUserInfoID, $_POST["adType"]);
+		echo 2 . $adID;
+		/*
+		 * Insert the adInfo
+		 * Loop through all ad types, 
+		 * and then check if the type is present in $_POST,
+		 * and then add it to the DB
+		 */
 		$dbh = new DbSelect();
-		foreach($dbh->getAdTypeInfoShortNames() as $val) {
+		foreach($dbh->getAdSubCategoryShortNames() as $val) {
 			foreach ($val as $key => $value) {
-				array_push($adTypeInfoShortNames, $value);
+				// array_push($adTypeInfoShortNames, $value);
+				if (isset($_POST[$value])) {
+					$adTypeInfoID = $dbh->getAdTypeInfoIDFromAdTypeInfoName($value);
+					$adTypeInfoID = $adTypeInfoID["id"];
+
+					$dbInsert->insertIntoAdInfo($_POST[$value], $adTypeInfoID, $adID);
+				}
 			}
 		}
-
-		foreach ($adTypeInfoShortNames as $value) {
-			if (isset($_POST[$value])) {
-				$adTypeInfoID = $dbh->getAdTypeInfoIDFromAdTypeInfoName($value);
-				$adTypeInfoID = $adTypeInfoID["id"];
-
-				$dbInsert->insertIntoAdInfo($_POST[$value], $adTypeInfoID, $adID);
-			}
-		}
+		$cityShortName = $dbh->getCityFromID($_POST["city"]);
 		$dbh = null;
+		$dbInsert = null;
 	} else {
 		foreach ($checkInput as $value) {
-			echo $value;
+			echo "Kunde ej lägga till din annons. Var vänlig försök igen!";
 		}
+		return false;
+	}
+
+	if ($success) {
+		// $sendEmail = new Email($_POST["email"]);
+		// $sendEmail->sendPassword($password);
+
+		header("Location: front.php?page=ad_show&city=". $cityShortName["short_name"] ."&aid=". $adID);
 	}
 }
 

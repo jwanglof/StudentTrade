@@ -36,28 +36,40 @@ $(document).ready(function() {
 		showCampuses($(this).val());
 	});
 
-	$("#adType").ready(function() {
+	$("#adCategory").ready(function() {
 		// Select the correct category if a category is chosen
-		if ($('#adType').children(':selected').val() > 0)
-			showAdTypeInputs($('#adType').children(':selected').val());
+		if ($('#adCategory').children(':selected').val() > 0)
+			showAdCategoryInputs($('#adCategory').children(':selected').val());
 	});
-	$("#adType").click(function() {
-		showAdTypeInputs($(this).val());
+	$("#adCategory").click(function() {
+		showAdCategoryInputs($(this).val());
 	});
 });
+
+function getURL() {
+	var url;
+	if (window.location.origin == "http://localhost") {
+		// console.log(window.location.origin);
+		url = "http://localhost/~johan/StudentTrade/StudentTrade/Views/ajax.php";
+	} else {
+		// console.log(window.location.origin +"/beta/StudentTrade/Views/ajax.php");
+		url = window.location.origin +"/beta/StudentTrade/Views/ajax.php";
+	};
+	return url;
+}
 
 function showCampuses(cityID) {
 	$("#campus").empty();
 	request = $.ajax({
 		type: "post",
-		url: "http://localhost/~johan/StudentTrade/StudentTrade/Views/ajax.php",
+		url: getURL(),
 		data: {get: "campuses", cityID: cityID}
 	});
 
 	request.done(function(response, textStatus, jqXHR) {
 		console.log(response);
 		var objs = JSON.parse(response);
-		$("#campus").append("<option value=\"9999\">Inget campus</option>");
+		$("#campus").append("<option value=\"999\">Inget campus</option>");
 		for (var key in objs) {
 			// console.log(key +" -- "+ objs[key]);
 			$("#campus").append("<option value=\""+ key +"\">"+ objs[key] +"</option>");
@@ -69,13 +81,13 @@ function showCampuses(cityID) {
 	});
 }
 
-function showAdTypeInputs(adType) {
+function showAdCategoryInputs(adType) {
 	// Clear the div
 	$("#adInput").empty();
 
 	request = $.ajax({
 		type: "post",
-		url: "http://localhost/~johan/StudentTrade/StudentTrade/Views/ajax.php",
+		url: getURL(),
 		data: {get: "adTypeInfo", adType: adType}
 	});
 
@@ -132,7 +144,7 @@ $(document).on("click", "#how_it_works", function(e) {
 $(document).on("click", "#faq", function(e) {
 	bootbox.dialog({
 		title: "<h1 style=\"color: #000;\">Vanliga frågor och svar</h1>",
-		message: "<span style=\"color: #000;\"><p>Kostar det något att lägga upp en annons? <br /> Nej, tillskillnad från Blocket och andra sajter är det helt gratis att lägga upp en annons hos oss. Vi är också studenter och tycker inte man ska betala för att lägga upp en annons. </p> Hur tar jag bort min annons? <br /> När du lägger upp din annons får du en fyrsiffrig kod till den e-mail adress du angett. Om du vill ta bort din annons går du in på den, klickar på ”Ta bort annons” och anger din kod. Snabbt och enkelt! <p style=\"margin-top: 10px;\"> Vad gör jag om jag tycker att en annons är olämplig? <br /> Om du ser en annons som du inte tycker är olämplig kan du anmäla den till oss. Vi ser då om den bryter mot ”Regler kring annonsering” och beslutar med detta som grund om hurvida annonser ska bli borttagen eller inte. Om du vill veta vilka regler som gäller kring annonsering så hittar du det här: www.studenttrade.se/regler_kring_annonsering</span>",
+		message: "<span style=\"color: #000;\"><p>Kostar det något att lägga upp en annons? <br /> Nej, tillskillnad från Blocket och andra sajter är det helt gratis att lägga upp en annons hos oss. Vi är också studenter och tycker inte man ska betala för att lägga upp en annons. </p> Hur tar jag bort min annons? <br /> När du lägger upp din annons får du en fyrsiffrig kod till den e-mail adress du angett. Om du vill ta bort din annons går du in på den, klickar på ”Ta bort annons” och anger din kod. Snabbt och enkelt! <p style=\"margin-top: 10px;\"> Vad gör jag om jag tycker att en annons är olämplig? <br /> Om du ser en annons som du inte tycker är olämplig kan du anmäla den till oss. Vi ser då om den bryter mot ”Regler kring annonsering” och beslutar med detta som grund om hurvida annonser ska bli borttagen eller inte. Om du vill veta vilka regler som gäller kring annonsering så hittar du det <a href=\"front.php?page=rules\" style=\"color: #565656;text-decoration: underline\">här</a></span>",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,
@@ -142,7 +154,7 @@ $(document).on("click", "#faq", function(e) {
 $(document).on("click", "#contact_us", function(e) {
 	bootbox.dialog({
 		title: "<h1 style=\"color: #000;\">Kontakta oss</h1>",
-		message: "<span style=\"color: #000;\">Är det något du undrar över är det bara höra av sig till: kontakt@stundenttrade.se <br />	Eller kontakta:	<p>	Fredrik Palmér på 073-52 00 511, <br /> Erik Hidrup på 073-07 33 077, <br /> Johan Wänglöf på 070-86 01 911</p></span>",
+		message: "<span style=\"color: #000;\">Är det något du undrar över är det bara höra av sig till: kontakt@stundenttrade.se <br /><br /> Eller kontakta oss personligen:<p>Fredrik Palmér: 073-52 00 511 eller fredrik@studenttrade.se<br /> Erik Hidrup: 073-07 33 077 eller erik@studenttrade.se <br /> Johan Wänglöf: 070-86 01 911 eller johan@studenttrade.se</p></span>",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,

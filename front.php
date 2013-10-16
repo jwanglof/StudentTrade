@@ -8,7 +8,7 @@ function __autoload($class_name) {
 	//class directories
 	$base_dir = 'StudentTrade/';
 	$directorys = array(
-		'Data/',
+		'Class/',
 		'Db/',
 		'Logic/',
 		'Views'
@@ -40,7 +40,7 @@ foreach ($universities as $uni) {
 	array_push($campuses, $dbh->getCampusFromUniversityID($uni["id"]));
 }
 
-$adtypes = $dbh->getAdTypes();
+$adtypes = $dbh->getAdCategories();
 $cityID = $city["id"];
 
 $dbh = null;
@@ -60,7 +60,6 @@ $dbh = null;
 	</head>
 	<body>
 		<div class='col-xs-12 ad top'>
-			<!--  style="border: 0px solid #000; height: 100px; margin-top: 20px; float: right;" -->
 			<div class="col-xs-6 col-md-offset-6" id="campusChooser">
 				<div class="btn-group btn-group-justified">
 					<a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>" class="btn btn-info">Se <?php echo $city["city_name"]; ?></a>
@@ -80,18 +79,6 @@ $dbh = null;
 				?>
 				</div>
 			</div>
-
-			<!-- <div class="row" style="border: 1px solid #000; height: 147px;">
-				<div class="col-xs-6">
-					<img src="StudentTrade/Img/studenttrade_logo_wo_text.png" />
-				</div>
-				<div class="col-xs-6">
-					<img src="StudentTrade/Img/far-clouds_small.png" />
-				</div>
-			</div> -->
-			<!-- <div class="col-xs-12" style="border: 1px solid #000; background: #000 url("StudentTrade/Img/far-clouds_small.png"); height: 200px; width: 200px;">
-			qwd
-			</div> -->
 
 			<div class="col-xs-8" id="categories">
 				<?php
@@ -115,7 +102,7 @@ $dbh = null;
 			<div class="col-xs-4 addNew">
 				<?php
 				echo "<span>";
-				echo generateAdURL("ad_new", $city["short_name"], "Lägg till annons",
+				echo generateAdURL("ad_new", $city["short_name"], "Lägg upp annons",
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
 								(isset($_GET["type"]) ? $_GET["type"] : NULL));
 				echo "</span>";

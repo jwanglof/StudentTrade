@@ -55,9 +55,21 @@ class DbSelect extends DbConfig {
 		}
 	}
 
+	public function getCityFromID($cityID) {
+		try {
+			$stmt = $this->dbh->prepare("SELECT * FROM city WHERE id=:cityID");
+			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
+			$stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
+
 	public function getCampuses() {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM campus");
+			$stmt = $this->dbh->prepare("SELECT * FROM campus WHERE id < 999");
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -80,7 +92,7 @@ class DbSelect extends DbConfig {
 
 	public function getCampusFromUniversityID($university_id) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM campus WHERE fk_campus_university=:university_id");
+			$stmt = $this->dbh->prepare("SELECT * FROM campus WHERE fk_campus_university=:university_id AND id < 999");
 			$stmt->bindValue(":university_id", $university_id, PDO::PARAM_INT);
 			$stmt->execute();
 
@@ -92,7 +104,7 @@ class DbSelect extends DbConfig {
 
 	public function getCampusFromName($campusName) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM campus WHERE campus_name=:campusName");
+			$stmt = $this->dbh->prepare("SELECT * FROM campus WHERE campus_name=:campusName AND id < 999");
 			$stmt->bindValue(":campusName", $campusName, PDO::PARAM_STR);
 			$stmt->execute();
 
@@ -105,9 +117,9 @@ class DbSelect extends DbConfig {
 	/*
 	 * Ad-related
 	 */
-	public function getAdTypes() {
+	public function getAdCategories() {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM adType");
+			$stmt = $this->dbh->prepare("SELECT * FROM adCategory");
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -116,9 +128,9 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdTypeFromID($adID) {
+	public function getAdCategoryFromID($adID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM adType WHERE id=:adID");
+			$stmt = $this->dbh->prepare("SELECT * FROM adCategory WHERE id=:adID");
 			$stmt->bindValue(":adID", $adID, PDO::PARAM_INT);
 			$stmt->execute();
 
@@ -128,9 +140,9 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdTypeFromName($adName) {
+	public function getAdCategoryFromName($adName) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM adType WHERE name=:adName");
+			$stmt = $this->dbh->prepare("SELECT * FROM adCategory WHERE name=:adName");
 			$stmt->bindValue(":adName", $adName, PDO::PARAM_STR);
 			$stmt->execute();
 
@@ -152,10 +164,10 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdsWithTypeIDFromCity($adTypeID, $cityID) {
+	public function getAdsWithAdCategoryIDFromCity($adCategoryID, $cityID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adType=:adTypeID AND fk_ad_city=:cityID ORDER BY id DESC");
-			$stmt->bindValue(":adTypeID", $adTypeID, PDO::PARAM_INT);
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adCategory=:adCategoryID AND fk_ad_city=:cityID ORDER BY id DESC");
+			$stmt->bindValue(":adCategoryID", $adCategoryID, PDO::PARAM_INT);
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
 			$stmt->execute();
 
@@ -178,10 +190,10 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdsWithTypeFromCampus($adTypeID, $campusID, $cityID) {
+	public function getAdsWithAdCategoryFromCampus($adCategoryID, $campusID, $cityID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adType=:adTypeID AND fk_ad_campus=:campusID AND fk_ad_city=:cityID ORDER BY id DESC");
-			$stmt->bindValue(":adTypeID", $adTypeID, PDO::PARAM_INT);
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adCategory=:adCategoryID AND fk_ad_campus=:campusID AND fk_ad_city=:cityID ORDER BY id DESC");
+			$stmt->bindValue(":adCategoryID", $adCategoryID, PDO::PARAM_INT);
 			$stmt->bindValue(":campusID", $campusID, PDO::PARAM_INT);
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
 			$stmt->execute();
@@ -204,10 +216,10 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdTypeInfoFromAdTypeID($adTypeID) {
+	public function getAdSubCategoryFromAdCategoryID($adCategoryID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM adTypeInfo WHERE fk_adTypeInfo_adType=:adTypeID ORDER BY id DESC");
-			$stmt->bindValue(":adTypeID", $adTypeID, PDO::PARAM_INT);
+			$stmt = $this->dbh->prepare("SELECT * FROM adSubCategory WHERE fk_adTypeInfo_adCategory=:adCategoryID ORDER BY id DESC");
+			$stmt->bindValue(":adCategoryID", $adCategoryID, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -216,9 +228,9 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdTypeInfoIDFromAdTypeInfoName($adTypeInfoName) {
+	public function getAdSubCategoryIDFromAdSubCategoryName($adSubCategoryName) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT id FROM adTypeInfo WHERE short_name=:adTypeInfoName");
+			$stmt = $this->dbh->prepare("SELECT id FROM adSubCategory WHERE short_name=:adTypeInfoName");
 			$stmt->bindValue(":adTypeInfoName", $adTypeInfoName, PDO::PARAM_STR);
 			$stmt->execute();
 
@@ -228,12 +240,35 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdTypeInfoShortNames() {
+	public function getAdSubCategoryShortNames() {
 		try {
 			$stmt = $this->dbh->prepare("SELECT short_name FROM adTypeInfo");
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
+
+	public function getAdTypes() {
+		try {
+			$stmt = $this->dbh->prepare("SELECT * FROM adType");
+			$stmt->execute();
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
+
+	public function getAdTypeFromAdTypeID($adTypeID) {
+		try {
+			$stmt = $this->dbh->prepare("SELECT * FROM adType WHERE id=:adTypeID");
+			$stmt->bindValue(":adTypeID", $adTypeID, PDO::PARAM_STR);
+			$stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
 		} catch (PDOException $e) {
 			return $e;
 		}

@@ -7,7 +7,7 @@ if ($_SESSION["sessProtector"] == session_id()) {
 	$dbh = new DbSelect();
 
 	// $universities = $dbh->getUniversitiesFromCityID(2);
-	// $campuses = [];
+	// $campuses = array();
 	// foreach ($universities as $key) {
 	// 	// $campuses[$key["id"]] = $key["university_name"];
 	// 	$campus = $dbh->getCampusFromUniversityID($key["id"]);
@@ -24,19 +24,22 @@ if ($_SESSION["sessProtector"] == session_id()) {
 	if (isset($_POST["get"])) {
 		if ($_POST["get"] == "campuses") {
 			$universities = $dbh->getUniversitiesFromCityID($_POST["cityID"]);
-			$campuses = [];
+			$campuses = array();
 			foreach ($universities as $key) {
-				// $campuses[$key["id"]] = $key["university_name"];
 				$campus = $dbh->getCampusFromUniversityID($key["id"]);
 				foreach ($campus as $value) {
 					$campuses[$value["id"]] = $value["campus_name"];
 				}
 			}
 			echo json_encode($campuses);
-		} else if ($_POST["get"] == "adTypeInfo") {
-			$adType = $dbh->getAdTypeInfoFromAdTypeID($_POST["adType"]);
+		} 
+
+		else if ($_POST["get"] == "adTypeInfo") {
+			$adType = $dbh->getAdSubCategoryFromAdCategoryID($_POST["adType"]);
 			echo json_encode($adType);
-		} else {
+		}
+
+		else {
 			return false;
 		}
 	}

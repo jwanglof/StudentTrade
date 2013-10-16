@@ -7,10 +7,7 @@ function __autoload($class_name) {
 	//class directories
 	$base_dir = 'StudentTrade/';
 	$directorys = array(
-		'Data/',
-		'Db/',
-		'Logic/',
-		'Views'
+		'Db/'
 	);
 	//for each directory
 	foreach($directorys as $directory)
@@ -73,6 +70,7 @@ require_once("StudentTrade/Db/functions.php");
 						$short_name = replaceSwedishLetters(strtolower($city["short_name"]));
 						echo "<span class=\"". $short_name ."\"><a href=\"front.php?page=latest&city=". $short_name ."\">". $city["city_name"] ."</a></span>";
 					}
+					$dbh = null;
 					?>
 				</div>
 			</div>
