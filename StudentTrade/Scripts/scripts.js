@@ -57,7 +57,7 @@ function showCampuses(cityID) {
 	request.done(function(response, textStatus, jqXHR) {
 		console.log(response);
 		var objs = JSON.parse(response);
-		$("#campus").append("<option value=\"0\">Inget campus</option>");
+		$("#campus").append("<option value=\"9999\">Inget campus</option>");
 		for (var key in objs) {
 			// console.log(key +" -- "+ objs[key]);
 			$("#campus").append("<option value=\""+ key +"\">"+ objs[key] +"</option>");

@@ -37,38 +37,4 @@
 	function compareString($string1, $string2) {
 		return (replaceSwedishLetters(replaceSpecialChars(strtolower($string1))) == replaceSwedishLetters(replaceSpecialChars(strtolower($string2))));
 	}
-
-	function testPOSTInput($input) {
-		$input = trim($input);
-		$input = stripslashes($input);
-		$input = htmlspecialchars($input);
-		return $input;
-	}
-
-	/*
-	 * Returns how many input-fields are left in $requiredInputs after
-	 * deleting the required ones
-	 * If it returns 0 it means that the user has typed in all
-	 * required fields,
-	 * else it will return >0
-	 */
-	function checkRequiredInput($postData, $requiredInputs) {
-		foreach ($postData as $key => $value) {
-			$found = array_search($key, $requiredInputs);
-			if ($found >= 0) {
-				if (!empty($value))
-					unset($requiredInputs[$found]);
-			}
-		}
-		return ((count($requiredInputs) == 0) ? 0 : $requiredInputs);
-
-		// $adTypeInfoShortNames = array();
-
-		// $dbh = new DbSelect();
-		// foreach($dbh->getAdTypeInfoShortNames() as $val) {
-		// 	foreach ($val as $key => $value) {
-		// 		array_push($adTypeInfoShortNames, $value);
-		// 	}
-		// }
-	}
 ?>
