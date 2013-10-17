@@ -35,33 +35,16 @@
 					$adType = $dbh->getAdTypeFromAdTypeID($ad["fk_ad_adType"]);
 				?>
 						<div class="col-xs-6 latestAd">
-							<div class="categoryLetter" style="background-color: <?php echo $adCategory["color"]; ?>;">
-								<?php echo mb_substr($adCategory["description"], 0, 1, "UTF-8"); ?>
-							</div>
+							<div class="categoryLetter icon <?php echo $adCategory["name"]; ?>"></div>
 							<div class="adInfo">
 								<h4><?php echo generateShowAdURL($city["short_name"], $ad["title"],
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
 								(isset($_GET["type"]) ? $_GET["type"] : NULL),
 								$ad["id"]); ?></h4>
-								<?php echo $adType["name"] ." - ". $ad["price"] ." SEK (". date_format(date_create($ad["date_created"]), "Y-m-d") .")"; ?>
+								<?php echo $adType["name"] ." för ". $ad["price"] ." SEK (". date_format(date_create($ad["date_created"]), "Y-m-d") .")"; ?>
 							</div>
 						</div>
 				<?php
-				// 	echo $ad["fk_ad_adType"];
-				// 	echo "<div class=\"ad\">";
-				// 	echo generateAdURL("latest", $city["short_name"], $ad_type["description"],
-				// 					(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-				// 					$ad_type["name"]);
-				// 	echo "</div>";
-				// 	echo "<div class=\"ad\">";
-				// 	echo generateShowAdURL($city["short_name"], $ad["title"],
-				// 				(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-				// 				(isset($_GET["type"]) ? $_GET["type"] : NULL),
-				// 				$ad["id"]);
-				// 	echo "</div>";
-				// 	echo "<div class=\"ad\">". $ad["price"] ."</div>";
-				// 	echo "<div class=\"ad\">". $ad["date_created"] ."</div>";
-				// 	echo "<br />";
 				}
 				?>
 					</div>

@@ -69,7 +69,7 @@ class DbInsert extends DbConfig {
 		try {
 			$this->dbh->beginTransaction();
 
-			$stmt = $this->dbh->prepare("INSERT INTO adInfo(`value`, `fk_adInfo_adSubCategory`, `fk_adInfo_ad`) VALUES(:value, :fk_adSubCategory, :fk_ad)");
+			$stmt = $this->dbh->prepare("INSERT INTO adInfo(`sub_category_value`, `fk_adInfo_adSubCategory`, `fk_adInfo_ad`) VALUES(:value, :fk_adSubCategory, :fk_ad)");
 			$stmt->bindParam(":value", $value, PDO::PARAM_STR);
 			$stmt->bindParam(":fk_adSubCategory", $fk_adSubCategory, PDO::PARAM_INT);
 			$stmt->bindParam(":fk_ad", $fk_ad, PDO::PARAM_INT);

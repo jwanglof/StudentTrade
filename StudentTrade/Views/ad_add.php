@@ -45,13 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 		$dbInsert = new DbInsert();
 		$adUserInfoID = $dbInsert->insertIntoAdUserInfo($_POST["name"], $_POST["email"], $_POST["phonenumber"]);
-		echo 1 . $adUserInfoID . "--- ";
+		// echo 1 . $adUserInfoID . "--- ";
 
 		$password = generateRandomString(4);
 		$adID = $dbInsert->insertIntoAd($_POST["title"], nl2br($_POST["info"]), $password, $_POST["price"], 
 			date("Y-m-d H:i:s"), date("Y-m-d H:i:s", strtotime("+1 month")), $_POST["adType"], 
 			$_POST["campus"], $_POST["city"], $adUserInfoID, $_POST["adType"]);
-		echo 2 . $adID;
+		// echo 2 . $adID;
+
 		/*
 		 * Insert the adInfo
 		 * Loop through all ad types, 
@@ -60,16 +61,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		 */
 		$dbh = new DbSelect();
 		foreach($dbh->getAdSubCategoryShortNames() as $val) {
-			foreach ($val as $key => $value) {
+			foreach ($val as $value) {
 				// array_push($adTypeInfoShortNames, $value);
 				if (isset($_POST[$value])) {
-					$adTypeInfoID = $dbh->getAdTypeInfoIDFromAdTypeInfoName($value);
+					// echo "<br />";
+					// echo $value ." ---- ". $_POST[$value];
+					// echo "<br />";
+					$adTypeInfoID = $dbh->getAdSubCategoryIDFromAdSubCategoryName($value);
 					$adTypeInfoID = $adTypeInfoID["id"];
-
-					$dbInsert->insertIntoAdInfo($_POST[$value], $adTypeInfoID, $adID);
+					// echo $adTypeInfoID;
+					// echo $dbInsert->insertIntoAdInfo($_POST[$value], $adTypeInfoID, $adID);
 				}
 			}
 		}
+
 		$cityShortName = $dbh->getCityFromID($_POST["city"]);
 		$dbh = null;
 		$dbInsert = null;

@@ -230,8 +230,8 @@ class DbSelect extends DbConfig {
 
 	public function getAdSubCategoryIDFromAdSubCategoryName($adSubCategoryName) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT id FROM adSubCategory WHERE short_name=:adTypeInfoName");
-			$stmt->bindValue(":adTypeInfoName", $adTypeInfoName, PDO::PARAM_STR);
+			$stmt = $this->dbh->prepare("SELECT id FROM adSubCategory WHERE short_name=:adSubCategoryName");
+			$stmt->bindValue(":adSubCategoryName", $adSubCategoryName, PDO::PARAM_STR);
 			$stmt->execute();
 
 			return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -242,7 +242,7 @@ class DbSelect extends DbConfig {
 
 	public function getAdSubCategoryShortNames() {
 		try {
-			$stmt = $this->dbh->prepare("SELECT short_name FROM adTypeInfo");
+			$stmt = $this->dbh->prepare("SELECT short_name FROM adSubCategory");
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -269,6 +269,41 @@ class DbSelect extends DbConfig {
 			$stmt->execute();
 
 			return $stmt->fetch(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
+
+	public function getAdInfoFromAdID($adID) {
+		try {
+			$stmt = $this->dbh->prepare("SELECT * FROM adInfo WHERE fk_adInfo_ad=:adID");
+			$stmt->bindValue(":adID", $adID, PDO::PARAM_STR);
+			$stmt->execute();
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
+
+	public function getAdUserInfoFromAdUserInfoID($adUserInfoID) {
+		try {
+			$stmt = $this->dbh->prepare("SELECT * FROM adUserInfo WHERE id=:adUserInfoID");
+			$stmt->bindValue(":adUserInfoID", $adUserInfoID, PDO::PARAM_INT);
+			$stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
+
+	public function getAdSubCategories() {
+		try {
+			$stmt = $this->dbh->prepare("SELECT * FROM adSubCategory");
+			$stmt->execute();
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		} catch (PDOException $e) {
 			return $e;
 		}

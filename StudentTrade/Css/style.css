@@ -24,13 +24,17 @@ a:visited {color: #fff;}
 
 .ad.top {
 	background: #06bdef;
-	background-image: url('../Img/index_border.png'), url('../Img/studenttrade_logo_wo_text.png'), url('../Img/far-clouds_big.png');
-	background-repeat: repeat-x, no-repeat, no-repeat;
-	background-position: bottom, center left, right bottom;
+	background-image: url('../Img/index_border.png'), url('../Img/far-clouds_big.png');
+	background-repeat: repeat-x, no-repeat;
+	background-position: bottom, right bottom;
 
 	height: 230px;
 	z-index: 10;
 	/*border: 1px solid #000;*/
+}
+
+.ad.top img {
+	margin-top: 10px;
 }
 
 #campusChooser {
@@ -144,3 +148,10 @@ a:visited {color: #fff;}
 .content h3 {
 	font-weight: bold;
 }
+
+.icon.tickets {background-image: url('../Img/Icons/icon_ticket.jpg');}
+.icon.literature {background-image: url('../Img/Icons/icon_literature.jpg');}
+.icon.house {background-image: url('../Img/Icons/icon_house.jpg');}
+.icon.work {background-image: url('../Img/Icons/icon_work.jpg');}
+.icon.travel {background-image: url('../Img/Icons/icon_travel.jpg');}
+.icon.other {background-image: url('../Img/Icons/icon_other.jpg');}
