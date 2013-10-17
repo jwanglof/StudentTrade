@@ -53,6 +53,7 @@ $dbh = null;
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/avgrund.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/style.css" />
+		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/style_footer.css" />
 
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
 

@@ -13,19 +13,15 @@ $(document).ready(function() {
 		$(this).css('cursor', 'pointer');
 	});
 
-	$("img.box1_img")
-		.mouseenter(function() {
-			bootbox.dialog({
-				message: "Juppjupp",
-				onEscape: function() {},
-				backdrop: true,
-				closeButton: true,
-				animate: true
-			});
-		})
-		.mouseleave(function() {
-			$(".bootbox").modal("hide");
-		});
+	$("#hover-img .thumbnail").hover(
+		function() {
+			$(this).find('.caption').slideDown(250);
+            $(this).find('.caption-btm').fadeOut("fast");
+		}, function() {
+			$(this).find('.caption').slideUp(250);
+            $(this).find('.caption-btm').fadeIn("fast");
+		}
+	);
 
 	$("#city").ready(function() {
 		// Select the correct city if a city is chosen
