@@ -2,26 +2,17 @@
 // error_reporting(-1);
 // ini_set('display_errors', 1);
 if ($_SESSION["sessProtector"] == session_id()) {
-	require("../Db/DbConfig.php");
-	require("../Db/DbSelect.php");
-	$dbh = new DbSelect();
-
-	// $universities = $dbh->getUniversitiesFromCityID(2);
-	// $campuses = array();
-	// foreach ($universities as $key) {
-	// 	// $campuses[$key["id"]] = $key["university_name"];
-	// 	$campus = $dbh->getCampusFromUniversityID($key["id"]);
-	// 	foreach ($campus as $value) {
-	// 		$campuses[$value["id"]] = $value["campus_name"];
-	// 	}
-	// }
-	// // print_r($campuses);
-	// echo json_encode($campuses);
-
-	// $adType = $dbh->getAdTypeInfoFromAdTypeID(2);
-	// print_r($adType);
+	if (!isset($_GET["page"])) {
+		require("../Db/DbConfig.php");
+		require("../Db/DbSelect.php");
+		require("../Db/DbUpdate.php");
+		require("../Class/Cipher.php");
+		require("../Db/functions.php");
+	}
 
 	if (isset($_POST["get"])) {
+		$dbh = new DbSelect();
+
 		if ($_POST["get"] == "campuses") {
 			$universities = $dbh->getUniversitiesFromCityID($_POST["cityID"]);
 			$campuses = array();
@@ -40,7 +31,37 @@ if ($_SESSION["sessProtector"] == session_id()) {
 		}
 
 		else {
-			return false;
+			echo false;
+		}
+
+		$dbh = null;
+	}
+
+	else if (isset($_POST["check"])) {
+		print_r($_POST);
+	}
+
+	else if (isset($_POST["remove"])) {
+		if ($_POST["remove"] == "ad") {
+			$dbh = new DbSelect();
+			$ad = $dbh->getAdFromID($_POST["aid"]);
+			$dbh = null;
+
+			$cipher = new Cipher("JFKs3ef03J");
+			if ($ad["password"] == $cipher->encrypt($_POST["removeCode"])) {
+				$dbUpdate = new DbUpdate();
+				// $dbUpdate->updateAdActiveWithAdID($_POST["aid"]);
+
+				if ($dbUpdate->updateAdActiveWithAdID($_POST["aid"]) > 0) 
+					echo true;
+				else
+					echo false;
+				$dbUpdate = null;
+			}
+			else
+				echo false;
+			$cipher = null;
+			// 9ksKmPvSjz
 		}
 	}
 }

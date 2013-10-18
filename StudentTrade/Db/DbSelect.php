@@ -2,17 +2,16 @@
 class DbSelect extends DbConfig {
 	private $dbh;
 	public $errors = array();
-	private $name;
+	private $className;
 
 	public function __construct() {
-		$this->name = "DbSelect";
+		$this->className = "DbSelect";
 
 		parent::__construct();
 		$this->dbh = new PDO(parent::getDsn(), parent::getUsername(), parent::getPassword(), parent::getOptions());
 	}
 
-	public function __destruct() {
-	}
+	public function __destruct() {}
 
 	public function login($username, $password) {
 		try {
@@ -154,7 +153,7 @@ class DbSelect extends DbConfig {
 
 	public function getAds($cityID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_city=:cityID ORDER BY id DESC");
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_city=:cityID AND active=1 ORDER BY id DESC");
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
 			$stmt->execute();
 

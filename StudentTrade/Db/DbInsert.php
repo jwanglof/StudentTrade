@@ -2,17 +2,16 @@
 class DbInsert extends DbConfig {
 	private $dbh;
 	public $errors = array();
-	private $name;
+	private $className;
 
 	public function __construct() {
-		$this->name = "DbInsert";
+		$this->className = "DbInsert";
 
 		parent::__construct();
 		$this->dbh = new PDO(parent::getDsn(), parent::getUsername(), parent::getPassword(), parent::getOptions());
 	}
 
-	public function __destruct() {
-	}
+	public function __destruct() {}
 
 	public function insertIntoAdUserInfo($name, $email, $phonenumber) {
 		try {

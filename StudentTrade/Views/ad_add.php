@@ -6,36 +6,11 @@
 // print_r($adTypeInfoShortNames);
 // print_r($_POST);
 
-
-function checkPOSTInput($input) {
-	$input = trim($input);
-	$input = stripslashes($input);
-	$input = htmlspecialchars($input);
-	return $input;
-}
-
-/*
- * Returns how many input-fields are left in $requiredInputs after
- * deleting the required ones
- * If it returns 0 it means that the user has typed in all
- * required fields,
- * else it will return >0
- */
-function checkRequiredInput($postData, $requiredInputs) {
-	foreach ($postData as $key => $value) {
-		$found = array_search($key, $requiredInputs);
-		if ($found >= 0) {
-			if (!empty($value))
-				unset($requiredInputs[$found]);
-		}
-	}
-	return ((count($requiredInputs) == 0) ? 0 : $requiredInputs);
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$success = true;
 	print_r($_POST);
-	$checkInput = checkRequiredInput($_POST, array("name", "email", "city", "adType", "title", "info", "price", "adCategory"));
+
+	$checkInput = checkRequiredInput($_POST, array("name", "email", "city", "adType", "title", "info", "adCategory"));
 	if ($checkInput == 0) {
 		/*
 		 * Check the input values so it doesn't contain any illegal characters
@@ -47,11 +22,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$adUserInfoID = $dbInsert->insertIntoAdUserInfo($_POST["name"], $_POST["email"], $_POST["phonenumber"]);
 		// echo 1 . $adUserInfoID . "--- ";
 
-		$password = generateRandomString(4);
-		$adID = $dbInsert->insertIntoAd($_POST["title"], nl2br($_POST["info"]), $password, $_POST["price"], 
-			date("Y-m-d H:i:s"), date("Y-m-d H:i:s", strtotime("+1 month")), $_POST["adType"], 
+		$password = generateRandomString();
+		$cipher = new Cipher("JFKs3ef03J");
+		$encryptedPassword = $cipher->encrypt($password);
+
+		$adID = $dbInsert->insertIntoAd($_POST["title"], nl2br($_POST["info"]), $encryptedPassword, $_POST["price"], 
+			date("Y-m-d H:i:s"), date("Y-m-d H:i:s", strtotime("+1 month")), $_POST["adCategory"], 
 			$_POST["campus"], $_POST["city"], $adUserInfoID, $_POST["adType"]);
 		// echo 2 . $adID;
+		echo $password ." __--- ". $encryptedPassword;
+
 
 		/*
 		 * Insert the adInfo
@@ -70,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					$adTypeInfoID = $dbh->getAdSubCategoryIDFromAdSubCategoryName($value);
 					$adTypeInfoID = $adTypeInfoID["id"];
 					// echo $adTypeInfoID;
-					// echo $dbInsert->insertIntoAdInfo($_POST[$value], $adTypeInfoID, $adID);
+					$dbInsert->insertIntoAdInfo($_POST[$value], $adTypeInfoID, $adID);
 				}
 			}
 		}
@@ -89,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		// $sendEmail = new Email($_POST["email"]);
 		// $sendEmail->sendPassword($password);
 
-		header("Location: front.php?page=ad_show&city=". $cityShortName["short_name"] ."&aid=". $adID);
+		// header("Location: front.php?page=ad_show&city=". $cityShortName["short_name"] ."&aid=". $adID);
 	}
 }
 

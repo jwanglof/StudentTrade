@@ -12,6 +12,9 @@ $(document).ready(function() {
 	$(".footer li").hover(function() {
 		$(this).css('cursor', 'pointer');
 	});
+	$("#adAnswer").hover(function() {
+		$(this).css('cursor', 'pointer');
+	});
 
 	$("#hover-img .thumbnail").hover(
 		function() {
@@ -63,7 +66,7 @@ function showCampuses(cityID) {
 	});
 
 	request.done(function(response, textStatus, jqXHR) {
-		console.log(response);
+		// console.log(response);
 		var objs = JSON.parse(response);
 		$("#campus").append("<option value=\"999\">Inget campus</option>");
 		for (var key in objs) {
@@ -155,5 +158,39 @@ $(document).on("click", "#contact_us", function(e) {
 		backdrop: true,
 		closeButton: true,
 		animate: true
+	});
+});
+
+$(document).on("click", "#adAnswer", function(e) {
+	bootbox.dialog({
+		title: "<h1 style=\"color: #000;\">Kontaktformulär</h1>",
+		message: $("#adAnswerForm").html(),
+		backdrop: true,
+		closeButton: true,
+		animate: true
+	});
+});
+
+$(document).on("click", "#adDelete", function(e) {
+	bootbox.prompt("Ange din borttagninskod som du fick via e-post", function(result) {
+		if (result != null) {
+			request = $.ajax({
+				type: "post",
+				url: getURL(),
+				data: {remove: "ad", aid: gup("aid"), removeCode: result}
+			});
+
+			request.done(function(response, textStatus, jqXHR) {
+				if (response == true) {
+					bootbox.alert("Annonsen borttagen");
+					window.location.replace("front.php?page=latest");
+				}
+				else
+					bootbox.alert("Fel kod angiven");
+			});
+			request.fail(function(jqXHR, textStatus, errorThrown) {
+				bootbox.alert(errorThrown);
+			});
+		}
 	});
 });

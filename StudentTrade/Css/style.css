@@ -1,12 +1,12 @@
 body,html {
 	font-family: 'Lato', sans-serif;
-	color: #fff;
+	color: #565656;
 }
 
-a {color: #fff;}
-a:hover {color: #fff;}
-a:active {color: #fff;}
-a:visited {color: #fff;}
+a {color: #565656;}
+a:hover {color: #565656;}
+a:active {color: #565656;}
+a:visited {color: #565656;}
 
 .container {
 	max-width: none !important;
@@ -64,8 +64,10 @@ a:visited {color: #fff;}
 	padding: 0px;
 }
 
-#categories a {font-weight: bold;}
-#categories a:hover {vertical-align:text-top; text-decoration: none;}
+#categories a {color: #fff; font-weight: bold;}
+#categories a:hover {color: #fff; vertical-align:text-top; text-decoration: none;}
+#categories a:active {color: #fff;}
+#categories a:visited {color: #fff;}
 
 #categories span {
 	margin-right: 20px;
@@ -80,7 +82,7 @@ a:visited {color: #fff;}
 	height: 30px;
 	/*border: 1px solid #000;*/
 }
-.addNew a {font-weight: bold;}
+.addNew a {color: #fff; font-weight: bold;}
 .addNew span {
 	background-color: #39b54a;
 	padding: 20px 20px;
@@ -92,6 +94,7 @@ a:visited {color: #fff;}
 	font-size: 40px;
 	background-color: #666666;
 	margin-top: 5px;
+	color: #fff;
 }
 
 .rightColumn {

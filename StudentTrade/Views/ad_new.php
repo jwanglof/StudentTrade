@@ -90,7 +90,7 @@ $dbh = null;
 			<div class="form-group">
 				<label for="price" class="col-lg-1 control-label">Pris (SEK) *</label>
 				<div class="col-lg-5">
-					<input type="number" class="form-control" id="price" name="price" placeholder="Pris">
+					<input type="number" class="form-control" id="price" name="price" value="0" placeholder="Pris">
 				</div>
 			</div>
 
