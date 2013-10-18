@@ -66,9 +66,9 @@ function showCampuses(cityID) {
 	});
 
 	request.done(function(response, textStatus, jqXHR) {
-		// console.log(response);
+		console.log(response);
 		var objs = JSON.parse(response);
-		$("#campus").append("<option value=\"999\">Inget campus</option>");
+		$("#campus").append("<option value=\"999\">Alla campus</option>");
 		for (var key in objs) {
 			// console.log(key +" -- "+ objs[key]);
 			$("#campus").append("<option value=\""+ key +"\">"+ objs[key] +"</option>");
@@ -91,8 +91,7 @@ function showAdCategoryInputs(adType) {
 	});
 
 	request.done(function(response, textStatus, jqXHR) {
-		console.log(response);
-
+		// console.log(response);
 		var objs = JSON.parse(response);
 		for (var value in objs) {
 			// $("#adInput").append("<label for=\"adTypeInfo_"+ objs[value]["id"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");

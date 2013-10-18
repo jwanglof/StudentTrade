@@ -26,11 +26,12 @@ function __autoload($class_name) {
 	}
 }
 require_once("StudentTrade/Db/functions.php");
-if (!isset($_SESSION["sessProtector"])) {
-	$_SESSION["sessProtector"] = session_id();
-	session_write_close();
-}
 
+$sess = new Session();
+$sess->setSession(session_id());
+$_SESSION["session_id"] = $sess->getSession();
+$sess = null;
+print_r($_SESSION);
 $dbh = new DbSelect();
 
 $city = (isset($_GET['city']) ? $dbh->getCity($_GET['city']) : $dbh->getCity("linkoping"));

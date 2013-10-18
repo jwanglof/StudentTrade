@@ -1,15 +1,18 @@
 <?php
 // error_reporting(-1);
 // ini_set('display_errors', 1);
-if ($_SESSION["sessProtector"] == session_id()) {
-	if (!isset($_GET["page"])) {
-		require("../Db/DbConfig.php");
-		require("../Db/DbSelect.php");
-		require("../Db/DbUpdate.php");
-		require("../Class/Cipher.php");
-		require("../Db/functions.php");
-	}
 
+if (!isset($_GET["page"])) {
+	require("../Db/DbConfig.php");
+	require("../Db/DbSelect.php");
+	require("../Db/DbUpdate.php");
+	require("../Class/Cipher.php");
+	require("../Db/functions.php");
+}
+
+print_r($_COOKIE);
+print_r(session_id());
+if ($_SESSION["sessProtector"] == session_id()) {
 	if (isset($_POST["get"])) {
 		$dbh = new DbSelect();
 

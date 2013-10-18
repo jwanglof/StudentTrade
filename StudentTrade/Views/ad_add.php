@@ -66,10 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
 	if ($success) {
-		// $sendEmail = new Email($_POST["email"]);
-		// $sendEmail->sendPassword($password);
+		$sendEmail = new Email($_POST["email"]);
+		$sendEmail->sendPassword($password);
 
-		// header("Location: front.php?page=ad_show&city=". $cityShortName["short_name"] ."&aid=". $adID);
+		header("Location: front.php?page=ad_show&city=". $cityShortName["short_name"] ."&aid=". $adID);
 	}
 }
 

@@ -272,7 +272,7 @@ INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`
 INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (7, 'Lindholmen', 3);
 INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (8, 'Konradsberg', 6);
 INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (9, 'Linné', 5);
-INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (999, 'Inget campus', 1);
+INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (999, 'Alla campus', 1);
 
 COMMIT;
 
