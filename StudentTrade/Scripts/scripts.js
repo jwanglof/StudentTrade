@@ -45,28 +45,28 @@ $(document).ready(function() {
 	});
 });
 
-function getURL() {
+function getURL(file) {
 	var url;
 	if (window.location.origin == "http://localhost") {
 		// console.log(window.location.origin);
-		url = "http://localhost/~johan/StudentTrade/StudentTrade/Views/ajax.php";
+		url = "http://localhost/~johan/StudentTrade/StudentTrade/Ajax/"+ file +".php";
 	} else {
-		// console.log(window.location.origin +"/beta/StudentTrade/Views/ajax.php");
-		url = window.location.origin +"/beta/StudentTrade/Views/ajax.php";
+		url = window.location.origin +"/beta/StudentTrade/Ajax/"+ file +".php";
 	};
 	return url;
 }
 
 function showCampuses(cityID) {
 	$("#campus").empty();
+
 	request = $.ajax({
 		type: "post",
-		url: getURL(),
+		url: getURL("get"),
 		data: {get: "campuses", cityID: cityID}
 	});
 
 	request.done(function(response, textStatus, jqXHR) {
-		console.log(response);
+		// console.log(response);
 		var objs = JSON.parse(response);
 		$("#campus").append("<option value=\"999\">Alla campus</option>");
 		for (var key in objs) {
@@ -86,7 +86,7 @@ function showAdCategoryInputs(adType) {
 
 	request = $.ajax({
 		type: "post",
-		url: getURL(),
+		url: getURL("get"),
 		data: {get: "adTypeInfo", adType: adType}
 	});
 
@@ -94,8 +94,6 @@ function showAdCategoryInputs(adType) {
 		// console.log(response);
 		var objs = JSON.parse(response);
 		for (var value in objs) {
-			// $("#adInput").append("<label for=\"adTypeInfo_"+ objs[value]["id"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
-			// $("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\"text\" class=\"form-control\" id=\"adTypeInfo_"+ objs[value]["id"] +"\" name=\"adTypeInfo_"+ objs[value]["id"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
 			$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
 			$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\"text\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
 			$("#adInput").append("<br /><br />");
@@ -104,8 +102,6 @@ function showAdCategoryInputs(adType) {
 	request.fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(errorThrown);
 	});
-	// $("#adInput").append("<label for=\"address\" class=\"col-lg-1 control-label\">Adress</label>");
-	// $("#adInput").append("<div class=\"col-lg-5\"><input type=\"text\" class=\"form-control\" id=\"address\" name=\"address\" placeholder=\"Adress\"></div>");
 }
 
 function gup(name) {
@@ -176,7 +172,7 @@ $(document).on("click", "#adDelete", function(e) {
 			request = $.ajax({
 				type: "post",
 				url: getURL(),
-				data: {remove: "ad", aid: gup("aid"), removeCode: result}
+				data: {update: "adActive", aid: gup("aid"), removeCode: result}
 			});
 
 			request.done(function(response, textStatus, jqXHR) {

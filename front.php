@@ -27,11 +27,11 @@ function __autoload($class_name) {
 }
 require_once("StudentTrade/Db/functions.php");
 
-$sess = new Session();
-$sess->setSession(session_id());
-$_SESSION["session_id"] = $sess->getSession();
-$sess = null;
-print_r($_SESSION);
+if (!isset($_SESSION["sessProtector"])) {
+	$_SESSION["sessProtector"] = session_id();
+	session_write_close();
+}
+
 $dbh = new DbSelect();
 
 $city = (isset($_GET['city']) ? $dbh->getCity($_GET['city']) : $dbh->getCity("linkoping"));
@@ -85,7 +85,28 @@ $dbh = null;
 				</div>
 			</div>
 
-			<div class="col-xs-8" id="categories">
+			<div class="col-xs-12" id="categories">
+				<ul class="nav nav-pills">
+					<?php
+					foreach ($adtypes as $type) {
+						echo "<li class=\"category\" style=\"background-color: ". $type["color"] ."\">";
+						echo generateAdURL("latest", $city["short_name"],
+								((isset($_GET["type"]) && $_GET["type"] == $type["name"]) ? ">". $type["description"] : $type["description"]),
+								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+								$type["name"]);
+						echo "</li>";
+					}
+					?>
+					<li class="categoryViewAll">
+					<?php
+						echo generateAdURL("latest", $city["short_name"], 
+								(!isset($_GET["type"]) ? "> Visa alla" : "Visa alla"),
+								(isset($_GET["campus"]) ? $_GET["campus"] : NULL));
+					?>
+					</li>
+				</ul>
+			</div>
+			<!-- <div class="col-xs-8" id="categories">
 				<?php
 				// generateAdURL($page, $city, $nameOnUrl, $campus=NULL, $type=NULL)
 				foreach ($adtypes as $type) {
@@ -112,7 +133,7 @@ $dbh = null;
 								(isset($_GET["type"]) ? $_GET["type"] : NULL));
 				echo "</span>";
 				?>
-			</div>
+			</div> -->
 		</div>
 
 		<div class="ads content">
@@ -121,7 +142,7 @@ $dbh = null;
 					<?php include_once('StudentTrade/Views/switch.php'); ?>
 				</div>
 				<div class="col-xs-4 rightColumn">
-					Annonser
+					
 				</div>
 			</div>
 		</div>
