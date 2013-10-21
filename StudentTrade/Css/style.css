@@ -8,11 +8,6 @@ a:hover {color: #565656;}
 a:active {color: #565656;}
 a:visited {color: #565656;}
 
-.container {
-	max-width: none !important;
-	width: 970px;
-}
-
 .font_left {
 	text-align: left;
 }
@@ -166,4 +161,4 @@ a:visited {color: #565656;}
 	text-decoration: underline;
 }*/
 
-.nav>li>a:hover,.nav>li>a:focus{text-decoration:none;background-color:none;vertical-align:text-top; text-decoration: none;}
+/*.nav>li>a:hover,.nav>li>a:focus{text-decoration:none;background-color:none;vertical-align:text-top; text-decoration: none;}*/

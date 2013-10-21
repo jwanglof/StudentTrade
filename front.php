@@ -52,6 +52,7 @@ $dbh = null;
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<title>StudentTrade.se</title>
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/non-responsive.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/avgrund.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/style.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/style_footer.css" />
@@ -61,6 +62,7 @@ $dbh = null;
 		<link rel="shortcut icon" href="favicon.ico" />
 	</head>
 	<body>
+		<div class="container">
 		<div class='col-xs-12 ad top'>
 			<div class="col-xs-6">
 				<a href="index.php"><img src="StudentTrade/Img/ST_w_bubble.png" /></a>
@@ -85,7 +87,10 @@ $dbh = null;
 				</div>
 			</div>
 
-			<div class="col-xs-12" id="categories">
+			<!-- <div class="col-xs-12" id="categories"> -->
+			<div class="navbar">
+		    	<div class="container">
+		    	<div class="navbar-collapse collapse">
 				<ul class="nav nav-pills">
 					<?php
 					foreach ($adtypes as $type) {
@@ -97,7 +102,7 @@ $dbh = null;
 						echo "</li>";
 					}
 					?>
-					<li class="categoryViewAll">
+					<li class="category" style="background-color: #666666;">
 					<?php
 						echo generateAdURL("latest", $city["short_name"], 
 								(!isset($_GET["type"]) ? "> Visa alla" : "Visa alla"),
@@ -105,7 +110,10 @@ $dbh = null;
 					?>
 					</li>
 				</ul>
+				</div>
+				</div>
 			</div>
+			<!-- </div> -->
 			<!-- <div class="col-xs-8" id="categories">
 				<?php
 				// generateAdURL($page, $city, $nameOnUrl, $campus=NULL, $type=NULL)
@@ -149,6 +157,7 @@ $dbh = null;
 
 		<div class="col-xs-12 index footer">
 			<?php include_once("StudentTrade/Views/footer.php"); ?>
+		</div>
 		</div>
 
 		<script src="StudentTrade/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
