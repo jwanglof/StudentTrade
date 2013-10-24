@@ -165,7 +165,7 @@ class DbSelect extends DbConfig {
 
 	public function getAdsWithAdCategoryIDFromCity($adCategoryID, $cityID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adCategory=:adCategoryID AND fk_ad_city=:cityID ORDER BY id DESC");
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adCategory=:adCategoryID AND fk_ad_city=:cityID AND active=1 ORDER BY id DESC");
 			$stmt->bindValue(":adCategoryID", $adCategoryID, PDO::PARAM_INT);
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
 			$stmt->execute();
@@ -178,7 +178,7 @@ class DbSelect extends DbConfig {
 
 	public function getAdsFromCampus($campusID, $cityID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_campus=:campusID AND fk_ad_city=:cityID ORDER BY id DESC");
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_campus=:campusID AND fk_ad_city=:cityID AND active=1 ORDER BY id DESC");
 			$stmt->bindValue(":campusID", $campusID, PDO::PARAM_INT);
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
 			$stmt->execute();
@@ -191,7 +191,7 @@ class DbSelect extends DbConfig {
 
 	public function getAdsWithAdCategoryFromCampus($adCategoryID, $campusID, $cityID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adCategory=:adCategoryID AND fk_ad_campus=:campusID AND fk_ad_city=:cityID ORDER BY id DESC");
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adCategory=:adCategoryID AND fk_ad_campus=:campusID AND fk_ad_city=:cityID AND active=1 ORDER BY id DESC");
 			$stmt->bindValue(":adCategoryID", $adCategoryID, PDO::PARAM_INT);
 			$stmt->bindValue(":campusID", $campusID, PDO::PARAM_INT);
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);

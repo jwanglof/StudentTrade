@@ -15,7 +15,10 @@ class Email {
 
 		$message = "Tack för att du använder StudentTrade.se!
 		<p>Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a></p>
-		<p>Om din vara är såld, eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password ."</p>
+		<p>
+			Om din vara är såld, eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />
+			eller tryck <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_delete&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.
+		</p>
 		//StudentTrade.se";
 
 		$headers = 'MIME-Version: 1.0' . "\r\n";

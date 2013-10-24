@@ -1,33 +1,40 @@
 <?php
 class DbUpdate extends DbConfig {
 	private $dbh;
-	public $errors = array();
+	private $errors;
 	private $className;
 
 	public function __construct() {
 		$this->className = "DbUpdate";
 
 		parent::__construct();
-		$this->dbh = new PDO(parent::getDsn(), parent::getUsername(), parent::getPassword(), parent::getOptions());
+
+		try {
+			$this->dbh = new PDO(parent::getDsn(), parent::getUsername(), parent::getPassword(), parent::getOptions());
+			$this->dbh->beginTransaction();
+		} catch (PDOException $e) {
+			$this->errors = $e->getMessage();
+		}
 	}
 
-	public function __destruct() {}
+	public function __destruct() {
+		$this->dbh->commit();
+	}
 
 	public function updateAdActiveWithAdID($adID) {
 		try {
-			$this->dbh->beginTransaction();
-			$stmt = $this->dbh->prepare("UPDATE ad SET active=? WHERE id=?");
-			$stmt->bindParam(":active", 0, PDO::PARAM_INT);
-			$stmt->bindParam(":id", $adID, PDO::PARAM_INT);
-			// $stmt->execute(array(0, $adID));
-			// $stmt->execute();
-			$this->dbh->commit();
+			$stmt = $this->dbh->prepare("UPDATE `ad` SET `active`=:active WHERE `id`=:id");
+			$stmt->bindValue(":active", 0, PDO::PARAM_INT);
+			$stmt->bindValue(":id", $adID, PDO::PARAM_INT);
+
+			$stmt->execute();
+
 			$affectedRows = $stmt->rowCount();
 
 			return $affectedRows;
 		} catch (PDOException $e) {
 			$this->dbh->rollback();
-			return $e;
+			$this->errors = $e->getMessage();
 		}
 	}
 }

@@ -45,9 +45,6 @@ $adtypes = $dbh->getAdCategories();
 $cityID = $city["id"];
 
 $dbh = null;
-
-// $cipher = new Cipher("JFKs3ef03J");
-// echo $cipher->decrypt("69Uv1PcCyyby8KS5iCPjbA==");
 ?>
 
 <html>
@@ -94,6 +91,8 @@ $dbh = null;
 									}
 									?>
 									<li class="divider"></li>
+									<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>">Se alla</a></li>
+									<li class="divider"></li>
 									<li><a id="requestCampus">Mitt campus saknas!</a></li>
 								</ul>
 							</div>
@@ -101,9 +100,8 @@ $dbh = null;
 					</div>
 				</div>
 
-				<!-- <div class="col-xs-12" id="categories"> -->
 				<div class="row">
-					<div class="navbar">
+					<div class="col-xs-9 navbar">
 				    	<div class="navbar-collapse collapse">
 							<ul class="nav nav-pills">
 								<?php
@@ -116,28 +114,49 @@ $dbh = null;
 									echo "</li>";
 								}
 								?>
-								<li class="category" style="background-color: #666666;">
+								<!-- <li class="category" style="background-color: #666666;">
 								<?php
 									echo generateAdURL("latest", $city["short_name"], 
 											(!isset($_GET["type"]) ? "> Visa alla" : "Visa alla"),
 											(isset($_GET["campus"]) ? $_GET["campus"] : NULL));
 								?>
-								</li>
-								<li class="category" style="background-color: #39b54a; float: right; width: 250px; height: 80px; text-align: center; font-size: 29px; line-height: 60px;">
-								<?php
-									echo generateAdURL("ad_new", $city["short_name"], "Lägg upp annons",
-												(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-												(isset($_GET["type"]) ? $_GET["type"] : NULL));
-								?>
-								</li>
+								</li> -->
 							</ul>
 						</div>
+					</div>
+					<div class="navbar col-xs-3">
+						<ul class="nav nav-pills">
+							<li class="category" style="background-color: #39b54a; float: right; width: 250px; height: 80px; text-align: center; font-size: 26px; line-height: 60px;">
+							<?php
+								echo generateAdURL("ad_new", $city["short_name"], "Lägg upp annons",
+											(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+											(isset($_GET["type"]) ? $_GET["type"] : NULL));
+							?>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 
 			<div class="content">
 				<div class="row">
+					<ol class="breadcrumb">
+						<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>"><?php echo $city["city_name"]; ?></a></li>
+						<?php
+						if (isset($_GET["campus"])) {
+							foreach ($campuses[0] as $key => $value) {
+								if (replaceSwedishLetters(replaceSpecialChars(strtolower($value["campus_name"]))) == $_GET["campus"])
+									echo "<li><a href=\"#\">". $value["campus_name"] ."</a></li>";
+							}
+						}
+						if (isset($_GET["type"])) {
+							foreach ($adtypes as $key => $value) {
+								if ($value["name"] == $_GET["type"])
+									echo "<li><a href=\"#\">". $value["description"] ."</a></li>";
+							}
+						}
+						?>
+					</ol>
 					<div class="col-xs-8">
 						<?php include_once('StudentTrade/Views/switch.php'); ?>
 					</div>

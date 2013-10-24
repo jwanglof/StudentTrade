@@ -67,13 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
 	// $success is never used
-	// 1508
 	if ($success) {
-		echo $password;
 		$sendEmail = new Email($_POST["email"]);
 		$sendEmail->sendNewAdEmail($password, $adID);
 
-		// header("Location: front.php?page=ad_show&city=". $cityShortName["short_name"] ."&aid=". $adID);
+		header("Location: front.php?page=ad_show&city=". $cityShortName["short_name"] ."&aid=". $adID);
 	}
 }
 

@@ -8,7 +8,7 @@ $adSubCategories = $dbh->getAdSubCategories();
 
 $dbh = null;
 ?>
-<div class="col-xs-12 addMargin">
+<div class="col-xs-12">
 	<form method="post" action="front.php?page=ad_add" class="form-horizontal" role="form">
 		<fieldset>
 			<legend>Personuppgifter</legend>
