@@ -67,7 +67,7 @@ $dbh = null;
 	<body>
 		<div class="container">
 			<div class="col-xs-12 top">
-				<div class="row" style="height: 200px;">
+				<div class="row" style="height: 190px;">
 					<div class="col-xs-6">
 						<a href="index.php"><img src="StudentTrade/Img/ST_w_bubble.png" /></a>
 					</div>
@@ -102,7 +102,7 @@ $dbh = null;
 				</div>
 
 				<!-- <div class="col-xs-12" id="categories"> -->
-				<div class="row"  >
+				<div class="row">
 					<div class="navbar">
 				    	<div class="navbar-collapse collapse">
 							<ul class="nav nav-pills">
@@ -134,35 +134,6 @@ $dbh = null;
 						</div>
 					</div>
 				</div>
-				<!-- </div>
-				<div class="col-xs-8" id="categories">
-					<?php
-					// generateAdURL($page, $city, $nameOnUrl, $campus=NULL, $type=NULL)
-					/*foreach ($adtypes as $type) {
-						echo "<span style=\"background-color: ". $type["color"] ."\">";
-						echo generateAdURL("latest", $city["short_name"],
-									((isset($_GET["type"]) && $_GET["type"] == $type["name"]) ? ">". $type["description"] : $type["description"]),
-									(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-									$type["name"]);
-						echo "</span>";
-					}
-					echo "<span class=\"categoryViewAll\">";
-					echo generateAdURL("latest", $city["short_name"], 
-									(!isset($_GET["type"]) ? "> Visa alla" : "Visa alla"),
-									(isset($_GET["campus"]) ? $_GET["campus"] : NULL));
-					echo "</span>";
-					?>
-				</div>
-
-				<div class="col-xs-4 addNew">
-					<?php
-					echo "<span>";
-					echo generateAdURL("ad_new", $city["short_name"], "Lägg upp annons",
-									(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-									(isset($_GET["type"]) ? $_GET["type"] : NULL));
-					echo "</span>";*/
-					?>
-				</div> -->
 			</div>
 
 			<div class="content">
