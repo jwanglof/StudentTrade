@@ -15,7 +15,7 @@ class DbSelect extends DbConfig {
 
 	public function login($username, $password) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM admin WHERE username=:username AND password=:password");
+			$stmt = $this->dbh->prepare("SELECT * FROM `admin` WHERE `username`=:username AND `password`=:password");
 			$stmt->bindValue(":username", $username, PDO::PARAM_STR);
 			$stmt->bindValue(":password", $password, PDO::PARAM_STR);
 			$stmt->execute();

@@ -11,10 +11,14 @@ $(document).ready(function() {
 	// 	$(this).removeClass("campusChosen").text($(this).text().slice(0,-1));
 	// });
 
-	$(".footer li, #adAnswer, #adReport, #adDelete").hover(function() {
-		$(this).css('cursor', 'pointer');
-		$(this).css('text-decoration', 'underline');
-	});
+	$(".footer li, #adAnswer, #adReport, #adDelete").hover(
+		function() {
+			$(this).css('cursor', 'pointer');
+			$(this).css('text-decoration', 'underline');
+		}, function() {
+			$(this).css('text-decoration', 'none');
+		}
+	);
 
 	$("#hover-img .thumbnail").hover(
 		function() {
@@ -35,15 +39,6 @@ $(document).ready(function() {
 		showCampuses($(this).val());
 	});
 
-	$("#adCategory").ready(function() {
-		// Select the correct category if a category is chosen
-		if ($('#adCategory').children(':selected').val() > 0)
-			showAdCategoryInputs($('#adCategory').children(':selected').val());
-	});
-	$("#adCategory").click(function() {
-		showAdCategoryInputs($(this).val());
-	});
-
 	$(".latestAd").hover(
 		function() {
 			$(this).addClass("adHover");
@@ -51,6 +46,34 @@ $(document).ready(function() {
 			$(this).removeClass("adHover");
 		}
 	);
+
+	$("#adInfo").ready(function() {
+		$.get("#adExtraInfo", function() {
+			$("#adInput").hide();
+			$("#adType").click(function() {
+				var extraInfo = [1,2];
+				if ($.inArray(parseInt($("#adType").val()), extraInfo) !== -1) {
+					$("#adExtraInfo").show();
+				} else {
+					$("#adExtraInfo").hide();
+				}
+			});
+
+			$("#adCategory").click(function() {
+				var categoryID = $("#adCategory").val();
+				// Check only the first div below #adInput
+				$("#adInput > div").each(function() {
+					if ($(this).hasClass(categoryID)) {
+						$(this).show();
+					} else {
+						$(this).hide();
+					}
+				});
+
+				$("#adInput").show();
+			});
+		});
+	});
 
 	$("#requestCampus").click(function() {
 		bootbox.dialog({
@@ -80,7 +103,7 @@ $(document).ready(function() {
 	});
 });
 
-function getURL(file) {
+function getAjaxURL(file) {
 	var url;
 	if (window.location.origin == "http://localhost") {
 		// console.log(window.location.origin);
@@ -96,7 +119,7 @@ function showCampuses(cityID) {
 
 	request = $.ajax({
 		type: "post",
-		url: getURL("get"),
+		url: getAjaxURL("get"),
 		data: {get: "campuses", cityID: cityID}
 	});
 
@@ -112,30 +135,6 @@ function showCampuses(cityID) {
 	request.fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(errorThrown);
 		// bootbox.alert("Something went wrong!");
-	});
-}
-
-function showAdCategoryInputs(adType) {
-	// Clear the div
-	$("#adInput").empty();
-
-	request = $.ajax({
-		type: "post",
-		url: getURL("get"),
-		data: {get: "adTypeInfo", adType: adType}
-	});
-
-	request.done(function(response, textStatus, jqXHR) {
-		// console.log(response);
-		var objs = JSON.parse(response);
-		for (var value in objs) {
-			$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
-			$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\"text\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
-			$("#adInput").append("<br /><br />");
-		}
-	});
-	request.fail(function(jqXHR, textStatus, errorThrown) {
-		console.log(errorThrown);
 	});
 }
 
@@ -216,12 +215,15 @@ $(document).on("click", "#adDelete", function(e) {
 		if (result != null) {
 			request = $.ajax({
 				type: "post",
-				url: getURL(),
+				url: getAjaxURL("update"),
 				data: {update: "adActive", aid: gup("aid"), removeCode: result}
 			});
+			console.log(result);
 
 			request.done(function(response, textStatus, jqXHR) {
-				if (response == true) {
+				console.log(textStatus);
+				console.log(response);
+				if (response == 1) {
 					bootbox.alert("Annonsen borttagen");
 					window.location.replace("front.php?page=latest");
 				}
@@ -229,6 +231,7 @@ $(document).on("click", "#adDelete", function(e) {
 					bootbox.alert("Fel kod angiven");
 			});
 			request.fail(function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR);
 				bootbox.alert(errorThrown);
 			});
 		}

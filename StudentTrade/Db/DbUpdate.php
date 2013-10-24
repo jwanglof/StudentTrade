@@ -16,16 +16,17 @@ class DbUpdate extends DbConfig {
 	public function updateAdActiveWithAdID($adID) {
 		try {
 			$this->dbh->beginTransaction();
-
 			$stmt = $this->dbh->prepare("UPDATE ad SET active=? WHERE id=?");
-			$stmt->execute(array(0, $adID));
-
-			$affectedRows = $stmt->rowCount();
-
+			$stmt->bindParam(":active", 0, PDO::PARAM_INT);
+			$stmt->bindParam(":id", $adID, PDO::PARAM_INT);
+			// $stmt->execute(array(0, $adID));
+			// $stmt->execute();
 			$this->dbh->commit();
+			$affectedRows = $stmt->rowCount();
 
 			return $affectedRows;
 		} catch (PDOException $e) {
+			$this->dbh->rollback();
 			return $e;
 		}
 	}

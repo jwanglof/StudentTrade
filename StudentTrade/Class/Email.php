@@ -10,14 +10,17 @@ class Email {
 
 	public function __destruct() {}
 
-	public function sendPassword($password) {
+	public function sendNewAdEmail($password, $adID) {
 		$subject = "Din borttagningskod till din annons på StudentTrade.se";
 
-		$message = "Tack för att du använder StudentTrade.se!\r\n\r\nOm din vara är såld, eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password ."\r\n\r\n//StudentTrade.se";
+		$message = "Tack för att du använder StudentTrade.se!
+		<p>Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a></p>
+		<p>Om din vara är såld, eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password ."</p>
+		//StudentTrade.se";
 
 		$headers = 'MIME-Version: 1.0' . "\r\n";
 		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-		$headers .= 'From: Flossie Giles <noreply@studenttrade.se>' . "\r\n";
+		$headers .= 'From: StudentTrade.se <noreply@studenttrade.se>' . "\r\n";
 		$headers .= 'X-Mailer: PHP/'. phpversion();
 
 		return mail($this->to, $subject, $message, $headers);

@@ -45,6 +45,9 @@ $adtypes = $dbh->getAdCategories();
 $cityID = $city["id"];
 
 $dbh = null;
+
+// $cipher = new Cipher("JFKs3ef03J");
+// echo $cipher->decrypt("69Uv1PcCyyby8KS5iCPjbA==");
 ?>
 
 <html>

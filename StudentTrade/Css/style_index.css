@@ -111,22 +111,16 @@ img.studenttrade_logo {
 	color: #464646;
 }
 
-#map .linkoping {
-	position: absolute;
-	top: 430px; right: 130px;
-}
-#map .sthlm {
-	position: absolute;
-	top: 370px; right: 80px;
-}
-#map .gbg {
-	position: absolute;
-	top: 430px; right: 280px;
-}
-#map .lund {
-	position: absolute;
-	top: 510px; right: 270px;
-}
+#map .linkoping {position: absolute; top: 430px; right: 130px;}
+#map .stockholm {position: absolute; top: 370px; right: 80px;}
+#map .goteborg {position: absolute; top: 430px; right: 280px;}
+#map .lund {position: absolute; top: 510px; right: 270px;}
+#map .jonkoping {position: absolute; top: 440px; right: 200px;}
+#map .karlstad {position: absolute; top: 360px; right: 210px;}
+#map .orebro {position: absolute; top: 380px; right: 180px;}
+#map .uppsala {position: absolute; top: 350px; right: 100px;}
+#map .umea {position: absolute; top: 200px; right: 70px;}
+#map .kalmar {position: absolute; top: 490px; right: 170px;}
 
 #hover-img .thumbnail {
 	position: relative;

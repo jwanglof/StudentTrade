@@ -19,11 +19,6 @@ if (isset($_POST["get"]) && $_SESSION["sessProtector"] == $_COOKIE["PHPSESSID"])
 		echo json_encode($campuses);
 	} 
 
-	else if ($_POST["get"] == "adTypeInfo") {
-		$adType = $dbh->getAdSubCategoryFromAdCategoryID($_POST["adType"]);
-		echo json_encode($adType);
-	}
-
 	$dbh = null;
 } else {
 	echo false;

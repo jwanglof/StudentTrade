@@ -120,7 +120,7 @@ CREATE  TABLE IF NOT EXISTS `db1162056_st`.`ad` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `title` VARCHAR(45) NOT NULL ,
   `info` TEXT NOT NULL ,
-  `password` VARCHAR(10) NOT NULL ,
+  `password` VARCHAR(150) NOT NULL ,
   `price` INT NOT NULL ,
   `date_created` DATETIME NOT NULL ,
   `date_expired` DATETIME NOT NULL ,
@@ -238,9 +238,15 @@ COMMIT;
 START TRANSACTION;
 USE `db1162056_st`;
 INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (1, 'Linköping', 'linkoping');
-INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (2, 'Stockholm', 'sthlm');
-INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (3, 'Göteborg', 'gbg');
-INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (4, 'Lund', 'lund');
+INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (2, 'Jönköping', 'jonkoping');
+INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (3, 'Karlstad', 'karlstad');
+INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (4, 'Örebro', 'orebro');
+INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (5, 'Kalmar', 'kalmar');
+INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (6, 'Lund', 'lund');
+INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (7, 'Uppsala', 'uppsala');
+INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (8, 'Stockholm', 'stockholm');
+INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (9, 'Umeå', 'umea');
+INSERT INTO `db1162056_st`.`city` (`id`, `city_name`, `short_name`) VALUES (10, 'Göteborg', 'goteborg');
 
 COMMIT;
 
@@ -250,11 +256,17 @@ COMMIT;
 START TRANSACTION;
 USE `db1162056_st`;
 INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (1, 'Linköpings Universitet', 1);
-INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (2, 'Kungliga Tekniska högskolan', 2);
-INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (3, 'Chalmers tekniska högskola', 3);
-INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (4, 'Lunds Universitet', 4);
-INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (5, 'Göteborgs universitet', 3);
-INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (6, 'Stockholms universitet', 2);
+INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (2, 'Högskolan i Jönköping', 2);
+INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (3, 'Karlstads Universitet', 3);
+INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (4, 'Örebro Universitet', 4);
+INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (5, 'Linnéuniversitetet', 5);
+INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (6, 'Lunds Universitet', 6);
+INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (7, 'Uppsala Universitet', 7);
+INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (8, 'Stockholms Universitet', 8);
+INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (9, 'Kungliga Tekniska Högskolan', 8);
+INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (10, 'Umeå Universitet', 9);
+INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (11, 'Göteborgs Universitet', 10);
+INSERT INTO `db1162056_st`.`university` (`id`, `university_name`, `fk_university_city`) VALUES (12, 'Chalmers', 10);
 
 COMMIT;
 
@@ -266,12 +278,6 @@ USE `db1162056_st`;
 INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (1, 'Valla', 1);
 INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (2, 'US', 1);
 INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (3, 'Norrköping', 1);
-INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (4, 'Helsingborg', 4);
-INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (5, 'KTH Campus', 2);
-INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (6, 'Johanneberg', 3);
-INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (7, 'Lindholmen', 3);
-INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (8, 'Konradsberg', 6);
-INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (9, 'Linné', 5);
 INSERT INTO `db1162056_st`.`campus` (`id`, `campus_name`, `fk_campus_university`) VALUES (999, 'Alla campus', 1);
 
 COMMIT;
@@ -293,6 +299,7 @@ USE `db1162056_st`;
 INSERT INTO `db1162056_st`.`adType` (`id`, `name`, `short_name`) VALUES (1, 'Säljes', 'sale');
 INSERT INTO `db1162056_st`.`adType` (`id`, `name`, `short_name`) VALUES (2, 'Köpes', 'buy');
 INSERT INTO `db1162056_st`.`adType` (`id`, `name`, `short_name`) VALUES (3, 'Skänkes', 'give_away');
+INSERT INTO `db1162056_st`.`adType` (`id`, `name`, `short_name`) VALUES (4, 'Bytes', 'exchange');
 
 COMMIT;
 
