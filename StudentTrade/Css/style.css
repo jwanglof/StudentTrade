@@ -202,4 +202,9 @@ a:visited {color: #565656;}
 	text-decoration: underline;
 }
 
+span.adShowInfo {
+	font-size: 1.3em;
+	font-weight: 700;
+}
+
 /*.nav>li>a:hover,.nav>li>a:focus{text-decoration:none;background-color:none;vertical-align:text-top; text-decoration: none;}*/

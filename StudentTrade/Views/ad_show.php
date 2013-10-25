@@ -24,12 +24,40 @@ $title = myWordWrap($ad["title"], 33);
 $info = myWordWrap($ad["info"], 68);
 
 ?>
-				<div class="col-xs-3">
+				<div class="col-xs-3" style="border: 1px solid #000;">
 					<p style="width: 100%; height: 200px; background-color: <?php echo $adCategory["color"]; ?>"></p>
-					<p style="width: 100%; height: 25px; font-size: 1.3em;" class="adType <?php echo $adType["short_name"]; ?>"><?php echo $adType["name"]; ?></p>
+					<p style="width: 100%; height: 30px; font-size: 1.35em; text-align: center;" class="adType <?php echo $adType["short_name"]; ?>"><?php echo $adType["name"]; ?></p>
+					<p>
+						Kategori:
+						<br />
+						<span class="adShowInfo"><?php echo $adCategory["description"]; ?></span>
+					</p>
+					<p>
+						Upplagd:
+						<br />
+						<span class="adShowInfo">
+							<?php echo date_format(date_create($ad["date_created"]), "Y-m-d"); ?>
+							<br />
+							<?php echo date_format(date_create($ad["date_created"]), "H:m"); ?>
+						</span>
+					</p>
+					<p>
+						Säljes av:
+						<br />
+						<span class="adShowInfo">
+							<?php echo $adUserInfo["name"]; ?>
+							<?php echo (!empty($adUserInfo["phonenumber"]) ? "<br /> (". $adUserInfo["phonenumber"]. ")" : "");  ?>
+						</span>
+					</p>
 				</div>
-				<div class="col-xs-9">
-					Hej2
+				<div class="col-xs-9" style="border: 1px solid #000;">
+					<h1><?php echo $ad["title"]; ?></h1>
+					<?php echo $ad["info"]; ?>
+					<div class="col-xs-7">
+						<h4>Få större spridning på sociala medier</h4>
+					</div>
+					<div class="col-xs-5"><hr /></div>
+					
 				</div>
 
 				<!-- <div class="col-xs-12 categoryHeading" style="background-color: <?php echo $adCategory["color"]; ?>">

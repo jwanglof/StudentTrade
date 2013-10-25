@@ -217,7 +217,7 @@ class DbSelect extends DbConfig {
 
 	public function getAdFromID($adID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE id=:adID");
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE id=:adID AND active=1");
 			$stmt->bindValue(":adID", $adID, PDO::PARAM_INT);
 			$stmt->execute();
 

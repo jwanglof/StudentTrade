@@ -188,5 +188,6 @@ img.studenttrade_logo {
 
 #mapHelp {position: absolute; top: 40px; left: 0px; }
 #mapHelp div {
-	font-size: 40px; font-family: 'Gochi Hand', cursive;
+	font-family: 'Gochi Hand', cursive;
+	font-size: 40px;
 }
