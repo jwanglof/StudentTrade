@@ -24,7 +24,7 @@
 				}
 				?>
 				<div class="col-xs-12 categoryHeading" <?php echo (isset($_GET["type"]) ? "style=\"background-color: ". $adCategory["color"] ."\"" : ""); ?>>
-					<?php include("category_heading.php"); ?>
+					<?php echo (isset($_GET["type"]) ? $adCategory["description"] : "Senaste annonserna"); ?>
 				</div>
 				<div class="col-xs-12">
 					<div class="row" id="latestAd">

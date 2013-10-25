@@ -101,7 +101,7 @@ $dbh = null;
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row" style="position: relative; z-index: 2;">
 					<div class="col-xs-9 navbar">
 				    	<div class="navbar-collapse collapse">
 							<ul class="nav nav-pills">
@@ -136,6 +136,28 @@ $dbh = null;
 							</li>
 						</ul>
 					</div>
+				</div>
+				<div class="row" style="position: relative; top: -55px; z-index: 3;">
+					<ol class="breadcrumb">
+						<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>"><?php echo $city["city_name"]; ?></a></li>
+						<?php
+						if (isset($_GET["campus"])) {
+							foreach ($campuses[0] as $key => $value) {
+								if (replaceSwedishLetters(replaceSpecialChars(strtolower($value["campus_name"]))) == $_GET["campus"])
+									echo "<li><a href=\"#\">". $value["campus_name"] ."</a></li>";
+							}
+						}
+						if (isset($_GET["type"])) {
+							foreach ($adtypes as $key => $value) {
+								if ($value["name"] == $_GET["type"])
+									echo "<li><a href=\"#\">". $value["description"] ."</a></li>";
+							}
+						}
+						if (isset($_GET["aid"])) {
+							echo "<li><a href=\"#\">ANNONSTITEL</a></li>";
+						}
+						?>
+					</ol>
 				</div>
 			</div>
 
