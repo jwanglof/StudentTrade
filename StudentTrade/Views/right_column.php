@@ -1,1 +1,1 @@
-<img src="../StudentTrade/StudentTrade/Img/Spons/StudentTrade.jpg" width="98%" />
+<img src="../beta/StudentTrade/Img/Spons/StudentTrade.jpg" width="98%" />

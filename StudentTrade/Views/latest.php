@@ -44,7 +44,7 @@
 								</div>
 								<div class="col-xs-3 newAdInfo">
 									<span class="adType <?php echo $adType["short_name"]; ?>"><?php echo $adType["name"]; ?></span>
-									<span class="where"><?php echo $dbh->getCampusFromID($ad["fk_ad_campus"])["campus_name"]; ?></span>
+									<span class="where"><?php $asd = $dbh->getCampusFromID($ad["fk_ad_campus"]); echo $asd["campus_name"]; ?></span>
 								</div>
 								<div class="col-xs-2 newAdInfo date"><?php echo date_format(date_create($ad["date_created"]), "Y-m-d"); ?></div>
 								<div class="col-xs-2 newAdInfo price"><?php echo $ad["price"]; ?> SEK</div>
