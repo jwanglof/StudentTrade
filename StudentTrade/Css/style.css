@@ -7,17 +7,17 @@ a {color: #565656;}
 a:hover {color: #565656;}
 a:active {color: #565656;}
 a:visited {color: #565656;}
-
+/*
 .font_left {
 	text-align: left;
-}
+}*/
 
-.ads .ad {
+/*.ads .ad {
 	width: 200px;
 	float: left;
-}
+}*/
 
-.ad.top {
+.top {
 	background: #06bdef;
 	background-image: url('../Img/index_border.png'), url('../Img/far-clouds_big.png');
 	background-repeat: repeat-x, no-repeat;
@@ -28,16 +28,17 @@ a:visited {color: #565656;}
 	/*border: 1px solid #000;*/
 }
 
-.ad.top img {
+.top img {
 	margin-top: 10px;
 }
 
 #campusChooser {
 	/*border: 1px solid #000;*/
-	height: 200px;
+	/*text-align: right;*/
+	margin-top: 20px;
 }
 #campusChooser a {color: #464646;}
-#campusChooser div {margin-top: 20px;}
+/*#campusChooser div {margin-top: 20px;}*/
 
 .campusChosen {
 	background: #0078C1;
@@ -64,18 +65,19 @@ a:visited {color: #565656;}
 #categories a:active {color: #fff;}
 #categories a:visited {color: #fff;}
 
-#categories .category {
-	margin-right: 20px;
-
-	font-size: 20px;
+.category {
+	margin-right: 10px;
+	color: #fff;
+	font-size: 1.2em;
 }
+.category a {color: #fff;}
 
-#categories .categoryViewAll {background-color: #666666;font-size: 20px;}
+/*#categories .categoryViewAll {background-color: #666666;font-size: 20px;}*/
 
-.addNew {
+/*.addNew {
 	text-align: right;
 	height: 30px;
-	/*border: 1px solid #000;*/
+	/*border: 1px solid #000;
 }
 .addNew a {color: #fff; font-weight: bold;}
 .addNew span {
@@ -83,7 +85,7 @@ a:visited {color: #565656;}
 	padding: 20px 20px;
 	line-height: 25px;
 	font-size: 35px;
-}
+}*/
 
 .categoryHeading {
 	font-size: 40px;
@@ -94,47 +96,44 @@ a:visited {color: #565656;}
 
 .rightColumn {
 	padding-top: 30px;
-	color: #464646;
+	/*border: 1px solid #000;*/
 }
 
 #latestAd {
 	margin-bottom: 5px;
+	min-height: 400px;
+	background-color: #f4f4f4;
+	/*border: 1px solid #c0c0c0;*/
 }
 
 .col-xs-6.latestAd {
-	border: 0px solid #000;
-	height: 60px;
+	height: 70px;
 	padding: 5px 5px;
 
-	background-color: #f4f4f4;
+	/*border: 1px solid #000;*/
 }
 
-.col-xs-6.latestAd .categoryLetter {
+.col-xs-6.latestAd .categoryIcon {
 	/*border: 1px solid #f00;*/
-	width: 10%;
 	height: 100%;
-	font-size: 50px;
-	font-weight: 700;
-	text-align: center;
-	line-height: 50px;
-
+	/*font-size: 50px;*/
+	/*font-weight: 700;*/
+	/*text-align: center;*/
+	/*line-height: 50px;*/
 	float: left;
 }
 
-.adInfo {
-	/*border: 1px solid #0f0;*/
+.newAdInfo {
+	/*border: 1px solid #f00;*/
 	background-color: #dbcab5;
-	width: 90%;
 	height: 100%;
 
 	float: left;
 	padding-left: 10px;
 	line-height: 0px;
-
-	color: #464646;
 }
-.adInfo a {color: #464646;}
-.adInfo h4 {
+.newAdInfo a {color: #464646;}
+.newAdInfo h4 {
 	font-size: 1.25em;
 	font-weight: 700;
 }
@@ -143,16 +142,25 @@ a:visited {color: #565656;}
 	width: 150px;
 }
 
+.content {
+	margin-top: -1px; padding: 0;
+	/*border: 2px solid #000;*/
+}
 .content h3 {
 	font-weight: bold;
 }
+.content .addMargin {margin-top: 15px;}
 
-.icon.tickets {background-image: url('../Img/Icons/icon_ticket.jpg');}
-.icon.literature {background-image: url('../Img/Icons/icon_literature.jpg');}
-.icon.house {background-image: url('../Img/Icons/icon_house.jpg');}
-.icon.work {background-image: url('../Img/Icons/icon_work.jpg');}
-.icon.travel {background-image: url('../Img/Icons/icon_travel.jpg');}
-.icon.other {background-image: url('../Img/Icons/icon_other.jpg');}
+.icon.tickets {background: #f5634a url('../Img/Icons/icon_ticket.png') no-repeat center;}
+.icon.literature {background: #f2c14b url('../Img/Icons/icon_literature.png') no-repeat center;}
+.icon.house {background: #7cc576 url('../Img/Icons/icon_house.png') no-repeat center;}
+.icon.work {background: #3c8687 url('../Img/Icons/icon_work.png') no-repeat center;}
+.icon.travel {background: #08486b url('../Img/Icons/icon_travel.png') no-repeat center;}
+.icon.other {background: #a963ab url('../Img/Icons/icon_other.png') no-repeat center;}
+
+.adHover {
+	background-color: #464646;
+}
 
 /*.nav.nav-pills > li > a:hover {
 	background-color: #000;

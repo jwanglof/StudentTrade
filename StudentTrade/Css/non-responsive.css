@@ -14,7 +14,28 @@
 /* Reset the container */
 .container {
   max-width: none !important;
-  width: 1600px;
+  width: 1366px;
+
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  /*border: 1px solid #000;*/
+  border-left: 2px solid #c0c0c0;
+  border-right: 2px solid #c0c0c0;
+}
+
+/*
+ * Removes the horizontal scrollbar
+ */
+.row {
+  margin: 0; padding: 0;
+}
+.container-full {
+  /*margin: 0 auto;
+  width: 100%;*/
+  /*border: 1px solid #c0c0c0;*/
 }
 /* Demonstrate the grids */
 /*.col-xs-4 {

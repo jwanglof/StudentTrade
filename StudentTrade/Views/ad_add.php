@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$adUserInfoID = $dbInsert->insertIntoAdUserInfo($_POST["name"], $_POST["email"], $_POST["phonenumber"]);
 		// echo 1 . $adUserInfoID . "--- ";
 
-		$password = generateRandomString();
+		$password = generateRandomString(4);
 		$cipher = new Cipher("JFKs3ef03J");
 		$encryptedPassword = $cipher->encrypt($password);
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			date("Y-m-d H:i:s"), date("Y-m-d H:i:s", strtotime("+1 month")), $_POST["adCategory"], 
 			$_POST["campus"], $_POST["city"], $adUserInfoID, $_POST["adType"]);
 		// echo 2 . $adID;
-		echo $password ." __--- ". $encryptedPassword;
+		// echo $password ." __--- ". $encryptedPassword;
 
 
 		/*
@@ -56,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 
 		$cityShortName = $dbh->getCityFromID($_POST["city"]);
+		$cipher = null;
 		$dbh = null;
 		$dbInsert = null;
 	} else {

@@ -28,21 +28,22 @@
 				</div>
 				<div class="col-xs-12">
 					<div class="row" id="latestAd">
-
 				<?php
 				foreach ($ads as $ad) {
 					$adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
 					$adType = $dbh->getAdTypeFromAdTypeID($ad["fk_ad_adType"]);
 				?>
 						<div class="col-xs-6 latestAd">
-							<div class="categoryLetter icon <?php echo $adCategory["name"]; ?>"></div>
-							<div class="adInfo">
-								<h4><?php echo generateShowAdURL($city["short_name"], $ad["title"],
+							<a href="<?php echo generateShowAdURL($city["short_name"], $ad["title"],
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
 								(isset($_GET["type"]) ? $_GET["type"] : NULL),
-								$ad["id"]); ?></h4>
-								<?php echo $adType["name"] ." för ". $ad["price"] ." SEK (". date_format(date_create($ad["date_created"]), "Y-m-d") .")"; ?>
-							</div>
+								$ad["id"]); ?>">
+								<div class="col-xs-2 categoryIcon icon <?php echo $adCategory["name"]; ?>"></div>
+								<div class="col-xs-10 newAdInfo">
+									<h4><?php echo limitStringLength($ad["title"]); ?></h4>
+									<?php echo $adType["name"] ." för ". $ad["price"] ." SEK (". date_format(date_create($ad["date_created"]), "Y-m-d") .")"; ?>
+								</div>
+							</a>
 						</div>
 				<?php
 				}

@@ -1,19 +1,19 @@
 $(document).ready(function() {
 	if (gup("campus") != "") {		
 		var campus = gup("campus");
-		$("#"+ campus).addClass("campusChosen").append("<span class=\"exit\">x</span>");
+		$(".dropdown-toggle").html($("#"+ campus).text() +"<span class=\"caret\"></span>");
+	} else {
+		$(".dropdown-toggle").html("Välj campus<span class=\"caret\"></span>");
 	}
-	$(".campusChosen").click(function() {
-		// Need .text() since an x-character is added when the link is clicked on
-		// See code above
-		$(this).removeClass("campusChosen").text($(this).text().slice(0,-1));
-	});
+	// $(".campusChosen").click(function() {
+	// 	// Need .text() since an x-character is added when the link is clicked on
+	// 	// See code above
+	// 	$(this).removeClass("campusChosen").text($(this).text().slice(0,-1));
+	// });
 
-	$(".footer li").hover(function() {
+	$(".footer li, #adAnswer, #adReport, #adDelete").hover(function() {
 		$(this).css('cursor', 'pointer');
-	});
-	$("#adAnswer").hover(function() {
-		$(this).css('cursor', 'pointer');
+		$(this).css('text-decoration', 'underline');
 	});
 
 	$("#hover-img .thumbnail").hover(
@@ -42,6 +42,41 @@ $(document).ready(function() {
 	});
 	$("#adCategory").click(function() {
 		showAdCategoryInputs($(this).val());
+	});
+
+	$(".latestAd").hover(
+		function() {
+			$(this).addClass("adHover");
+		}, function() {
+			$(this).removeClass("adHover");
+		}
+	);
+
+	$("#requestCampus").click(function() {
+		bootbox.dialog({
+			title: "<h1 style=\"color: #000;\">Förfråga att lägga till campus</h1>",
+			message: "<form method=\"post\" action=\"front.php?page=request&req=campus\" class=\"form-horizontal\" role=\"form\">\
+					<fieldset>\
+						<div class=\"form-group\">\
+							<label for=\"campus_name\" class=\"col-lg-1 control-label\">Namn på campus *</label>\
+							<div class=\"col-lg-5\">\
+								<input type=\"text\" class=\"form-control\" id=\"campus_name\" name=\"campus_name\" placeholder=\"Campusnamn\">\
+							</div>\
+						</div>\
+						<div class=\"form-group\">\
+							<label for=\"city_name\" class=\"col-lg-1 control-label\">Ligger i stad *</label>\
+							<div class=\"col-lg-5\">\
+								<input type=\"text\" class=\"form-control\" id=\"city_name\" name=\"city_name\" placeholder=\"Stadsnamn\">\
+							</div>\
+						</div>\
+						<button type=\"submit\" class=\"btn btn-primary btn-sm\">Skicka förfrågan</button>\
+					</fieldset>\
+				</form>",
+			onEscape: function() {},
+			backdrop: true,
+			closeButton: true,
+			animate: true
+		});
 	});
 });
 
@@ -118,7 +153,7 @@ function gup(name) {
 $(document).on("click", "#about_us", function(e) {
 	bootbox.dialog({
 		title: "<h1 style=\"color: #000;\">Om oss</h1>",
-		message: "<span style=\"color: #000;\">StudentTrade.se är en köp- och sälj sajt enbart för studenter. Hos oss kan du köpa och sälja saker som har studentlivet till. StudentTrade.se startades hösten 2013 av tre stundenter på Linköpings Universitet.</span>",
+		message: "StudentTrade.se är en köp- och sälj sajt enbart för studenter. Hos oss kan du köpa och sälja saker som har studentlivet till. StudentTrade.se startades hösten 2013 av tre stundenter på Linköpings Universitet.",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,
@@ -128,7 +163,7 @@ $(document).on("click", "#about_us", function(e) {
 $(document).on("click", "#how_it_works", function(e) {
 	bootbox.dialog({
 		title: "<h1 style=\"color: #000;\">Så fungerar det</h1>",
-		message: "<span style=\"color: #000;\">Hos oss är det lätt att både lägga upp annons och att hitta det du söker. Börja med att välja din studentstad på startsidan. Väl inne på sidan kan du sedan lätt sortera annonserna efter kategori och lägga upp annons genom att klicka på ”Lägg upp annons”. Annonsen kommer direkt upp i flödet och blir tillgänlig för andra studenter.</span>",
+		message: "Hos oss är det lätt att både lägga upp annons och att hitta det du söker. Börja med att välja din studentstad på startsidan. Väl inne på sidan kan du sedan lätt sortera annonserna efter kategori och lägga upp annons genom att klicka på ”Lägg upp annons”. Annonsen kommer direkt upp i flödet och blir tillgänlig för andra studenter.",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,
@@ -138,7 +173,7 @@ $(document).on("click", "#how_it_works", function(e) {
 $(document).on("click", "#faq", function(e) {
 	bootbox.dialog({
 		title: "<h1 style=\"color: #000;\">Vanliga frågor och svar</h1>",
-		message: "<span style=\"color: #000;\"><p>Kostar det något att lägga upp en annons? <br /> Nej, tillskillnad från Blocket och andra sajter är det helt gratis att lägga upp en annons hos oss. Vi är också studenter och tycker inte man ska betala för att lägga upp en annons. </p> Hur tar jag bort min annons? <br /> När du lägger upp din annons får du en fyrsiffrig kod till den e-mail adress du angett. Om du vill ta bort din annons går du in på den, klickar på ”Ta bort annons” och anger din kod. Snabbt och enkelt! <p style=\"margin-top: 10px;\"> Vad gör jag om jag tycker att en annons är olämplig? <br /> Om du ser en annons som du inte tycker är olämplig kan du anmäla den till oss. Vi ser då om den bryter mot ”Regler kring annonsering” och beslutar med detta som grund om hurvida annonser ska bli borttagen eller inte. Om du vill veta vilka regler som gäller kring annonsering så hittar du det <a href=\"front.php?page=rules\" style=\"color: #565656;text-decoration: underline\">här</a></span>",
+		message: "<p>Kostar det något att lägga upp en annons? <br /> Nej, tillskillnad från Blocket och andra sajter är det helt gratis att lägga upp en annons hos oss. Vi är också studenter och tycker inte man ska betala för att lägga upp en annons. </p> Hur tar jag bort min annons? <br /> När du lägger upp din annons får du en fyrsiffrig kod till den e-mail adress du angett. Om du vill ta bort din annons går du in på den, klickar på ”Ta bort annons” och anger din kod. Snabbt och enkelt! <p style=\"margin-top: 10px;\"> Vad gör jag om jag tycker att en annons är olämplig? <br /> Om du ser en annons som du inte tycker är olämplig kan du anmäla den till oss. Vi ser då om den bryter mot ”Regler kring annonsering” och beslutar med detta som grund om hurvida annonser ska bli borttagen eller inte. Om du vill veta vilka regler som gäller kring annonsering så hittar du det <a href=\"front.php?page=rules\" style=\"color: #565656;text-decoration: underline\">här</a>",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,
@@ -148,7 +183,7 @@ $(document).on("click", "#faq", function(e) {
 $(document).on("click", "#contact_us", function(e) {
 	bootbox.dialog({
 		title: "<h1 style=\"color: #000;\">Kontakta oss</h1>",
-		message: "<span style=\"color: #000;\">Är det något du undrar över är det bara höra av sig till: kontakt@stundenttrade.se <br /><br /> Eller kontakta oss personligen:<p>Fredrik Palmér: 073-52 00 511 eller fredrik@studenttrade.se<br /> Erik Hidrup: 073-07 33 077 eller erik@studenttrade.se <br /> Johan Wänglöf: 070-86 01 911 eller johan@studenttrade.se</p></span>",
+		message: "Är det något du undrar över är det bara höra av sig till: kontakt@stundenttrade.se <br /><br /> Eller kontakta oss personligen:<p>Fredrik Palmér: 073-52 00 511 eller fredrik@studenttrade.se<br /> Erik Hidrup: 073-07 33 077 eller erik@studenttrade.se <br /> Johan Wänglöf: 070-86 01 911 eller johan@studenttrade.se</p>",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,
@@ -160,6 +195,16 @@ $(document).on("click", "#adAnswer", function(e) {
 	bootbox.dialog({
 		title: "<h1 style=\"color: #000;\">Kontaktformulär</h1>",
 		message: $("#adAnswerForm").html(),
+		backdrop: true,
+		closeButton: true,
+		animate: true
+	});
+});
+
+$(document).on("click", "#adReport", function(e) {
+	bootbox.dialog({
+		title: "<h1 style=\"color: #000;\">Anmälformulär</h1>",
+		message: $("#adReportForm").html(),
 		backdrop: true,
 		closeButton: true,
 		animate: true

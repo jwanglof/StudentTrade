@@ -16,7 +16,21 @@ if (isset($_GET["check"])) {
 		}
 		$sendEmail = null;
 	} else {
-		echo "NOPE";
+		echo "Du har inte fyllt i alla obligatoriska fält";
+	}
+} elseif (isset($_GET["report"])) {
+	$checkInput = checkRequiredInput($_POST, array("message"));
+
+	if ($checkInput == 0) {
+		$sendEmail = new Email("ad_report@studenttrade.se");
+		if ($sendEmail->sendReportAdEmail(nl2br($_POST["message"]))) {
+			header("Location: front.php?page=ad_show&city=". $_GET["city"] ."&aid=". $_GET["aid"]);
+		} else {
+			echo "Could not send the e-mail!";
+		}
+		$sendEmail = null;
+	} else {
+		echo "Du har inte fyllt i alla obligatoriska fält";
 	}
 }
 ?>

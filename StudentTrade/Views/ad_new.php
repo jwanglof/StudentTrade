@@ -5,7 +5,7 @@ $adCategories = $dbh->getAdCategories();
 $adTypes = $dbh->getAdTypes();
 $dbh = null;
 ?>
-<div class="col-xs-12" style="color: #464646;">
+<div class="col-xs-12 addMargin">
 	<form method="post" action="front.php?page=ad_add" class="form-horizontal" role="form">
 		<fieldset>
 			<legend>Personuppgifter</legend>
@@ -115,8 +115,7 @@ $dbh = null;
 
 			<div class="form-group" id="adInput"></div>
 
-
-			<button type="submit" class="btn btn-primary btn-sm">Lägg till annons</button>
+			<button type="submit" class="btn btn-primary btn-sm">Lägg upp annons</button>
 			<button type="reset" class="btn btn-default btn-sm">Rensa alla fält</button>
 		</fieldset>
 	</form>

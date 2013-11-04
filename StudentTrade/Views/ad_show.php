@@ -1,4 +1,3 @@
-<div class="col-md-12" style="color: #464646;">
 <?php
 $dbh = new DbSelect();
 $ad = $dbh->getAdFromID($_GET["aid"]);
@@ -18,20 +17,23 @@ $dbh = null;
 // echo "<br />";
 // print_r($adSubCategory);
 
-?>
-</div>
+$title = myWordWrap($ad["title"], 33);
+$info = myWordWrap($ad["info"], 68);
 
+?>
 				<div class="col-xs-12 categoryHeading" style="background-color: <?php echo $adCategory["color"]; ?>">
-					<?php echo $ad["title"]; ?>
+					<?php echo $title; ?>
 				</div>
 				<div class="col-xs-12" style="width: 100%; min-height: 200px; background-color: #f4f4f4;">
 					<div class="col-xs-12" style="background-color: #DCD9D4; padding: 10px 10px;">
-						<?php echo $ad["info"]; ?>
+						<?php echo wordwrap($ad["info"], 71, "<br />", true); ?>
 					</div>
 						<div class="col-xs-8" style="background-color: #DCD9D4; border-top: 1px solid #000; min-height: 70px;">
 							<h4>Säljes av: <?php echo $adUserInfo["name"]; ?></h4>
-							Pris: <?php echo $ad["price"]; ?>kr
+							Telefonnummer: <?php echo (!empty($adUserInfo["phonenumber"]) ? $adUserInfo["phonenumber"] : "<i>Ej angett</i>"); ?>
 							<br />
+							Pris: <?php echo $ad["price"]; ?>kr
+							<p>
 							<?php
 							foreach ($adSubCategory as $val) {
 								echo $val["name"] .": ";
@@ -42,12 +44,13 @@ $dbh = null;
 								echo "<br />";
 							}
 							?>
+							</p>
 						</div>
 						<div class="col-xs-4" style="text-align: right;">
-							<div style="background-color: #39b54a; font-size: 20px; text-align: center; margin-top: 10px; padding: 10px 0px;" id="adAnswer">
-								<!-- <a href="front.php?page=ad_form&aid=<?php echo $_GET["aid"]; ?>">Svara på annonsen</a> -->
-								Svara på annonsen
-							</div>
+							<div style="background-color: #39b54a; font-size: 20px; text-align: center; margin-top: 10px; padding: 10px 0px; color: #fff;" id="adAnswer">Svara på annonsen</div>
+							<div id="adReport">Anmäl denna annons</div>
+							<div id="adDelete">Ta bort annonsen</div>
+
 							<div style="display: none;" id="adAnswerForm">
 								<form method="post" action="front.php?page=ad_form&city=<?php echo $_GET["city"]; ?>&aid=<?php echo $_GET["aid"]; ?>&check" class="form-horizontal" role="form">
 									<fieldset>
@@ -77,11 +80,20 @@ $dbh = null;
 									</fieldset>
 								</form>
 							</div>
-							<span>
-								Anmäl denna annons
-								<br />
-								<!-- <a href="front.php?page=ad_remove&aid=<?php echo $_GET["aid"]; ?>">Ta bort annonsen</a> -->
-								<div id="adDelete">Ta bort annonsen</div>
-							</span>
+							<div style="display: none;" id="adReportForm">
+								<form method="post" action="front.php?page=ad_form&city=<?php echo $_GET["city"]; ?>&aid=<?php echo $_GET["aid"]; ?>&check" class="form-horizontal" role="form">
+									<fieldset>
+										<div class="form-group">
+											<label for="message" class="col-lg-1 control-label">Varför anmäler du denna annons? *</label>
+											<div class="col-lg-5">
+												<textarea class="form-control" name="message" id="message" rows="5"></textarea>
+											</div>
+										</div>
+
+										<button type="submit" class="btn btn-primary btn-sm">Skicka meddelande</button>
+										<button type="reset" class="btn btn-default btn-sm">Rensa alla fält</button>
+									</fieldset>
+								</form>
+							</div>
 						</div>
 				</div>

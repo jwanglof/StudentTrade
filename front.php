@@ -63,101 +63,119 @@ $dbh = null;
 	</head>
 	<body>
 		<div class="container">
-		<div class='col-xs-12 ad top'>
-			<div class="col-xs-6">
-				<a href="index.php"><img src="StudentTrade/Img/ST_w_bubble.png" /></a>
-			</div>
-			<div class="col-xs-6" id="campusChooser">
-				<div class="btn-group btn-group-justified">
-					<a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>" class="btn btn-info">Se <?php echo $city["city_name"]; ?></a>
-				<?php
-				foreach ($campuses as $cam) {
-					foreach ($cam as $c) {
-						if (isset($_GET["campus"]) && compareString($_GET["campus"], $c["campus_name"])) {
-							echo generateCampusURL($city["short_name"], $c["campus_name"],
-								(isset($_GET["type"]) ? $_GET["type"] : NULL),
-								False);
-						} else {
-							echo generateCampusURL($city["short_name"], $c["campus_name"],
-								(isset($_GET["type"]) ? $_GET["type"] : NULL));
-						}
-					}
-				}
-				?>
+			<div class="col-xs-12 top">
+				<div class="row" style="height: 200px;">
+					<div class="col-xs-6">
+						<a href="index.php"><img src="StudentTrade/Img/ST_w_bubble.png" /></a>
+					</div>
+					<div class="col-xs-3 col-md-offset-3" id="campusChooser">
+						<div class="btn-group">
+							<a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>" class="btn btn-info">Se <?php echo $city["city_name"]; ?></a> 
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"></button>
+								<ul class="dropdown-menu">
+									<?php
+									foreach ($campuses as $cam) {
+										foreach ($cam as $c) {
+											echo "<li>";
+											if (isset($_GET["campus"]) && compareString($_GET["campus"], $c["campus_name"])) {
+												echo generateCampusURL($city["short_name"], $c["campus_name"],
+													(isset($_GET["type"]) ? $_GET["type"] : NULL),
+													False);
+											} else {
+												echo generateCampusURL($city["short_name"], $c["campus_name"],
+													(isset($_GET["type"]) ? $_GET["type"] : NULL));
+											}
+											echo "</li>";
+										}
+									}
+									?>
+									<li class="divider"></li>
+									<li><a id="requestCampus">Mitt campus saknas!</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
 
-			<!-- <div class="col-xs-12" id="categories"> -->
-			<div class="navbar">
-		    	<div class="container">
-		    	<div class="navbar-collapse collapse">
-				<ul class="nav nav-pills">
+				<!-- <div class="col-xs-12" id="categories"> -->
+				<div class="row"  >
+					<div class="navbar">
+				    	<div class="navbar-collapse collapse">
+							<ul class="nav nav-pills">
+								<?php
+								foreach ($adtypes as $type) {
+									echo "<li class=\"category\" style=\"background-color: ". $type["color"] ."\">";
+									echo generateAdURL("latest", $city["short_name"],
+											((isset($_GET["type"]) && $_GET["type"] == $type["name"]) ? ">". $type["description"] : $type["description"]),
+											(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+											$type["name"]);
+									echo "</li>";
+								}
+								?>
+								<li class="category" style="background-color: #666666;">
+								<?php
+									echo generateAdURL("latest", $city["short_name"], 
+											(!isset($_GET["type"]) ? "> Visa alla" : "Visa alla"),
+											(isset($_GET["campus"]) ? $_GET["campus"] : NULL));
+								?>
+								</li>
+								<li class="category" style="background-color: #39b54a; float: right; width: 250px; height: 80px; text-align: center; font-size: 29px; line-height: 60px;">
+								<?php
+									echo generateAdURL("ad_new", $city["short_name"], "Lägg upp annons",
+												(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+												(isset($_GET["type"]) ? $_GET["type"] : NULL));
+								?>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- </div>
+				<div class="col-xs-8" id="categories">
 					<?php
-					foreach ($adtypes as $type) {
-						echo "<li class=\"category\" style=\"background-color: ". $type["color"] ."\">";
+					// generateAdURL($page, $city, $nameOnUrl, $campus=NULL, $type=NULL)
+					/*foreach ($adtypes as $type) {
+						echo "<span style=\"background-color: ". $type["color"] ."\">";
 						echo generateAdURL("latest", $city["short_name"],
-								((isset($_GET["type"]) && $_GET["type"] == $type["name"]) ? ">". $type["description"] : $type["description"]),
-								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-								$type["name"]);
-						echo "</li>";
+									((isset($_GET["type"]) && $_GET["type"] == $type["name"]) ? ">". $type["description"] : $type["description"]),
+									(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+									$type["name"]);
+						echo "</span>";
 					}
-					?>
-					<li class="category" style="background-color: #666666;">
-					<?php
-						echo generateAdURL("latest", $city["short_name"], 
-								(!isset($_GET["type"]) ? "> Visa alla" : "Visa alla"),
-								(isset($_GET["campus"]) ? $_GET["campus"] : NULL));
-					?>
-					</li>
-				</ul>
-				</div>
-				</div>
-			</div>
-			<!-- </div> -->
-			<!-- <div class="col-xs-8" id="categories">
-				<?php
-				// generateAdURL($page, $city, $nameOnUrl, $campus=NULL, $type=NULL)
-				foreach ($adtypes as $type) {
-					echo "<span style=\"background-color: ". $type["color"] ."\">";
-					echo generateAdURL("latest", $city["short_name"],
-								((isset($_GET["type"]) && $_GET["type"] == $type["name"]) ? ">". $type["description"] : $type["description"]),
-								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-								$type["name"]);
+					echo "<span class=\"categoryViewAll\">";
+					echo generateAdURL("latest", $city["short_name"], 
+									(!isset($_GET["type"]) ? "> Visa alla" : "Visa alla"),
+									(isset($_GET["campus"]) ? $_GET["campus"] : NULL));
 					echo "</span>";
-				}
-				echo "<span class=\"categoryViewAll\">";
-				echo generateAdURL("latest", $city["short_name"], 
-								(!isset($_GET["type"]) ? "> Visa alla" : "Visa alla"),
-								(isset($_GET["campus"]) ? $_GET["campus"] : NULL));
-				echo "</span>";
-				?>
+					?>
+				</div>
+
+				<div class="col-xs-4 addNew">
+					<?php
+					echo "<span>";
+					echo generateAdURL("ad_new", $city["short_name"], "Lägg upp annons",
+									(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+									(isset($_GET["type"]) ? $_GET["type"] : NULL));
+					echo "</span>";*/
+					?>
+				</div> -->
 			</div>
 
-			<div class="col-xs-4 addNew">
-				<?php
-				echo "<span>";
-				echo generateAdURL("ad_new", $city["short_name"], "Lägg upp annons",
-								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-								(isset($_GET["type"]) ? $_GET["type"] : NULL));
-				echo "</span>";
-				?>
-			</div> -->
-		</div>
-
-		<div class="ads content">
-			<div class="row">
-				<div class="col-xs-8">
-					<?php include_once('StudentTrade/Views/switch.php'); ?>
-				</div>
-				<div class="col-xs-4 rightColumn">
-					
+			<div class="content">
+				<div class="row">
+					<div class="col-xs-8">
+						<?php include_once('StudentTrade/Views/switch.php'); ?>
+					</div>
+					<div class="col-xs-4 rightColumn">
+						<?php include_once("StudentTrade/Views/right_column.php"); ?>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="col-xs-12 index footer">
-			<?php include_once("StudentTrade/Views/footer.php"); ?>
-		</div>
+			<div class="col-xs-12 footer">
+				<?php include_once("StudentTrade/Views/footer.php"); ?>
+			</div>
 		</div>
 
 		<script src="StudentTrade/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
