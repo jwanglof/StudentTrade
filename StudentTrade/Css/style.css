@@ -66,7 +66,7 @@ a:visited {color: #565656;}
 
 .category {
 	margin-right: 15px;
-	padding: 0px 13px;
+	padding: 0px 17px;
 	color: #fff;
 	font-size: 1.2em;
 }
@@ -90,6 +90,18 @@ a:visited {color: #565656;}
 	font-size: 40px;
 	background-color: #666666;
 	color: #fff;
+	height: 85px;
+	/*border: 1px solid #000;*/
+}
+
+.categoryHeading span {
+	font-size: 10px;
+}
+.breadcrumb {
+	background-color: transparent;
+}
+.breadcrumb a {
+	color: #fff;
 }
 
 .rightColumn {
@@ -104,14 +116,14 @@ a:visited {color: #565656;}
 	/*border: 1px solid #c0c0c0;*/
 }
 
-.col-xs-6.latestAd {
-	height: 70px;
+.latestAd {
+	height: 55px;
 	padding: 5px 5px;
 
 	/*border: 1px solid #000;*/
 }
 
-.col-xs-6.latestAd .categoryIcon {
+.latestAd .categoryIcon {
 	/*border: 1px solid #f00;*/
 	height: 100%;
 	/*font-size: 50px;*/
@@ -128,12 +140,26 @@ a:visited {color: #565656;}
 
 	float: left;
 	padding-left: 10px;
-	line-height: 0px;
+	line-height: 44px;
 }
 .newAdInfo a {color: #464646;}
 .newAdInfo h4 {
-	font-size: 1.25em;
+	font-size: 1.24em;
 	font-weight: 700;
+}
+.newAdInfo.price {
+	text-align: right;
+	font-size: 1.15em;
+	font-weight: 700;
+}
+.newAdInfo.date {
+	text-align: center;
+}
+
+.where {
+	font-size: 0.5em;
+	font-weight: 700;
+	margin-left: 15px;
 }
 
 .form-group label {
@@ -154,6 +180,17 @@ a:visited {color: #565656;}
 .icon.work {background: #3c8687 url('../Img/Icons/icon_work.png') no-repeat center;}
 .icon.travel {background: #08486b url('../Img/Icons/icon_travel.png') no-repeat center;}
 .icon.other {background: #a963ab url('../Img/Icons/icon_other.png') no-repeat center;}
+
+.adType {
+	color: #fff;
+	padding: 2px 20px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+.adType.sale {background-color: #ff4848; height: 20px;}
+.adType.buy {background-color: #7cc576;}
+.adType.give_away {background-color: #7cc576;}
+.adType.exchange {background-color: #7cc576;}
 
 .adHover {
 	background-color: #464646;

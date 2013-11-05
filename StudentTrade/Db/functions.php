@@ -67,8 +67,8 @@
 		return $input;
 	}
 
-	function limitStringLength($string, $length=25) {
-		return ((strlen($string) > $length) ? substr($string, 0, $length) ."..." : $string);
+	function limitStringLength($string, $length=26) {
+		return ((mb_strlen($string) > $length) ? substr($string, 0, $length) ."..." : $string);
 	}
 
 	function utf8_wordwrap($string, $width=75, $break="\n", $cut=false) {

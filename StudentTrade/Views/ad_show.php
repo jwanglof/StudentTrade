@@ -1,10 +1,13 @@
 <?php
 $dbh = new DbSelect();
 $ad = $dbh->getAdFromID($_GET["aid"]);
+
 $adInfo = $dbh->getAdInfoFromAdID($ad["id"]);
 $adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["fk_ad_adUserInfo"]);
 $adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
 $adSubCategory = $dbh->getAdSubCategoryFromAdCategoryID($ad["fk_ad_adCategory"]);
+$adType = $dbh->getAdTypeFromAdTypeID($ad["fk_ad_adType"]);
+
 $dbh = null;
 
 // print_r($ad);
@@ -21,8 +24,16 @@ $title = myWordWrap($ad["title"], 33);
 $info = myWordWrap($ad["info"], 68);
 
 ?>
-				<div class="col-xs-12 categoryHeading" style="background-color: <?php echo $adCategory["color"]; ?>">
-					<?php echo $title; ?>
+				<div class="col-xs-3">
+					<p style="width: 100%; height: 200px; background-color: <?php echo $adCategory["color"]; ?>"></p>
+					<p style="width: 100%; height: 25px; font-size: 1.3em;" class="adType <?php echo $adType["short_name"]; ?>"><?php echo $adType["name"]; ?></p>
+				</div>
+				<div class="col-xs-9">
+					Hej2
+				</div>
+
+				<!-- <div class="col-xs-12 categoryHeading" style="background-color: <?php echo $adCategory["color"]; ?>">
+					<?php include("category_heading.php");/*echo $title;*/ ?>
 				</div>
 				<div class="col-xs-12" style="width: 100%; min-height: 200px; background-color: #f4f4f4;">
 					<div class="col-xs-12" style="background-color: #DCD9D4; padding: 10px 10px;">
@@ -96,4 +107,4 @@ $info = myWordWrap($ad["info"], 68);
 								</form>
 							</div>
 						</div>
-				</div>
+				</div> -->

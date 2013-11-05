@@ -54,7 +54,10 @@ class Email {
 	public function sendRequestEmail($campusName, $cityName) {
 		$subject = "Förfrågan om att lägga till campus";
 
-		$message = "En användare vill lägga till följande campus:\r\n\<b>". $campusName ."</b>\r\nOch i följande stad:". $cityName;
+		$message = "En användare vill lägga till följande campus: <br />
+					<b>". $campusName ."</b> <br />
+					Och i följande stad: <br />
+					<b>". $cityName ."</b>";
 
 		$headers = 'MIME-Version: 1.0' . "\r\n";
 		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";

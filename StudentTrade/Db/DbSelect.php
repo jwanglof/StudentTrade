@@ -113,6 +113,18 @@ class DbSelect extends DbConfig {
 		}
 	}
 
+	public function getCampusFromID($campusID) {
+		try {
+			$stmt = $this->dbh->prepare("SELECT * FROM campus WHERE id=:campusID");
+			$stmt->bindValue(":campusID", $campusID, PDO::PARAM_STR);
+			$stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
+
 	/*
 	 * Ad-related
 	 */

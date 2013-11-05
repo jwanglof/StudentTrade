@@ -78,7 +78,7 @@ $(document).ready(function() {
 	$("#requestCampus").click(function() {
 		bootbox.dialog({
 			title: "<h1 style=\"color: #000;\">Förfråga att lägga till campus</h1>",
-			message: "<form method=\"post\" action=\"front.php?page=request&req=campus\" class=\"form-horizontal\" role=\"form\">\
+			message: "<form method=\"post\" action=\"front.php?page=request&req=campus\" class=\"form-horizontal\" role=\"form\" id=\"requestCampus\">\
 					<fieldset>\
 						<div class=\"form-group\">\
 							<label for=\"campus_name\" class=\"col-lg-1 control-label\">Namn på campus *</label>\
@@ -92,9 +92,18 @@ $(document).ready(function() {
 								<input type=\"text\" class=\"form-control\" id=\"city_name\" name=\"city_name\" placeholder=\"Stadsnamn\">\
 							</div>\
 						</div>\
-						<button type=\"submit\" class=\"btn btn-primary btn-sm\">Skicka förfrågan</button>\
 					</fieldset>\
 				</form>",
+			buttons: {
+				send: {
+					label: "Skicka förfrågan",
+					className: "btn btn-primary btn-sm",
+					callback: function() {
+						bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
+						$("#requestCampus").delay(1000).submit();
+					}
+				}
+			},
 			onEscape: function() {},
 			backdrop: true,
 			closeButton: true,
@@ -102,7 +111,7 @@ $(document).ready(function() {
 		});
 	});
 });
-
+// 					<button type=\"submit\" class=\"btn btn-primary btn-sm\">Skicka förfrågan</button>\
 function getAjaxURL(file) {
 	var url;
 	if (window.location.origin == "http://localhost") {

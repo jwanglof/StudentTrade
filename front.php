@@ -3,6 +3,7 @@ session_start();
 header('Content-Type: text/html; charset=utf-8');
 error_reporting(-1);
 ini_set('display_errors', 1);
+mb_internal_encoding("UTF-8");
 // Auto load the classes that are called
 function __autoload($class_name) {
 	//class directories
@@ -126,7 +127,7 @@ $dbh = null;
 					</div>
 					<div class="navbar col-xs-3">
 						<ul class="nav nav-pills">
-							<li class="category" style="background-color: #39b54a; float: right; width: 250px; height: 80px; text-align: center; font-size: 26px; line-height: 60px;">
+							<li class="category" style="background-color: #39b54a; float: right; width: 250px; height: 80px; text-align: center; font-size: 25px; line-height: 60px;">
 							<?php
 								echo generateAdURL("ad_new", $city["short_name"], "Lägg upp annons",
 											(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
@@ -140,23 +141,6 @@ $dbh = null;
 
 			<div class="content">
 				<div class="row">
-					<ol class="breadcrumb">
-						<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>"><?php echo $city["city_name"]; ?></a></li>
-						<?php
-						if (isset($_GET["campus"])) {
-							foreach ($campuses[0] as $key => $value) {
-								if (replaceSwedishLetters(replaceSpecialChars(strtolower($value["campus_name"]))) == $_GET["campus"])
-									echo "<li><a href=\"#\">". $value["campus_name"] ."</a></li>";
-							}
-						}
-						if (isset($_GET["type"])) {
-							foreach ($adtypes as $key => $value) {
-								if ($value["name"] == $_GET["type"])
-									echo "<li><a href=\"#\">". $value["description"] ."</a></li>";
-							}
-						}
-						?>
-					</ol>
 					<div class="col-xs-8">
 						<?php include_once('StudentTrade/Views/switch.php'); ?>
 					</div>

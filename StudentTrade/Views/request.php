@@ -5,8 +5,7 @@ if (isset($_GET["req"])) {
 		if ($checkInput == 0) {
 			$sendEmail = new Email("request@studenttrade.se");
 			if ($sendEmail->sendRequestEmail($_POST["campus_name"], $_POST["city_name"])) {
-				
-				header("Location: front.php?page=ad_show&city=". $_GET["city"] ."&aid=". $_GET["aid"]);
+				header("Location: front.php?page=latest");
 			} else {
 				echo "Could not send the e-mail!";
 			}

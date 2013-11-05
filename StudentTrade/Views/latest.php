@@ -6,8 +6,8 @@
 				
 				if (isset($_GET["type"], $_GET["campus"])) {
 					$adCategory = $dbh->getAdCategoryFromName($_GET["type"]);
-					$campusID = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
-					$campusID = $campusID["id"];
+					$campus = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
+					$campusID = $campus["id"];
 
 					$ads = $dbh->getAdsWithAdCategoryFromCampus($adCategory["id"], $campusID, $cityID);
 				} elseif (isset($_GET["type"]) && !isset($_GET["campus"])) {
@@ -15,8 +15,8 @@
 
 					$ads = $dbh->getAdsWithAdCategoryIDFromCity($adCategory["id"], $cityID);
 				} elseif (isset($_GET["campus"]) && !isset($_GET["type"])) {
-					$campusID = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
-					$campusID = $campusID["id"];
+					$campus = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
+					$campusID = $campus["id"];
 
 					$ads = $dbh->getAdsFromCampus($campusID, $cityID);
 				} else {
@@ -24,29 +24,34 @@
 				}
 				?>
 				<div class="col-xs-12 categoryHeading" <?php echo (isset($_GET["type"]) ? "style=\"background-color: ". $adCategory["color"] ."\"" : ""); ?>>
-					<?php echo (isset($_GET["type"]) ? $adCategory["description"] : "Senaste annonserna"); ?>
+					<?php include("category_heading.php"); ?>
 				</div>
 				<div class="col-xs-12">
 					<div class="row" id="latestAd">
-				<?php
-				foreach ($ads as $ad) {
-					$adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
-					$adType = $dbh->getAdTypeFromAdTypeID($ad["fk_ad_adType"]);
-				?>
-						<div class="col-xs-6 latestAd">
+					<?php
+					foreach ($ads as $ad) {
+						$adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
+						$adType = $dbh->getAdTypeFromAdTypeID($ad["fk_ad_adType"]);
+					?>
+						<div class="latestAd">
 							<a href="<?php echo generateShowAdURL($city["short_name"], $ad["title"],
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
 								(isset($_GET["type"]) ? $_GET["type"] : NULL),
 								$ad["id"]); ?>">
-								<div class="col-xs-2 categoryIcon icon <?php echo $adCategory["name"]; ?>"></div>
-								<div class="col-xs-10 newAdInfo">
+								<div class="col-xs-1 categoryIcon icon <?php echo $adCategory["name"]; ?>"></div>
+								<div class="col-xs-4 newAdInfo">
 									<h4><?php echo limitStringLength($ad["title"]); ?></h4>
-									<?php echo $adType["name"] ." för ". $ad["price"] ." SEK (". date_format(date_create($ad["date_created"]), "Y-m-d") .")"; ?>
 								</div>
+								<div class="col-xs-3 newAdInfo">
+									<span class="adType <?php echo $adType["short_name"]; ?>"><?php echo $adType["name"]; ?></span>
+									<span class="where"><?php echo $dbh->getCampusFromID($ad["fk_ad_campus"])["campus_name"]; ?></span>
+								</div>
+								<div class="col-xs-2 newAdInfo date"><?php echo date_format(date_create($ad["date_created"]), "Y-m-d"); ?></div>
+								<div class="col-xs-2 newAdInfo price"><?php echo $ad["price"]; ?> SEK</div>
 							</a>
 						</div>
-				<?php
-				}
-				?>
+					<?php
+					}
+					?>
 					</div>
 				</div>
