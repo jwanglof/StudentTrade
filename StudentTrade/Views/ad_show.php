@@ -25,7 +25,7 @@ $info = myWordWrap($ad["info"], 68);
 
 ?>
 				<div class="col-xs-3">
-					<p style="width: 100%; height: 200px; background-color: <?php echo $adCategory["color"]; ?>"></p>
+					<p style="width: 100%; height: 200px; background-color: <?php echo $adCategory["color"]; ?>" class="categoryIcon icon <?php echo $adCategory["name"]; ?>"></p>
 					<p style="width: 100%; height: 30px; font-size: 1.35em; text-align: center;" class="adType <?php echo $adType["short_name"]; ?>"><?php echo $adType["name"]; ?></p>
 					<p>
 						Kategori:

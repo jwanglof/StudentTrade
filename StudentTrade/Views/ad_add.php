@@ -1,17 +1,17 @@
-<div style="color: #000;">
 <?php
-
 // SET FOREIGN_KEY_CHECKS=0;TRUNCATE adUserInfo;TRUNCATE ad;TRUNCATE adInfo;SET FOREIGN_KEY_CHECKS=1;
 // print_r($requiredInputs);
 // print_r($adTypeInfoShortNames);
 // print_r($_POST);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$success = true;
-	print_r($_POST);
+	$success = True;
+	// print_r($_POST);
 
 	$checkInput = checkRequiredInput($_POST, array("name", "email", "city", "adType", "title", "info", "adCategory"));
+	// echo print_r($checkInput);
 	if ($checkInput == 0) {
+		// echo $checkInput;
 		/*
 		 * Check the input values so it doesn't contain any illegal characters
 		 */
@@ -31,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$_POST["campus"], $_POST["city"], $adUserInfoID, $_POST["adType"]);
 		// echo 2 . $adID;
 		// echo $password ." __--- ". $encryptedPassword;
-
 
 		/*
 		 * Insert the adInfo
@@ -74,6 +73,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location: front.php?page=ad_show&city=". $cityShortName["short_name"] ."&aid=". $adID);
 	}
 }
-
 ?>
-</div>
