@@ -4,6 +4,7 @@ header('Content-Type: text/html; charset=utf-8');
 error_reporting(-1);
 ini_set('display_errors', 1);
 mb_internal_encoding("UTF-8");
+// include_once 'ChromePhp.php';
 // Auto load the classes that are called
 function __autoload($class_name) {
 	//class directories

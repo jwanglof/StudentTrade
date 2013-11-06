@@ -1,6 +1,6 @@
 body,html {
 	font-family: 'Lato', sans-serif;
-	color: #fff;
+	color: #565656;
 }
 
 div:first-child {
@@ -19,6 +19,7 @@ a:visited {color: #fff;}
 }
 
 #infoText {
+	color: #fff;
 	border: 0px solid #000;
 	position: absolute;
 	top: 260px;
@@ -90,6 +91,7 @@ img.studenttrade_logo {
 }
 
 #map {
+	color: #fff;
 	text-align: right;
 }
 #map img {
@@ -111,16 +113,16 @@ img.studenttrade_logo {
 	color: #464646;
 }
 
-#map .linkoping {position: absolute; top: 430px; right: 130px;}
-#map .stockholm {position: absolute; top: 370px; right: 80px;}
-#map .goteborg {position: absolute; top: 430px; right: 280px;}
-#map .lund {position: absolute; top: 510px; right: 270px;}
-#map .jonkoping {position: absolute; top: 440px; right: 200px;}
-#map .karlstad {position: absolute; top: 360px; right: 210px;}
-#map .orebro {position: absolute; top: 380px; right: 180px;}
-#map .uppsala {position: absolute; top: 350px; right: 100px;}
-#map .umea {position: absolute; top: 200px; right: 70px;}
-#map .kalmar {position: absolute; top: 490px; right: 170px;}
+#map .linkoping		{position: absolute; top: 430px; right: 130px;}
+#map .stockholm		{position: absolute; top: 370px; right: 80px;}
+#map .goteborg		{position: absolute; top: 430px; right: 280px;}
+#map .lund			{position: absolute; top: 510px; right: 270px;}
+#map .jonkoping		{position: absolute; top: 440px; right: 200px;}
+#map .karlstad		{position: absolute; top: 360px; right: 210px;}
+#map .orebro		{position: absolute; top: 380px; right: 180px;}
+#map .uppsala		{position: absolute; top: 350px; right: 100px;}
+#map .umea			{position: absolute; top: 200px; right: 70px;}
+#map .kalmar		{position: absolute; top: 490px; right: 170px;}
 
 #hover-img .thumbnail {
 	position: relative;
@@ -190,4 +192,10 @@ img.studenttrade_logo {
 #mapHelp div {
 	font-family: 'Gochi Hand', cursive;
 	font-size: 40px;
+}
+
+.form-horizontal {color: #565656;}
+
+.form-group label {
+	width: 150px;
 }

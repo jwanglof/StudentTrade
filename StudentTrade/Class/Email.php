@@ -10,6 +10,17 @@ class Email {
 
 	public function __destruct() {}
 
+	public function sendContactEmail($name, $from, $message) {
+		$subject = "". $name ." har något viktigt att säga!";
+
+		$headers = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+		$headers .= 'From: '. $name .' <'. $from .'>' . "\r\n";
+		$headers .= 'X-Mailer: PHP/'. phpversion();
+
+		return mail($this->to, $subject, $message, $headers);
+	}
+
 	public function sendNewAdEmail($password, $adID) {
 		$subject = "Din borttagningskod till din annons på StudentTrade.se";
 

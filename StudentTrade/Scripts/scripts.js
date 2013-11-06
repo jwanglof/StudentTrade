@@ -77,8 +77,8 @@ $(document).ready(function() {
 
 	$("#requestCampus").click(function() {
 		bootbox.dialog({
-			title: "<h1 style=\"color: #000;\">Förfråga att lägga till campus</h1>",
-			message: "<form method=\"post\" action=\"front.php?page=request&req=campus\" class=\"form-horizontal\" role=\"form\" id=\"requestCampus\">\
+			title: "<h1>Förfråga att lägga till campus</h1>",
+			message: "<form method=\"post\" action=\"front.php?page=mail&mail=requestCampus\" class=\"form-horizontal\" role=\"form\" id=\"requestCampus\">\
 					<fieldset>\
 						<div class=\"form-group\">\
 							<label for=\"campus_name\" class=\"col-lg-1 control-label\">Namn på campus *</label>\
@@ -110,8 +110,38 @@ $(document).ready(function() {
 			animate: true
 		});
 	});
+
+	$("#requestCity").click(function() {
+		bootbox.dialog({
+			title: "<h1>Förfråga att lägga till stad</h1>",
+			message: "<form method=\"post\" action=\"front.php?page=mail&mail=requestCity\" class=\"form-horizontal\" role=\"form\" id=\"requestCity\">\
+					<fieldset>\
+						<div class=\"form-group\">\
+							<label for=\"city_name\" class=\"col-lg-1 control-label\">Stadsnamn *</label>\
+							<div class=\"col-lg-5\">\
+								<input type=\"text\" class=\"form-control\" id=\"city_name\" name=\"city_name\" placeholder=\"Stadsnamn\">\
+							</div>\
+						</div>\
+					</fieldset>\
+				</form>",
+			buttons: {
+				send: {
+					label: "Skicka förfrågan",
+					className: "btn btn-primary btn-sm",
+					callback: function() {
+						bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
+						$("#requestCity").delay(1000).submit();
+					}
+				}
+			},
+			onEscape: function() {},
+			backdrop: true,
+			closeButton: true,
+			animate: true
+		});
+	});
 });
-// 					<button type=\"submit\" class=\"btn btn-primary btn-sm\">Skicka förfrågan</button>\
+
 function getAjaxURL(file) {
 	var url;
 	if (window.location.origin == "http://localhost") {
@@ -160,7 +190,7 @@ function gup(name) {
 
 $(document).on("click", "#about_us", function(e) {
 	bootbox.dialog({
-		title: "<h1 style=\"color: #000;\">Om oss</h1>",
+		title: "<h1>Om oss</h1>",
 		message: "StudentTrade.se är en köp- och sälj sajt enbart för studenter. Hos oss kan du köpa och sälja saker som har studentlivet till. StudentTrade.se startades hösten 2013 av tre stundenter på Linköpings Universitet.",
 		onEscape: function() {},
 		backdrop: true,
@@ -170,7 +200,7 @@ $(document).on("click", "#about_us", function(e) {
 });
 $(document).on("click", "#how_it_works", function(e) {
 	bootbox.dialog({
-		title: "<h1 style=\"color: #000;\">Så fungerar det</h1>",
+		title: "<h1>Så fungerar det</h1>",
 		message: "Hos oss är det lätt att både lägga upp annons och att hitta det du söker. Börja med att välja din studentstad på startsidan. Väl inne på sidan kan du sedan lätt sortera annonserna efter kategori och lägga upp annons genom att klicka på ”Lägg upp annons”. Annonsen kommer direkt upp i flödet och blir tillgänlig för andra studenter.",
 		onEscape: function() {},
 		backdrop: true,
@@ -180,7 +210,7 @@ $(document).on("click", "#how_it_works", function(e) {
 });
 $(document).on("click", "#faq", function(e) {
 	bootbox.dialog({
-		title: "<h1 style=\"color: #000;\">Vanliga frågor och svar</h1>",
+		title: "<h1>Vanliga frågor och svar</h1>",
 		message: "<p>Kostar det något att lägga upp en annons? <br /> Nej, tillskillnad från Blocket och andra sajter är det helt gratis att lägga upp en annons hos oss. Vi är också studenter och tycker inte man ska betala för att lägga upp en annons. </p> Hur tar jag bort min annons? <br /> När du lägger upp din annons får du en fyrsiffrig kod till den e-mail adress du angett. Om du vill ta bort din annons går du in på den, klickar på ”Ta bort annons” och anger din kod. Snabbt och enkelt! <p style=\"margin-top: 10px;\"> Vad gör jag om jag tycker att en annons är olämplig? <br /> Om du ser en annons som du inte tycker är olämplig kan du anmäla den till oss. Vi ser då om den bryter mot ”Regler kring annonsering” och beslutar med detta som grund om hurvida annonser ska bli borttagen eller inte. Om du vill veta vilka regler som gäller kring annonsering så hittar du det <a href=\"front.php?page=rules\" style=\"color: #565656;text-decoration: underline\">här</a>",
 		onEscape: function() {},
 		backdrop: true,
@@ -188,10 +218,22 @@ $(document).on("click", "#faq", function(e) {
 		animate: true
 	});
 });
-$(document).on("click", "#contact_us", function(e) {
+$("#contact_us").on("click", function(e) {
+	e.preventDefault();
 	bootbox.dialog({
-		title: "<h1 style=\"color: #000;\">Kontakta oss</h1>",
-		message: "Är det något du undrar över är det bara höra av sig till: kontakt@stundenttrade.se <br /><br /> Eller kontakta oss personligen:<p>Fredrik Palmér: 073-52 00 511 eller fredrik@studenttrade.se<br /> Erik Hidrup: 073-07 33 077 eller erik@studenttrade.se <br /> Johan Wänglöf: 070-86 01 911 eller johan@studenttrade.se</p>",
+		title: "<h1>Kontakta oss</h1>",
+		message: $("#contactUsDiv").html(),
+		// buttons: {
+		// 	send: {
+		// 		label: "Skicka meddelande",
+		// 		className: "btn btn-primary btn-sm",
+		// 		callback: function() {
+		// 			bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!", function() {
+		// 				$("#contactUsForm").submit();
+		// 			});
+		// 		}
+		// 	}
+		// },
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,
@@ -201,7 +243,7 @@ $(document).on("click", "#contact_us", function(e) {
 
 $(document).on("click", "#adAnswer", function(e) {
 	bootbox.dialog({
-		title: "<h1 style=\"color: #000;\">Kontaktformulär</h1>",
+		title: "<h1>Kontaktformulär</h1>",
 		message: $("#adAnswerForm").html(),
 		backdrop: true,
 		closeButton: true,
@@ -211,7 +253,7 @@ $(document).on("click", "#adAnswer", function(e) {
 
 $(document).on("click", "#adReport", function(e) {
 	bootbox.dialog({
-		title: "<h1 style=\"color: #000;\">Anmälformulär</h1>",
+		title: "<h1>Anmälformulär</h1>",
 		message: $("#adReportForm").html(),
 		backdrop: true,
 		closeButton: true,
@@ -220,7 +262,7 @@ $(document).on("click", "#adReport", function(e) {
 });
 
 $(document).on("click", "#adDelete", function(e) {
-	bootbox.prompt("Ange din borttagninskod som du fick via e-post", function(result) {
+	bootbox.prompt("Ange den borttagninskod som du fått via e-post", function(result) {
 		if (result != null) {
 			request = $.ajax({
 				type: "post",
