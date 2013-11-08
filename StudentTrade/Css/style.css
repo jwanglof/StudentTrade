@@ -236,4 +236,6 @@ span.adShowInfo {
 	margin-top: 200px;
 }
 
-/*#requestCampusForm {display: none;}*/
+.error {
+  border: 1px solid #f00;
+}

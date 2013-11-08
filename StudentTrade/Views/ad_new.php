@@ -9,7 +9,7 @@ $adSubCategories = $dbh->getAdSubCategories();
 $dbh = null;
 ?>
 <div class="col-xs-12">
-	<form method="post" action="front.php?page=ad_add" class="form-horizontal" role="form">
+	<form method="post" action="front.php?page=ad_add" class="form-horizontal" role="form" id="addNewAd">
 		<fieldset>
 			<legend>Personuppgifter</legend>
 
@@ -18,6 +18,7 @@ $dbh = null;
 				<div class="col-lg-5">
 					<input type="text" class="form-control" id="name" name="name" placeholder="Namn">
 				</div>
+				<div class="col-lg-2 inputError" style="color: #f00"></div>
 			</div>
 
 			<div class="form-group">

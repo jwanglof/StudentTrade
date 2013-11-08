@@ -54,8 +54,7 @@ require_once("StudentTrade/Includes/Functions.php");
 		</style>
 	</head>
 	<body>
-
-		<div class="fade modal" id="requestCampusModal" tabindex="-1" role="dialog" aria-labelledby="requestCampusModal" aria-hidden="true">
+		<div class="fade modal" id="requestCityModal" tabindex="-1" role="dialog" aria-labelledby="requestCityModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -64,11 +63,15 @@ require_once("StudentTrade/Includes/Functions.php");
 					</div>
 
 					<div class="modal-body">
-						<!-- The async form to send and replace the modals content with its response -->
-						<form class="form-horizontal well" data-async data-target="#requestCampusModal" method="post" id="requestCityForm">
+						<form class="form-horizontal well" data-async data-target="#requestCityModal" method="post" id="requestCityForm">
+							<input type="hidden" id="mail" name="mail" value="requestCity" />
 							<fieldset>
-								<input type="hidden" id="mail" name="mail" value="requestCity" />
-								<input type="text" class="form-control" id="city_name" name="city_name" placeholder="Stadsnamn">
+								<div class="form-group">
+									<label for="city_name" class="col-lg-1 control-label">Ligger i stad *</label>
+									<div class="col-lg-5">
+										<input type="text" class="form-control" id="city_name" name="city_name" placeholder="Stadsnamn" />
+									</div>
+								</div>
 							</fieldset>
 						</form>
 					</div>
@@ -92,7 +95,7 @@ require_once("StudentTrade/Includes/Functions.php");
 					<div class='col-xs-4' id="map">
 						<div id="mapHelp">
 						
-							Saknar du din stad på kartan? <a data-toggle="modal" href="#requestCampusModal">Klicka då här!</a>
+							Saknar du din stad på kartan? <a data-toggle="modal" href="#requestCityModal">Klicka då här!</a>
 							<div>Välj din stad här!</div>
 						</div>
 						<img src="StudentTrade/Img/map_w_talk_bubble.png" />

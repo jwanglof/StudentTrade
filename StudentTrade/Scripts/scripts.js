@@ -76,6 +76,9 @@ $(document).ready(function() {
 	});
 
 	$("#requestCity").click(function() {
+		$("#requestCityModal").modal('show');
+	});
+	$("#requestCampus").click(function() {
 		$("#requestCampusModal").modal('show');
 	});
 });
@@ -100,10 +103,10 @@ function closeModal(modalID) {
 	$(modalID).modal("hide");
 }
 
-$("#requestCampusForm").submit(function(e) {
-	e.preventDefault();
-	sendFormWithAjax(this);
-});
+// $("#requestCampusForm").submit(function(e) {
+// 	e.preventDefault();
+// 	sendFormWithAjax(this);
+// });
 // $("#requestCityForm").submit(function(e) {
 // 	e.preventDefault();
 // 	sendFormWithAjax(this);

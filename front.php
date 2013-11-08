@@ -65,6 +65,41 @@ $dbh = null;
 		<link rel="shortcut icon" href="favicon.ico" />
 	</head>
 	<body>
+		<div class="fade modal" id="requestCampusModal" tabindex="-1" role="dialog" aria-labelledby="requestCampusModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+						<h2>Förfråga att lägga till campus</h2>
+					</div>
+
+					<div class="modal-body">
+						<form class="form-horizontal well" data-async data-target="#requestCampusModal" method="post" id="requestCampusForm">
+							<input type="hidden" id="mail" name="mail" value="requestCampus" />
+							<fieldset>
+								<div class="form-group">
+									<label for="campus_name" class="col-lg-1 control-label">Namn på campus *</label>
+									<div class="col-lg-5">
+										<input type="text" class="form-control" id="campus_name" name="campus_name" placeholder="Campusnamn" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="city_name" class="col-lg-1 control-label">Ligger i stad *</label>
+									<div class="col-lg-5">
+										<input type="text" class="form-control" id="city_name" name="city_name" placeholder="Stadsnamn" />
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" form="requestCampusForm" class="btn btn-primary">Skicka förfrågan</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="container">
 			<div class="col-xs-12 top">
 				<div class="row" style="height: 190px;">
@@ -96,7 +131,7 @@ $dbh = null;
 									<li class="divider"></li>
 									<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>">Se alla</a></li>
 									<li class="divider"></li>
-									<li><a href="front.php?page=request&request=campus" id="requestCampus">Mitt campus saknas!</a></li>
+									<li><a data-toggle="modal" href="#requestCampusModal">Mitt campus saknas!</a></li>
 								</ul>
 							</div>
 						</div>
@@ -182,6 +217,8 @@ $dbh = null;
 		<script src="StudentTrade/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 		<script src="StudentTrade/Scripts/bootstrap.min.js" type="text/javascript"></script>
 		<script src="StudentTrade/Scripts/bootbox.min.js" type="text/javascript"></script>
+		<script src="StudentTrade/Scripts/jquery.validate.min.js" type="text/javascript"></script>
 		<script src="StudentTrade/Scripts/scripts.js" type="text/javascript"></script>
+		<script src="StudentTrade/Scripts/forms.js" type="text/javascript"></script>
 	</body>
 </html>
