@@ -86,40 +86,6 @@ $(document).ready(function() {
 	// 	});
 	// });
 	// 
-	// $("#requestCampusForm").submit(function(e) {
-	// 	alert(2);
-	// 	e.preventDefault();
-	// 	var postData = $("#requestCampusForm").serializeArray();
-
-	// 	console.log($("#campus_name").val());
-	// 	console.log(postData);
-
-	// 	request = $.ajax({
-	// 		type: "POST",
-	// 		url: getAjaxURL("mail"),
-	// 		data: {mail: "requestCampus", data: postData}
-	// 	});
-
-	// 	console.log(1);
-	// 	console.log(request);
-
-	// 	request.done(function(response, textStatus, jqXHR) {
-	// 		console.log(2 +" -- "+ textStatus);
-	// 		console.log(3 +" -- "+ response);
-	// 		if (response == 1)
-	// 			bootbox.alert("1");
-	// 		else
-	// 			bootbox.alert("2");
-	// 	});
-	// 	request.fail(function(jqXHR, textStatus, errorThrown) {
-	// 		console.log(4 +" -- "+ jqXHR +" ____ "+ errorThrown +" +++ "+ textStatus);
-	// 		console.log(jqXHR);
-	// 	});
-	// 	// bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
-	// 	// $("#requestCampus").delay(1000).submit();
-	// });
-
-	// $("#requestCampusForm").submit();
 
 	$("#requestCity").click(function() {
 		bootbox.dialog({
@@ -152,7 +118,39 @@ $(document).ready(function() {
 	});
 });
 
-	
+$("#requestCampusForm").submit(function(e) {
+	e.preventDefault();
+	alert(2);
+	var postData = $("#requestCampusForm").serializeArray();
+
+	console.log("@@@@@"+ $("#campus_name").val());
+	console.log("#####"+ postData);
+	return false;
+
+	// request = $.ajax({
+	// 	type: "POST",
+	// 	url: getAjaxURL("mail"),
+	// 	data: {mail: "requestCampus", data: postData}
+	// });
+
+	// console.log(1);
+	// console.log(request);
+
+	// request.done(function(response, textStatus, jqXHR) {
+	// 	console.log(2 +" -- "+ textStatus);
+	// 	console.log(3 +" -- "+ response);
+	// 	if (response == 1)
+	// 		bootbox.alert("1");
+	// 	else
+	// 		bootbox.alert("2");
+	// });
+	// request.fail(function(jqXHR, textStatus, errorThrown) {
+	// 	console.log(4 +" -- "+ jqXHR +" ____ "+ errorThrown +" +++ "+ textStatus);
+	// 	console.log(jqXHR);
+	// });
+	// // bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
+	// // $("#requestCampus").delay(1000).submit();
+});
 
 function getAjaxURL(file) {
 	var url;
@@ -200,22 +198,22 @@ function gup(name) {
         return results[1];
 }
 
-var asd;
+// var asd;
 $(document).on("click", "#requestCampus", function() {
 	bootbox.confirm($("#modal-body").html(), function(conf) {
 		if (conf) {
-			asd = $("#requestCampusForm").parent();
-			console.log(document.getElementById("#campus_name"));
-			console.log($(asd));
-			$(asd).submit();
+			// asd = $("#requestCampusForm").parent();
+			// console.log(document.getElementById("#campus_name"));
+			// console.log($(asd));
+			$("#requestCampusForm").submit();
 		}
 	});
 });
 
-$("#requestCampusForm").submit(function(e) {
-	e.preventDefault();
-	// console.log(asd);
-});
+// $("#requestCampusForm").submit(function(e) {
+// 	e.preventDefault();
+// 	// console.log(asd);
+// });
 
 $(document).on("click", "#about_us", function(e) {
 	bootbox.dialog({

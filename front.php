@@ -5,28 +5,29 @@ error_reporting(-1);
 ini_set('display_errors', 1);
 mb_internal_encoding("UTF-8");
 // include_once 'ChromePhp.php';
+
 // Auto load the classes that are called
-function __autoload($class_name) {
-	//class directories
+spl_autoload_register(function ($class) {
 	$base_dir = 'StudentTrade/';
-	$directorys = array(
+	$directories = array(
 		'Class/',
 		'Db/',
-		'Logic/',
-		'Views'
+		'Logic/'
+		// 'Views'
 	);
+
 	//for each directory
-	foreach($directorys as $directory)
+	foreach($directories as $directory)
 	{
 		//see if the file exsists
-		if(file_exists($base_dir.$directory.$class_name . '.php'))
+		if(file_exists($base_dir.$directory.$class . '.php'))
 		{
-			require_once($base_dir.$directory.$class_name . '.php');
+			include($base_dir.$directory.$class . '.php');
 			//only require the class once, so quit after to save effort (if you got more, then name them something else
 			return;
 		}
 	}
-}
+});
 require_once("StudentTrade/Includes/Functions.php");
 
 if (!isset($_SESSION["sessProtector"])) {
@@ -103,25 +104,25 @@ $dbh = null;
 				</div>
 				<div style="display: none;">
 					<div id="modal-body">
-				<form action="front.php" method="post" class="form-horizontal" role="form" id="requestCampusForm" name="requestCampusForm">
-					<fieldset>
-						<div class="form-group">
-							<label for="campus_name" class="col-lg-1 control-label">Namn på campus *</label>
-							<div class="col-lg-5">
-								<input type="text" class="form-control" id="campus_name" name="campus_name" placeholder="Campusnamn">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="city_name" class="col-lg-1 control-label">Ligger i stad *</label>
-							<div class="col-lg-5">
-								<input type="text" class="form-control" id="city_name" name="city_name" placeholder="Stadsnamn">
-							</div>
-						</div>
-						<input class="btn" type="submit" value="Go!" />
-						<input type="submit" name="submit" />
-					</fieldset>
-				</form>
-				</div>
+						<form action="#" method="post" class="form-horizontal" role="form" id="requestCampusForm" name="requestCampusForm">
+							<fieldset>
+								<div class="form-group">
+									<label for="campus_name" class="col-lg-1 control-label">Namn på campus *</label>
+									<div class="col-lg-5">
+										<input type="text" class="form-control" id="campus_name" name="campus_name" placeholder="Campusnamn">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="city_name" class="col-lg-1 control-label">Ligger i stad *</label>
+									<div class="col-lg-5">
+										<input type="text" class="form-control" id="city_name" name="city_name" placeholder="Stadsnamn">
+									</div>
+								</div>
+								<input class="btn" type="submit" value="Go!" />
+								<input type="submit" name="submit" />
+							</fieldset>
+						</form>
+					</div>
 				</div>
 
 				<div class="row" style="position: relative; z-index: 2;">
