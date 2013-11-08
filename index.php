@@ -21,7 +21,7 @@ function __autoload($class_name) {
 		}            
 	}
 }
-require_once("StudentTrade/Db/functions.php");
+require_once("StudentTrade/Includes/Functions.php");
 ?>
 
 <html>

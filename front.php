@@ -27,7 +27,7 @@ function __autoload($class_name) {
 		}
 	}
 }
-require_once("StudentTrade/Db/functions.php");
+require_once("StudentTrade/Includes/Functions.php");
 
 if (!isset($_SESSION["sessProtector"])) {
 	$_SESSION["sessProtector"] = session_id();
@@ -100,6 +100,28 @@ $dbh = null;
 							</div>
 						</div>
 					</div>
+				</div>
+				<div style="display: none;">
+					<div id="modal-body">
+				<form action="front.php" method="post" class="form-horizontal" role="form" id="requestCampusForm" name="requestCampusForm">
+					<fieldset>
+						<div class="form-group">
+							<label for="campus_name" class="col-lg-1 control-label">Namn på campus *</label>
+							<div class="col-lg-5">
+								<input type="text" class="form-control" id="campus_name" name="campus_name" placeholder="Campusnamn">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="city_name" class="col-lg-1 control-label">Ligger i stad *</label>
+							<div class="col-lg-5">
+								<input type="text" class="form-control" id="city_name" name="city_name" placeholder="Stadsnamn">
+							</div>
+						</div>
+						<input class="btn" type="submit" value="Go!" />
+						<input type="submit" name="submit" />
+					</fieldset>
+				</form>
+				</div>
 				</div>
 
 				<div class="row" style="position: relative; z-index: 2;">

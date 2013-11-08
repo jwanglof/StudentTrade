@@ -1,6 +1,6 @@
 <?php
 	if (!$_GET) {
-		include 'layout_index.php';
+		include 'front.php';
 	} elseif ($_GET['page']) {
 		$root_dir = getcwd() .'/StudentTrade/Views/';
 		if (is_file($root_dir . $_GET['page'] .'.php')) {

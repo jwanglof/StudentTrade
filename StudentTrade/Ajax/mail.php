@@ -1,11 +1,11 @@
 <?php
 if (isset($_POST["mail"])) {
 	require_once("../Includes/Functions.php");
-	
 	if ($_POST["mail"] == "requestCampus") {
+		print_r($_POST);
 		$checkInput = checkRequiredInput($_POST, array("campus_name", "city_name"));
+		print_r($checkInput);
 		if ($checkInput == 0) {
-	echo 1;
 			$sendEmail = new Email("request@studenttrade.se");
 			if ($sendEmail->sendRequestEmail($_POST["campus_name"], $_POST["city_name"])) {
 				echo true;

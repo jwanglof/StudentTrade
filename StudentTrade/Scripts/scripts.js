@@ -1,3 +1,5 @@
+var asd;
+
 $(document).ready(function() {
 	if (gup("campus") != "") {		
 		var campus = gup("campus");
@@ -11,7 +13,7 @@ $(document).ready(function() {
 	// 	$(this).removeClass("campusChosen").text($(this).text().slice(0,-1));
 	// });
 
-	$(".footer li, #adAnswer, #adReport, #adDelete").hover(
+	$(".footer li, #adAnswer, #adReport, #adDelete, #requestCampus").hover(
 		function() {
 			$(this).css('cursor', 'pointer');
 			$(this).css('text-decoration', 'underline');
@@ -75,41 +77,51 @@ $(document).ready(function() {
 		});
 	});
 
-	$("#requestCampus").click(function() {
-		bootbox.dialog({
-			title: "<h1>Förfråga att lägga till campus</h1>",
-			message: "<form method=\"post\" action=\"front.php?page=mail&mail=requestCampus\" class=\"form-horizontal\" role=\"form\" id=\"requestCampus\">\
-					<fieldset>\
-						<div class=\"form-group\">\
-							<label for=\"campus_name\" class=\"col-lg-1 control-label\">Namn på campus *</label>\
-							<div class=\"col-lg-5\">\
-								<input type=\"text\" class=\"form-control\" id=\"campus_name\" name=\"campus_name\" placeholder=\"Campusnamn\">\
-							</div>\
-						</div>\
-						<div class=\"form-group\">\
-							<label for=\"city_name\" class=\"col-lg-1 control-label\">Ligger i stad *</label>\
-							<div class=\"col-lg-5\">\
-								<input type=\"text\" class=\"form-control\" id=\"city_name\" name=\"city_name\" placeholder=\"Stadsnamn\">\
-							</div>\
-						</div>\
-					</fieldset>\
-				</form>",
-			buttons: {
-				send: {
-					label: "Skicka förfrågan",
-					className: "btn btn-primary btn-sm",
-					callback: function() {
-						bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
-						$("#requestCampus").delay(1000).submit();
-					}
-				}
-			},
-			onEscape: function() {},
-			backdrop: true,
-			closeButton: true,
-			animate: true
-		});
-	});
+	// $("#requestCampus").click(function() {
+	// 	bootbox.dialog({
+	// 		title: "<h1>Förfråga att lägga till campus</h1>",
+	// 		message: $("#requestCampusForm").html(),
+	// 		onEscape: function() {},
+	// 		backdrop: true,
+	// 		closeButton: true,
+	// 		animate: true
+	// 	});
+	// });
+	// 
+	// $("#requestCampusForm").submit(function(e) {
+	// 	alert(2);
+	// 	e.preventDefault();
+	// 	var postData = $("#requestCampusForm").serializeArray();
+
+	// 	console.log($("#campus_name").val());
+	// 	console.log(postData);
+
+	// 	request = $.ajax({
+	// 		type: "POST",
+	// 		url: getAjaxURL("mail"),
+	// 		data: {mail: "requestCampus", data: postData}
+	// 	});
+
+	// 	console.log(1);
+	// 	console.log(request);
+
+	// 	request.done(function(response, textStatus, jqXHR) {
+	// 		console.log(2 +" -- "+ textStatus);
+	// 		console.log(3 +" -- "+ response);
+	// 		if (response == 1)
+	// 			bootbox.alert("1");
+	// 		else
+	// 			bootbox.alert("2");
+	// 	});
+	// 	request.fail(function(jqXHR, textStatus, errorThrown) {
+	// 		console.log(4 +" -- "+ jqXHR +" ____ "+ errorThrown +" +++ "+ textStatus);
+	// 		console.log(jqXHR);
+	// 	});
+	// 	// bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
+	// 	// $("#requestCampus").delay(1000).submit();
+	// });
+
+	// $("#requestCampusForm").submit();
 
 	$("#requestCity").click(function() {
 		bootbox.dialog({
@@ -141,6 +153,8 @@ $(document).ready(function() {
 		});
 	});
 });
+
+	
 
 function getAjaxURL(file) {
 	var url;
@@ -187,6 +201,18 @@ function gup(name) {
     else
         return results[1];
 } 
+$(document).on("click", "#requestCampus", function() {
+	bootbox.confirm($("#modal-body").html(), function(conf) {
+		if (conf) {
+			asd = $("#requestCampusForm");
+			asd.submit();
+		}
+	});
+});
+
+$(asd).submit(function() {
+	alert(2);
+});
 
 $(document).on("click", "#about_us", function(e) {
 	bootbox.dialog({
