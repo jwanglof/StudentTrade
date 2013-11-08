@@ -76,7 +76,7 @@ $(document).ready(function() {
 	});
 
 	$("#requestCity").click(function() {
-		$("#rating-modal").modal('show');
+		$("#requestCampusModal").modal('show');
 	});
 });
 // $("#requestCampus").on("click", function() {
@@ -95,6 +95,10 @@ $(document).ready(function() {
 // 		animate: true
 // 	});
 // });
+
+function closeModal(modalID) {
+	$(modalID).modal("hide");
+}
 
 $("#requestCampusForm").submit(function(e) {
 	e.preventDefault();

@@ -15,7 +15,10 @@ $(document).ready(function() {
 
 			success: function(data, status) {
 				console.log(data);
-				$("#requestCampusModal").modal('hide');
+				if (data == 1)
+					closeModal("#requestCampusModal");
+				else
+					alert("Noope");
 			}
 		});
 
