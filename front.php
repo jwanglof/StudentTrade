@@ -96,32 +96,10 @@ $dbh = null;
 									<li class="divider"></li>
 									<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>">Se alla</a></li>
 									<li class="divider"></li>
-									<li><a id="requestCampus">Mitt campus saknas!</a></li>
+									<li><a href="front.php?page=request&request=campus" id="requestCampus">Mitt campus saknas!</a></li>
 								</ul>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div style="display: none;">
-					<div id="modal-body">
-						<form action="#" method="post" class="form-horizontal" role="form" id="requestCampusForm" name="requestCampusForm">
-							<fieldset>
-								<div class="form-group">
-									<label for="campus_name" class="col-lg-1 control-label">Namn på campus *</label>
-									<div class="col-lg-5">
-										<input type="text" class="form-control" id="campus_name" name="campus_name" placeholder="Campusnamn">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="city_name" class="col-lg-1 control-label">Ligger i stad *</label>
-									<div class="col-lg-5">
-										<input type="text" class="form-control" id="city_name" name="city_name" placeholder="Stadsnamn">
-									</div>
-								</div>
-								<input class="btn" type="submit" value="Go!" />
-								<input type="submit" name="submit" />
-							</fieldset>
-						</form>
 					</div>
 				</div>
 

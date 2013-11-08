@@ -75,82 +75,56 @@ $(document).ready(function() {
 		});
 	});
 
-	// $("#requestCampus").click(function() {
-	// 	bootbox.dialog({
-	// 		title: "<h1>Förfråga att lägga till campus</h1>",
-	// 		message: $("#requestCampusForm").html(),
-	// 		onEscape: function() {},
-	// 		backdrop: true,
-	// 		closeButton: true,
-	// 		animate: true
-	// 	});
-	// });
-	// 
-
 	$("#requestCity").click(function() {
-		bootbox.dialog({
-			title: "<h1>Förfråga att lägga till stad</h1>",
-			message: "<form method=\"post\" action=\"front.php?page=mail&mail=requestCity\" class=\"form-horizontal\" role=\"form\" id=\"requestCity\">\
-					<fieldset>\
-						<div class=\"form-group\">\
-							<label for=\"city_name\" class=\"col-lg-1 control-label\">Stadsnamn *</label>\
-							<div class=\"col-lg-5\">\
-								<input type=\"text\" class=\"form-control\" id=\"city_name\" name=\"city_name\" placeholder=\"Stadsnamn\">\
-							</div>\
-						</div>\
-					</fieldset>\
-				</form>",
-			buttons: {
-				send: {
-					label: "Skicka förfrågan",
-					className: "btn btn-primary btn-sm",
-					callback: function() {
-						bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
-						$("#requestCity").delay(1000).submit();
-					}
-				}
-			},
-			onEscape: function() {},
-			backdrop: true,
-			closeButton: true,
-			animate: true
-		});
+		$("#rating-modal").modal('show');
 	});
 });
+// $("#requestCampus").on("click", function() {
+// 	bootbox.confirm($("#modal-body").html(), function(conf) {
+// 		alert(conf);
+// 	});
+// });
+
+// $("#requestCampus").click(function() {
+// 	bootbox.dialog({
+// 		title: "<h1>Förfråga att lägga till campus</h1>",
+// 		message: $("#requestCampusForm").html(),
+// 		onEscape: function() {},
+// 		backdrop: true,
+// 		closeButton: true,
+// 		animate: true
+// 	});
+// });
 
 $("#requestCampusForm").submit(function(e) {
 	e.preventDefault();
-	alert(2);
-	var postData = $("#requestCampusForm").serializeArray();
-
-	console.log("@@@@@"+ $("#campus_name").val());
-	console.log("#####"+ postData);
-	return false;
-
-	// request = $.ajax({
-	// 	type: "POST",
-	// 	url: getAjaxURL("mail"),
-	// 	data: {mail: "requestCampus", data: postData}
-	// });
-
-	// console.log(1);
-	// console.log(request);
-
-	// request.done(function(response, textStatus, jqXHR) {
-	// 	console.log(2 +" -- "+ textStatus);
-	// 	console.log(3 +" -- "+ response);
-	// 	if (response == 1)
-	// 		bootbox.alert("1");
-	// 	else
-	// 		bootbox.alert("2");
-	// });
-	// request.fail(function(jqXHR, textStatus, errorThrown) {
-	// 	console.log(4 +" -- "+ jqXHR +" ____ "+ errorThrown +" +++ "+ textStatus);
-	// 	console.log(jqXHR);
-	// });
-	// // bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
-	// // $("#requestCampus").delay(1000).submit();
+	sendFormWithAjax(this);
 });
+// $("#requestCityForm").submit(function(e) {
+// 	e.preventDefault();
+// 	sendFormWithAjax(this);
+// });
+
+function sendFormWithAjax(form) {
+	var postData = $(form).serializeArray();
+	request = $.ajax({
+		type: "post",
+		url: getAjaxURL("mail"),
+		data: postData
+	});
+
+	request.done(function(response, textStatus, jqXHR) {
+		console.log(jqXHR);
+		console.log(response);
+		if (response == 1)
+			bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
+		else
+			bootbox.alert("Något gick fel när servern försökte skicka ditt e-mail. Vi ber om ursäkt för detta, försök gärna igen.");
+	});
+	request.fail(function(jqXHR, textStatus, errorThrown) {
+		bootbox.alert("Något gick fel när servern försökte skicka ditt e-mail. Vi ber om ursäkt för detta, försök gärna igen.");
+	});
+}
 
 function getAjaxURL(file) {
 	var url;
@@ -197,23 +171,6 @@ function gup(name) {
     else
         return results[1];
 }
-
-// var asd;
-$(document).on("click", "#requestCampus", function() {
-	bootbox.confirm($("#modal-body").html(), function(conf) {
-		if (conf) {
-			// asd = $("#requestCampusForm").parent();
-			// console.log(document.getElementById("#campus_name"));
-			// console.log($(asd));
-			$("#requestCampusForm").submit();
-		}
-	});
-});
-
-// $("#requestCampusForm").submit(function(e) {
-// 	e.preventDefault();
-// 	// console.log(asd);
-// });
 
 $(document).on("click", "#about_us", function(e) {
 	bootbox.dialog({

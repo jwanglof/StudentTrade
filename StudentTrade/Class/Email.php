@@ -75,7 +75,8 @@ class Email {
 		$headers .= 'From: Flossie Giles <noreply@studenttrade.se>' . "\r\n";
 		$headers .= 'X-Mailer: PHP/'. phpversion();
 
-		return mail($this->to, $subject, $message, $headers);
+		// return mail($this->to, $subject, $message, $headers);
+		return True;
 	}
 }
 ?>

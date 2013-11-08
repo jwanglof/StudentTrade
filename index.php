@@ -54,6 +54,32 @@ require_once("StudentTrade/Includes/Functions.php");
 		</style>
 	</head>
 	<body>
+
+		<div class="fade modal" id="requestCampusModal" tabindex="-1" role="dialog" aria-labelledby="requestCampusModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+						<h2>Förfråga att lägga till stad</h2>
+					</div>
+
+					<div class="modal-body">
+						<!-- The async form to send and replace the modals content with its response -->
+						<form class="form-horizontal well" data-async data-target="#requestCampusModal" method="post" id="requestCityForm">
+							<fieldset>
+								<input type="hidden" id="mail" name="mail" value="requestCity" />
+								<input type="text" class="form-control" id="city_name" name="city_name" placeholder="Stadsnamn">
+							</fieldset>
+						</form>
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" form="requestCityForm" class="btn btn-primary">Skicka förfrågan</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="container">
 			<div class='col-xs-12 top'>
 				<div id="far-clouds" class="stage"></div>
@@ -65,7 +91,8 @@ require_once("StudentTrade/Includes/Functions.php");
 					</div>
 					<div class='col-xs-4' id="map">
 						<div id="mapHelp">
-							Saknar du din stad på kartan? <a id="requestCity">Klicka då här!</a></a>
+						
+							Saknar du din stad på kartan? <a data-toggle="modal" href="#requestCampusModal">Klicka då här!</a>
 							<div>Välj din stad här!</div>
 						</div>
 						<img src="StudentTrade/Img/map_w_talk_bubble.png" />
@@ -147,7 +174,9 @@ require_once("StudentTrade/Includes/Functions.php");
 		<script src="StudentTrade/Scripts/jquery.spritely.js" type="text/javascript"></script>
 		<script src="StudentTrade/Scripts/bootstrap.min.js" type="text/javascript"></script>
 		<script src="StudentTrade/Scripts/bootbox.min.js" type="text/javascript"></script>
+		<script src="StudentTrade/Scripts/jquery.validate.min.js" type="text/javascript"></script>
 		<script src="StudentTrade/Scripts/scripts.js" type="text/javascript"></script>
+		<script src="StudentTrade/Scripts/forms.js" type="text/javascript"></script>
 
 		<script type="text/javascript">
 			$(document).ready(function() {

@@ -1,10 +1,12 @@
 <?php
+error_reporting(-1);
+ini_set('display_errors', 1);
 if (isset($_POST["mail"])) {
 	require_once("../Includes/Functions.php");
+	require_once("../Class/Email.php");
+
 	if ($_POST["mail"] == "requestCampus") {
-		print_r($_POST);
 		$checkInput = checkRequiredInput($_POST, array("campus_name", "city_name"));
-		print_r($checkInput);
 		if ($checkInput == 0) {
 			$sendEmail = new Email("request@studenttrade.se");
 			if ($sendEmail->sendRequestEmail($_POST["campus_name"], $_POST["city_name"])) {
@@ -19,9 +21,9 @@ if (isset($_POST["mail"])) {
 		if ($checkInput == 0) {
 			$sendEmail = new Email("request@studenttrade.se");
 			if ($sendEmail->sendRequestEmail("Inget, vill lägga till stad", $_POST["city_name"])) {
-				header("Location: front.php?page=latest");
+				echo true;
 			} else {
-				echo "Could not send the e-mail!";
+				echo false;
 			}
 			$sendEmail = null;
 		}

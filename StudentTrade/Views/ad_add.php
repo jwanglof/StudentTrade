@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$success = True;
 	// print_r($_POST);
 
+	print_r($_POST);
 	$checkInput = checkRequiredInput($_POST, array("name", "email", "city", "adType", "title", "info", "adCategory"));
 	// echo print_r($checkInput);
 	if ($checkInput == 0) {
