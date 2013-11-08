@@ -1,5 +1,3 @@
-var asd;
-
 $(document).ready(function() {
 	if (gup("campus") != "") {		
 		var campus = gup("campus");
@@ -200,18 +198,23 @@ function gup(name) {
         return "";
     else
         return results[1];
-} 
+}
+
+var asd;
 $(document).on("click", "#requestCampus", function() {
 	bootbox.confirm($("#modal-body").html(), function(conf) {
 		if (conf) {
-			asd = $("#requestCampusForm");
-			asd.submit();
+			asd = $("#requestCampusForm").parent();
+			console.log(document.getElementById("#campus_name"));
+			console.log($(asd));
+			$(asd).submit();
 		}
 	});
 });
 
-$(asd).submit(function() {
-	alert(2);
+$("#requestCampusForm").submit(function(e) {
+	e.preventDefault();
+	// console.log(asd);
 });
 
 $(document).on("click", "#about_us", function(e) {
