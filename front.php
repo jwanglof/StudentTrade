@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 header('Content-Type: text/html; charset=utf-8');
 error_reporting(-1);
@@ -178,21 +179,28 @@ $dbh = null;
 					<ol class="breadcrumb">
 						<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>"><?php echo $city["city_name"]; ?></a></li>
 						<?php
+						$dbh = new DbSelect();
 						if (isset($_GET["campus"])) {
 							foreach ($campuses[0] as $key => $value) {
 								if (replaceSwedishLetters(replaceSpecialChars(strtolower($value["campus_name"]))) == $_GET["campus"])
-									echo "<li><a href=\"#\">". $value["campus_name"] ."</a></li>";
+									echo "<li><a href=\"front.php?page=latest&city=". $city["short_name"] ."&campus=". $_GET["campus"] ."\">". $value["campus_name"] ."</a></li>";
 							}
 						}
 						if (isset($_GET["type"])) {
-							foreach ($adtypes as $key => $value) {
-								if ($value["name"] == $_GET["type"])
-									echo "<li><a href=\"#\">". $value["description"] ."</a></li>";
-							}
+							$adCategory = $dbh->getAdCategoryFromName($_GET["type"]);
+							echo "<li>". generateAdURL("latest", $city["short_name"],
+									(isset($_GET["type"]) ? $adCategory["description"] : NULL),
+									(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+									$type["name"]) ."</li>";
 						}
 						if (isset($_GET["aid"])) {
-							echo "<li><a href=\"#\">ANNONSTITEL</a></li>";
+							$ad = $dbh->getAdFromID($_GET["aid"]);
+							echo "<li><a href=\"". generateShowAdURL($city["short_name"], $ad["title"],
+								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+								(isset($_GET["type"]) ? $_GET["type"] : NULL),
+								$_GET["aid"]) ."\">". $ad["title"] ."</a></li>";
 						}
+						$dbh = null;
 						?>
 					</ol>
 				</div>
@@ -222,3 +230,4 @@ $dbh = null;
 		<script src="StudentTrade/Scripts/forms.js" type="text/javascript"></script>
 	</body>
 </html>
+<?php ob_flush(); ?>

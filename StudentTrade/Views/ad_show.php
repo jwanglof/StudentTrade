@@ -28,6 +28,11 @@ $info = myWordWrap($ad["info"], 68);
 					<p style="width: 100%; height: 200px; background-color: <?php echo $adCategory["color"]; ?>" class="categoryIcon icon <?php echo $adCategory["name"]; ?>"></p>
 					<p style="width: 100%; height: 30px; font-size: 1.35em; text-align: center;" class="adType <?php echo $adType["short_name"]; ?>"><?php echo $adType["name"]; ?></p>
 					<p>
+						Pris:
+						<br />
+						<span class="adShowInfo"><?php echo $ad["price"]; ?> SEK</span>
+					</p>
+					<p>
 						Kategori:
 						<br />
 						<span class="adShowInfo"><?php echo $adCategory["description"]; ?></span>

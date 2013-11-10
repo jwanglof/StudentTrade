@@ -18,7 +18,6 @@ $dbh = null;
 				<div class="col-lg-5">
 					<input type="text" class="form-control" id="name" name="name" placeholder="Namn">
 				</div>
-				<div class="col-lg-2 inputError" style="color: #f00"></div>
 			</div>
 
 			<div class="form-group">

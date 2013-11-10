@@ -50,6 +50,7 @@ $(document).ready(function() {
 	$("#adInfo").ready(function() {
 		$.get("#adExtraInfo", function() {
 			$("#adInput").hide();
+			
 			$("#adType").click(function() {
 				var extraInfo = [1,2];
 				if ($.inArray(parseInt($("#adType").val()), extraInfo) !== -1) {

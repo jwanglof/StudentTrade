@@ -2,25 +2,26 @@
 header('Content-Type: text/html; charset=utf-8');
 error_reporting(-1);
 ini_set('display_errors', 1);
+
 // Auto load the classes that are called
-function __autoload($class_name) {
-	//class directories
+spl_autoload_register(function ($class) {
 	$base_dir = 'StudentTrade/';
-	$directorys = array(
+	$directories = array(
 		'Db/'
 	);
+
 	//for each directory
-	foreach($directorys as $directory)
+	foreach($directories as $directory)
 	{
 		//see if the file exsists
-		if(file_exists($base_dir.$directory.$class_name . '.php'))
+		if(file_exists($base_dir.$directory.$class . '.php'))
 		{
-			require_once($base_dir.$directory.$class_name . '.php');
-			//only require the class once, so quit after to save effort (if you got more, then name them something else 
+			include($base_dir.$directory.$class . '.php');
+			//only require the class once, so quit after to save effort (if you got more, then name them something else
 			return;
-		}            
+		}
 	}
-}
+});
 require_once("StudentTrade/Includes/Functions.php");
 ?>
 

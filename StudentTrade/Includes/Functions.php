@@ -24,7 +24,6 @@
 	function generateShowAdURL($city, $name_on_url, $campus=NULL, $type=NULL, $adID) {
 		// $name_on_url = ((strlen($name_on_url) > 10) ? substr($name_on_url, 0, 25) ."..." : $name_on_url);
 		// return "<a href=\"front.php?page=ad_show&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) ."" : "") ."". (($type != NULL) ? "&type=$type" : "") ."&aid=". $adID ."\">$name_on_url</a>";
-
 		return "front.php?page=ad_show&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) : "") ."". (($type != NULL) ? "&type=". $type : "") ."&aid=". $adID;
 	}
 

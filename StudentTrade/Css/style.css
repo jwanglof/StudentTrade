@@ -236,6 +236,5 @@ span.adShowInfo {
 	margin-top: 200px;
 }
 
-.error {
-  border: 1px solid #f00;
-}
+.error {border: 1px solid #f00;}
+.errorText {color: #f00;}

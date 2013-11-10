@@ -11,7 +11,7 @@ $(document).ready(function() {
 		}
 	});
 	$("#addNewAd").validate({
-		errorClass: "inputError",
+		// errorClass: "inputError",
 		rules: {
 			name: {required: true},
 			email: {required: true, email: true},
@@ -24,18 +24,24 @@ $(document).ready(function() {
 			price: {required: true},
 			adCategory: {required: true}
 		},
-		messages: {
-			name: "Ange ditt namn"
-		},
+		// messages: {
+		// 	name: "Ange ditt namn",
+		// 	email: "Ange din e-post",
+		// 	city: "Ange din stad",
+		// 	adType: "Välj annonskategori",
+		// 	title: "Ange annonsens rubrik",
+		// 	info: "Ange beskrivning av"
+		// },
 		highlight: function(element, errorClass) {
 			$(element).addClass("error");
+			$(element).closest(".form-group").children("label").addClass("errorText");
 		},
 		unhighlight: function(element, errorClass) {
 			$(element).removeClass("error");
+			$(element).closest(".form-group").children("label").removeClass("errorText");
 		},
 		errorPlacement: function(error, element) {
-			// error.appendTo( ".inputError" );
-			$(element).closest(".inputError").html("error");
+			return true;
 		}
 	});
 
