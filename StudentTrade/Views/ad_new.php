@@ -35,7 +35,7 @@ $dbh = null;
 			</div>
 
 			<div class="form-group">
-				<label for="city" class="col-lg-1 control-label">Stad *</label>
+				<label for="city" class="col-lg-1 control-label"><img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader ajaxCity" /> Stad *</label>
 				<div class="col-lg-5">
 					<select id="city" name="city" class="form-control">
 						<?php
@@ -102,7 +102,7 @@ $dbh = null;
 			</div>
 
 			<div class="form-group">
-				<label for="adCategory" class="col-lg-1 control-label">Kategori *</label>
+				<label for="adCategory" class="col-lg-1 control-label"><img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader ajaxCategory" /> Kategori *</label>
 				<div class="col-lg-5">
 					<select id="adCategory" name="adCategory" class="form-control">
 						<option value="0">Kategori</option>
@@ -120,9 +120,9 @@ $dbh = null;
 				</div>
 			</div>
 
-			<div id="adInput">
+			<div class="form-group" id="adInput">
 			<?php
-			foreach ($adSubCategories as $key => $value) {
+			/*foreach ($adSubCategories as $key => $value) {
 			?>
 				<div class="form-group <?php echo $value['fk_adTypeInfo_adCategory']; ?>">
 					<label for="<?php echo $value['short_name']; ?>" class="col-lg-1 control-label"><?php echo $value['name']; ?></label>
@@ -131,7 +131,7 @@ $dbh = null;
 					</div>
 				</div>
 			<?php
-			}
+			}*/
 			?>
 			</div>
 
