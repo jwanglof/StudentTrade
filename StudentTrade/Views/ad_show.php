@@ -24,6 +24,28 @@ $title = myWordWrap($ad["title"], 33);
 $info = myWordWrap($ad["info"], 68);
 
 ?>
+				<div id="fb-root"></div>
+				<script type="text/javascript">
+					(function(d, s, id) {
+						var js, fjs = d.getElementsByTagName(s)[0];
+						if (d.getElementById(id)) return;
+						js = d.createElement(s); js.id = id;
+						js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+						fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));
+				</script>
+
+				<script type="text/javascript">
+					!function(d,s,id){
+						var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+						if(!d.getElementById(id)){
+							js=d.createElement(s);
+							js.id=id;
+							js.src=p+'://platform.twitter.com/widgets.js';
+							fjs.parentNode.insertBefore(js,fjs);
+						}
+					}(document, 'script', 'twitter-wjs');
+				</script>
 				<div class="col-xs-3">
 					<p style="width: 100%; height: 200px; background-color: <?php echo $adCategory["color"]; ?>" class="categoryIcon icon <?php echo $adCategory["name"]; ?>"></p>
 					<p style="width: 100%; height: 30px; font-size: 1.35em; text-align: center;" class="adType <?php echo $adType["short_name"]; ?>"><?php echo $adType["name"]; ?></p>
@@ -54,6 +76,17 @@ $info = myWordWrap($ad["info"], 68);
 							<?php echo (!empty($adUserInfo["phonenumber"]) ? "<br /> (". $adUserInfo["phonenumber"]. ")" : "");  ?>
 						</span>
 					</p>
+					<p>
+					<?php
+					foreach ($adInfo as $info) {
+						foreach ($adSubCategory as $subCategory) {
+							if ($info["fk_adInfo_adSubCategory"] == $subCategory["id"]) {
+								echo $subCategory["name"] .":<br /><span class=\"adShowInfo\">". $info["sub_category_value"] ."</span><br />";
+							}
+						}
+					}
+					?>
+					</p>
 				</div>
 				<div class="col-xs-9">
 					<h1><?php echo $ad["title"]; ?></h1>
@@ -63,6 +96,16 @@ $info = myWordWrap($ad["info"], 68);
 							<h4>Få större spridning på sociala medier</h4>
 						</div>
 						<div class="col-xs-5"><hr /></div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-6">
+							Välj att dela med dig av din annons på sociala medier. Någon i din vänskapskrets kanske är intresserad.
+						</div>
+						<div class="col-xs-6" style="text-align: right;">
+							<div class="fb-share-button" data-href="<?php echo "http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" data-type="button_count"></div>
+							<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo "http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" data-via="StudentTrade" data-lang="sv" data-hashtags="annonssäljesköpstudenttrade">Tweeta</a>
+						</div>
 					</div>
 
 					<div id="adAnswer">Svara på annonsen</div>
