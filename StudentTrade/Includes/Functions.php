@@ -66,7 +66,7 @@
 		return $input;
 	}
 
-	function limitStringLength($string, $length=26) {
+	function limitStringLength($string, $length=23) {
 		return ((mb_strlen($string) > $length) ? substr($string, 0, $length) ."..." : $string);
 	}
 
