@@ -35,7 +35,7 @@ a:visited {color: #565656;}
 	/*border: 1px solid #000;*/
 	/*text-align: right;*/
 	margin-top: 20px;
-	z-index: 10000;
+	z-index: 100;
 }
 #campusChooser a {color: #464646;}
 /*#campusChooser div {margin-top: 20px;}*/
@@ -71,6 +71,7 @@ a:visited {color: #565656;}
 	font-size: 1.2em;
 }
 .category a {color: #fff;}
+.category.search {background-color: #000;}
 /*#categories .categoryViewAll {background-color: #666666;font-size: 20px;}*/
 
 /*.addNew {
@@ -189,8 +190,8 @@ a:visited {color: #565656;}
 }
 .adType.sale {background-color: #ff4848; height: 20px;}
 .adType.buy {background-color: #7cc576;}
-.adType.give_away {background-color: #7cc576;}
-.adType.exchange {background-color: #7cc576;}
+.adType.give_away {background-color: #7cc576; padding: 2px 12px;}
+.adType.exchange {background-color: #7cc576; padding: 2px 22px;}
 
 .adHover {
 	background-color: #464646;
@@ -238,3 +239,5 @@ span.adShowInfo {
 
 .error {border: 1px solid #f00;}
 .errorText {color: #f00;}
+
+.ajaxLoader {width: 15px; height: 15px; margin-right: 25px; display: none;}

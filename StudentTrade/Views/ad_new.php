@@ -76,29 +76,6 @@ $dbh = null;
 						</select>
 					</div>
 				</div>
-
-				<div class="form-group">
-					<label for="title" class="col-lg-1 control-label">Rubrik *</label>
-					<div class="col-lg-5">
-						<input type="text" class="form-control" id="title" name="title" placeholder="Rubrik">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="info" class="col-lg-1 control-label">Beskrivning *</label>
-					<div class="col-lg-5">
-						<textarea id="info" name="info" class="form-control" style="width: 100%; height: 200px;"></textarea>
-					</div>
-				</div>
-			</div>
-
-			<div id="adExtraInfo">
-				<div class="form-group">
-					<label for="price" class="col-lg-1 control-label">Pris (SEK) *</label>
-					<div class="col-lg-5">
-						<input type="number" class="form-control" id="price" name="price" value="0" placeholder="Pris">
-					</div>
-				</div>
 			</div>
 
 			<div class="form-group">
@@ -133,6 +110,29 @@ $dbh = null;
 			<?php
 			}*/
 			?>
+			</div>
+
+			<div id="adExtraInfo">
+				<div class="form-group">
+					<label for="price" class="col-lg-1 control-label">Pris (SEK) *</label>
+					<div class="col-lg-5">
+						<input type="number" class="form-control" id="price" name="price" value="0" placeholder="Pris">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="title" class="col-lg-1 control-label">Rubrik *</label>
+				<div class="col-lg-5">
+					<input type="text" class="form-control" id="title" name="title" placeholder="Rubrik">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="info" class="col-lg-1 control-label">Beskrivning *</label>
+				<div class="col-lg-5">
+					<textarea id="info" name="info" class="form-control" style="width: 100%; height: 200px;"></textarea>
+				</div>
 			</div>
 
 			<button type="submit" class="btn btn-primary btn-sm">Lägg upp annons</button>

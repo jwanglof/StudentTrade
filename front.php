@@ -207,6 +207,8 @@ $dbh = null;
 			</div>
 
 			<div class="content">
+
+								
 				<div class="row">
 					<div class="col-xs-8">
 						<?php include_once('StudentTrade/Views/switch.php'); ?>

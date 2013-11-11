@@ -17,7 +17,13 @@ if (isset($_POST["get"]) && $_SESSION["sessProtector"] == $_COOKIE["PHPSESSID"])
 			}
 		}
 		echo json_encode($campuses);
-	} 
+	} else if ($_POST["get"] == "adTypeInfo") {
+		$adType = $dbh->getAdSubCategoryFromAdCategoryID($_POST["adType"]);
+		echo json_encode($adType);
+ 	} else if ($_POST["get"] == "search") {
+ 		$searchResult = $dbh->searchAdsWithName($_POST["search"]);
+ 		echo json_encode($searchResult);
+ 	}
 
 	$dbh = null;
 } else {

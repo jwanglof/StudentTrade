@@ -1,30 +1,11 @@
 				<?php
-				// $cityID and $city is from ad.php
-				
-				// Make this more pretty some way?
 				$dbh = new DbSelect();
 				
-				if (isset($_GET["type"], $_GET["campus"])) {
-					$adCategory = $dbh->getAdCategoryFromName($_GET["type"]);
-					$campus = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
-					$campusID = $campus["id"];
-
-					$ads = $dbh->getAdsWithAdCategoryFromCampus($adCategory["id"], $campusID, $cityID);
-				} elseif (isset($_GET["type"]) && !isset($_GET["campus"])) {
-					$adCategory = $dbh->getAdCategoryFromName($_GET["type"]);
-
-					$ads = $dbh->getAdsWithAdCategoryIDFromCity($adCategory["id"], $cityID);
-				} elseif (isset($_GET["campus"]) && !isset($_GET["type"])) {
-					$campus = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
-					$campusID = $campus["id"];
-
-					$ads = $dbh->getAdsFromCampus($campusID, $cityID);
-				} else {
-					$ads = $dbh->getAds($cityID);
-				}
+				if (isset($_GET["page"]) && $_GET["page"] == "search") {
+					$ads = $dbh->searchAdsWithName("%". $_POST["searchString"] ."%");
 				?>
-				<div class="col-xs-12 categoryHeading" <?php echo (isset($_GET["type"]) ? "style=\"background-color: ". $adCategory["color"] ."\"" : ""); ?>>
-					<?php echo (isset($_GET["type"]) ? $adCategory["description"] : "Senaste annonserna"); ?>
+				<div class="col-xs-12 categoryHeading">
+					Resultat av <i><?php echo $_POST["searchString"]; ?></i>
 				</div>
 				<div class="col-xs-12 categoryHeading">
 					<div class="row">
@@ -66,7 +47,10 @@
 						</div>
 					<?php
 					}
-					$dbh = null;
 					?>
 					</div>
 				</div>
+				<?php
+				$dbh = null;
+				}
+				?>

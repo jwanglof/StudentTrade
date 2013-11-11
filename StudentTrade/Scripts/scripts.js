@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	if (gup("campus") != "") {		
 		var campus = gup("campus");
-		$(".dropdown-toggle").html($("#"+ campus).text() +"<span class=\"caret\"></span>");
+		$("#campusChooser .dropdown-toggle").html($("#"+ campus).text() +"<span class=\"caret\"></span>");
 	} else {
-		$(".dropdown-toggle").html("Välj campus<span class=\"caret\"></span>");
+		$("#campusChooser .dropdown-toggle").html("Välj campus<span class=\"caret\"></span>");
 	}
 	// $(".campusChosen").click(function() {
 	// 	// Need .text() since an x-character is added when the link is clicked on
@@ -150,8 +150,8 @@ function sendFormWithAjax(form) {
 	});
 
 	request.done(function(response, textStatus, jqXHR) {
-		console.log(jqXHR);
-		console.log(response);
+		// console.log(jqXHR);
+		// console.log(response);
 		if (response == 1)
 			bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
 		else

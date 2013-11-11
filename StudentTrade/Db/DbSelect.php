@@ -125,9 +125,11 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	/*
-	 * Ad-related
-	 */
+	/**************************************
+	 *************				***********
+	 *************  Ad-related	***********
+	 *************				***********
+	 **************************************/
 	public function getAdCategories() {
 		try {
 			$stmt = $this->dbh->prepare("SELECT * FROM adCategory");
@@ -312,6 +314,23 @@ class DbSelect extends DbConfig {
 	public function getAdSubCategories() {
 		try {
 			$stmt = $this->dbh->prepare("SELECT * FROM adSubCategory");
+			$stmt->execute();
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
+
+	/**************************************
+	 *************				***********
+	 *************  Search		***********
+	 *************				***********
+	 **************************************/
+	public function searchAdsWithName($name) {
+		try {
+			$stmt = $this->dbh->prepare("SELECT id,title,date_created,price,fk_ad_adCategory,fk_ad_adType,fk_ad_campus FROM ad WHERE title LIKE :name");
+			$stmt->bindValue(":name", $name, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);

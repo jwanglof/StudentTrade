@@ -27,6 +27,10 @@
 		return "front.php?page=ad_show&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) : "") ."". (($type != NULL) ? "&type=". $type : "") ."&aid=". $adID;
 	}
 
+	function generateSearchURL($city, $campus=NULL, $type=NULL) {
+		return "front.php?page=search&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) : "") ."". (($type != NULL) ? "&type=". $type : "");
+	}
+
 	function generateRandomString($length = 10) {
 		// $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$characters = '0123456789';
