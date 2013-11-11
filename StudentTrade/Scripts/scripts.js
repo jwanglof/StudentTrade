@@ -1,4 +1,19 @@
 $(document).ready(function() {
+	// $.ajaxSetup({
+	// 	beforeSend:function() {
+	// 	// show gif here, eg:
+	// 	$(".ajaxLoader").fadeIn();
+	// },
+	// complete:function() {
+	// 	// hide gif here, eg:
+	// 	$(".ajaxLoader").fadeOut();
+	// },
+	// success:function() {
+	// 	// hide gif here, eg:
+	// 	$(".ajaxLoader").fadeOut();
+	// }
+	// });
+
 	if (gup("campus") != "") {		
 		var campus = gup("campus");
 		$(".dropdown-toggle").html($("#"+ campus).text() +"<span class=\"caret\"></span>");
@@ -30,13 +45,35 @@ $(document).ready(function() {
 		}
 	);
 
+	var currentCity;
 	$("#city").ready(function() {
-		// Select the correct city if a city is chosen
-		if ($('#city').children(':selected').val() > 0)
+		// Select the correct city if a city is chosen in $_GET
+		if ($('#city').children(':selected').val() > 0) {
+			currentCity = $('#city').children(':selected').val(); 
 			showCampuses($('#city').children(':selected').val());
+		}
 	});
 	$("#city").click(function() {
-		showCampuses($(this).val());
+
+		if (currentCity != $(this).val()) {
+			currentCity = $(this).val();
+			showCampuses($(this).val());
+		}
+	});
+
+	var currentCategory;
+	$("#adCategory").ready(function() {
+		// Select the correct category if a category is chosen in $_GET
+		if ($('#adCategory').children(':selected').val() > 0) {
+			currentCategory = $('#adCategory').children(':selected').val();
+			showAdCategoryInputs($('#adCategory').children(':selected').val());
+		}
+	});
+	$("#adCategory").click(function() {
+		if (currentCategory != $(this).val()) {
+			currentCategory = $(this).val();
+			showAdCategoryInputs($(this).val());
+		}
 	});
 
 	$(".latestAd").hover(
@@ -48,32 +85,50 @@ $(document).ready(function() {
 	);
 
 	$("#adInfo").ready(function() {
-		$.get("#adExtraInfo", function() {
-			$("#adInput").hide();
-			
-			$("#adType").click(function() {
-				var extraInfo = [1,2];
-				if ($.inArray(parseInt($("#adType").val()), extraInfo) !== -1) {
-					$("#adExtraInfo").show();
-				} else {
-					$("#adExtraInfo").hide();
-				}
-			});
+		// $.get("#adExtraInfo", function() {
+		// $("#adInput").hide();
+		// $("#adInput").each(function() {
+		// 	$(this).hide();
+		// });
 
-			$("#adCategory").click(function() {
-				var categoryID = $("#adCategory").val();
-				// Check only the first div below #adInput
-				$("#adInput > div").each(function() {
-					if ($(this).hasClass(categoryID)) {
-						$(this).show();
-					} else {
-						$(this).hide();
-					}
-				});
-
-				$("#adInput").show();
-			});
+		$("#adType").click(function() {
+			var extraInfo = [1,2];
+			if ($.inArray(parseInt($("#adType").val()), extraInfo) !== -1) {
+				$("#adExtraInfo").show();
+			} else {
+				$("#adExtraInfo").hide();
+			}
 		});
+		// });
+
+		// $("#adCategory").click(function() {
+		// 	showSubCategories($("#adCategory").val());
+		// 	// var categoryID = $("#adCategory").val();
+		// 	// $("#adInput").empty();
+
+		// 	// // Check only the first div below #adInput
+		// 	// // $("#adInput > div").each(function() {
+		// 	// // $("#adInput").children().each(function() {
+		// 	// $("#adInputHidden").find("."+ categoryID).each(function() {
+		// 	// 	// alert($(this));
+		// 	// 	// $("#adInput").append($(this));
+		// 	// 	fucku($(this));
+		// 	// 	$("#adInput").height($("#adInput").height + 1);
+		// 	// 	$("#adInput").height($("#adInput").height - 1);
+		// 	// });
+		// 	// // console.log($("#adInput").find("."+ categoryID));
+		// 	// // $("#adInput").find(".form-group").hasClass(categoryID).each(function() {
+		// 	// 	// alert($(this));
+		// 	// 	// $(this).show();
+		// 	// 	// if ($(this).hasClass(categoryID)) {
+		// 	// 	// 	$(this).show();
+		// 	// 	// } else {
+		// 	// 	// 	$(this).hide();
+		// 	// 	// }
+		// 	// // });
+
+		// 	// // $("#adInput").show();
+		// });
 	});
 
 	$("#requestCity").click(function() {
@@ -83,6 +138,19 @@ $(document).ready(function() {
 		$("#requestCampusModal").modal('show');
 	});
 });
+
+// $(document).on("click", "#adCategory", function(e) {
+// 	showSubCategories($("#adCategory").val());
+// });
+
+// function showSubCategories(categoryID) {
+// 	// $("#adInput").empty();
+// 	console.log($("#adInput").find("."+ categoryID));
+// 	$("#adInput").find("."+ categoryID).each(function() {
+// 		$(this).show();
+// 	});
+// 	// $("#adInput").show();
+// }
 // $("#requestCampus").on("click", function() {
 // 	bootbox.confirm($("#modal-body").html(), function(conf) {
 // 		alert(conf);
@@ -167,6 +235,33 @@ function showCampuses(cityID) {
 		console.log(errorThrown);
 		// bootbox.alert("Something went wrong!");
 	});
+}
+
+function showAdCategoryInputs(adType) {
+        // Clear the div
+        $("#adInput").empty();
+
+        $(".ajaxLoader").show();
+
+        request = $.ajax({
+                type: "post",
+                url: getAjaxURL("get"),
+                data: {get: "adTypeInfo", adType: adType}
+        });
+
+        request.done(function(response, textStatus, jqXHR) {
+        		$(".ajaxLoader").hide();
+                // console.log(response);
+                var objs = JSON.parse(response);
+                for (var value in objs) {
+                        $("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
+                        $("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\"text\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
+                        $("#adInput").append("<br /><br />");
+                }
+        });
+        request.fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+        });
 }
 
 function gup(name) {
