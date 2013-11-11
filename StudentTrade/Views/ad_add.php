@@ -59,9 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$dbh = null;
 		$dbInsert = null;
 	} else {
-		foreach ($checkInput as $value) {
-			echo "Kunde ej lägga till din annons. Var vänlig försök igen!";
-		}
+		// foreach ($checkInput as $value) {
+		echo "Kunde ej lägga till din annons. Var vänlig försök igen!";
+		// }
 		return false;
 	}
 
