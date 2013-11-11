@@ -1,19 +1,4 @@
 $(document).ready(function() {
-	// $.ajaxSetup({
-	// 	beforeSend:function() {
-	// 	// show gif here, eg:
-	// 	$(".ajaxLoader").fadeIn();
-	// },
-	// complete:function() {
-	// 	// hide gif here, eg:
-	// 	$(".ajaxLoader").fadeOut();
-	// },
-	// success:function() {
-	// 	// hide gif here, eg:
-	// 	$(".ajaxLoader").fadeOut();
-	// }
-	// });
-
 	if (gup("campus") != "") {		
 		var campus = gup("campus");
 		$(".dropdown-toggle").html($("#"+ campus).text() +"<span class=\"caret\"></span>");
@@ -151,35 +136,10 @@ $(document).ready(function() {
 // 	});
 // 	// $("#adInput").show();
 // }
-// $("#requestCampus").on("click", function() {
-// 	bootbox.confirm($("#modal-body").html(), function(conf) {
-// 		alert(conf);
-// 	});
-// });
-
-// $("#requestCampus").click(function() {
-// 	bootbox.dialog({
-// 		title: "<h1>Förfråga att lägga till campus</h1>",
-// 		message: $("#requestCampusForm").html(),
-// 		onEscape: function() {},
-// 		backdrop: true,
-// 		closeButton: true,
-// 		animate: true
-// 	});
-// });
 
 function closeModal(modalID) {
 	$(modalID).modal("hide");
 }
-
-// $("#requestCampusForm").submit(function(e) {
-// 	e.preventDefault();
-// 	sendFormWithAjax(this);
-// });
-// $("#requestCityForm").submit(function(e) {
-// 	e.preventDefault();
-// 	sendFormWithAjax(this);
-// });
 
 function sendFormWithAjax(form) {
 	var postData = $(form).serializeArray();
@@ -216,6 +176,8 @@ function getAjaxURL(file) {
 function showCampuses(cityID) {
 	$("#campus").empty();
 
+	$(".ajaxCity").show();
+
 	request = $.ajax({
 		type: "post",
 		url: getAjaxURL("get"),
@@ -224,6 +186,7 @@ function showCampuses(cityID) {
 
 	request.done(function(response, textStatus, jqXHR) {
 		// console.log(response);
+		$(".ajaxCity").hide();
 		var objs = JSON.parse(response);
 		$("#campus").append("<option value=\"999\">Alla campus</option>");
 		for (var key in objs) {
@@ -241,7 +204,7 @@ function showAdCategoryInputs(adType) {
         // Clear the div
         $("#adInput").empty();
 
-        $(".ajaxLoader").show();
+        $(".ajaxCategory").show();
 
         request = $.ajax({
                 type: "post",
@@ -250,7 +213,7 @@ function showAdCategoryInputs(adType) {
         });
 
         request.done(function(response, textStatus, jqXHR) {
-        		$(".ajaxLoader").hide();
+        		$(".ajaxCategory").hide();
                 // console.log(response);
                 var objs = JSON.parse(response);
                 for (var value in objs) {
