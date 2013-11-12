@@ -110,7 +110,7 @@ a:visited {color: #565656;}
 }
 
 #latestAd {
-	margin-bottom: 5px;
+	margin-bottom: 25px;
 	min-height: 400px;
 	background-color: #f4f4f4;
 	/*border: 1px solid #c0c0c0;*/
@@ -190,8 +190,8 @@ a:visited {color: #565656;}
 }
 .adType.sale {background-color: #ff4848; height: 20px;}
 .adType.buy {background-color: #7cc576;}
-.adType.give_away {background-color: #7cc576; padding: 2px 12px;}
-.adType.exchange {background-color: #7cc576; padding: 2px 22px;}
+.adType.give_away {background-color: #8dbbc7; padding: 2px 12px;}
+.adType.exchange {background-color: #8dbbc7; padding: 2px 22px;}
 
 .adHover {
 	background-color: #464646;
