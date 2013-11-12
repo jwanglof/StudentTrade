@@ -26,7 +26,7 @@
 				<div class="col-xs-12 categoryHeading" <?php echo (isset($_GET["type"]) ? "style=\"background-color: ". $adCategory["color"] ."\"" : ""); ?>>
 					<?php echo (isset($_GET["type"]) ? $adCategory["description"] : "Senaste annonserna"); ?>
 				</div>
-				<div class="col-xs-12 categoryHeading">
+				<div class="col-xs-12 categoryHeading" style="padding-top: 11px">
 					<div class="row">
 						<form action="<?php echo generateSearchURL($city["short_name"],
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
