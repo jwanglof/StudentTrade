@@ -28,7 +28,7 @@ require_once("StudentTrade/Includes/Functions.php");
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<title>StudentTrade.se</title>
+		<title>StudentTrade.se - En Köp- och Sälj sajt för studenter</title>
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/non-responsive.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/avgrund.css" />
@@ -95,9 +95,8 @@ require_once("StudentTrade/Includes/Functions.php");
 					</div>
 					<div class='col-xs-4' id="map">
 						<div id="mapHelp">
-						
 							Saknar du din stad på kartan? <a data-toggle="modal" href="#requestCityModal">Klicka då här!</a>
-							<div>Välj din stad här!</div>
+							<div>Välj din studentstad här!</div>
 						</div>
 						<img src="StudentTrade/Img/map_w_talk_bubble.png" />
 						<?php
