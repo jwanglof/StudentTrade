@@ -91,7 +91,15 @@ $info = myWordWrap($ad["info"], 68);
 				<div class="col-xs-9">
 					<h1><?php echo $ad["title"]; ?></h1>
 					<?php echo $ad["info"]; ?>
+
+					<div id="adAnswer" style="margin-top: 40px;">Svara på annonsen</div>
+
 					<div class="row">
+						<div class="col-xs-6" id="adReport">Anmäl denna annons</div>
+						<div class="col-xs-6" id="adDelete">Ta bort annonsen</div>
+					</div>
+					
+					<div class="row" style="margin-top: 30px;">
 						<div class="col-xs-7">
 							<h4>Få större spridning på sociala medier</h4>
 						</div>
@@ -106,13 +114,6 @@ $info = myWordWrap($ad["info"], 68);
 							<div class="fb-share-button" data-href="<?php echo "http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" data-type="button_count"></div>
 							<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo "http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" data-via="StudentTrade" data-lang="sv" data-hashtags="annonssäljesköpstudenttrade">Tweeta</a>
 						</div>
-					</div>
-
-					<div id="adAnswer">Svara på annonsen</div>
-
-					<div class="row">
-						<div class="col-xs-6" id="adReport">Anmäl denna annons</div>
-						<div class="col-xs-6" id="adDelete">Ta bort annonsen</div>
 					</div>
 				</div>
 
