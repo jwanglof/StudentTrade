@@ -29,27 +29,43 @@
 					$ads = $dbh->getAds($cityID);
 				}
 
-				if (!isset($_SESSION["totalAds"])) {
-					$_SESSION["totalAds"] = $dbh->getAmountOfAds();
-				}
+				$pagination = new Pagination();
+
+				$limit = 2;
+				$noPages = $pagination->getNoPages($_SESSION["totalAds"], 2);
+
+				// if (!isset($_SESSION["totalAds"])) {
+				$_SESSION["totalAds"] = $dbh->getAmountOfAds();
+				$_SESSION["totalNoPages"] = $noPages;
+				// }
 
 				/*** check for a page number in GET ***/
-				if( filter_has_var(INPUT_GET, "page") == false) {
+				if(filter_has_var(INPUT_GET, "pageNo") == false) {
 					/*** no page in GET ***/
-					$page = 1;
+					$currentPage = 1;
 				}
-				elseif(filter_var($_GET['page'], FILTER_VALIDATE_INT, array("min_range"=>1, "max_range"=>$_SESSION['totalAds'])) == false) {
+				elseif(filter_var($_GET["pageNo"], FILTER_VALIDATE_INT, array("options" => array("min_range"=>1, "max_range"=>$_SESSION["totalNoPages"]))) == false) {
 					/*** if the page number is not an int or not within range, assign it to page 1 ***/
-					$page = 1;
+					$currentPage = 1;
 				}
 				else {
 					/*** if all is well, assign it ***/
-					$page = (int)$_GET['page'];
+					$currentPage = (int)$_GET["pageNo"];
 				}
 
-				if ($_SESSION["totalAds"] != 0) {
+				if ($_SESSION["totalNoPages"] != 0) {
 					// http://www.phpro.org/tutorials/Pagination-with-PHP-and-PDO.html
+
+					foreach ($pagination->getPager($_SESSION["totalAds"], $limit, $currentPage) as $value) {
+						print_r($value);
+						echo "<br /><br />";
+					}
+
+					echo "<br />";
+
+					echo $currentPage;
 				}
+
 				?>
 				<div class="col-xs-12 categoryHeading" <?php echo (isset($_GET["type"]) ? "style=\"background-color: ". $adCategory["color"] ."\"" : ""); ?>>
 					<?php echo (isset($_GET["type"]) ? $adCategory["description"] : "Senaste annonserna"); ?>
