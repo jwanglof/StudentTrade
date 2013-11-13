@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$encryptedPassword = $cipher->encrypt($password);
 
 		$adID = $dbInsert->insertIntoAd($_POST["title"], nl2br($_POST["info"]), $encryptedPassword, $_POST["price"], 
-			date("Y-m-d H:i:s"), date("Y-m-d H:i:s", strtotime("+1 month")), $_POST["adCategory"], 
+			date("Y-m-d H:i"), date("Y-m-d", strtotime("+1 month")), $_POST["adCategory"], 
 			$_POST["campus"], $_POST["city"], $adUserInfoID, $_POST["adType"]);
 		// echo 2 . $adID;
 		// echo $password ." __--- ". $encryptedPassword;
