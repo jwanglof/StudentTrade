@@ -1,6 +1,12 @@
 				<?php
 				// $cityID and $city is from ad.php
 				
+				// Works, but I think I need to specify in MySQL Workbench that foreign keys are gonna be deleted when the table is
+				// Remove date_expire in the database and from ad_add
+				// $dbd = new DbDelete();
+				// echo $dbd->deleteAdWithinDate(30);
+				// $dbd = null;
+
 				// Make this more pretty some way?
 				$dbh = new DbSelect();
 				
