@@ -22,6 +22,28 @@
 				} else {
 					$ads = $dbh->getAds($cityID);
 				}
+
+				if (!isset($_SESSION["totalAds"])) {
+					$_SESSION["totalAds"] = $dbh->getAmountOfAds();
+				}
+
+				/*** check for a page number in GET ***/
+				if( filter_has_var(INPUT_GET, "page") == false) {
+					/*** no page in GET ***/
+					$page = 1;
+				}
+				elseif(filter_var($_GET['page'], FILTER_VALIDATE_INT, array("min_range"=>1, "max_range"=>$_SESSION['totalAds'])) == false) {
+					/*** if the page number is not an int or not within range, assign it to page 1 ***/
+					$page = 1;
+				}
+				else {
+					/*** if all is well, assign it ***/
+					$page = (int)$_GET['page'];
+				}
+
+				if ($_SESSION["totalAds"] != 0) {
+					// http://www.phpro.org/tutorials/Pagination-with-PHP-and-PDO.html
+				}
 				?>
 				<div class="col-xs-12 categoryHeading" <?php echo (isset($_GET["type"]) ? "style=\"background-color: ". $adCategory["color"] ."\"" : ""); ?>>
 					<?php echo (isset($_GET["type"]) ? $adCategory["description"] : "Senaste annonserna"); ?>

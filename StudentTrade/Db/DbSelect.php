@@ -322,6 +322,17 @@ class DbSelect extends DbConfig {
 		}
 	}
 
+	public function getAmountOfAds() {
+		try {
+			$stmt = $this->dbh->prepare("SELECT count(id) FROM ad");
+			$stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_COLUMN);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
+
 	/**************************************
 	 *************				***********
 	 *************  Search		***********
