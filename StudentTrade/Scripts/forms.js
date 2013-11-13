@@ -71,8 +71,8 @@ $(document).ready(function() {
 	});
 
 	$("#adDeleteForm").on("submit", function(event) {
-		console.log($(this).serialize());
 		var $form = $(this);
+
 		$("#modal-body-error").empty();
 
 		$(".ajaxLoaderDelete").show();
@@ -83,8 +83,8 @@ $(document).ready(function() {
 			data: $form.serialize(),
 
 			success: function(data, status) {
-				console.log(data);
 				$(".ajaxLoaderDelete").hide();
+
 				if (data == 1) {
 					$(".modal-body").html("Annonsen är nu borttagen!");
 					$(".modal-footer").empty();
@@ -97,5 +97,24 @@ $(document).ready(function() {
 		});
 
 		event.preventDefault();
+	});
+
+	$("#forgotCode").on("click", function() {
+		$.ajax({
+			type: "post",
+			url: getAjaxURL("get"),
+			data: {get: "forgotCode", aid: $("#aid").val()},
+
+			success: function(data, status) {
+				console.log(data);
+				if (data == 1) {
+					$(".modal-body").html("Koden är nu skickad!");
+					$(".modal-footer").empty();
+					$(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
+				} else {
+					$("#modal-body-error").html("Något gick fel. Tryck på knappen igen.").fadeIn("slow").delay(5000).fadeOut("slow");
+				}
+			}
+		});
 	});
 });
