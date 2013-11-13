@@ -25,7 +25,9 @@ class Email {
 		$subject = "Din borttagningskod till din annons på StudentTrade.se";
 
 		$message = "Tack för att du använder StudentTrade.se!
-		<p>Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a></p>
+		<p>
+			Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a>
+		</p>
 		<p>
 			Om din vara är såld, eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />
 			eller tryck <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_delete&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.
@@ -69,6 +71,27 @@ class Email {
 					<b>". $campusName ."</b> <br />
 					Och i följande stad: <br />
 					<b>". $cityName ."</b>";
+
+		$headers = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+		$headers .= 'From: Flossie Giles <noreply@studenttrade.se>' . "\r\n";
+		$headers .= 'X-Mailer: PHP/'. phpversion();
+
+		return mail($this->to, $subject, $message, $headers);
+	}
+
+	public function resendCode($adID, $password) {
+		$subject = "Din borttagningskod till din annons på StudentTrade.se";
+
+		$message = "Hejsan!
+		<p>
+			Din borttagningskod är: ". $password ." <br />
+			Du kan även trycka <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_delete&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.
+		</p>
+		<p>
+			Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a>
+		</p>
+		//StudentTrade.se";
 
 		$headers = 'MIME-Version: 1.0' . "\r\n";
 		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
