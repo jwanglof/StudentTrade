@@ -180,6 +180,7 @@ $info = myWordWrap($ad["info"], 68);
 								<form class="form-horizontal well" data-target="#adDeleteModal" method="post" id="adDeleteForm">
 									<input type="hidden" id="update" name="update" value="adActive" />
 									<input type="hidden" id="aid" name="aid" value="<?php echo $_GET["aid"]; ?>" />
+									<input type="hidden" id="code" name="code" value="<?php echo $ad["password"]; ?>" />
 									<fieldset>
 										<div class="form-group">
 											<label for="removeCode" class="col-lg-1 control-label">Borttagningskod *</label>
@@ -195,7 +196,7 @@ $info = myWordWrap($ad["info"], 68);
 
 							<div class="modal-footer">
 								<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adDeleteForm" class="btn btn-primary">Skicka förfrågan</button>
-								<button type="button" class="btn btn-primary" id="forgotCode">Glömt koden? Tryck här!</button>
+								<button type="submit" class="btn btn-primary" id="forgotCode">Glömt koden? Tryck här!</button>
 							</div>
 						</div>
 					</div>

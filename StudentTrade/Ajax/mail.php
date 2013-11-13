@@ -1,9 +1,12 @@
 <?php
-// error_reporting(-1);
-// ini_set('display_errors', 1);
+error_reporting(-1);
+ini_set('display_errors', 1);
 if (isset($_POST["mail"])) {
 	require_once("../Includes/Functions.php");
 	require_once("../Class/Email.php");
+	require_once("../Class/Cipher.php");
+	require_once("../Db/DbConfig.php");
+	require_once("../Db/DbSelect.php");
 
 	if ($_POST["mail"] == "requestCampus") {
 		$checkInput = checkRequiredInput($_POST, array("campus_name", "city_name"));
@@ -43,6 +46,22 @@ if (isset($_POST["mail"])) {
 		} else {
 			echo "Du har inte fyllt i alla obligatoriska fält";
 		}
-	}
+	} else if ($_POST["mail"] == "forgotCode") {
+		$dbh = new DbSelect();
+ 		$ad = $dbh->getAdFromID($_POST["aid"]);
+ 		$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["fk_ad_adUserInfo"]);
+
+ 		$cipher = new Cipher("JFKs3ef03J");
+		$password = $cipher->decrypt($ad["password"]);
+		$cipher = null;
+
+		$sendEmail = new Email($adUserInfo["email"]);
+		if ($sendEmail->resendCode($_POST["aid"], $password)) 
+			echo true;
+		else
+			echo false;
+		$sendEmail = null;
+		$dbh = null;
+ 	}
 }
 ?>
