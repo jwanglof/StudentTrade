@@ -15,20 +15,21 @@ if (isset($_POST["update"]) && $_SESSION["sessProtector"] == $_COOKIE["PHPSESSID
 		$cipher = new Cipher("JFKs3ef03J");
 		if ($ad["password"] == $cipher->encrypt($_POST["removeCode"])) {
 			$dbUpdate = new DbUpdate();
-			// echo $dbUpdate->updateAdActiveWithAdID($_POST["aid"]);
+
 			if ($dbUpdate->updateAdActiveWithAdID($_POST["aid"]) > 0) 
-				echo True;
+				echo true;
 			else
-				echo False;
+				echo false;
+			
 			$dbUpdate = null;
 		}
 		else
-			echo False;
+			echo false;
 		$cipher = null;
 	}
 	else
-		echo False;
+		echo false;
 } else {
-	echo False;
+	echo false;
 }
 ?>
