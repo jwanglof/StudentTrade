@@ -45,11 +45,11 @@ $(document).ready(function() {
 		}
 	});
 
-	$('form[data-async]').on('submit', function(event) {
+	$("form[data-async]").on("submit", function(event) {
 		var $form = $(this);
 
 		$.ajax({
-			type: $form.attr('method'),
+			type: $form.attr("method"),
 			url: getAjaxURL("mail"),
 			data: $form.serialize(),
 
@@ -64,6 +64,35 @@ $(document).ready(function() {
 				}
 				else
 					$(".modal-body").html("Något gick fel när servern försökte skicka ditt e-mail. Vi ber om ursäkt för detta, försök gärna igen.");
+			}
+		});
+
+		event.preventDefault();
+	});
+
+	$("#adDeleteForm").on("submit", function(event) {
+		console.log($(this).serialize());
+		var $form = $(this);
+		$("#modal-body-error").empty();
+
+		$(".ajaxLoaderDelete").show();
+
+		$.ajax({
+			type: $form.attr("method"),
+			url: getAjaxURL("update"),
+			data: $form.serialize(),
+
+			success: function(data, status) {
+				console.log(data);
+				$(".ajaxLoaderDelete").hide();
+				if (data == 1) {
+					$(".modal-body").html("Annonsen är nu borttagen!");
+					$(".modal-footer").empty();
+					$(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
+				}
+				else {
+					$("#modal-body-error").html("Fel kod angiven. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
+				}
 			}
 		});
 
