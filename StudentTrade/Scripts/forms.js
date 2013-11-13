@@ -54,7 +54,6 @@ $(document).ready(function() {
 			data: $form.serialize(),
 
 			success: function(data, status) {
-				console.log(data);
 				if (data == 1) {
 					// closeModal("#requestCampusModal");
 					// $(".modal-body").empty();
@@ -102,11 +101,10 @@ $(document).ready(function() {
 	$("#forgotCode").on("click", function() {
 		$.ajax({
 			type: "post",
-			url: getAjaxURL("get"),
-			data: {get: "forgotCode", aid: $("#aid").val()},
+			url: getAjaxURL("mail"),
+			data: {mail: "forgotCode", aid: $("#aid").val()},
 
 			success: function(data, status) {
-				console.log(data);
 				if (data == 1) {
 					$(".modal-body").html("Koden är nu skickad!");
 					$(".modal-footer").empty();
