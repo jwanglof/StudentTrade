@@ -8,26 +8,34 @@ class DbDelete extends DbConfig {
 		$this->className = "DbDelete";
 
 		parent::__construct();
-		$this->dbh = new PDO(parent::getDsn(), parent::getUsername(), parent::getPassword(), parent::getOptions());
+
+		try {
+			$this->dbh = new PDO(parent::getDsn(), parent::getUsername(), parent::getPassword(), parent::getOptions());
+			$this->dbh->beginTransaction();
+		} catch (PDOException $e) {
+			$this->errors = $e->getMessage();
+		}
 	}
 
-	public function __destruct() {}
+	public function __destruct() {
+		$this->dbh->commit();
+	}
 
-	public function deleteFromAdWithAdID($adID) {
+	public function deleteAdWithinDate($days) {
+		echo $days;
 		try {
-			$this->dbh->beginTransaction();
-
-			$stmt = $this->dbh->prepare("DELETE FROM ad WHERE id=:adID");
-			$stmt->bindValue(":adID", $adID, PDO::PARAM_INT);
-			$stmt->execute()
+			$stmt = $this->dbh->prepare("DELETE FROM ad WHERE date_created < DATE_SUB(NOW(), INTERVAL :days DAY)");
+			$stmt->bindValue(":days", $days, PDO::PARAM_STR);
+			
+			$stmt->execute();
 
 			$affectedRows = $stmt->rowCount();
 
-			$this->dbh->commit();
-
 			return $affectedRows;
 		} catch (PDOException $e) {
-			return $e;
+			$this->dbh->rollback();
+			$this->errors = $e->getMessage();
 		}
 	}
+}
 ?>
