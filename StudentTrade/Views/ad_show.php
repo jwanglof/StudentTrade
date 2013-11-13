@@ -92,11 +92,13 @@ $info = myWordWrap($ad["info"], 68);
 					<h1><?php echo $ad["title"]; ?></h1>
 					<?php echo $ad["info"]; ?>
 
-					<div id="adAnswer" style="margin-top: 40px;">Svara på annonsen</div>
+					<hr />
+
+					<div id="adAnswer">Svara på annonsen</div>
 
 					<div class="row">
 						<div class="col-xs-6" id="adReport">Anmäl denna annons</div>
-						<div class="col-xs-6" id="adDelete">Ta bort annonsen</div>
+						<div class="col-xs-6" data-toggle="modal" data-target="#adDeleteModal" id="adDelete">Ta bort annonsen</div>
 					</div>
 					
 					<div class="row" style="margin-top: 30px;">
@@ -110,9 +112,13 @@ $info = myWordWrap($ad["info"], 68);
 						<div class="col-xs-6">
 							Välj att dela med dig av din annons på sociala medier. Någon i din vänskapskrets kanske är intresserad.
 						</div>
-						<div class="col-xs-6" style="text-align: right;">
-							<div class="fb-share-button" data-href="<?php echo "http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" data-type="button_count"></div>
-							<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo "http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" data-via="StudentTrade" data-lang="sv" data-hashtags="annonssäljesköpstudenttrade">Tweeta</a>
+						<div class="col-xs-6">
+							<div class="col-xs-6">
+								<div class="fb-share-button" data-href="<?php echo "http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" data-type="button_count"></div>
+							</div>
+							<div class="col-xs-6">
+								<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo "http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" data-via="StudentTrade" data-lang="sv" data-hashtags="annonssäljesköpstudenttrade">Tweeta</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -160,4 +166,37 @@ $info = myWordWrap($ad["info"], 68);
 							<button type="reset" class="btn btn-default btn-sm">Rensa alla fält</button>
 						</fieldset>
 					</form>
+				</div>
+
+				<div class="fade modal" id="adDeleteModal" tabindex="-1" role="dialog" aria-labelledby="adDeleteModal" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+								<h2>Ange den borttagningskod som du fått via e-post</h2>
+							</div>
+
+							<div class="modal-body">
+								<form class="form-horizontal well" data-target="#adDeleteModal" method="post" id="adDeleteForm">
+									<input type="hidden" id="update" name="update" value="adActive" />
+									<input type="hidden" id="aid" name="aid" value="<?php echo $_GET["aid"]; ?>" />
+									<fieldset>
+										<div class="form-group">
+											<label for="removeCode" class="col-lg-1 control-label">Borttagningskod *</label>
+											<div class="col-lg-5">
+												<input type="text" class="form-control" id="removeCode" name="removeCode" placeholder="Borttagningskod" />
+											</div>
+										</div>
+									</fieldset>
+								</form>
+
+								<div id="modal-body-error"></div>
+							</div>
+
+							<div class="modal-footer">
+								<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adDeleteForm" class="btn btn-primary">Skicka förfrågan</button>
+								<button type="button" class="btn btn-primary" id="forgotCode">Glömt koden? Tryck här!</button>
+							</div>
+						</div>
+					</div>
 				</div>
