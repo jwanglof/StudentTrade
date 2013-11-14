@@ -166,7 +166,7 @@ function showAdCategoryInputs(adType) {
                 var objs = JSON.parse(response);
                 for (var value in objs) {
                         $("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
-                        $("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\"text\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
+                        $("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\""+ objs[value]["type"] +"\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
                         $("#adInput").append("<br /><br />");
                 }
         });
@@ -233,26 +233,6 @@ $("#contact_us").on("click", function(e) {
 		// 	}
 		// },
 		onEscape: function() {},
-		backdrop: true,
-		closeButton: true,
-		animate: true
-	});
-});
-
-$(document).on("click", "#adAnswer", function(e) {
-	bootbox.dialog({
-		title: "<h1>Kontaktformulär</h1>",
-		message: $("#adAnswerForm").html(),
-		backdrop: true,
-		closeButton: true,
-		animate: true
-	});
-});
-
-$(document).on("click", "#adReport", function(e) {
-	bootbox.dialog({
-		title: "<h1>Anmälformulär</h1>",
-		message: $("#adReportForm").html(),
 		backdrop: true,
 		closeButton: true,
 		animate: true
