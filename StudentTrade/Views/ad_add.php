@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		foreach($dbh->getAdSubCategoryShortNames() as $val) {
 			foreach ($val as $value) {
 				// array_push($adTypeInfoShortNames, $value);
-				if (isset($_POST[$value])) {
+				if (!empty($_POST[$value]) ) {
 					// echo "<br />";
 					// echo $value ." ---- ". $_POST[$value];
 					// echo "<br />";
