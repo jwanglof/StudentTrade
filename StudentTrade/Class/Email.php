@@ -66,12 +66,12 @@ class Email {
 		// return False;
 	}
 
-	public function sendReportAdEmail($message) {
+	public function sendReportAdEmail($adID, $message) {
 		$this->mail->From 		= $this->noReplyAddress;
 		$this->mail->FromName 	= $this->noReplyName;
 
 		$this->mail->Subject 	= "En anmälan mot en annons";
-		$this->mail->Body 		= $message;
+		$this->mail->Body 		= $message ."<br /> Annonsen det gäller har ID: ". $adID;
 		
 		return $this->mail->send();
 	}
