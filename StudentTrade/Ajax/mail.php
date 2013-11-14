@@ -93,7 +93,7 @@ if (isset($_POST["mail"])) {
 		if ($checkInput == 0) {
 			$sendEmail = new Email("ad_report@studenttrade.se");
 
-			echo $sendEmail->sendReportAdEmail(nl2br($_POST["message"]));
+			echo $sendEmail->sendReportAdEmail($_POST["aid"], nl2br($_POST["message"]));
 			
 			$sendEmail = null;
 		} else {
