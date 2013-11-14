@@ -1,11 +1,13 @@
-#Options +FollowSymLinks
-RewriteEngine On
-RewriteBase /home/johan/public_html/StudentTrade/
+##Options +FollowSymLinks
+#RewriteEngine On
+#RewriteBase /home/johan/public_html/StudentTrade/
 
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteCond %{SCRIPT_FILENAME} !-f
+#RewriteCond %{SCRIPT_FILENAME} !-d
+#RewriteCond %{SCRIPT_FILENAME} !-f
 
-# Check that the request is for the page I need to redirect
-#RewriteCond %{REQUEST_URI}  ^/index\.php$
-RewriteCond %{QUERY_STRING} ^page=([0-9]*)$
-RewriteRule ^index\.php$ /page/%1 [R=302,L]
+##Check that the request is for the page I need to redirect
+##RewriteCond %{REQUEST_URI}  ^/index\.php$
+#RewriteCond %{QUERY_STRING} ^page=([0-9]*)$
+#RewriteRule ^index\.php$ /page/%1 [R=302,L]
+
+AddDefaultCharset UTF-8

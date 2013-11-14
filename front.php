@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-header('Content-Type: text/html; charset=utf-8');
+header('Content-Type: text/html; charset=UTF-8');
 error_reporting(-1);
 ini_set('display_errors', 1);
 mb_internal_encoding("UTF-8");
@@ -53,7 +53,7 @@ $dbh = null;
 
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<title>StudentTrade.se - En Köp- och Sälj sajt för studenter</title>
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/non-responsive.css" />
