@@ -216,25 +216,3 @@ $(document).on("click", "#faq", function(e) {
 		animate: true
 	});
 });
-$("#contact_us").on("click", function(e) {
-	e.preventDefault();
-	bootbox.dialog({
-		title: "<h1>Kontakta oss</h1>",
-		message: $("#contactUsDiv").html(),
-		// buttons: {
-		// 	send: {
-		// 		label: "Skicka meddelande",
-		// 		className: "btn btn-primary btn-sm",
-		// 		callback: function() {
-		// 			bootbox.alert("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!", function() {
-		// 				$("#contactUsForm").submit();
-		// 			});
-		// 		}
-		// 	}
-		// },
-		onEscape: function() {},
-		backdrop: true,
-		closeButton: true,
-		animate: true
-	});
-});

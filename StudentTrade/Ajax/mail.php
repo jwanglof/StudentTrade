@@ -30,22 +30,6 @@ if (isset($_POST["mail"])) {
 			}
 			$sendEmail = null;
 		}
-	} elseif ($_POST["mail"] == "contactUs") {
-		$checkInput = checkRequiredInput($_POST, array("name", "from_email", "message"));
-		print_r($checkInput);
-		if ($checkInput == 0) {
-			$sendEmail = new Email("kontakt@studenttrade.se");
-			if ($sendEmail->sendContactEmail($_POST["name"], $_POST["from_email"], nl2br($_POST["message"]))) {
-				// $city = (isset($_GET["city"]) ? $_GET["city"] : "");
-				// header("Location: front.php?page=latest". $city);
-				echo "Tackar för din e-post. Vi på StudentTrade.se tittar på det så snabbt som möjligt!";
-			} else {
-				echo "Could not send the e-mail!";
-			}
-			$sendEmail = null;
-		} else {
-			echo "Du har inte fyllt i alla obligatoriska fält";
-		}
 	}
 
 	else if ($_POST["mail"] == "forgotCode") {
@@ -95,6 +79,26 @@ if (isset($_POST["mail"])) {
 
 			echo $sendEmail->sendReportAdEmail($_POST["aid"], nl2br($_POST["message"]));
 			
+			$sendEmail = null;
+		} else {
+			echo 2;
+		}
+	}
+
+	else if ($_POST["mail"] == "contactUs") {
+		$checkInput = checkRequiredInput($_POST, array("name", "from_email", "message"));
+
+		if ($checkInput == 0) {
+			$sendEmail = new Email("kontakt@studenttrade.se");
+
+			echo $sendEmail->sendContactEmail($_POST["name"], $_POST["from_email"], nl2br($_POST["message"]));
+			// if ($sendEmail->sendContactEmail($_POST["name"], $_POST["from_email"], nl2br($_POST["message"]))) {
+			// 	// $city = (isset($_GET["city"]) ? $_GET["city"] : "");
+			// 	// header("Location: front.php?page=latest". $city);
+			// 	echo "Tackar för din e-post. Vi på StudentTrade.se tittar på det så snabbt som möjligt!";
+			// } else {
+			// 	echo "Could not send the e-mail!";
+			// }
 			$sendEmail = null;
 		} else {
 			echo 2;

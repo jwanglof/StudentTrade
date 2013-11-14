@@ -16,8 +16,10 @@ class Email {
 		$this->mail->IsSMTP();
 		$this->mail->Host 		= "smtp.crystone.se";
 		$this->mail->Port 		= 587;
+		
 		$this->mail->CharSet 	= "utf-8";
 		$this->mail->WordWrap 	= 50;
+
 		$this->mail->addAddress($to);
 	}
 
@@ -59,11 +61,10 @@ class Email {
 		$this->mail->From 		= $from;
 		$this->mail->FromName 	= $name;
 
-		$this->mail->Subject 		= $name ." är intresserad av din annons på StudentTrade.se";
+		$this->mail->Subject 	= $name ." är intresserad av din annons på StudentTrade.se";
 		$this->mail->Body 		= $message;
 
 		return $this->mail->send();
-		// return False;
 	}
 
 	public function sendReportAdEmail($adID, $message) {

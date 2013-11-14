@@ -1,4 +1,4 @@
-<div class="col-xs-4">
+			<div class="col-xs-4">
 				<ul>
 					<li id="about_us">Om oss</li>
 					<li id="how_it_works">Så fungerar det</li>
@@ -10,37 +10,52 @@
 			<div class="col-xs-4">
 				<ul>
 					<li id="faq">Vanliga frågor</li>
-					<li id="contact_us">Kontakta oss</li>
+					<li data-toggle="modal" data-target="#contactUsModal" id="contact_us">Kontakta oss</li>
 				</ul>
 			</div>
 			<p class="copyright">Copyright &copy2013 StudentTrade</p>
 
-<div style="display: none;" id="contactUsDiv">
-					<form method="post" action="front.php?page=mail&mail=contactUs" class="form-horizontal" role="form" id="contactUsForm">
-						<fieldset>
-							<div class="form-group">
-								<label for="name" class="col-lg-1 control-label">Ditt namn *</label>
-								<div class="col-lg-5">
-									<input type="text" class="form-control" id="name" name="name" placeholder="Namn">
-								</div>
+				<div class="fade modal" id="contactUsModal" tabindex="-1" role="dialog" aria-labelledby="contactUsModal" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+								<h2>Kontakta oss</h2>
 							</div>
 
-							<div class="form-group">
-								<label for="from_email" class="col-lg-1 control-label">Din e-post *</label>
-								<div class="col-lg-5">
-									<input type="email" class="form-control" name="from_email" id="from_email" placeholder="Din e-post" />
-								</div>
+							<div class="modal-body">
+								<form method="post" class="form-horizontal" role="form" id="contactUsForm">
+									<input type="hidden" id="mail" name="mail" value="contactUs" />
+									<fieldset>
+										<div class="form-group">
+											<label for="name" class="col-lg-1 control-label">Ditt namn *</label>
+											<div class="col-lg-5">
+												<input type="text" class="form-control" id="name" name="name" placeholder="Namn">
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="from_email" class="col-lg-1 control-label">Din e-post *</label>
+											<div class="col-lg-5">
+												<input type="email" class="form-control" name="from_email" id="from_email" placeholder="Din e-post" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="message" class="col-lg-1 control-label">Ditt meddelande *</label>
+											<div class="col-lg-5">
+												<textarea class="form-control" name="message" id="message" rows="5" placeholder="Meddelande"></textarea>
+											</div>
+										</div>
+									</fieldset>
+								</form>
+
+								<div class="modal-body-error"></div>
 							</div>
 
-							<div class="form-group">
-								<label for="message" class="col-lg-1 control-label">Ditt meddelande *</label>
-								<div class="col-lg-5">
-									<textarea class="form-control" name="message" id="message" rows="5"></textarea>
-								</div>
+							<div class="modal-footer">
+								<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="contactUsForm" class="btn btn-primary">Skicka</button>
 							</div>
-
-							<button type="submit" class="btn btn-primary btn-sm">Skicka meddelande</button>
-							<button type="reset" class="btn btn-default btn-sm">Rensa alla fält</button>
-						</fieldset>
-					</form>
+						</div>
+					</div>
 				</div>
