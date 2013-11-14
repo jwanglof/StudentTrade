@@ -22,11 +22,11 @@ $(document).ready(function() {
 
 	$("#hover-img .thumbnail").hover(
 		function() {
-			$(this).find('.caption').slideDown(250);
-            $(this).find('.caption-btm').fadeOut("fast");
+			$(this).find('.caption').stop(true, true).slideDown(250);
+            $(this).find('.caption-btm').stop(true, true).fadeOut("fast");
 		}, function() {
-			$(this).find('.caption').slideUp(250);
-            $(this).find('.caption-btm').fadeIn("fast");
+			$(this).find('.caption').stop(true, true).slideUp(250);
+            $(this).find('.caption-btm').stop(true, true).fadeIn("fast");
 		}
 	);
 
