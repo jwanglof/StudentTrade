@@ -94,10 +94,10 @@ $info = myWordWrap($ad["info"], 68);
 
 					<hr />
 
-					<div id="adAnswer">Svara på annonsen</div>
+					<div data-toggle="modal" data-target="#adReplyModal" id="adAnswer">Svara på annonsen</div>
 
 					<div class="row">
-						<div class="col-xs-6" id="adReport">Anmäl denna annons</div>
+						<div class="col-xs-6" data-toggle="modal" data-target="#adReportModal" id="adReport">Anmäl denna annons</div>
 						<div class="col-xs-6" data-toggle="modal" data-target="#adDeleteModal" id="adDelete">Ta bort annonsen</div>
 					</div>
 					
@@ -123,51 +123,6 @@ $info = myWordWrap($ad["info"], 68);
 					</div>
 				</div>
 
-				<div style="display: none;" id="adAnswerForm">
-					<form method="post" action="front.php?page=ad_form&city=<?php echo $_GET["city"]; ?>&aid=<?php echo $_GET["aid"]; ?>&check" class="form-horizontal" role="form">
-						<fieldset>
-							<div class="form-group">
-								<label for="name" class="col-lg-1 control-label">Ditt namn *</label>
-								<div class="col-lg-5">
-									<input type="text" class="form-control" id="name" name="name" placeholder="Namn">
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="from_email" class="col-lg-1 control-label">Din e-post *</label>
-								<div class="col-lg-5">
-									<input type="email" class="form-control" name="from_email" id="from_email" placeholder="Din e-post" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="message" class="col-lg-1 control-label">Ditt meddelande *</label>
-								<div class="col-lg-5">
-									<textarea class="form-control" name="message" id="message" rows="5"></textarea>
-								</div>
-							</div>
-
-							<button type="submit" class="btn btn-primary btn-sm">Skicka meddelande</button>
-							<button type="reset" class="btn btn-default btn-sm">Rensa alla fält</button>
-						</fieldset>
-					</form>
-				</div>
-				<div style="display: none;" id="adReportForm">
-					<form method="post" action="front.php?page=ad_form&city=<?php echo $_GET["city"]; ?>&aid=<?php echo $_GET["aid"]; ?>&check" class="form-horizontal" role="form">
-						<fieldset>
-							<div class="form-group">
-								<label for="message" class="col-lg-1 control-label">Varför anmäler du denna annons? *</label>
-								<div class="col-lg-5">
-									<textarea class="form-control" name="message" id="message" rows="5"></textarea>
-								</div>
-							</div>
-
-							<button type="submit" class="btn btn-primary btn-sm">Skicka anmälan</button>
-							<button type="reset" class="btn btn-default btn-sm">Rensa alla fält</button>
-						</fieldset>
-					</form>
-				</div>
-
 				<div class="fade modal" id="adDeleteModal" tabindex="-1" role="dialog" aria-labelledby="adDeleteModal" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -191,12 +146,92 @@ $info = myWordWrap($ad["info"], 68);
 									</fieldset>
 								</form>
 
-								<div id="modal-body-error"></div>
+								<div class="modal-body-error"></div>
 							</div>
 
 							<div class="modal-footer">
 								<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adDeleteForm" class="btn btn-primary">Skicka förfrågan</button>
 								<button type="submit" class="btn btn-primary" id="forgotCode">Glömt koden? Tryck här!</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="fade modal" id="adReplyModal" tabindex="-1" role="dialog" aria-labelledby="adReplyModal" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+								<h2>Svara på annons</h2>
+							</div>
+
+							<div class="modal-body">
+								<form method="post" class="form-horizontal" role="form" id="adReplyForm">
+									<input type="hidden" id="mail" name="mail" value="adReply" />
+									<input type="hidden" id="aid" name="aid" value="<?php echo $_GET["aid"]; ?>" />
+
+									<fieldset>
+										<div class="form-group">
+											<label for="name" class="col-lg-1 control-label">Ditt namn *</label>
+											<div class="col-lg-5">
+												<input type="text" class="form-control" id="name" name="name" placeholder="Namn">
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="from_email" class="col-lg-1 control-label">Din e-post *</label>
+											<div class="col-lg-5">
+												<input type="email" class="form-control" name="from_email" id="from_email" placeholder="Din e-post" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="message" class="col-lg-1 control-label">Ditt meddelande *</label>
+											<div class="col-lg-5">
+												<textarea class="form-control" name="message" id="message" rows="5"></textarea>
+											</div>
+										</div>
+									</fieldset>
+								</form>
+
+								<div class="modal-body-error"></div>
+							</div>
+
+							<div class="modal-footer">
+								<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adReplyForm" class="btn btn-primary">Skicka meddelande</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="fade modal" id="adReportModal" tabindex="-1" role="dialog" aria-labelledby="adReportModal" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+								<h2>Anmäl annons</h2>
+							</div>
+
+							<div class="modal-body">
+								<form method="post" class="form-horizontal" role="form" id="adReportForm">
+									<input type="hidden" id="mail" name="mail" value="adReport" />
+									<input type="hidden" id="aid" name="aid" value="<?php echo $_GET["aid"]; ?>" />
+
+									<fieldset>
+										<div class="form-group">
+											<label for="message" class="col-lg-1 control-label">Varför anmäler du denna annons? *</label>
+											<div class="col-lg-5">
+												<textarea class="form-control" name="message" id="message" rows="5"></textarea>
+											</div>
+										</div>
+									</fieldset>
+								</form>
+
+								<div class="modal-body-error"></div>
+							</div>
+
+							<div class="modal-footer">
+								<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adReportForm" class="btn btn-primary">Skicka anmälan</button>
 							</div>
 						</div>
 					</div>
