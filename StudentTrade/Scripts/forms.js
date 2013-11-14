@@ -148,25 +148,23 @@ $(document).ready(function() {
 		var $form = $(this);
 
 		// $(".ajaxLoaderDelete").show();
-
 		$.ajax({
 			type: $form.attr("method"),
 			url: getAjaxURL("mail"),
 			data: $form.serialize(),
 
 			success: function(data, status) {
-				console.log(data);
 				// $(".ajaxLoaderDelete").hide();
 
 				if (data == 1) {
-					$("#adReplyModal").find(".modal-body").fadeIn("slow").html("Meddelande skickat!");
-					$("#adReplyModal").find(".modal-footer").empty();
-					$("#adReplyModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
+					$("#adReportModal").find(".modal-body").fadeIn("slow").html("Meddelande skickat!");
+					$("#adReportModal").find(".modal-footer").empty();
+					$("#adReportModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
 				}
 				else if (data == 2) {
-					$("#adReplyModal").find(".modal-body-error").html("Du måste fylla i alla rutor.").fadeIn("slow").delay(5000).fadeOut("slow");
+					$("#adReportModal").find(".modal-body-error").html("Du måste ange varför du anmäler annonsen.").fadeIn("slow").delay(5000).fadeOut("slow");
 				} else {
-					$("#adReplyModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
+					$("#adReportModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
 				}
 			}
 		});
