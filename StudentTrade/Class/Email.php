@@ -1,4 +1,6 @@
 <?php
+include_once("PHPMailer/PHPMailerAutoload.php");
+
 class Email {
 	private $className;
 	private $to;
@@ -11,12 +13,12 @@ class Email {
 	public function __destruct() {}
 
 	public function sendContactEmail($name, $from, $message) {
-		$subject = "". $name ." har något viktigt att säga!";
+		$subject = $name ." har något viktigt att säga!";
 
-		$headers = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-		$headers .= 'From: '. $name .' <'. $from .'>' . "\r\n";
-		$headers .= 'X-Mailer: PHP/'. phpversion();
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+		$headers .= "From: ". $name ." <". $from .">" . "\r\n";
+		$headers .= "X-Mailer: PHP/". phpversion();
 
 		return mail($this->to, $subject, $message, $headers);
 	}
@@ -34,32 +36,57 @@ class Email {
 		</p>
 		MVH StudentTrade.se";
 
-		$headers = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-		$headers .= 'From: StudentTrade.se <noreply@studenttrade.se>' . "\r\n";
-		$headers .= 'X-Mailer: PHP/'. phpversion();
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+		$headers .= "From: StudentTrade.se <noreply@studenttrade.se>" . "\r\n";
+		$headers .= "X-Mailer: PHP/". phpversion();
 
 		return mail($this->to, $subject, $message, $headers);
 	}
 
 	public function sendAdEmail($name, $from, $message) {
-		$subject = "". $name ." är intresserad av din annons på StudentTrade.se";
+		// // echo mb_detect_encoding($name);
 
-		$headers = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-		$headers .= 'From: '. $name .' <'. $from .'>' . "\r\n";
-		$headers .= 'X-Mailer: PHP/'. phpversion();
+		// $subject = $name ." är intresserad av din annons på StudentTrade.se";
+		// // echo mb_detect_encoding($subject);
 
-		return mail($this->to, $subject, $message, $headers);
+		// $headers = "MIME-Version: 1.0" . "\r\n";
+		// $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+		// $headers .= "From: ". base64_encode($name) ." <". $from .">" . "\r\n";
+		// $headers .= "X-Mailer: PHP/". phpversion();
+
+		// return mail($this->to, '=?utf-8?B?'. base64_encode($subject) .'?=', $message, $headers);
+		$mail = new PHPMailer;
+
+		$mail->IsSMTP();
+		$mail->Host 		= "smtp.crystone.se";
+		$mail->Port 		= 587;
+
+		$mail->From 		= $from;
+		$mail->FromName 	= $name;
+
+		$mail->addAddress($this->to);
+
+		$mail->CharSet 		= "utf-8";
+
+		$mail->Subject 		= $name ." är intresserad av din annons på StudentTrade.se";
+		$mail->Body 		= $message;
+		$mail->WordWrap 	= 50;
+
+		$status = $mail->send();
+
+		$mail = null;
+
+		return $status;
 	}
 
 	public function sendReportAdEmail($message) {
 		$subject = "En anmälan mot en annons";
 
-		$headers = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-		$headers .= 'From: Flossie Giles <noreply@studenttrade.se>' . "\r\n";
-		$headers .= 'X-Mailer: PHP/'. phpversion();
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+		$headers .= "From: Flossie Giles <noreply@studenttrade.se>" . "\r\n";
+		$headers .= "X-Mailer: PHP/". phpversion();
 
 		return mail($this->to, $subject, $message, $headers);
 	}
@@ -72,10 +99,10 @@ class Email {
 					Och i följande stad: <br />
 					<b>". $cityName ."</b>";
 
-		$headers = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-		$headers .= 'From: Flossie Giles <noreply@studenttrade.se>' . "\r\n";
-		$headers .= 'X-Mailer: PHP/'. phpversion();
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+		$headers .= "From: Flossie Giles <noreply@studenttrade.se>" . "\r\n";
+		$headers .= "X-Mailer: PHP/". phpversion();
 
 		return mail($this->to, $subject, $message, $headers);
 	}
@@ -93,10 +120,10 @@ class Email {
 		</p>
 		MVH StudentTrade.se";
 
-		$headers = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-		$headers .= 'From: Flossie Giles <noreply@studenttrade.se>' . "\r\n";
-		$headers .= 'X-Mailer: PHP/'. phpversion();
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+		$headers .= "From: Flossie Giles <noreply@studenttrade.se>" . "\r\n";
+		$headers .= "X-Mailer: PHP/". phpversion();
 
 		return mail($this->to, $subject, $message, $headers);
 	}
