@@ -82,7 +82,7 @@ $dbh = null;
 				<label for="adCategory" class="col-xs-1 control-label"><img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader ajaxCategory" /> Kategori *</label>
 				<div class="col-xs-5">
 					<select id="adCategory" name="adCategory" class="form-control">
-						<option value="0">Kategori</option>
+						<option value="">Kategori</option>
 						<?php
 						foreach ($adCategories as $value) {
 							$selected = "";
