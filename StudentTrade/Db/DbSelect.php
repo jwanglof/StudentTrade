@@ -338,10 +338,12 @@ class DbSelect extends DbConfig {
 	 *************  Search		***********
 	 *************				***********
 	 **************************************/
-	public function searchAdsWithName($name) {
+	public function searchAdsWithName($name, $city) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT id,title,date_created,price,fk_ad_adCategory,fk_ad_adType,fk_ad_campus FROM ad WHERE title LIKE :name");
+
+			$stmt = $this->dbh->prepare("SELECT id,title,date_created,price,fk_ad_adCategory,fk_ad_adType,fk_ad_campus FROM ad WHERE title LIKE :name AND fk_ad_city=:city");
 			$stmt->bindValue(":name", $name, PDO::PARAM_INT);
+			$stmt->bindValue(":city", $city, PDO::PARAM_STR);
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
