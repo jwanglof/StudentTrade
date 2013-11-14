@@ -63,11 +63,12 @@ class Email {
 		$this->mail->Body 		= $message;
 
 		return $this->mail->send();
+		// return False;
 	}
 
 	public function sendReportAdEmail($message) {
-		$this->mail->From 		= $noReplyAddress;
-		$this->mail->FromName 	= $noReplyName;
+		$this->mail->From 		= $this->noReplyAddress;
+		$this->mail->FromName 	= $this->noReplyName;
 
 		$this->mail->Subject 	= "En anmälan mot en annons";
 		$this->mail->Body 		= $message;
@@ -81,8 +82,8 @@ class Email {
 					Och i följande stad: <br />
 					<b>". $cityName ."</b>";
 
-		$this->mail->From 		= $noReplyAddress;
-		$this->mail->FromName 	= $noReplyName;
+		$this->mail->From 		= $this->noReplyAddress;
+		$this->mail->FromName 	= $this->noReplyName;
 
 		$this->mail->Subject 	= "Förfrågan om att lägga till campus";
 		$this->mail->Body 		= $message;
@@ -101,8 +102,8 @@ class Email {
 		</p>
 		MVH StudentTrade.se";
 
-		$this->mail->From 		= $noReplyAddress;
-		$this->mail->FromName 	= $noReplyName;
+		$this->mail->From 		= $this->noReplyAddress;
+		$this->mail->FromName 	= $this->noReplyName;
 
 		$this->mail->Subject 	= "Din borttagningskod till din annons på StudentTrade.se";
 		$this->mail->Body 		= $message;
