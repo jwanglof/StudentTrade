@@ -46,22 +46,59 @@ if (isset($_POST["mail"])) {
 		} else {
 			echo "Du har inte fyllt i alla obligatoriska fält";
 		}
-	} else if ($_POST["mail"] == "forgotCode") {
-		$dbh = new DbSelect();
- 		$ad = $dbh->getAdFromID($_POST["aid"]);
- 		$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["fk_ad_adUserInfo"]);
+	}
 
- 		$cipher = new Cipher("JFKs3ef03J");
+	else if ($_POST["mail"] == "forgotCode") {
+		$dbh = new DbSelect();
+		$ad = $dbh->getAdFromID($_POST["aid"]);
+		$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["fk_ad_adUserInfo"]);
+
+		$cipher = new Cipher("JFKs3ef03J");
 		$password = $cipher->decrypt($ad["password"]);
 		$cipher = null;
 
 		$sendEmail = new Email($adUserInfo["email"]);
-		if ($sendEmail->resendCode($_POST["aid"], $password)) 
-			echo true;
-		else
-			echo false;
+
+		echo $sendEmail->resendCode($_POST["aid"], $password);
+		// if ($sendEmail->resendCode($_POST["aid"], $password)) 
+		// 	echo true;
+		// else
+		// 	echo false;
 		$sendEmail = null;
 		$dbh = null;
- 	}
+	}
+
+	else if ($_POST["mail"] == "adReply") {
+		$checkInput = checkRequiredInput($_POST, array("name", "from_email", "message"));
+
+		if ($checkInput == 0) {
+			$dbh = new DbSelect();
+			$ad = $dbh->getAdFromID($_POST["aid"]);
+			$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["fk_ad_adUserInfo"]);
+			$dbh = null;
+
+			$sendEmail = new Email($adUserInfo["email"]);
+
+			echo $sendEmail->sendAdEmail($_POST["name"], $_POST["from_email"], nl2br($_POST["message"]));
+
+			$sendEmail = null;
+		} else {
+			echo 2;
+		}
+	}
+
+	else if ($_POST["mail"] == "adReport") {
+		$checkInput = checkRequiredInput($_POST, array("message"));
+
+		if ($checkInput == 0) {
+			$sendEmail = new Email("ad_report@studenttrade.se");
+
+			echo $sendEmail->sendReportAdEmail(nl2br($_POST["message"]));
+			
+			$sendEmail = null;
+		} else {
+			echo 2;
+		}
+	}
 }
 ?>
