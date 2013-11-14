@@ -3,29 +3,39 @@ include_once("PHPMailer/PHPMailerAutoload.php");
 
 class Email {
 	private $className;
-	private $to;
+	private $mail;
+
+	private $noReplyName = "Flossie Giles";
+	private $noReplyAddress = "noreply@studenttrade.se";
 
 	public function __construct($to) {
 		$this->className = "Email";
-		$this->to = $to;
+
+		$this->mail = new PHPMailer;
+		
+		$this->mail->IsSMTP();
+		$this->mail->Host 		= "smtp.crystone.se";
+		$this->mail->Port 		= 587;
+		$this->mail->CharSet 	= "utf-8";
+		$this->mail->WordWrap 	= 50;
+		$this->mail->addAddress($to);
 	}
 
-	public function __destruct() {}
+	public function __destruct() {
+		$this->mail = null;
+	}
 
 	public function sendContactEmail($name, $from, $message) {
-		$subject = $name ." har något viktigt att säga!";
+		$this->mail->From 		= $from;
+		$this->mail->FromName 	= $name;
 
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-		$headers .= "From: ". $name ." <". $from .">" . "\r\n";
-		$headers .= "X-Mailer: PHP/". phpversion();
-
-		return mail($this->to, $subject, $message, $headers);
+		$this->mail->Subject 	= $name ." har något viktigt att säga!";
+		$this->mail->Body 		= $message;
+		
+		return $this->mail->send();
 	}
 
 	public function sendNewAdEmail($password, $adID) {
-		$subject = "Din borttagningskod till din annons på StudentTrade.se";
-
 		$message = "Tack för att du använder StudentTrade.se!
 		<p>
 			Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a>
@@ -36,80 +46,51 @@ class Email {
 		</p>
 		MVH StudentTrade.se";
 
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-		$headers .= "From: StudentTrade.se <noreply@studenttrade.se>" . "\r\n";
-		$headers .= "X-Mailer: PHP/". phpversion();
+		$this->mail->From 		= "noreply@studenttrade.se";
+		$this->mail->FromName 	= "StudentTrade.se";
 
-		return mail($this->to, $subject, $message, $headers);
+		$this->mail->Subject 	= "Din borttagningskod till din annons på StudentTrade.se";
+		$this->mail->Body 		= $message;
+		
+		return $this->mail->send();
 	}
 
 	public function sendAdEmail($name, $from, $message) {
-		// // echo mb_detect_encoding($name);
+		$this->mail->From 		= $from;
+		$this->mail->FromName 	= $name;
 
-		// $subject = $name ." är intresserad av din annons på StudentTrade.se";
-		// // echo mb_detect_encoding($subject);
+		$this->mail->Subject 		= $name ." är intresserad av din annons på StudentTrade.se";
+		$this->mail->Body 		= $message;
 
-		// $headers = "MIME-Version: 1.0" . "\r\n";
-		// $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-		// $headers .= "From: ". base64_encode($name) ." <". $from .">" . "\r\n";
-		// $headers .= "X-Mailer: PHP/". phpversion();
-
-		// return mail($this->to, '=?utf-8?B?'. base64_encode($subject) .'?=', $message, $headers);
-		$mail = new PHPMailer;
-
-		$mail->IsSMTP();
-		$mail->Host 		= "smtp.crystone.se";
-		$mail->Port 		= 587;
-
-		$mail->From 		= $from;
-		$mail->FromName 	= $name;
-
-		$mail->addAddress($this->to);
-
-		$mail->CharSet 		= "utf-8";
-
-		$mail->Subject 		= $name ." är intresserad av din annons på StudentTrade.se";
-		$mail->Body 		= $message;
-		$mail->WordWrap 	= 50;
-
-		$status = $mail->send();
-
-		$mail = null;
-
-		return $status;
+		return $this->mail->send();
 	}
 
 	public function sendReportAdEmail($message) {
-		$subject = "En anmälan mot en annons";
+		$this->mail->From 		= $noReplyAddress;
+		$this->mail->FromName 	= $noReplyName;
 
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-		$headers .= "From: Flossie Giles <noreply@studenttrade.se>" . "\r\n";
-		$headers .= "X-Mailer: PHP/". phpversion();
-
-		return mail($this->to, $subject, $message, $headers);
+		$this->mail->Subject 	= "En anmälan mot en annons";
+		$this->mail->Body 		= $message;
+		
+		return $this->mail->send();
 	}
 
 	public function sendRequestEmail($campusName, $cityName) {
-		$subject = "Förfrågan om att lägga till campus";
-
 		$message = "En användare vill lägga till följande campus: <br />
 					<b>". $campusName ."</b> <br />
 					Och i följande stad: <br />
 					<b>". $cityName ."</b>";
 
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-		$headers .= "From: Flossie Giles <noreply@studenttrade.se>" . "\r\n";
-		$headers .= "X-Mailer: PHP/". phpversion();
+		$this->mail->From 		= $noReplyAddress;
+		$this->mail->FromName 	= $noReplyName;
 
-		return mail($this->to, $subject, $message, $headers);
+		$this->mail->Subject 	= "Förfrågan om att lägga till campus";
+		$this->mail->Body 		= $message;
+		
+		return $this->mail->send();
 	}
 
 	public function resendCode($adID, $password) {
-		$subject = "Din borttagningskod till din annons på StudentTrade.se";
-
 		$message = "Hejsan!
 		<p>
 			Din borttagningskod är: ". $password ." <br />
@@ -120,12 +101,13 @@ class Email {
 		</p>
 		MVH StudentTrade.se";
 
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-		$headers .= "From: Flossie Giles <noreply@studenttrade.se>" . "\r\n";
-		$headers .= "X-Mailer: PHP/". phpversion();
+		$this->mail->From 		= $noReplyAddress;
+		$this->mail->FromName 	= $noReplyName;
 
-		return mail($this->to, $subject, $message, $headers);
+		$this->mail->Subject 	= "Din borttagningskod till din annons på StudentTrade.se";
+		$this->mail->Body 		= $message;
+		
+		return $this->mail->send();
 	}
 }
 ?>
