@@ -299,10 +299,10 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdUserInfoFromAdUserInfoID($adUserInfoID) {
+	public function getAdUserInfoFromAdUserInfoID($adID) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM adUserInfo WHERE id=:adUserInfoID");
-			$stmt->bindValue(":adUserInfoID", $adUserInfoID, PDO::PARAM_INT);
+			$stmt = $this->dbh->prepare("SELECT * FROM adUserInfo WHERE fk_adUserInfo_ad=:adID");
+			$stmt->bindValue(":adID", $adID, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetch(PDO::FETCH_ASSOC);
