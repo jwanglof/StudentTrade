@@ -163,30 +163,6 @@ $(document).ready(function() {
 		});
 
 		event.preventDefault();
-
-		// $(".ajaxLoaderDelete").show();
-		/*$.ajax({
-			type: $form.attr("method"),
-			url: getAjaxURL("mail"),
-			data: $form.serialize(),
-
-			success: function(data, status) {
-				console.log(data);
-				// $(".ajaxLoaderDelete").hide();
-
-				if (data == 1) {
-					$("#contactUsModal").find(".modal-body").fadeIn("slow").html("Meddelande skickat. Vi på StudentTrade svarar på det så fort som möjligt!");
-					$("#contactUsModal").find(".modal-footer").empty();
-					$("#contactUsModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
-				}
-				else if (data == 2) {
-					$("#contactUsModal").find(".modal-body-error").html("Du måste fylla i alla fält.").fadeIn("slow").delay(5000).fadeOut("slow");
-				} else {
-					$("#contactUsModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
-				}
-			}
-		});*/
-
 	});
 });
 

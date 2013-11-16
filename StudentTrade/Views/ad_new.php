@@ -10,6 +10,7 @@ $dbh = null;
 ?>
 <div class="col-xs-12">
 	<form method="post" action="front.php?page=ad_add" class="form-horizontal" role="form" id="addNewAd">
+		<input type="hidden" id="mail" name="mail" value="adAddNew" />
 		<fieldset>
 			<legend>Personuppgifter</legend>
 
