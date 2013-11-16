@@ -1,3 +1,3 @@
-<div class="col-md-6 col-md-offset-3 box font_left">
-	Something went wrong. Plzzzzzz try again!
+<div class="col-xs-12">
+	<h2>Något gick fel. Detta har rapporterats till webmaster:n!</h2>
 </div>
