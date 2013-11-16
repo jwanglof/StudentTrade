@@ -1,17 +1,11 @@
 <?php
 // SET FOREIGN_KEY_CHECKS=0;TRUNCATE adUserInfo;TRUNCATE ad;TRUNCATE adInfo;SET FOREIGN_KEY_CHECKS=1;
-// print_r($requiredInputs);
-// print_r($adTypeInfoShortNames);
-// print_r($_POST);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$success = True;
-	// print_r($_POST);
 
 	$checkInput = checkRequiredInput($_POST, array("name", "email", "city", "adType", "title", "info", "adCategory"));
-	// echo print_r($checkInput);
 	if ($checkInput == 0) {
-		// echo $checkInput;
 		/*
 		 * Check the input values so it doesn't contain any illegal characters
 		 */
@@ -19,18 +13,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$_POST[$key] = checkPOSTInput($_POST[$key]);
 		}
 		$dbInsert = new DbInsert();
-		$adUserInfoID = $dbInsert->insertIntoAdUserInfo($_POST["name"], $_POST["email"], $_POST["phonenumber"]);
-		// echo 1 . $adUserInfoID . "--- ";
 
 		$password = generateRandomString(4);
 		$cipher = new Cipher("JFKs3ef03J");
 		$encryptedPassword = $cipher->encrypt($password);
 
 		$adID = $dbInsert->insertIntoAd($_POST["title"], nl2br($_POST["info"]), $encryptedPassword, $_POST["price"], 
-			date("Y-m-d H:i"), date("Y-m-d", strtotime("+1 month")), $_POST["adCategory"], 
-			$_POST["campus"], $_POST["city"], $adUserInfoID, $_POST["adType"]);
-		// echo 2 . $adID;
-		// echo $password ." __--- ". $encryptedPassword;
+			date("Y-m-d H:i:s"), $_POST["adCategory"], $_POST["campus"], $_POST["city"], $_POST["adType"]);
+		$adUserInfoID = $dbInsert->insertIntoAdUserInfo($_POST["name"], $_POST["email"], $_POST["phonenumber"], $adID);
 
 		/*
 		 * Insert the adInfo
