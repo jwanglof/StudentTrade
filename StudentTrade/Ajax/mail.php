@@ -166,7 +166,7 @@ if (isset($_POST["mail"])) {
 			$sendEmail->sendNewAdEmail($password, $adID);
 			// $sendEmail = null;
 
-			echo True;
+			echo $adID;
 		} else {
 			echo 2;
 		}
