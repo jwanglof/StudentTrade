@@ -31,9 +31,9 @@
 		return "front.php?page=search&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) : "") ."". (($type != NULL) ? "&type=". $type : "");
 	}
 
-	function generateRandomString($length = 10) {
+	function generateRandomString($length = 10, $characters) {
 		// $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$characters = '0123456789';
+		// $characters = '0123456789';
 		$randomString = '';
 		for ($i = 0; $i < $length; $i++) {
 			$randomString .= $characters[rand(0, strlen($characters) - 1)];
