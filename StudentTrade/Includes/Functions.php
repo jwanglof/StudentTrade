@@ -11,8 +11,8 @@
 		return str_replace((($reversed == False) ? $search : $replace), (($reversed == False) ? $replace : $search), $string);
 	}
 
-	function generateAdURL($page, $city, $name_on_url, $campus=NULL, $type=NULL) {
-		return "<a href=\"front.php?page=$page&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) ."" : "") ."". (($type != NULL) ? "&type=$type" : "") ."\">$name_on_url</a>";
+	function generateAdURL($page, $city, $name_on_url, $campus=NULL, $type=NULL, $active=False) {
+		return "<a href=\"front.php?page=$page&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) ."" : "") ."". (($type != NULL) ? "&type=$type" : "") ."\" class=\"". ($active ? "categoryActive" : ((isset($_GET["type"]) && $type != NULL) ? "categoryInactive" : "")) ."\">$name_on_url</a>";
 	}
 
 	function generateCampusURL($city, $name_on_url, $type=NULL, $showCampus=True) {

@@ -98,6 +98,14 @@ a:visited {color: #565656;}
 .categoryHeading span {
 	font-size: 10px;
 }
+
+.categoryActive {
+	text-decoration: underline;
+}
+.categoryInactive {
+	opacity: 0.5;
+}
+
 .breadcrumb {
 	background-color: transparent;
 	/*border: 1px solid #000;*/

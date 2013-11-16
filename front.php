@@ -147,9 +147,9 @@ $dbh = null;
 								foreach ($adtypes as $type) {
 									echo "<li class=\"category\" style=\"background-color: ". $type["color"] ."\">";
 									echo generateAdURL("latest", $city["short_name"],
-											((isset($_GET["type"]) && $_GET["type"] == $type["name"]) ? ">". $type["description"] : $type["description"]),
-											(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-											$type["name"]);
+											$type["description"], (isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+											$type["name"],
+											(isset($_GET["type"]) && $_GET["type"] == $type["name"]));
 									echo "</li>";
 								}
 								?>
