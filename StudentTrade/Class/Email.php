@@ -2,11 +2,19 @@
 include_once("PHPMailer/PHPMailerAutoload.php");
 
 class Email {
+	// Random names:
+	// http://fantasynamegenerators.com/dwarf_wow_names.php#.UodGCHX4bMU
 	private $className;
 	private $mail;
 
 	private $noReplyName = "Flossie Giles";
-	private $noReplyAddress = "noreply@studenttrade.se";
+	private $noReplyEmail = "noreply@studenttrade.se";
+
+	private $requestName = "Belkam Battlebrew";
+	private $requestEmail = "request@studenttrade.se";
+
+	private $abuseName = "Nhaerian Dawnflower";
+	private $abuseEmail = "abuse@studenttrade.se";
 
 	public function __construct($to) {
 		$this->className = "Email";
@@ -56,8 +64,8 @@ class Email {
 		</p>
 		MVH StudentTrade.se";
 
-		$this->mail->From 		= "noreply@studenttrade.se";
-		$this->mail->FromName 	= "StudentTrade.se";
+		$this->mail->From 		= $this->noReplyEmail;;
+		$this->mail->FromName 	= $this->noReplyName;;
 
 		$this->mail->Subject 	= "Din borttagningskod till din annons på StudentTrade.se";
 		$this->mail->Body 		= $message;
@@ -82,8 +90,8 @@ class Email {
 	}
 
 	public function sendReportAdEmail($adID, $message) {
-		$this->mail->From 		= $this->noReplyAddress;
-		$this->mail->FromName 	= $this->noReplyName;
+		$this->mail->From 		= $this->abuseEmail;
+		$this->mail->FromName 	= $this->abuseName;
 
 		$this->mail->Subject 	= "En anmälan mot en annons";
 		$this->mail->Body 		= $message ."<br /> Annonsen det gäller har ID: ". $adID;
@@ -100,8 +108,8 @@ class Email {
 					Och i följande stad: <br />
 					<b>". $cityName ."</b>";
 
-		$this->mail->From 		= $this->noReplyAddress;
-		$this->mail->FromName 	= $this->noReplyName;
+		$this->mail->From 		= $this->requestEmail;
+		$this->mail->FromName 	= $this->requestName;
 
 		$this->mail->Subject 	= "Förfrågan om att lägga till campus";
 		$this->mail->Body 		= $message;
@@ -123,7 +131,7 @@ class Email {
 		</p>
 		MVH StudentTrade.se";
 
-		$this->mail->From 		= $this->noReplyAddress;
+		$this->mail->From 		= $this->noReplyEmail;
 		$this->mail->FromName 	= $this->noReplyName;
 
 		$this->mail->Subject 	= "Din borttagningskod till din annons på StudentTrade.se";
