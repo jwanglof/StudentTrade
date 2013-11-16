@@ -46,53 +46,39 @@ $(document).ready(function() {
 	});
 
 	$("form[data-async]").on("submit", function(event) {
-		var $form = $(this);
+		request = sendWithAjax($(this), "mail");
 
-		$.ajax({
-			type: $form.attr("method"),
-			url: getAjaxURL("mail"),
-			data: $form.serialize(),
-
-			success: function(data, status) {
-				if (data == 1) {
-					$(".modal-body").html("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
-					$(".modal-footer").empty();
-					$(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
-				}
-				else
-					$(".modal-body").html("Något gick fel när servern försökte skicka ditt e-mail. Vi ber om ursäkt för detta, försök gärna igen.");
+		request.done(function(response, textStatus, jqXHR) {
+			if (response == 1) {
+				$(".modal-body").html("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
+				$(".modal-footer").empty();
+				$(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
 			}
+			else
+				$(".modal-body").html("Något gick fel när servern försökte skicka ditt e-mail. Vi ber om ursäkt för detta, försök gärna igen.");
 		});
-
+		
 		event.preventDefault();
 	});
 
 	$("#adDeleteForm").on("submit", function(event) {
-		var $form = $(this);
+		$(".modal-footer").find(".ajaxLoader").show();
 
-		$("#modal-body-error").empty();
+		request = sendWithAjax($(this), "update");
 
-		$(".ajaxLoaderDelete").show();
+		request.done(function(response, textStatus, jqXHR) {
+			$(".modal-footer").find(".ajaxLoader").hide();
 
-		$.ajax({
-			type: $form.attr("method"),
-			url: getAjaxURL("update"),
-			data: $form.serialize(),
-
-			success: function(data, status) {
-				$(".ajaxLoaderDelete").hide();
-
-				if (data == 1) {
-					$("#adDeleteModal").find(".modal-body").html("Annonsen är nu borttagen!");
-					$("#adDeleteModal").find(".modal-footer").empty();
-					$("#adDeleteModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
-				}
-				else {
-					$("#adDeleteModal").find("#modal-body-error").html("Fel kod angiven. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
-				}
+			if (response == 1) {
+				$("#adDeleteModal").find(".modal-body").html("Annonsen är nu borttagen!");
+				$("#adDeleteModal").find(".modal-footer").empty();
+				$("#adDeleteModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
+			}
+			else {
+				$("#adDeleteModal").find("#modal-body-error").html("Fel kod angiven. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
 			}
 		});
-
+		
 		event.preventDefault();
 	});
 
@@ -113,71 +99,73 @@ $(document).ready(function() {
 	});
 
 	$("#adReplyForm").on("submit", function(event) {
-		var $form = $(this);
+		request = sendWithAjax($(this), "mail");
 
-		// $("#modal-body-error").empty();
-
-		$(".ajaxLoaderDelete").show();
-
-		$.ajax({
-			type: $form.attr("method"),
-			url: getAjaxURL("mail"),
-			data: $form.serialize(),
-
-			success: function(data, status) {
-				// console.log(data);
-				// $(".ajaxLoaderDelete").hide();
-
-				if (data == 1) {
-					$("#adReplyModal").find(".modal-body").fadeIn("slow").html("Meddelande skickat!");
-					$("#adReplyModal").find(".modal-footer").empty();
-					$("#adReplyModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
-				}
-				else if (data == 2) {
-					$("#adReplyModal").find(".modal-body-error").html("Du måste fylla i alla fält.").fadeIn("slow").delay(5000).fadeOut("slow");
-				} else {
-					$("#adReplyModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
-				}
+		request.done(function(response, textStatus, jqXHR) {
+			if (response == 1) {
+				$("#adReplyModal").find(".modal-body").fadeIn("slow").html("Meddelande skickat!");
+				$("#adReplyModal").find(".modal-footer").empty();
+				$("#adReplyModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
+			}
+			else if (response == 2) {
+				$("#adReplyModal").find(".modal-body-error").html("Du måste fylla i alla fält.").fadeIn("slow").delay(5000).fadeOut("slow");
+			} else {
+				$("#adReplyModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
 			}
 		});
-
+		
 		event.preventDefault();
 	});
 
 	$("#adReportForm").on("submit", function(event) {
-		var $form = $(this);
+		request = sendWithAjax($(this), "mail");
 
-		// $(".ajaxLoaderDelete").show();
-		$.ajax({
-			type: $form.attr("method"),
-			url: getAjaxURL("mail"),
-			data: $form.serialize(),
-
-			success: function(data, status) {
-				console.log(data);
-				// $(".ajaxLoaderDelete").hide();
-
-				if (data == 1) {
-					$("#adReportModal").find(".modal-body").fadeIn("slow").html("Meddelande skickat!");
-					$("#adReportModal").find(".modal-footer").empty();
-					$("#adReportModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
-				}
-				else if (data == 2) {
-					$("#adReportModal").find(".modal-body-error").html("Du måste ange varför du anmäler annonsen.").fadeIn("slow").delay(5000).fadeOut("slow");
-				} else {
-					$("#adReportModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
-				}
+		request.done(function(response, textStatus, jqXHR) {
+			if (response == 1) {
+				$("#adReportModal").find(".modal-body").fadeIn("slow").html("Meddelande skickat!");
+				$("#adReportModal").find(".modal-footer").empty();
+				$("#adReportModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
+			}
+			else if (response == 2) {
+				$("#adReportModal").find(".modal-body-error").html("Du måste ange varför du anmäler annonsen.").fadeIn("slow").delay(5000).fadeOut("slow");
+			} else {
+				$("#adReportModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
 			}
 		});
-
+		
 		event.preventDefault();
 	});
 
 	$("#contactUsForm").on("submit", function(event) {
-		var $form = $(this);
+		request = sendWithAjax($(this), "mail");
+
+		request.done(function(response, textStatus, jqXHR) {
+			if (response == 1) {
+				$("#contactUsModal").find(".modal-body").fadeIn("slow").html("Meddelande skickat. Vi på StudentTrade svarar på det så fort som möjligt!");
+				$("#contactUsModal").find(".modal-footer").empty();
+				$("#contactUsModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
+			}
+			else if (response == 2) {
+				$("#contactUsModal").find(".modal-body-error").html("Du måste fylla i alla fält.").fadeIn("slow").delay(5000).fadeOut("slow");
+			} else {
+				$("#contactUsModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
+			}
+		});
+		
+		event.preventDefault();
+	});
+
+	$("#addNewAd").on("submit", function(event) {
+		request = sendWithAjax($(this), "mail");
+
+		request.done(function(response, textStatus, jqXHR) {
+			console.log(response);
+		});
+
+		event.preventDefault();
 
 		// $(".ajaxLoaderDelete").show();
-		$.ajax({
+		/*$.ajax({
 			type: $form.attr("method"),
 			url: getAjaxURL("mail"),
 			data: $form.serialize(),
@@ -197,8 +185,17 @@ $(document).ready(function() {
 					$("#contactUsModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
 				}
 			}
-		});
+		});*/
 
-		event.preventDefault();
 	});
 });
+
+function sendWithAjax(_form, _url) {
+	var $form = _form;
+
+	return $.ajax({
+		type: $form.attr("method"),
+		url: getAjaxURL(_url),
+		data: $form.serialize()
+	});
+}
