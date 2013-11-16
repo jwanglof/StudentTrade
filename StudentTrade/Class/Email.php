@@ -14,13 +14,18 @@ class Email {
 		$this->mail = new PHPMailer;
 		
 		$this->mail->IsSMTP();
-		$this->mail->Host 		= "smtp.crystone.se";
-		$this->mail->Port 		= 587;
+		// $this->mail->Host 		= "smtp.crystone.se";
+		$this->mail->Host 		= "localhost";
+		// $this->mail->Port 		= 587;
+		$this->mail->SMTPAuth   = false;
 		
 		$this->mail->CharSet 	= "utf-8";
 		$this->mail->WordWrap 	= 50;
 
 		$this->mail->addAddress($to);
+
+		// Set to 2 for debugging information
+		$this->mail->SMTPDebug  = 0;
 	}
 
 	public function __destruct() {
@@ -34,7 +39,10 @@ class Email {
 		$this->mail->Subject 	= $name ." har något viktigt att säga!";
 		$this->mail->Body 		= $message;
 		
-		return $this->mail->send();
+		if(!$this->mail->Send())
+			return $this->mail->ErrorInfo;
+		else
+			return True;
 	}
 
 	public function sendNewAdEmail($password, $adID) {
@@ -54,7 +62,10 @@ class Email {
 		$this->mail->Subject 	= "Din borttagningskod till din annons på StudentTrade.se";
 		$this->mail->Body 		= $message;
 		
-		return $this->mail->send();
+		if(!$this->mail->Send())
+			return $this->mail->ErrorInfo;
+		else
+			return True;
 	}
 
 	public function sendAdEmail($name, $from, $message) {
@@ -64,7 +75,10 @@ class Email {
 		$this->mail->Subject 	= $name ." är intresserad av din annons på StudentTrade.se";
 		$this->mail->Body 		= $message;
 
-		return $this->mail->send();
+		if(!$this->mail->Send())
+			return $this->mail->ErrorInfo;
+		else
+			return True;
 	}
 
 	public function sendReportAdEmail($adID, $message) {
@@ -74,7 +88,10 @@ class Email {
 		$this->mail->Subject 	= "En anmälan mot en annons";
 		$this->mail->Body 		= $message ."<br /> Annonsen det gäller har ID: ". $adID;
 		
-		return $this->mail->send();
+		if(!$this->mail->Send())
+			return $this->mail->ErrorInfo;
+		else
+			return True;
 	}
 
 	public function sendRequestEmail($campusName, $cityName) {
@@ -89,7 +106,10 @@ class Email {
 		$this->mail->Subject 	= "Förfrågan om att lägga till campus";
 		$this->mail->Body 		= $message;
 		
-		return $this->mail->send();
+		if(!$this->mail->Send())
+			return $this->mail->ErrorInfo;
+		else
+			return True;
 	}
 
 	public function resendCode($adID, $password) {
@@ -109,7 +129,10 @@ class Email {
 		$this->mail->Subject 	= "Din borttagningskod till din annons på StudentTrade.se";
 		$this->mail->Body 		= $message;
 		
-		return $this->mail->send();
+		if(!$this->mail->Send())
+			return $this->mail->ErrorInfo;
+		else
+			return True;
 	}
 }
 ?>
