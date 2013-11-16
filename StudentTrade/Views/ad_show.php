@@ -2,26 +2,25 @@
 $dbh = new DbSelect();
 $ad = $dbh->getAdFromID($_GET["aid"]);
 
-$adInfo = $dbh->getAdInfoFromAdID($ad["id"]);
-$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["fk_ad_adUserInfo"]);
-$adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
-$adSubCategory = $dbh->getAdSubCategoryFromAdCategoryID($ad["fk_ad_adCategory"]);
-$adType = $dbh->getAdTypeFromAdTypeID($ad["fk_ad_adType"]);
+if (!empty($ad)) {
+	$adInfo = $dbh->getAdInfoFromAdID($ad["id"]);
+	$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["fk_ad_adUserInfo"]);
+	$adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
+	$adSubCategory = $dbh->getAdSubCategoryFromAdCategoryID($ad["fk_ad_adCategory"]);
+	$adType = $dbh->getAdTypeFromAdTypeID($ad["fk_ad_adType"]);
 
-$dbh = null;
+	// print_r($ad);
+	// echo "<br />";
+	// print_r($adInfo);
+	// echo "<br />";
+	// print_r($adUserInfo);
+	// echo "<br />";
+	// print_r($adCategory);
+	// echo "<br />";
+	// print_r($adSubCategory);
 
-// print_r($ad);
-// echo "<br />";
-// print_r($adInfo);
-// echo "<br />";
-// print_r($adUserInfo);
-// echo "<br />";
-// print_r($adCategory);
-// echo "<br />";
-// print_r($adSubCategory);
-
-$title = myWordWrap($ad["title"], 33);
-$info = myWordWrap($ad["info"], 68);
+	$title = myWordWrap($ad["title"], 33);
+	$info = myWordWrap($ad["info"], 68);
 
 ?>
 				<div id="fb-root"></div>
@@ -65,7 +64,7 @@ $info = myWordWrap($ad["info"], 68);
 						<span class="adShowInfo">
 							<?php echo date_format(date_create($ad["date_created"]), "Y-m-d"); ?>
 							<br />
-							<?php echo date_format(date_create($ad["date_created"]), "H:m"); ?>
+							<?php echo date_format(date_create($ad["date_created"]), "H:i:s"); ?>
 						</span>
 					</p>
 					<p>
@@ -236,3 +235,9 @@ $info = myWordWrap($ad["info"], 68);
 						</div>
 					</div>
 				</div>
+<?php
+} else {
+	echo "<h2>Denna annons finns inte!</h2>";
+}
+$dbh = null;
+?>
