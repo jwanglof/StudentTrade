@@ -159,7 +159,15 @@ $(document).ready(function() {
 		request = sendWithAjax($(this), "mail");
 
 		request.done(function(response, textStatus, jqXHR) {
-			console.log(response);
+			if (!response) {
+				$("#errorMsg").show();
+				$("#errorMsg").find(".col-xs-5").html("Något gick fel. Var vänlig försök igen.")
+			} else if (response == 2) {
+				$("#errorMsg").show();
+				$("#errorMsg").find(".col-xs-5").html("Du måste fylla i alla obligatoriska (*) fält!")
+			} else {
+				window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=ad_show&city="+ gup("city") +"&aid="+ response;
+			}
 		});
 
 		event.preventDefault();

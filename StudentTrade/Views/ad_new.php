@@ -132,8 +132,13 @@ $dbh = null;
 			<div class="form-group">
 				<label for="info" class="col-xs-1 control-label">Beskrivning *</label>
 				<div class="col-xs-5">
-					<textarea id="info" name="info" class="form-control" style="width: 100%; height: 200px;"></textarea>
+					<textarea id="info" name="info" class="form-control"></textarea>
 				</div>
+			</div>
+
+			<div class="form-group" id="errorMsg">
+				<label for="info" class="col-xs-1 control-label">Felmeddelande:</label>
+				<div class="col-xs-5"></div>
 			</div>
 
 			<button type="submit" class="btn btn-primary btn-sm">Lägg upp annons</button>
