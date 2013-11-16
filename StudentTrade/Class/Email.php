@@ -7,8 +7,6 @@ class Email {
 	private $className;
 	private $mail;
 
-	private $recipientEmail;
-
 	private $noReplyName = "Flossie Giles";
 	private $noReplyEmail = "noreply@studenttrade.se";
 
@@ -32,8 +30,6 @@ class Email {
 		$this->mail->CharSet 	= "utf-8";
 		$this->mail->WordWrap 	= 50;
 
-		$this->mail->addAddress($this->recipientEmail);
-
 		// Set to 2 for debugging information
 		$this->mail->SMTPDebug  = 0;
 	}
@@ -42,8 +38,8 @@ class Email {
 		$this->mail = null;
 	}
 
-	public function setRecipientEmail($toEmail) {
-		$this->recipientEmail = $toEmail;
+	public function setRecipientEmail($recipientEmail) {
+		$this->mail->addAddress($recipientEmail);
 	}
 
 	public function sendContactEmail($name, $from, $message) {
