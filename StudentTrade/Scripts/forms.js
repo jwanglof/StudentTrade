@@ -70,12 +70,13 @@ $(document).ready(function() {
 			$(".modal-footer").find(".ajaxLoader").hide();
 
 			if (response == 1) {
-				$("#adDeleteModal").find(".modal-body").html("Annonsen är nu borttagen!");
-				$("#adDeleteModal").find(".modal-footer").empty();
-				$("#adDeleteModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
+				// $("#adDeleteModal").find(".modal-body").html("Annonsen är nu borttagen!");
+				// $("#adDeleteModal").find(".modal-footer").empty();
+				// $("#adDeleteModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
+				window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=latest";
 			}
 			else {
-				$("#adDeleteModal").find("#modal-body-error").html("Fel kod angiven. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
+				$("#adDeleteModal").find(".modal-body-error").html("Fel kod angiven. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
 			}
 		});
 		
@@ -83,17 +84,20 @@ $(document).ready(function() {
 	});
 
 	$("#forgotCode").on("click", function() {
-		$.ajax({
+		request = $.ajax({
 			type: "post",
 			url: getAjaxURL("mail"),
-			data: {mail: "forgotCode", aid: $("#aid").val()},
+			data: {mail: "forgotCode", aid: $("#aid").val()}
+		});
 
-			success: function(data, status) {
-				if (data == 1) {
-					$("#adDeleteModal").find("#modal-body-error").html("Koden är nu skickad!").fadeIn("slow").delay(5000).fadeOut("slow");
-				} else {
-					$("#adDeleteModal").find("#modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
-				}
+		request.done(function(response, textStatus, jqXHR) {
+			console.log(response);
+			if (response == 1) {
+				$("#adDeleteModal").find(".modal-body-error").html("Koden är nu skickad!").fadeIn("slow").delay(5000).fadeOut("slow");
+			} else if(response == 2) {
+				$("#adDeleteModal").find(".modal-body-error").html("Du har redan skickat efter koden. Om du inte har fått den kan du försöka igen senare.").fadeIn("slow");
+			} else {
+				$("#adDeleteModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
 			}
 		});
 	});

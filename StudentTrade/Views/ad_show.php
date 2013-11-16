@@ -149,8 +149,8 @@ if (!empty($ad)) {
 							</div>
 
 							<div class="modal-footer">
-								<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adDeleteForm" class="btn btn-primary">Skicka förfrågan</button>
 								<button type="submit" class="btn btn-primary" id="forgotCode">Glömt koden? Tryck här!</button>
+								<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adDeleteForm" class="btn btn-primary">Ta bort annons</button>
 							</div>
 						</div>
 					</div>

@@ -23,9 +23,26 @@ class DbUpdate extends DbConfig {
 
 	public function updateAdActiveWithAdID($adID) {
 		try {
-			$stmt = $this->dbh->prepare("UPDATE `ad` SET `active`=:active WHERE `id`=:id");
+			$stmt = $this->dbh->prepare("UPDATE `ad` SET `active`=:active WHERE `id`=:adID");
 			$stmt->bindValue(":active", 0, PDO::PARAM_INT);
-			$stmt->bindValue(":id", $adID, PDO::PARAM_INT);
+			$stmt->bindValue(":adID", $adID, PDO::PARAM_INT);
+
+			$stmt->execute();
+
+			$affectedRows = $stmt->rowCount();
+
+			return $affectedRows;
+		} catch (PDOException $e) {
+			$this->dbh->rollback();
+			$this->errors = $e->getMessage();
+		}
+	}
+
+	public function updateAdRequestCodeTime($adID, $setTime) {
+		try {
+			$stmt = $this->dbh->prepare("UPDATE `ad` SET `request_code`=:setTime WHERE `id`=:adID");
+			$stmt->bindValue(":setTime", $setTime, PDO::PARAM_STR);
+			$stmt->bindValue(":adID", $adID, PDO::PARAM_INT);
 
 			$stmt->execute();
 

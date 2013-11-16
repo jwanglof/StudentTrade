@@ -17,11 +17,7 @@ if (isset($_POST["mail"])) {
 		$checkInput = checkRequiredInput($_POST, array("campus_name", "city_name"));
 		if ($checkInput == 0) {
 			$sendEmail->setRecipientEmail("request@studenttrade.se");
-			if ($sendEmail->sendRequestEmail($_POST["campus_name"], $_POST["city_name"])) {
-				echo true;
-			} else {
-				echo false;
-			}
+			echo $sendEmail->sendRequestEmail($_POST["campus_name"], $_POST["city_name"]);
 		}
 	}
 
@@ -29,24 +25,31 @@ if (isset($_POST["mail"])) {
 		$checkInput = checkRequiredInput($_POST, array("city_name"));
 		if ($checkInput == 0) {
 			$sendEmail->setRecipientEmail("request@studenttrade.se");
-			
-			if ($sendEmail->sendRequestEmail("Inget, vill lägga till stad", $_POST["city_name"])) {
-				echo true;
-			} else {
-				echo false;
-			}
+
+			echo $sendEmail->sendRequestEmail("Inget, vill lägga till stad", $_POST["city_name"]);
 		}
 	}
 
 	else if ($_POST["mail"] == "forgotCode") {
 		$ad = $dbh->getAdFromID($_POST["aid"]);
-		$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["fk_ad_adUserInfo"]);
-		
-		$password = $cipher->decrypt($ad["password"]);
 
-		$sendEmail = new Email($adUserInfo["email"]);
+		// Allow the code to only be sent one time per hour
+		if (date("H:i:s", strtotime($ad["request_code"] ."+1 hour")) <= date("H:i:s")) {
+			$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($_POST["aid"]);
 
-		echo $sendEmail->resendCode($_POST["aid"], $password);
+			$dbUpdate = new DbUpdate();
+			$dbUpdate->updateAdRequestCodeTime($_POST["aid"], date("Y-m-d H:i:s", strtotime("+1 hour")));
+			$dbUpdate = null;
+
+			$password = $cipher->decrypt($ad["password"]);
+
+			$sendEmail->setRecipientEmail($adUserInfo["email"]);
+
+			echo $sendEmail->resendCode($_POST["aid"], $password);
+		} else {
+			echo 2;
+		}
+
 	}
 
 	else if ($_POST["mail"] == "adReply") {
@@ -56,7 +59,7 @@ if (isset($_POST["mail"])) {
 			$ad = $dbh->getAdFromID($_POST["aid"]);
 			$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["fk_ad_adUserInfo"]);
 
-			$sendEmail = new Email($adUserInfo["email"]);
+			$sendEmail->setRecipientEmail($adUserInfo["email"]);
 
 			echo $sendEmail->sendAdEmail($_POST["name"], $_POST["from_email"], nl2br($_POST["message"]));
 		} else {
