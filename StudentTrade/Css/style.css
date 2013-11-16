@@ -233,3 +233,7 @@ span.adShowInfo {
 .errorText {color: #f00;}
 
 .ajaxLoader {width: 15px; height: 15px; margin-right: 25px; display: none;}
+
+#errorMsg {display: none;}
+
+#addNewAd textarea {width: 100%; height: 200px;}
