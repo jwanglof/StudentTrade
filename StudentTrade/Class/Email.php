@@ -7,6 +7,8 @@ class Email {
 	private $className;
 	private $mail;
 
+	private $recipientEmail;
+
 	private $noReplyName = "Flossie Giles";
 	private $noReplyEmail = "noreply@studenttrade.se";
 
@@ -16,7 +18,7 @@ class Email {
 	private $abuseName = "Nhaerian Dawnflower";
 	private $abuseEmail = "abuse@studenttrade.se";
 
-	public function __construct($to) {
+	public function __construct() {
 		$this->className = "Email";
 
 		$this->mail = new PHPMailer;
@@ -30,7 +32,7 @@ class Email {
 		$this->mail->CharSet 	= "utf-8";
 		$this->mail->WordWrap 	= 50;
 
-		$this->mail->addAddress($to);
+		$this->mail->addAddress($this->recipientEmail);
 
 		// Set to 2 for debugging information
 		$this->mail->SMTPDebug  = 0;
@@ -38,6 +40,10 @@ class Email {
 
 	public function __destruct() {
 		$this->mail = null;
+	}
+
+	public function setRecipientEmail($toEmail) {
+		$this->recipientEmail = $toEmail;
 	}
 
 	public function sendContactEmail($name, $from, $message) {
