@@ -121,6 +121,17 @@ function getAjaxURL(file) {
 	return url;
 }
 
+function getURL(path) {
+	var url;
+	if (window.location.origin == "http://localhost") {
+		// console.log(window.location.origin);
+		url = "http://localhost/~johan/StudentTrade/front.php?"+ path;
+	} else {
+		url = window.location.origin +"/beta/front.php?"+ path;
+	};
+	return url;
+}
+
 function showCampuses(cityID) {
 	$("#campus").empty();
 

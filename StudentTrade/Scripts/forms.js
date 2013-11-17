@@ -73,7 +73,8 @@ $(document).ready(function() {
 				// $("#adDeleteModal").find(".modal-body").html("Annonsen är nu borttagen!");
 				// $("#adDeleteModal").find(".modal-footer").empty();
 				// $("#adDeleteModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
-				window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=latest";
+				// window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=latest";
+				window.location.href = getURL("page=latest");
 			}
 			else {
 				$("#adDeleteModal").find(".modal-body-error").html("Fel kod angiven. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
@@ -160,17 +161,24 @@ $(document).ready(function() {
 	});
 
 	$("#addNewAd").on("submit", function(event) {
+		$(".ajaxSubmit").show();
+		$(this).find(".btn-primary").button("disable");
+
 		request = sendWithAjax($(this), "mail");
 
 		request.done(function(response, textStatus, jqXHR) {
-			if (!response) {
+			if (!response || response == 2) {
+				if (!response)
+					$("#errorMsg").find(".col-xs-5").html("Något gick fel. Var vänlig försök igen.")
+				else if (response == 2)
+					$("#errorMsg").find(".col-xs-5").html("Du måste fylla i alla obligatoriska (*) fält!")
+
+				$(".ajaxSubmit").hide();
+				$(this).find(".btn-primary").button("enable");
 				$("#errorMsg").show();
-				$("#errorMsg").find(".col-xs-5").html("Något gick fel. Var vänlig försök igen.")
-			} else if (response == 2) {
-				$("#errorMsg").show();
-				$("#errorMsg").find(".col-xs-5").html("Du måste fylla i alla obligatoriska (*) fält!")
 			} else {
-				window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=ad_show&city="+ gup("city") +"&aid="+ response;
+				// window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=ad_show&city="+ gup("city") +"&aid="+ response;
+				window.location.href = getURL("page=ad_show&city="+ gup("city") +"&aid="+ response);
 			}
 		});
 
