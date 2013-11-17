@@ -7,7 +7,7 @@ class Email {
 	private $className;
 	private $mail;
 
-	private $noReplyName = "Flossie Giles";
+	private $noReplyName = "StudentTrade.se";
 	private $noReplyEmail = "noreply@studenttrade.se";
 
 	private $requestName = "Belkam Battlebrew";
@@ -29,6 +29,8 @@ class Email {
 		
 		$this->mail->CharSet 	= "utf-8";
 		$this->mail->WordWrap 	= 50;
+
+		$this->mail->isHTML(true);
 
 		// Set to 2 for debugging information
 		$this->mail->SMTPDebug  = 0;
