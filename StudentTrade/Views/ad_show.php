@@ -4,7 +4,7 @@ $ad = $dbh->getAdFromID($_GET["aid"]);
 
 if (!empty($ad)) {
 	$adInfo = $dbh->getAdInfoFromAdID($ad["id"]);
-	$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["fk_ad_adUserInfo"]);
+	$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["id"]);
 	$adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
 	$adSubCategory = $dbh->getAdSubCategoryFromAdCategoryID($ad["fk_ad_adCategory"]);
 	$adType = $dbh->getAdTypeFromAdTypeID($ad["fk_ad_adType"]);
