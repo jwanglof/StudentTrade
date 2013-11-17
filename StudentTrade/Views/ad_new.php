@@ -143,6 +143,8 @@ $dbh = null;
 
 			<button type="submit" class="btn btn-primary btn-sm">Lägg upp annons</button>
 			<button type="reset" class="btn btn-default btn-sm">Rensa alla fält</button>
+
+			<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxSubmit" />
 		</fieldset>
 	</form>
 </div>

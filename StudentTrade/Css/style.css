@@ -241,6 +241,7 @@ span.adShowInfo {
 .errorText {color: #f00;}
 
 .ajaxLoader {width: 15px; height: 15px; margin-right: 25px; display: none;}
+.ajaxSubmit {display: none; margin-left: 25px;}
 
 #errorMsg {display: none;}
 
