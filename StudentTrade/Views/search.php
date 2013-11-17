@@ -2,7 +2,7 @@
 				$dbh = new DbSelect();
 				
 				if (isset($_GET["page"]) && $_GET["page"] == "search") {
-					$ads = $dbh->searchAdsWithName("%". $_POST["searchString"] ."%", $_GET["city"]);
+					$ads = $dbh->searchAdsWithName("%". $_GET["searchString"] ."%", $_GET["city"]);
 				?>
 				<div class="col-xs-12 categoryHeading">
 					Resultat av <i><?php echo $_POST["searchString"]; ?></i>

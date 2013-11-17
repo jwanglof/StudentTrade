@@ -94,7 +94,7 @@
 					<div class="row">
 						<form action="<?php echo generateSearchURL($city["short_name"],
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-								(isset($_GET["type"]) ? $_GET["type"] : NULL)); ?>" method="post">
+								(isset($_GET["type"]) ? $_GET["type"] : NULL)); ?>" method="get">
 							<div class="input-group">
 								<input type="text" class="form-control" name="searchString" id="searchString" placeholder="Sök på annonstitel">
 								<span class="input-group-btn">
