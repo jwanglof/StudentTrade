@@ -90,15 +90,16 @@
 				<div class="col-xs-12 categoryHeading" <?php echo (isset($_GET["type"]) ? "style=\"background-color: ". $adCategory["color"] ."\"" : ""); ?>>
 					<?php echo (isset($_GET["type"]) ? $adCategory["description"] : "Senaste annonserna"); ?>
 				</div>
-				<div class="col-xs-12 categoryHeading" style="padding-top: 11px">
+				<div class="col-xs-12 categoryHeading search">
 					<div class="row">
-						<form action="<?php echo generateSearchURL($city["short_name"],
+						<form action="front.php" method="get">
+							<?php echo generateSearchInputs($city["short_name"],
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-								(isset($_GET["type"]) ? $_GET["type"] : NULL)); ?>" method="get">
+								(isset($_GET["type"]) ? $_GET["type"] : NULL)); ?>
 							<div class="input-group">
-								<input type="text" class="form-control" name="searchString" id="searchString" placeholder="Sök på annonstitel">
+								<input type="text" class="form-control" name="searchString" placeholder="Sök på annonstitel">
 								<span class="input-group-btn">
-									<button type="submit" class="btn btn-default" id="searchButton">Sök!</button>
+									<button type="submit" class="btn btn-default">Sök!</button>
 								</span>
 							</div>
 						</form>

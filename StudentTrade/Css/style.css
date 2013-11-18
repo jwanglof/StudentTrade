@@ -246,3 +246,8 @@ span.adShowInfo {
 #errorMsg {display: none;}
 
 #addNewAd textarea {width: 100%; height: 200px;}
+
+.categoryHeading.search {
+	padding-top: 11px;
+	border-top: 1px solid #000;
+}

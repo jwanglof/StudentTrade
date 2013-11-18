@@ -1,21 +1,21 @@
-				<?php
-				$dbh = new DbSelect();
-				
+				<?php				
 				if (isset($_GET["page"]) && $_GET["page"] == "search") {
-					$ads = $dbh->searchAdsWithName("%". $_GET["searchString"] ."%", $_GET["city"]);
+					$dbh = new DbSelect();
+					$ads = $dbh->searchAdsWithName("%". $_GET["searchString"] ."%", $cityID);
 				?>
 				<div class="col-xs-12 categoryHeading">
-					Resultat av <i><?php echo $_POST["searchString"]; ?></i>
+					Resultat av <i><?php echo $_GET["searchString"]; ?></i>
 				</div>
-				<div class="col-xs-12 categoryHeading">
+				<div class="col-xs-12 categoryHeading search">
 					<div class="row">
-						<form action="<?php echo generateSearchURL($city["short_name"],
+						<form action="front.php" method="get">
+							<?php echo generateSearchInputs($city["short_name"],
 								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-								(isset($_GET["type"]) ? $_GET["type"] : NULL)); ?>" method="post">
+								(isset($_GET["type"]) ? $_GET["type"] : NULL)); ?>
 							<div class="input-group">
-								<input type="text" class="form-control" name="searchString" id="searchString" placeholder="Sök på annonstitel">
+								<input type="text" class="form-control" name="searchString" placeholder="Sök på annonstitel">
 								<span class="input-group-btn">
-									<button type="submit" class="btn btn-default" id="searchButton">Sök!</button>
+									<button type="submit" class="btn btn-default">Sök!</button>
 								</span>
 							</div>
 						</form>
@@ -51,6 +51,6 @@
 					</div>
 				</div>
 				<?php
-				$dbh = null;
+					$dbh = null;
 				}
 				?>

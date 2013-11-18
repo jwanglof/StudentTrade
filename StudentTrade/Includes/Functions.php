@@ -27,8 +27,14 @@
 		return "front.php?page=ad_show&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) : "") ."". (($type != NULL) ? "&type=". $type : "") ."&aid=". $adID;
 	}
 
-	function generateSearchURL($city, $campus=NULL, $type=NULL) {
-		return "front.php?page=search&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) : "") ."". (($type != NULL) ? "&type=". $type : "");
+	function generateSearchInputs($city, $campus=NULL, $type=NULL) {
+		$searchInput = "<input type=\"hidden\" name=\"page\" value=\"search\" />";
+		$searchInput .= "<input type=\"hidden\" name=\"city\" value=\"". $city ."\" />";
+		if ($campus != NULL)
+			$searchInput .= "<input type=\"hidden\" name=\"campus\" value=\"". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) ."\" />";
+		if ($type != NULL)
+			$searchInput .= "<input type=\"hidden\" name=\"type\" value=\"". $type ."\" />";
+		return $searchInput;
 	}
 
 	function generateRandomString($length = 10, $characters) {
