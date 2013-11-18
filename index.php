@@ -1,22 +1,22 @@
 <?php
-header('Content-Type: text/html; charset=utf-8');
+header("Content-Type: text/html; charset=utf-8");
 error_reporting(-1);
-ini_set('display_errors', 1);
+ini_set("display_errors", 1);
 
 // Auto load the classes that are called
 spl_autoload_register(function ($class) {
-	$base_dir = 'StudentTrade/';
+	$base_dir = "StudentTrade/";
 	$directories = array(
-		'Db/'
+		"Db/"
 	);
 
 	//for each directory
 	foreach($directories as $directory)
 	{
 		//see if the file exsists
-		if(file_exists($base_dir.$directory.$class . '.php'))
+		if(file_exists($base_dir.$directory.$class . ".php"))
 		{
-			include($base_dir.$directory.$class . '.php');
+			include($base_dir.$directory.$class . ".php");
 			//only require the class once, so quit after to save effort (if you got more, then name them something else
 			return;
 		}
@@ -35,7 +35,7 @@ require_once("StudentTrade/Includes/Functions.php");
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/style_index.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/style_footer.css" />
 		<link rel="shortcut icon" href="favicon.ico" />
-		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900|Gochi+Hand' rel='stylesheet' type='text/css'>
+		<link href="http://fonts.googleapis.com/css?family=Lato:400,700,900|Gochi+Hand" rel="stylesheet" type="text/css">
 		<style type="text/css">
 			.stage {
 				position: absolute;
@@ -47,10 +47,10 @@ require_once("StudentTrade/Includes/Functions.php");
 				z-index: -100;
 			}
 			#far-clouds {
-				background: transparent url('StudentTrade/Img/far-clouds.png') 305px 52px repeat-x;
+				background: transparent url("StudentTrade/Img/far-clouds.png") 305px 52px repeat-x;
 			}
 			#near-clouds {
-				background: transparent url('StudentTrade/Img/near-clouds.png') 305px 172px repeat-x;
+				background: transparent url("StudentTrade/Img/near-clouds.png") 305px 172px repeat-x;
 			}
 		</style>
 	</head>
@@ -85,43 +85,21 @@ require_once("StudentTrade/Includes/Functions.php");
 		</div>
 
 		<div class="container">
-			<div class='col-xs-12 top'>
+			<div class="col-xs-12 top row">
 				<div id="far-clouds" class="stage"></div>
 				<div id="near-clouds" class="stage"></div>
 
-				<div class='row'>
-					<div class='col-xs-8'>
-						<img src='StudentTrade/Img/studenttrade_logo.png' class='studenttrade_logo' />
+				<div class="row">
+					<div class="col-xs-6 col-md-offset-3">
+						<img src="StudentTrade/Img/studenttrade_logo.png" class="studenttrade_logo" />
 					</div>
-					<div class='col-xs-4' id="map">
-						<div id="mapHelp">
-							Saknar du din stad på kartan? <a data-toggle="modal" href="#requestCityModal">Klicka då här!</a>
-							<div>Välj din studentstad här!</div>
-						</div>
-						<img src="StudentTrade/Img/map_w_talk_bubble.png" />
-						<?php
-						$dbh = new DbSelect();
-						$cities = $dbh->getCityIDs();
+				</div>
 
-						foreach ($cities as $city) {
-							$short_name = replaceSwedishLetters(strtolower($city["short_name"]));
-							echo "<span class=\"". $short_name ."\"><a href=\"front.php?page=latest&city=". $short_name ."\">". $city["city_name"] ."</a></span>";
-						}
-						$dbh = null;
-						?>
-					</div>
+				<div id="infoText">
+					<span class="info info1">KÖP OCH SÄLJ BEGAGNAD KURSLITTERATUR</span>
+					<span class="info info2">HITTA OCH HYR UT STUDENTBOSTAD</span>
+					<span class="info info3">CYKLAR, MÖBLER, BILJETTER OCH MYCKET MER</span>
 				</div>
-				<div id='infoText'>
-					<span class='info info1'>Har du en lägenhet att hyra ut?</span>
-					<span class='info info2'>En oanvänd biljett liggandes hemma?</span>
-					<span class='info info3'>Eller kurslitteratur som du vill bli av med?</span>
-					<span class="what">
-						StudentTrade erbjuder dig som student ett enkelt och smidigt sätt att köpa och sälja saker som kommer med stundentlivet. Här hittar du kurslitteratur, evenemangsbiljetter, hyra/hyra ut bostäder och mycket mer.
-						<br />
-						Vi erbjuder dig som student en lättillgänglig annonsplats på lokal nivå. Hos oss kommer du lätt i kontakt med andra studenter på ditt universitet. Lägg bara upp en annons där du berättar vad du söker eller vill bli av med – helt gratis dessutom.
-					</span>
-				</div>
-				<img src="StudentTrade/Img/front_half_circle.png" class='front_half_circle' />	
 			</div>
 
 			<div class="content">
@@ -156,7 +134,7 @@ require_once("StudentTrade/Includes/Functions.php");
 						<div class="thumbnail">
 							<div class="caption">
 								<h3>Hitta det du söker</h3>
-								Söker du en studentbostad eller kanske kurslitteratur till en ny kurs. Kolla alltid hos oss först. Hos oss hittar du alltid annonser från studenter från just ditt universitet vilket gör kontakten lätt – bara att träffas på lunchen i skolan.
+								Söker du en studentbostad eller kanske kurslitteratur till en ny kurs. Kolla alltid hos oss först. Hos oss hittar du alltid annonser från studenter från just ditt universitet vilket gör kontakten lätt – bara att träffas på t.ex. lunchen i skolan.
 							</div>
 							<div class="caption-btm">
 								<h3>Hitta det du söker</h3>
@@ -183,8 +161,8 @@ require_once("StudentTrade/Includes/Functions.php");
 
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$('#far-clouds').pan({fps: 30, speed: 0.7, dir: 'left', depth: 30});
-				$('#near-clouds').pan({fps: 30, speed: 1, dir: 'right', depth: 70});
+				$("#far-clouds").pan({fps: 30, speed: 0.7, dir: "left", depth: 30});
+				$("#near-clouds").pan({fps: 30, speed: 1, dir: "right", depth: 70});
 			});
 		</script>
 	</body>

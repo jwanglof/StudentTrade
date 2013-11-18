@@ -14,33 +14,36 @@ a:visited {color: #fff;}
 
 .top {
 	background: #06bdef url('../Img/index_border.png') bottom repeat-x;
-	height: 550px;
 	z-index: 0;
+	height: 550px;
+	/*border: 1px solid #000;*/
 }
 
 #infoText {
 	color: #fff;
-	border: 0px solid #000;
-	position: absolute;
-	top: 260px;
-	left: 240px;
+	/*border: 1px solid #000;*/
 	
 	font-family: Arial;
-	font-size: 17px;
+	font-size: 14px;
 	font-weight: bold;
 	
-	text-align: center;
+	margin-top: 30px;
 
 	z-index: 1;
 }
 
 #infoText .info {
-	width: 450px;
+	width: 390px;
 	height: 40px;
 	display: block;
 
 	line-height: 40px; 
 	vertical-align: middle;
+
+	margin-bottom: 10px;
+	padding-left: 15px;
+
+	/*border: 1px solid #fff;*/
 }
 
 #infoText .info1 {
@@ -49,80 +52,19 @@ a:visited {color: #fff;}
 
 #infoText .info2 {
 	background-color: #363636;
-
-	position: relative;
-	top: 15px;
-	left: 50px;
 }
 
 #infoText .info3 {
 	background-color: #00A651;
-
-	position: relative;
-	top: 35px;
-	left: 100px;
-}
-
-#infoText .what {
-	width: 600px;
-	display: block;
-
-	position: relative;
-	top: 50px;
-	left: 115px;
-
-	font-size: 13px;
-	font-weight: normal;
-	text-align: left;
-	color: #000;
-
-}
-
-img.front_half_circle {
-	display: block;
-	position: absolute;
-	top: 233px;
-	left: 0px;
 }
 
 img.studenttrade_logo {
 	display: block;
-	padding: 70px 0px 0px 150px;
+	/*padding: 70px 0px 0px 150px;*/
+	/*border: 1px solid #fff;*/
+	margin-top: 100px;
+	width: 100%;
 }
-
-#map {
-	color: #fff;
-	text-align: right;
-}
-#map img {
-	/*width: 305px;*/
-	width: 324px;
-}
-#map span {
-	background: #fff;
-	opacity: 0.7;
-	font-size: 11px;
-	padding: 2px 6px;
-}
-#map a{color: #464646;}
-#map a:hover {
-	font-size: 13px;
-	font-weight: bold;
-	text-decoration: none;
-
-	color: #464646;
-}
-
-#map .linkoping		{position: absolute; top: 430px; right: 130px;}
-#map .stockholm		{position: absolute; top: 370px; right: 80px;}
-#map .goteborg		{position: absolute; top: 430px; right: 280px;}
-#map .lund			{position: absolute; top: 510px; right: 270px;}
-#map .jonkoping		{position: absolute; top: 440px; right: 200px;}
-#map .karlstad		{position: absolute; top: 360px; right: 210px;}
-#map .orebro		{position: absolute; top: 380px; right: 180px;}
-#map .uppsala		{position: absolute; top: 350px; right: 100px;}
-#map .umea			{position: absolute; top: 200px; right: 70px;}
-#map .kalmar		{position: absolute; top: 490px; right: 170px;}
 
 #hover-img .thumbnail {
 	position: relative;
@@ -186,12 +128,6 @@ img.studenttrade_logo {
 	height: 300px;
 	text-align: center;
 	/*border: 1px solid #000;*/
-}
-
-#mapHelp {position: absolute; top: 40px; left: -90px; }
-#mapHelp div {
-	font-family: 'Gochi Hand', cursive;
-	font-size: 40px;
 }
 
 .form-horizontal {color: #565656;}
