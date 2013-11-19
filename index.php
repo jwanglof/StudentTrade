@@ -69,6 +69,7 @@ $dbh = null;
 		</style>
 	</head>
 	<body>
+		<?php include_once("StudentTrade/Includes/GoogleAnalytics.php"); ?>
 		<div class="fade modal" id="requestCityModal" tabindex="-1" role="dialog" aria-labelledby="requestCityModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">

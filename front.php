@@ -66,6 +66,7 @@ $dbh = null;
 		<link rel="shortcut icon" href="favicon.ico" />
 	</head>
 	<body>
+		<?php include_once("StudentTrade/Includes/GoogleAnalytics.php"); ?>
 		<div class="fade modal" id="requestCampusModal" tabindex="-1" role="dialog" aria-labelledby="requestCampusModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
