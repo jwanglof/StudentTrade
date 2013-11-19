@@ -170,3 +170,5 @@ img.studenttrade_logo {
 .dropdown-menu ul:first-child {border-right: 1px solid #e6e6fa;}
 
 .list-unstyled.col-xs-6 li {text-align: left;}
+
+.ajaxLoader {width: 15px; height: 15px; margin-right: 25px; display: none;}

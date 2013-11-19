@@ -192,9 +192,7 @@ $dbh = null;
 				</ul>
 			</div>
 
-			<div class="col-xs-12 footer">
 				<?php include_once("StudentTrade/Views/footer.php"); ?>
-			</div>
 		</div>
 
 		<script src="StudentTrade/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>

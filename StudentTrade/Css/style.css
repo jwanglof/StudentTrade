@@ -175,8 +175,8 @@ a:visited {color: #565656;}
 }
 
 .content {
-	margin-top: -1px; padding: 0;
 	/*border: 2px solid #000;*/
+	margin-bottom: 30px;
 }
 .content h3 {
 	font-weight: bold;

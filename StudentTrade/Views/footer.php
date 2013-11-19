@@ -1,3 +1,4 @@
+		<div class="col-xs-12 row footer">
 			<div class="col-xs-4">
 				<ul>
 					<li id="about_us">Om oss</li>
@@ -14,6 +15,7 @@
 				</ul>
 			</div>
 			<p class="copyright">Copyright &copy2013 StudentTrade</p>
+		</div>
 
 				<div class="fade modal" id="contactUsModal" tabindex="-1" role="dialog" aria-labelledby="contactUsModal" aria-hidden="true">
 					<div class="modal-dialog">
