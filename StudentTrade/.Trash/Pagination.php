@@ -21,7 +21,8 @@ class Pagination extends DbConfig {
 		$prevPage = ($page > 1) ? "JA" : "NEJ";
 		$nextPage = ($page < $pages) ? "JA" : "NEJ";
 
-		return ;
+		echo $prevPage;
+		echo $nextPage;
 	}
 
 	public function getNoPages($totalRecords, $limit) {

@@ -49,42 +49,64 @@
 				}
 
 				if ($proceed) {
-					$pagination = new Pagination();
+					// $pagination = new Pagination();
 
-					$limit = 2;
-					$noPages = $pagination->getNoPages($_SESSION["totalAds"], 2);
+					// $limit = 2;
+					// $noPages = $pagination->getNoPages($_SESSION["totalAds"], 2);
 
 					// if (!isset($_SESSION["totalAds"])) {
 					$_SESSION["totalAds"] = $dbh->getAmountOfAds();
-					$_SESSION["totalNoPages"] = $noPages;
+					// $_SESSION["totalNoPages"] = $noPages;
 					// }
 
-					/*** check for a page number in GET ***/
-					if(filter_has_var(INPUT_GET, "pageNo") == false) {
-						/*** no page in GET ***/
-						$currentPage = 1;
-					}
-					elseif(filter_var($_GET["pageNo"], FILTER_VALIDATE_INT, array("options" => array("min_range"=>1, "max_range"=>$_SESSION["totalNoPages"]))) == false) {
-						/*** if the page number is not an int or not within range, assign it to page 1 ***/
-						$currentPage = 1;
-					}
-					else {
-						/*** if all is well, assign it ***/
-						$currentPage = (int)$_GET["pageNo"];
-					}
+					// /*** check for a page number in GET ***/
+					// if(filter_has_var(INPUT_GET, "pageNo") == false) {
+					// 	/*** no page in GET ***/
+					// 	$currentPage = 1;
+					// }
+					// elseif(filter_var($_GET["pageNo"], FILTER_VALIDATE_INT, array("options" => array("min_range"=>1, "max_range"=>$_SESSION["totalNoPages"]))) == false) {
+					// 	** if the page number is not an int or not within range, assign it to page 1 **
+					// 	$currentPage = 1;
+					// }
+					// else {
+					// 	/*** if all is well, assign it ***/
+					// 	$currentPage = (int)$_GET["pageNo"];
+					// }
 
-					if ($_SESSION["totalNoPages"] != 0) {
-						// http://www.phpro.org/tutorials/Pagination-with-PHP-and-PDO.html
+					// if ($_SESSION["totalNoPages"] != 0) {
+					// 	// http://www.phpro.org/tutorials/Pagination-with-PHP-and-PDO.html
+					// 	print_r($pagination->getPager($_SESSION["totalAds"], $limit, $currentPage));
+					// 	// foreach ($pagination->getPager($_SESSION["totalAds"], $limit, $currentPage) as $value) {
+					// 	// 	print_r($value);
+					// 	// 	echo "<br /><br />";
+					// 	// }
 
-						foreach ($pagination->getPager($_SESSION["totalAds"], $limit, $currentPage) as $value) {
-							print_r($value);
-							echo "<br /><br />";
-						}
+					// 	echo "<br />";
 
-						echo "<br />";
+					// 	echo $currentPage;
+					// }
 
-						echo $currentPage;
-					}
+					// $pages = new Paginator("2", "page=latest&city=linkoping&pageNo");
+					// $totalNoAds = $dbh->getAmountOfAds();
+					// $pages->set_total($totalNoAds);
+					// $data = $pages->get_limit();
+
+					// // foreach ($data as $value) {
+					// // 	print_r($value);
+					// // 	echo "<br />";
+					// // }
+					// echo $pages->page_links();
+
+					$pageNo = 1;
+					if (isset($_GET["pageNo"]))
+						$pageNo = $_GET["pageNo"];
+
+					$hej = new Blaffs($_SESSION["totalAds"], "5");
+					$hej->setPageNumber($pageNo);
+					$hej->setLimit();
+
+					echo "Current page: ". $hej->getCurrentPage();
+					echo "<br />Last page: ". $hej->getLastPage();
 
 				?>
 				<div class="col-xs-12 categoryHeading" <?php echo (isset($_GET["type"]) ? "style=\"background-color: ". $adCategory["color"] ."\"" : ""); ?>>
