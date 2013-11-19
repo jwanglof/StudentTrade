@@ -22,8 +22,8 @@ a:visited {color: #fff;}
 
 #infoText {
 	color: #fff;
-	/*border: 1px solid #000;*/
-	
+	/*border: 1px solid #fff;*/
+	padding: 0px;
 	font-family: Arial;
 	font-size: 14px;
 	font-weight: bold;
@@ -40,6 +40,8 @@ a:visited {color: #fff;}
 	vertical-align: middle;
 
 	padding-left: 15px;
+
+	margin-top: 5px;
 
 	/*border: 1px solid #fff;*/
 }
@@ -140,10 +142,11 @@ img.studenttrade_logo {
 	border-radius: 2;
 	color: #fff;
 	width: 400px;
-	height: 80px;
-	margin-top: 20px;
+	height: 85px;
+	margin-top: 27px;
 
-	font-size: 3.4em;
+	font-size: 3.7em;
+	display: block;
 }
 
 .caret {
@@ -157,3 +160,13 @@ img.studenttrade_logo {
 }
 .dropdown {text-align: center;}
 .dropdown-menu a {color: #565656;}
+
+#selectCity div:last-child {
+	/*border: 1px solid #000;*/
+	width: 400px;
+	text-align: center;
+	font-weight: 700;
+}
+.dropdown-menu ul:first-child {border-right: 1px solid #e6e6fa;}
+
+.list-unstyled.col-xs-6 li {text-align: left;}

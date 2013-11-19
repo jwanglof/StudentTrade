@@ -23,6 +23,20 @@ spl_autoload_register(function ($class) {
 	}
 });
 require_once("StudentTrade/Includes/Functions.php");
+
+$dbh = new DbSelect();
+$cities = $dbh->getCityIDs();
+
+$leftColumn = array();
+$rightColumn = array();
+for ($i = 0; $i < count($cities); $i++) {
+	if ($i%2)
+		array_push($leftColumn, $cities[$i]);
+	else
+		array_push($rightColumn, $cities[$i]);
+}
+
+$dbh = null;
 ?>
 
 <html>
@@ -90,45 +104,46 @@ require_once("StudentTrade/Includes/Functions.php");
 				<div id="near-clouds" class="stage"></div>
 
 				<div class="row">
-					<div class="col-xs-6 col-md-offset-4">
+					<div class="col-xs-6 col-md-offset-3">
 						<img src="StudentTrade/Img/studenttrade_logo.png" class="studenttrade_logo" />
 					</div>
 				</div>
 
-				<div class="row" style="border: 1px solid #000;">
-					<div class="col-xs-4" id="infoText" style="border: 1px solid #000;">
+				<div class="row">
+					<div class="col-xs-4" id="infoText">
 						<span class="info info1">KÖP OCH SÄLJ BEGAGNAD KURSLITTERATUR</span>
 						<span class="info info2">HITTA OCH HYR UT STUDENTBOSTAD</span>
 						<span class="info info3">CYKLAR, MÖBLER, BILJETTER OCH MYCKET MER</span>
 					</div>
-					<div class="col-xs-8" id="selectCity" style="border: 1px solid #000;">
-						<!-- <div class="btn-group"> -->
-							<!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								Välj din stad <span class="caret whiteCaret"></span>
-							</button> -->
-							<!-- <ul class="dropdown-menu" role="menu"> -->
-							<ul id="multicol-menu" class="btn-group list-unstyled">
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Välj din stad <b class="caret whiteCaret"></b></a>
-									<ul class="dropdown-menu" style="margin-top: 15px; width: 395px;">
-										<li>
-											<div class="row">
-												<ul class="list-unstyled col-xs-6">
-													<li><a href="#">Hej1-1</a></li>
-													<li><a href="#">Hej1-2</a></li>
-													<li><a href="#">Hej1-3</a></li>
-												</ul>
-												<ul class="list-unstyled col-xs-6">
-													<li><a href="#">Hej2-1</a></li>
-													<li><a href="#">Hej2-2</a></li>
-													<li><a href="#">Hej2-3</a></li>
-												</ul>
-											</div>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						<!-- </div> -->
+					<div class="col-xs-8" id="selectCity">
+						<ul id="multicol-menu" class="btn-group list-unstyled">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Välj din stad <b class="caret whiteCaret"></b></a>
+								<ul class="dropdown-menu" style="margin-top: 15px; width: 395px;">
+									<li>
+										<div class="row">
+											<ul class="list-unstyled col-xs-6">
+												<?php
+												foreach ($leftColumn as $value) {
+													$short_name = replaceSwedishLetters(strtolower($value["short_name"]));
+													echo "<li><a href=\"front.php?page=latest&city=". $short_name ."\">". $value["city_name"] ."</a></li>";
+												}
+												?>
+											</ul>
+											<ul class="list-unstyled col-xs-6">
+												<?php
+												foreach ($rightColumn as $value) {
+													$short_name = replaceSwedishLetters(strtolower($value["short_name"]));
+													echo "<li><a href=\"front.php?page=latest&city=". $short_name ."\">". $value["city_name"] ."</a></li>";
+												}
+												?>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul> <!-- End of dropdown -->
+						<div>Saknar du din stad? <a data-toggle="modal" href="#requestCityModal">Klicka då här!</a></div>
 					</div>
 				</div>
 			</div>
