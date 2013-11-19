@@ -92,7 +92,6 @@ $(document).ready(function() {
 		});
 
 		request.done(function(response, textStatus, jqXHR) {
-			console.log(response);
 			if (response == 1) {
 				$("#adDeleteModal").find(".modal-body-error").html("Koden är nu skickad!").fadeIn("slow").delay(5000).fadeOut("slow");
 			} else if(response == 2) {
