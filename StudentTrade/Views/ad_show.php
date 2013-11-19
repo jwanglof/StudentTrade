@@ -197,7 +197,7 @@ if (!empty($ad)) {
 							</div>
 
 							<div class="modal-footer">
-								<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adReplyForm" class="btn btn-primary">Skicka meddelande</button>
+								<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adReplyForm" class="btn btn-primary">Skicka meddelandet</button>
 							</div>
 						</div>
 					</div>

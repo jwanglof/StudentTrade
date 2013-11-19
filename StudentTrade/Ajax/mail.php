@@ -57,7 +57,7 @@ if (isset($_POST["mail"])) {
 
 		if ($checkInput == 0) {
 			$ad = $dbh->getAdFromID($_POST["aid"]);
-			$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($ad["fk_ad_adUserInfo"]);
+			$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($_POST["aid"]);
 
 			$sendEmail->setRecipientEmail($adUserInfo["email"]);
 
