@@ -116,7 +116,7 @@ $dbh = null;
 						<span class="info info2">HITTA OCH HYR UT STUDENTBOSTAD</span>
 						<span class="info info3">CYKLAR, MÖBLER, BILJETTER OCH MYCKET MER</span>
 					</div>
-					<div class="col-xs-8" id="selectCity">
+					<div class="col-xs-4" id="selectCity">
 						<ul id="multicol-menu" class="btn-group list-unstyled">
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Välj din stad <b class="caret whiteCaret"></b></a>

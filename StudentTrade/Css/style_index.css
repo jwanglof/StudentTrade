@@ -161,6 +161,7 @@ img.studenttrade_logo {
 .dropdown {text-align: center;}
 .dropdown-menu a {color: #565656;}
 
+#selectCity {padding-left: 27px;}
 #selectCity div:last-child {
 	/*border: 1px solid #000;*/
 	width: 400px;
