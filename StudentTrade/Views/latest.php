@@ -19,7 +19,7 @@
 				$paginationURL .= isset($_GET["type"]) ? "&type=". $_GET["type"] : "";
 				$paginationURL .= "&pageNo=";
 
-				$pagination = new Blaffs(20, $paginationURL);
+				$pagination = new Pagination(20, $paginationURL);
 
 				$proceed = True;
 				

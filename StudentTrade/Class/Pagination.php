@@ -3,7 +3,7 @@
 /**
 * http://www.developphp.com/view.php?tid=1349
 */
-class Blaffs extends DbSelect {
+class Pagination extends DbSelect {
 	private $totalRows;
 	private $itemsPerPage;
 	private $lastPageNumber;
