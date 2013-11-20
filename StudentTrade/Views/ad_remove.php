@@ -9,7 +9,7 @@ if (isset($_GET["aid"]) && isset($_GET["code"])) {
 		$dbUpdate = new DbUpdate();
 		if ($dbUpdate->updateAdActiveWithAdID($_GET["aid"]) > 0) {
 			$cipher = null;
-			header("Location: front.php?page=latest");
+			header("Location: index.php");
 		}
 		else
 			echo "Du angav fel borttagningskod.";
