@@ -165,10 +165,12 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAds($cityID) {
+	public function getAds($cityID, $limit, $offset) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_city=:cityID AND active=1 ORDER BY id DESC");
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_city=:cityID AND active=1 ORDER BY id DESC LIMIT :limit OFFSET :offset");
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
+			$stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+			$stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -177,11 +179,13 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdsWithAdCategoryIDFromCity($adCategoryID, $cityID) {
+	public function getAdsWithAdCategoryIDFromCity($adCategoryID, $cityID, $limit, $offset) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adCategory=:adCategoryID AND fk_ad_city=:cityID AND active=1 ORDER BY id DESC");
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adCategory=:adCategoryID AND fk_ad_city=:cityID AND active=1 ORDER BY id DESC LIMIT :limit OFFSET :offset");
 			$stmt->bindValue(":adCategoryID", $adCategoryID, PDO::PARAM_INT);
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
+			$stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+			$stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -190,11 +194,13 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdsFromCampus($campusID, $cityID) {
+	public function getAdsFromCampus($campusID, $cityID, $limit, $offset) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_campus=:campusID AND fk_ad_city=:cityID AND active=1 ORDER BY id DESC");
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_campus=:campusID AND fk_ad_city=:cityID AND active=1 ORDER BY id DESC LIMIT :limit OFFSET :offset");
 			$stmt->bindValue(":campusID", $campusID, PDO::PARAM_INT);
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
+			$stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+			$stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -203,12 +209,14 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdsWithAdCategoryFromCampus($adCategoryID, $campusID, $cityID) {
+	public function getAdsWithAdCategoryFromCampus($adCategoryID, $campusID, $cityID, $limit, $offset) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adCategory=:adCategoryID AND fk_ad_campus=:campusID AND fk_ad_city=:cityID AND active=1 ORDER BY id DESC");
+			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_adCategory=:adCategoryID AND fk_ad_campus=:campusID AND fk_ad_city=:cityID AND active=1 ORDER BY id DESC LIMIT :limit OFFSET :offset");
 			$stmt->bindValue(":adCategoryID", $adCategoryID, PDO::PARAM_INT);
 			$stmt->bindValue(":campusID", $campusID, PDO::PARAM_INT);
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
+			$stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+			$stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);

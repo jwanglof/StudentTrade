@@ -10,6 +10,18 @@
 				// Make this more pretty some way?
 				$dbh = new DbSelect();
 
+				$pageNo = 1;
+				if (isset($_GET["pageNo"]))
+					$pageNo = $_GET["pageNo"];
+
+				$paginationURL = "front.php?page=latest&city=". $_GET["city"];
+				$paginationURL .= isset($_GET["campus"]) ? "&campus=". $_GET["campus"] : "";
+				$paginationURL .= isset($_GET["type"]) ? "&type=". $_GET["type"] : "";
+
+				$pagination = new Blaffs("5", $paginationURL);
+				$pagination->setPageNumber($pageNo);
+				// $currentAds = $pagination->getAds();
+
 				$proceed = True;
 				
 				if (isset($_GET["type"], $_GET["campus"])) {
@@ -21,7 +33,8 @@
 
 					$campusID = $campus["id"];
 
-					$ads = $dbh->getAdsWithAdCategoryFromCampus($adCategory["id"], $campusID, $cityID);
+					// $ads = $dbh->getAdsWithAdCategoryFromCampus($adCategory["id"], $campusID, $cityID);
+					$ads = $pagination->getAds("getAdsWithAdCategoryFromCampus", $cityID, $campusID, $adCategory["id"]);
 				}
 
 				else if (isset($_GET["type"]) && !isset($_GET["campus"])) {
@@ -30,7 +43,8 @@
 					if (empty($adCategory))
 						$proceed = False;
 
-					$ads = $dbh->getAdsWithAdCategoryIDFromCity($adCategory["id"], $cityID);
+					// $ads = $dbh->getAdsWithAdCategoryIDFromCity($adCategory["id"], $cityID);
+					$ads = $pagination->getAds("getAdsWithAdCategoryIDFromCity", $cityID, NULL, $adCategory["id"]);
 				}
 
 				else if (isset($_GET["campus"]) && !isset($_GET["type"])) {
@@ -41,35 +55,24 @@
 
 					$campusID = $campus["id"];
 
-					$ads = $dbh->getAdsFromCampus($campusID, $cityID);
+					// $ads = $dbh->getAdsFromCampus($campusID, $cityID);
+					$ads = $pagination->getAds("getAdsFromCampus", $cityID, $campusID, NULL);
 				}
 
 				else {
-					$ads = $dbh->getAds($cityID);
+					// $ads = $dbh->getAds($cityID);
+					$ads = $pagination->getAds("getAds", $cityID, NULL, NULL);
 				}
 
 				if ($proceed) {
-					$_SESSION["totalAds"] = $dbh->getAmountOfAds();
-					// $_SESSION["totalNoPages"] = $noPages;
-
-					$pageNo = 1;
-					if (isset($_GET["pageNo"]))
-						$pageNo = $_GET["pageNo"];
-
-					$paginationURL = "front.php?page=latest&city=". $_GET["city"];
-					$paginationURL .= isset($_GET["campus"]) ? "&campus=". $_GET["campus"] : "";
-					$paginationURL .= isset($_GET["type"]) ? "&type=". $_GET["type"] : "";
-
-					$hej = new Blaffs($_SESSION["totalAds"], "5", $paginationURL);
-					$hej->setPageNumber($pageNo);
-					$currentAds = $hej->getAds();
-					print_r($currentAds);
-
-					echo "Current page: ". $hej->getCurrentPage();
-					echo "<br />Last page: ". $hej->getLastPage();
+					echo "Current page: ". $pagination->getCurrentPage();
+					echo "<br />Last page: ". $pagination->getLastPage();
 					echo "<br />";
-					echo $hej->getPages();
 
+					foreach ($ads as $value) {
+						print_r($value);
+						echo "<br />";
+					}
 				?>
 				<div class="col-xs-12 categoryHeading" <?php echo (isset($_GET["type"]) ? "style=\"background-color: ". $adCategory["color"] ."\"" : ""); ?>>
 					<?php echo (isset($_GET["type"]) ? $adCategory["description"] : "Senaste annonserna"); ?>
@@ -120,7 +123,7 @@
 				</div>
 				<?php
 				} else {
-					echo "<h2>Fel parametrar i adressen!</h2>";
+					echo "<h2>Fel parametrar i URLn!</h2>";
 				}
 				$dbh = null;
 				?>
