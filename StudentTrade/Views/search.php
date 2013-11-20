@@ -21,34 +21,32 @@
 						</form>
 					</div>
 				</div>
-				<div class="col-xs-12">
-					<div class="row" id="latestAd">
-					<?php
-					foreach ($ads as $ad) {
-						$adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
-						$adType = $dbh->getAdTypeFromAdTypeID($ad["fk_ad_adType"]);
-					?>
-						<div class="latestAd">
-							<a href="<?php echo generateShowAdURL($city["short_name"], $ad["title"],
-								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-								(isset($_GET["type"]) ? $_GET["type"] : NULL),
-								$ad["id"]); ?>">
-								<div class="col-xs-1 categoryIcon icon <?php echo $adCategory["name"]; ?>"></div>
-								<div class="col-xs-4 newAdInfo">
-									<h4><?php echo limitStringLength($ad["title"]); ?></h4>
-								</div>
-								<div class="col-xs-3 newAdInfo">
-									<span class="adType <?php echo $adType["short_name"]; ?>"><?php echo $adType["name"]; ?></span>
-									<span class="where"><?php $campus = $dbh->getCampusFromID($ad["fk_ad_campus"]); echo $campus["campus_name"]; ?></span>
-								</div>
-								<div class="col-xs-2 newAdInfo date"><?php echo date_format(date_create($ad["date_created"]), "Y-m-d"); ?></div>
-								<div class="col-xs-2 newAdInfo price"><?php echo $ad["price"]; ?> SEK</div>
-							</a>
-						</div>
-					<?php
-					}
-					?>
+				<div class="row" id="latestAd">
+				<?php
+				foreach ($ads as $ad) {
+					$adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
+					$adType = $dbh->getAdTypeFromAdTypeID($ad["fk_ad_adType"]);
+				?>
+					<div class="latestAd">
+						<a href="<?php echo generateShowAdURL($city["short_name"], $ad["title"],
+							(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+							(isset($_GET["type"]) ? $_GET["type"] : NULL),
+							$ad["id"]); ?>">
+							<div class="col-xs-1 categoryIcon icon <?php echo $adCategory["name"]; ?>"></div>
+							<div class="col-xs-4 newAdInfo">
+								<h4><?php echo limitStringLength($ad["title"]); ?></h4>
+							</div>
+							<div class="col-xs-3 newAdInfo">
+								<span class="adType <?php echo $adType["short_name"]; ?>"><?php echo $adType["name"]; ?></span>
+								<span class="where"><?php $campus = $dbh->getCampusFromID($ad["fk_ad_campus"]); echo $campus["campus_name"]; ?></span>
+							</div>
+							<div class="col-xs-2 newAdInfo date"><?php echo date_format(date_create($ad["date_created"]), "Y-m-d"); ?></div>
+							<div class="col-xs-2 newAdInfo price"><?php echo $ad["price"]; ?> SEK</div>
+						</a>
 					</div>
+				<?php
+				}
+				?>
 				</div>
 				<?php
 					$dbh = null;

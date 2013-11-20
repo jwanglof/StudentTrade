@@ -119,8 +119,21 @@ a:visited {color: #565656;}
 
 #latestAd {
 	min-height: 400px;
+
 	background-color: #f4f4f4;
-	/*border: 1px solid #c0c0c0;*/
+	
+	border-left: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	border-bottom: 1px solid #c0c0c0;
+
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+#latestAd div.pagination {
+	width: 100%;
+	text-align: center;
 }
 
 .latestAd {
