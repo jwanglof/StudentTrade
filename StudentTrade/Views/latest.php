@@ -11,16 +11,15 @@
 				$dbh = new DbSelect();
 
 				$pageNo = 1;
-				if (isset($_GET["pageNo"]))
+				if (isset($_GET["pageNo"]) && $_GET["pageNo"] > 0)
 					$pageNo = $_GET["pageNo"];
 
 				$paginationURL = "front.php?page=latest&city=". $_GET["city"];
 				$paginationURL .= isset($_GET["campus"]) ? "&campus=". $_GET["campus"] : "";
 				$paginationURL .= isset($_GET["type"]) ? "&type=". $_GET["type"] : "";
+				$paginationURL .= "&pageNo=";
 
-				$pagination = new Blaffs("5", $paginationURL);
-				$pagination->setPageNumber($pageNo);
-				// $currentAds = $pagination->getAds();
+				$pagination = new Blaffs(20, $paginationURL);
 
 				$proceed = True;
 				
@@ -33,8 +32,7 @@
 
 					$campusID = $campus["id"];
 
-					// $ads = $dbh->getAdsWithAdCategoryFromCampus($adCategory["id"], $campusID, $cityID);
-					$ads = $pagination->getAds("getAdsWithAdCategoryFromCampus", $cityID, $campusID, $adCategory["id"]);
+					$pagination->setDbQuery("getAdsWithAdCategoryFromCampus", $cityID, $campusID, $adCategory["id"]);
 				}
 
 				else if (isset($_GET["type"]) && !isset($_GET["campus"])) {
@@ -43,8 +41,7 @@
 					if (empty($adCategory))
 						$proceed = False;
 
-					// $ads = $dbh->getAdsWithAdCategoryIDFromCity($adCategory["id"], $cityID);
-					$ads = $pagination->getAds("getAdsWithAdCategoryIDFromCity", $cityID, NULL, $adCategory["id"]);
+					$pagination->setDbQuery("getAdsWithAdCategoryIDFromCity", $cityID, NULL, $adCategory["id"]);
 				}
 
 				else if (isset($_GET["campus"]) && !isset($_GET["type"])) {
@@ -55,24 +52,19 @@
 
 					$campusID = $campus["id"];
 
-					// $ads = $dbh->getAdsFromCampus($campusID, $cityID);
-					$ads = $pagination->getAds("getAdsFromCampus", $cityID, $campusID, NULL);
+					$pagination->setDbQuery("getAdsFromCampus", $cityID, $campusID, NULL);
 				}
 
 				else {
-					// $ads = $dbh->getAds($cityID);
-					$ads = $pagination->getAds("getAds", $cityID, NULL, NULL);
+					$pagination->setDbQuery("getAds", $cityID, NULL, NULL);
 				}
 
-				if ($proceed) {
-					echo "Current page: ". $pagination->getCurrentPage();
-					echo "<br />Last page: ". $pagination->getLastPage();
-					echo "<br />";
+				$pagination->setLastPage();
+				$pagination->setCurrentPage($pageNo);
 
-					foreach ($ads as $value) {
-						print_r($value);
-						echo "<br />";
-					}
+				$ads = $pagination->getCurrentAds();
+
+				if ($proceed) {					
 				?>
 				<div class="col-xs-12 categoryHeading" <?php echo (isset($_GET["type"]) ? "style=\"background-color: ". $adCategory["color"] ."\"" : ""); ?>>
 					<?php echo (isset($_GET["type"]) ? $adCategory["description"] : "Senaste annonserna"); ?>
@@ -122,6 +114,23 @@
 					</div>
 				</div>
 				<?php
+				echo "<ul class=\"pagination\">";
+
+				if (empty($pagination->getPreviousPage()))
+					echo "<li class=\"disabled\"><span>&laquo;</span></li>";
+				else
+					echo "<li><a href=\"". $pagination->getURL() . $pagination->getPreviousPage() ."\">&laquo;</a></li>";
+
+				foreach ($pagination->getPages() as $value) {
+					echo "<li><a href=\"". $pagination->getURL() . $value ."\">". $value ."</a></li>";
+				}
+				
+				if (empty($pagination->getNextPage()))
+					echo "<li class=\"disabled\"><span>&laquo;</span></li>";
+				else
+					echo "<li><a href=\"". $pagination->getURL() . $pagination->getNextPage() ."\">&raquo;</a></li>";
+
+				echo "</ul>";
 				} else {
 					echo "<h2>Fel parametrar i URLn!</h2>";
 				}
