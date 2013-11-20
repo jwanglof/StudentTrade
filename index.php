@@ -101,6 +101,7 @@ $dbh = null;
 
 		<div class="container">
 			<div class="col-xs-12 top row">
+				<noscript><h2>Vi ser att du inte har JavaScript aktiverat. Då vår site använder väldigt mycket JavaScript ber vi därför dig att aktivera det för att kunna använda vår site!</h2></noscript>
 				<div id="far-clouds" class="stage"></div>
 				<div id="near-clouds" class="stage"></div>
 
