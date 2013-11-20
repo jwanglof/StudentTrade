@@ -70,11 +70,13 @@ $(document).ready(function() {
 			$(".modal-footer").find(".ajaxLoader").hide();
 
 			if (response == 1) {
-				// $("#adDeleteModal").find(".modal-body").html("Annonsen är nu borttagen!");
-				// $("#adDeleteModal").find(".modal-footer").empty();
-				// $("#adDeleteModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
+				$("#adDeleteModal").find(".modal-body").html("Annonsen är nu borttagen!");
+				$("#adDeleteModal").find(".modal-footer").empty();
+				$("#adDeleteModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\" id=\"okButton\">OK</button>");
 				// window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=latest";
-				window.location.href = getURL("page=latest");
+				$("#okButton").on("click", function() {
+					window.location.href = getURL("page=latest&city="+ gup("city"));
+				});
 			}
 			else {
 				$("#adDeleteModal").find(".modal-body-error").html("Fel kod angiven. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
