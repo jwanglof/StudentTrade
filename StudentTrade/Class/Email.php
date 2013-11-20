@@ -64,7 +64,7 @@ class Email {
 		</p>
 		<p>
 			Om din vara är såld, eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />
-			eller tryck <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_delete&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.
+			eller tryck <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.
 		</p>
 		MVH StudentTrade.se";
 
