@@ -83,7 +83,7 @@ $dbh = null;
 							<input type="hidden" id="mail" name="mail" value="requestCity" />
 							<fieldset>
 								<div class="form-group">
-									<label for="city_name" class="col-lg-1 control-label">Ligger i stad *</label>
+									<label for="city_name" class="col-lg-1 control-label">Stadnamn *</label>
 									<div class="col-lg-5">
 										<input type="text" class="form-control" id="city_name" name="city_name" placeholder="Stadsnamn" />
 									</div>
