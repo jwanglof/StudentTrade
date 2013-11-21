@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	if (gup("campus") != "") {		
 		var campus = gup("campus");
-		$("#campusChooser .dropdown-toggle").html($("#"+ campus).text() +"<span class=\"caret\"></span>");
+		$("#campusChooser .campus").html($("#"+ campus).text() +"<span class=\"caret\"></span>");
 	} else {
-		$("#campusChooser .dropdown-toggle").html("Välj campus<span class=\"caret\"></span>");
+		$("#campusChooser .campus").html("Välj campus<span class=\"caret\"></span>");
 	}
 	// $(".campusChosen").click(function() {
 	// 	// Need .text() since an x-character is added when the link is clicked on

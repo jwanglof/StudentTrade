@@ -104,7 +104,7 @@ $dbh = null;
 
 		<div class="container">
 			<div class="col-xs-12 top">
-				<div class="row" style="height: 190px;">
+				<div class="row">
 					<div class="col-xs-6">
 						<a href="index.php"><img src="StudentTrade/Img/ST_w_bubble.png" /></a>
 					</div>
@@ -112,7 +112,7 @@ $dbh = null;
 						<div class="btn-group">
 							<a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>" class="btn btn-info">Se <?php echo $city["city_name"]; ?></a> 
 							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"></button>
+								<button type="button" class="btn btn-default dropdown-toggle campus" data-toggle="dropdown"></button>
 								<ul class="dropdown-menu">
 									<?php
 									foreach ($campuses as $cam) {
@@ -130,6 +130,22 @@ $dbh = null;
 										}
 									}
 									?>
+									<li class="divider"></li>
+									<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>">Se alla</a></li>
+									<li class="divider"></li>
+									<li><a data-toggle="modal" href="#requestCampusModal">Mitt campus saknas!</a></li>
+								</ul>
+							</div>
+						</div>
+						
+						<br />
+
+						<div class="btn-group">
+							<span class="btn btn-default">Byt stad</span>
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Välj stad<span class=\"caret\"></span></button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Hej</a></li>
 									<li class="divider"></li>
 									<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>">Se alla</a></li>
 									<li class="divider"></li>
