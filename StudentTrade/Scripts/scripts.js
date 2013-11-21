@@ -23,10 +23,10 @@ $(document).ready(function() {
 	$("#hover-img .thumbnail").hover(
 		function() {
 			$(this).find('.caption').stop(true, true).slideDown(250);
-            $(this).find('.caption-btm').stop(true, true).fadeOut("fast");
+			$(this).find('.caption-btm').stop(true, true).fadeOut("fast");
 		}, function() {
 			$(this).find('.caption').stop(true, true).slideUp(250);
-            $(this).find('.caption-btm').stop(true, true).fadeIn("fast");
+			$(this).find('.caption-btm').stop(true, true).fadeIn("fast");
 		}
 	);
 
@@ -159,42 +159,46 @@ function showCampuses(cityID) {
 	});
 }
 
+var xhr;
+
 function showAdCategoryInputs(adType) {
-        // Clear the div
-        $("#adInput").empty();
+	if (xhr && xhr.readystate != 4)
+		xhr.abort();
+	// Clear the div
+	$("#adInput").empty();
 
-        $(".ajaxCategory").show();
+	$(".ajaxCategory").show();
 
-        request = $.ajax({
-                type: "post",
-                url: getAjaxURL("get"),
-                data: {get: "adTypeInfo", adType: adType}
-        });
+	xhr = $.ajax({
+			type: "post",
+			url: getAjaxURL("get"),
+			data: {get: "adTypeInfo", adType: adType}
+	});
 
-        request.done(function(response, textStatus, jqXHR) {
-        		$(".ajaxCategory").hide();
-                // console.log(response);
-                var objs = JSON.parse(response);
-                for (var value in objs) {
-                        $("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
-                        $("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\""+ objs[value]["type"] +"\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
-                        $("#adInput").append("<br /><br />");
-                }
-        });
-        request.fail(function(jqXHR, textStatus, errorThrown) {
-                console.log(errorThrown);
-        });
+	xhr.done(function(response, textStatus, jqXHR) {
+			$(".ajaxCategory").hide();
+			// console.log(response);
+			var objs = JSON.parse(response);
+			for (var value in objs) {
+					$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
+					$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\""+ objs[value]["type"] +"\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
+					$("#adInput").append("<br /><br />");
+			}
+	});
+	xhr.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log(errorThrown);
+	});
 }
 
 function gup(name) {
-    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-    var regexS = "[\\?&]" + name + "=([^&#]*)";
-    var regex = new RegExp(regexS);
-    var results = regex.exec(window.location.href);
-    if (results == null)
-        return "";
-    else
-        return results[1];
+	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+	var regexS = "[\\?&]" + name + "=([^&#]*)";
+	var regex = new RegExp(regexS);
+	var results = regex.exec(window.location.href);
+	if (results == null)
+		return "";
+	else
+		return results[1];
 }
 
 $(document).on("click", "#about_us", function(e) {
