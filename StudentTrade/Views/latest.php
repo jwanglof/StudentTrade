@@ -112,7 +112,8 @@
 					echo "<div class=\"pagination\">";
 						echo "<ul class=\"pagination\">";
 
-						if (empty($pagination->getPreviousPage()))
+						$prevPage = $pagination->getPreviousPage();
+						if (empty($prevPage))
 							echo "<li class=\"disabled\"><span>&laquo;</span></li>";
 						else
 							echo "<li><a href=\"". $pagination->getURL() . $pagination->getPreviousPage() ."\">&laquo;</a></li>";
@@ -124,7 +125,8 @@
 								echo "<li><a href=\"". $pagination->getURL() . $value ."\">". $value ."</a></li>";
 						}
 						
-						if (empty($pagination->getNextPage()))
+						$nextPage = $pagination->getNextPage();
+						if (empty($nextPage))
 							echo "<li class=\"disabled\"><span>&raquo;</span></li>";
 						else
 							echo "<li><a href=\"". $pagination->getURL() . $pagination->getNextPage() ."\">&raquo;</a></li>";
