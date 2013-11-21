@@ -57,15 +57,22 @@ class Email {
 			return True;
 	}
 
-	public function sendNewAdEmail($password, $adID) {
-		$message = "Tack för att du använder StudentTrade.se!
-		<p>
-			Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a>
-		</p>
-		<p>
-			Om din vara är såld, eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />
-			eller tryck <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.
-		</p>
+	public function sendNewAdEmail($password, $adID, $adType) {
+		$message = "Tack för att du använder StudentTrade.se!"
+		$message .= "<p>Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a></p>";
+		$message .= "<p>";
+
+		if ($adType == 1)
+			$message .= "Om din vara är såld, ";
+		else if ($adType == 2)
+			$message .= "Om någon har köpt din vara, ";
+		else if ($adType == 3)
+			$message .= "Om du har blivit av med din vara, ";
+		else if ($adType == 4)
+			$message .= "Om du har bytt din vara";
+
+		$message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.";
+		$message .= "</p>";
 		MVH StudentTrade.se";
 
 		$this->mail->From 		= $this->noReplyEmail;;

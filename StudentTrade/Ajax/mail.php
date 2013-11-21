@@ -129,7 +129,7 @@ if (isset($_POST["mail"])) {
 			$dbInsert = null;
 
 			$sendEmail->setRecipientEmail($_POST["email"]);
-			$sendEmail->sendNewAdEmail($password, $adID);
+			$sendEmail->sendNewAdEmail($password, $adID, $_POST["adType"]);
 
 			echo $adID;
 		} else {
