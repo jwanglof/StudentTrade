@@ -141,10 +141,10 @@ class DbSelect extends DbConfig {
 		}
 	}
 
-	public function getAdCategoryFromID($adID) {
+	public function getAdCategoryFromID($id) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM adCategory WHERE id=:adID");
-			$stmt->bindValue(":adID", $adID, PDO::PARAM_INT);
+			$stmt = $this->dbh->prepare("SELECT * FROM adCategory WHERE id=:id");
+			$stmt->bindValue(":id", $id, PDO::PARAM_INT);
 			$stmt->execute();
 
 			return $stmt->fetch(PDO::FETCH_ASSOC);
