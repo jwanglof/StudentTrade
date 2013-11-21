@@ -264,3 +264,5 @@ span.adShowInfo {
 	padding-top: 11px;
 	border-top: 1px solid #000;
 }
+
+.btn-info, .btn-default {width: 140px;}

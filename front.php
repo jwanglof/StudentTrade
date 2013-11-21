@@ -47,6 +47,7 @@ foreach ($universities as $uni) {
 
 $adtypes = $dbh->getAdCategories();
 $cityID = $city["id"];
+$cities = $dbh->getCityIDs();
 
 $dbh = null;
 ?>
@@ -138,18 +139,19 @@ $dbh = null;
 							</div>
 						</div>
 						
-						<br />
+						<br /><br />
 
 						<div class="btn-group">
-							<span class="btn btn-default">Byt stad</span>
+							<span class="btn btn-info">Byt stad</span>
 							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Välj stad<span class=\"caret\"></span></button>
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Välj stad <span class="caret"></span></button>
 								<ul class="dropdown-menu">
-									<li><a href="#">Hej</a></li>
-									<li class="divider"></li>
-									<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>">Se alla</a></li>
-									<li class="divider"></li>
-									<li><a data-toggle="modal" href="#requestCampusModal">Mitt campus saknas!</a></li>
+								<?php
+								foreach ($cities as $value) {
+									$short_name = replaceSwedishLetters(strtolower($value["short_name"]));
+									echo "<li><a href=\"front.php?page=latest&city=". $short_name ."\">". $value["city_name"] ."</a></li>";
+								}
+								?>
 								</ul>
 							</div>
 						</div>
