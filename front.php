@@ -181,25 +181,32 @@ $dbh = null;
 						<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>"><?php echo $city["city_name"]; ?></a></li>
 						<?php
 						$dbh = new DbSelect();
-						if (isset($_GET["campus"])) {
-							foreach ($campuses[0] as $key => $value) {
-								if (replaceSwedishLetters(replaceSpecialChars(strtolower($value["campus_name"]))) == $_GET["campus"])
-									echo "<li><a href=\"front.php?page=latest&city=". $city["short_name"] ."&campus=". $_GET["campus"] ."\">". $value["campus_name"] ."</a></li>";
-							}
-						}
-						if (isset($_GET["type"])) {
-							$adCategory = $dbh->getAdCategoryFromName($_GET["type"]);
-							echo "<li>". generateAdURL("latest", $city["short_name"],
-									(isset($_GET["type"]) ? $adCategory["description"] : NULL),
-									(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-									$type["name"]) ."</li>";
-						}
 						if (isset($_GET["aid"])) {
 							$ad = $dbh->getAdFromID($_GET["aid"]);
-							echo "<li><a href=\"". generateShowAdURL($city["short_name"], $ad["title"],
-								(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-								(isset($_GET["type"]) ? $_GET["type"] : NULL),
-								$_GET["aid"]) ."\">". $ad["title"] ."</a></li>";
+							$adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
+							$adCampus = $dbh->getCampusFromID($ad["fk_ad_campus"]);
+
+							if ($adCampus["id"] == 999)
+								echo "<li><a href=\"front.php?page=latest&city=". $city["short_name"] ."\">". $adCampus["campus_name"] ."</a></li>";
+							else
+								echo "<li><a href=\"front.php?page=latest&city=". $city["short_name"] ."&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($adCampus["campus_name"]))) ."\">". $adCampus["campus_name"] ."</a></li>";
+
+							echo "<li><a href=\"front.php?page=latest&type=". $adCategory["name"] ."\">". $adCategory["description"] ."</a></li>";
+							echo "<li><a href=\"#\">". $ad["title"] ."</a></li>";
+						} else {
+							if (isset($_GET["campus"])) {
+								foreach ($campuses[0] as $key => $value) {
+									if (replaceSwedishLetters(replaceSpecialChars(strtolower($value["campus_name"]))) == $_GET["campus"])
+										echo "<li><a href=\"front.php?page=latest&city=". $city["short_name"] ."&campus=". $_GET["campus"] ."\">". $value["campus_name"] ."</a></li>";
+								}
+							}
+							if (isset($_GET["type"])) {
+								$adCategory = $dbh->getAdCategoryFromName($_GET["type"]);
+								echo "<li>". generateAdURL("latest", $city["short_name"],
+										(isset($_GET["type"]) ? $adCategory["description"] : NULL),
+										(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
+										$type["name"]) ."</li>";
+							}
 						}
 						$dbh = null;
 						?>
