@@ -128,8 +128,10 @@ if (isset($_POST["mail"])) {
 			$cityShortName = $dbh->getCityFromID($_POST["city"]);
 			$dbInsert = null;
 
+			$city = $dbh->getCityFromID($_POST["city"]);
+
 			$sendEmail->setRecipientEmail($_POST["email"]);
-			$sendEmail->sendNewAdEmail($password, $adID, $_POST["adType"]);
+			$sendEmail->sendNewAdEmail($password, $adID, $_POST["adType"], $city["short_name"]);
 
 			echo $adID;
 		} else {

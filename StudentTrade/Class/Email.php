@@ -57,9 +57,9 @@ class Email {
 			return True;
 	}
 
-	public function sendNewAdEmail($password, $adID, $adType) {
-		$message = "Tack för att du använder StudentTrade.se!"
-		$message .= "<p>Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a></p>";
+	public function sendNewAdEmail($password, $adID, $adType, $city) {
+		$message = "Tack för att du använder StudentTrade.se!";
+		$message .= "<p>Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=". $city ."&aid=". $adID ."\">här</a></p>";
 		$message .= "<p>";
 
 		if ($adType == 1)
@@ -73,7 +73,7 @@ class Email {
 
 		$message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.";
 		$message .= "</p>";
-		MVH StudentTrade.se";
+		$message .= "MVH StudentTrade.se";
 
 		$this->mail->From 		= $this->noReplyEmail;;
 		$this->mail->FromName 	= $this->noReplyName;;
