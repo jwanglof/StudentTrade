@@ -13,19 +13,6 @@ class DbSelect extends DbConfig {
 
 	public function __destruct() {}
 
-	public function login($username, $password) {
-		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM `admin` WHERE `username`=:username AND `password`=:password");
-			$stmt->bindValue(":username", $username, PDO::PARAM_STR);
-			$stmt->bindValue(":password", $password, PDO::PARAM_STR);
-			$stmt->execute();
-
-			return $stmt->fetch(PDO::FETCH_ASSOC);
-		} catch (PDOException $e) {
-			return $e;
-		}
-	}
-
 	public function getCityIDs() {
 		/*
 			SELECT * FROM city c, university u, campus cam
