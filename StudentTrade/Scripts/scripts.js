@@ -132,18 +132,22 @@ function getURL(path) {
 	return url;
 }
 
+var xhr;
+
 function showCampuses(cityID) {
+	if (xhr && xhr.readystate != 4)
+		xhr.abort();
 	$("#campus").empty();
 
 	$(".ajaxCity").show();
 
-	request = $.ajax({
+	xhr = $.ajax({
 		type: "post",
 		url: getAjaxURL("get"),
 		data: {get: "campuses", cityID: cityID}
 	});
 
-	request.done(function(response, textStatus, jqXHR) {
+	xhr.done(function(response, textStatus, jqXHR) {
 		// console.log(response);
 		$(".ajaxCity").hide();
 		var objs = JSON.parse(response);
@@ -153,13 +157,11 @@ function showCampuses(cityID) {
 			$("#campus").append("<option value=\""+ key +"\">"+ objs[key] +"</option>");
 		};
 	});
-	request.fail(function(jqXHR, textStatus, errorThrown) {
+	xhr.fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(errorThrown);
 		// bootbox.alert("Something went wrong!");
 	});
 }
-
-var xhr;
 
 function showAdCategoryInputs(adType) {
 	if (xhr && xhr.readystate != 4)
