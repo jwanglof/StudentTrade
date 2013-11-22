@@ -20,7 +20,7 @@ class DbSelect extends DbConfig {
 			AND cam.fk_university_id = u.id
 		*/
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM city");
+			$stmt = $this->dbh->prepare("SELECT * FROM city ORDER BY city_name ASC");
 			$stmt->execute();
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);

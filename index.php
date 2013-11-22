@@ -31,9 +31,9 @@ $leftColumn = array();
 $rightColumn = array();
 for ($i = 0; $i < count($cities); $i++) {
 	if ($i%2)
-		array_push($leftColumn, $cities[$i]);
-	else
 		array_push($rightColumn, $cities[$i]);
+	else
+		array_push($leftColumn, $cities[$i]);
 }
 
 $dbh = null;
