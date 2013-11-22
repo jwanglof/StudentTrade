@@ -59,7 +59,7 @@ class Email {
 
 	public function sendNewAdEmail($password, $adID, $adType, $city) {
 		$message = "Tack för att du använder StudentTrade.se!";
-		$message .= "<p>Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=". $city ."&aid=". $adID ."\">här</a></p>";
+		$message .= "<p>Du kan se din annons <a href=\"http://www.studenttrade.se/front.php?page=ad_show&city=". $city ."&aid=". $adID ."\">här</a></p>";
 		$message .= "<p>";
 
 		if ($adType == 1)
@@ -71,7 +71,7 @@ class Email {
 		else if ($adType == 4)
 			$message .= "Om du har bytt din vara";
 
-		$message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.";
+		$message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.";
 		$message .= "</p>";
 		$message .= "MVH StudentTrade.se";
 
@@ -135,10 +135,10 @@ class Email {
 		$message = "Hejsan!
 		<p>
 			Din borttagningskod är: ". $password ." <br />
-			Du kan även trycka <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_delete&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.
+			Du kan även trycka <a href=\"http://www.studenttrade.se/front.php?page=ad_delete&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.
 		</p>
 		<p>
-			Du kan se din annons <a href=\"http://www.studenttrade.se/beta/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a>
+			Du kan se din annons <a href=\"http://www.studenttrade.se/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a>
 		</p>
 		MVH StudentTrade.se";
 

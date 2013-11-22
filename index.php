@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-error_reporting(-1);
-ini_set("display_errors", 1);
+// error_reporting(-1);
+// ini_set("display_errors", 1);
 
 // Auto load the classes that are called
 spl_autoload_register(function ($class) {

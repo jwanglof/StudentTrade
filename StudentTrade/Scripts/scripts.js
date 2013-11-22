@@ -116,7 +116,7 @@ function getAjaxURL(file) {
 		// console.log(window.location.origin);
 		url = "http://localhost/~johan/StudentTrade/StudentTrade/Ajax/"+ file +".php";
 	} else {
-		url = window.location.origin +"/beta/StudentTrade/Ajax/"+ file +".php";
+		url = window.location.origin +"/StudentTrade/Ajax/"+ file +".php";
 	};
 	return url;
 }
@@ -127,7 +127,7 @@ function getURL(path) {
 		// console.log(window.location.origin);
 		url = "http://localhost/~johan/StudentTrade/front.php?"+ path;
 	} else {
-		url = window.location.origin +"/beta/front.php?"+ path;
+		url = window.location.origin +"/front.php?"+ path;
 	};
 	return url;
 }
