@@ -153,9 +153,12 @@ class DbSelect extends DbConfig {
 	}
 
 	//public function getAds($cityID, $limit, $offset) {
-	public function getAds($cityID) {
+	public function getAds($cityID=False) {
 		try {
-			$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_city=:cityID AND active=1 ORDER BY id DESC");
+			if (!$cityID)
+				$stmt = $this->dbh->prepare("SELECT * FROM ad ORDER BY id DESC");
+			else
+				$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_city=:cityID AND active=1 ORDER BY id DESC");
 			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
 			
 			$stmt->execute();

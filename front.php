@@ -245,7 +245,7 @@ $dbh = null;
 			<?php include_once("StudentTrade/Views/footer.php"); ?>
 		</div>
 
-		<script src="StudentTrade/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+		<script src="StudentTrade/Scripts/jquery.min.js" type="text/javascript"></script>
 		<script src="StudentTrade/Scripts/bootstrap.min.js" type="text/javascript"></script>
 		<script src="StudentTrade/Scripts/bootbox.min.js" type="text/javascript"></script>
 		<script src="StudentTrade/Scripts/jquery.validate.min.js" type="text/javascript"></script>

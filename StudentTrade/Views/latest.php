@@ -19,7 +19,7 @@
 				$paginationURL .= isset($_GET["type"]) ? "&type=". $_GET["type"] : "";
 				$paginationURL .= "&pageNo=";
 
-				$pagination = new Pagination(20, $paginationURL);
+				$pagination = new Pagination(10, $paginationURL);
 
 				$proceed = True;
 				
@@ -119,7 +119,7 @@
 							echo "<li><a href=\"". $pagination->getURL() . $pagination->getPreviousPage() ."\">&laquo;</a></li>";
 
 						foreach ($pagination->getPages() as $value) {
-							if (isset($_GET["pageNo"]) && $_GET["pageNo"] == $value)
+							if ($pageNo == $value)
 								echo "<li class=\"active\"><a href=\"". $pagination->getURL() . $value ."\">". $value ."</a></li>";
 							else
 								echo "<li><a href=\"". $pagination->getURL() . $value ."\">". $value ."</a></li>";
