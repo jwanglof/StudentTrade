@@ -17,12 +17,10 @@ a:visited {color: #fff;}
 	z-index: 0;
 	height: 500px;
 	color: #fff;
-	/*border: 1px solid #000;*/
 }
 
 #infoText {
 	color: #fff;
-	/*border: 1px solid #fff;*/
 	padding: 0px;
 	font-family: Arial;
 	font-size: 14px;
@@ -42,8 +40,6 @@ a:visited {color: #fff;}
 	padding-left: 15px;
 
 	margin-top: 5px;
-
-	/*border: 1px solid #fff;*/
 }
 
 #infoText .info1 {
@@ -60,8 +56,6 @@ a:visited {color: #fff;}
 
 img.studenttrade_logo {
 	display: block;
-	/*padding: 70px 0px 0px 150px;*/
-	/*border: 1px solid #fff;*/
 	margin-top: 100px;
 	width: 100%;
 }
@@ -117,7 +111,6 @@ img.studenttrade_logo {
 }
 #hover-img {
 	position: relative;
-	/*border: 2px solid #ff0;*/
 	margin: 0px;
 	padding: 0px;
 	z-index: 0;
@@ -127,7 +120,6 @@ img.studenttrade_logo {
 	background-color: #0078C1;
 	height: 300px;
 	text-align: center;
-	/*border: 1px solid #000;*/
 }
 
 .form-horizontal {color: #565656;}
