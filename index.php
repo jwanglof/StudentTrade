@@ -30,10 +30,10 @@ $cities = $dbh->getCityIDs();
 $leftColumn = array();
 $rightColumn = array();
 for ($i = 0; $i < count($cities); $i++) {
-	if ($i%2)
-		array_push($rightColumn, $cities[$i]);
-	else
+	if ($i < (count($cities)/2))
 		array_push($leftColumn, $cities[$i]);
+	else
+		array_push($rightColumn, $cities[$i]);
 }
 
 $dbh = null;
