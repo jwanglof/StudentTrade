@@ -76,7 +76,7 @@ a:visited {color: #565656;}
 	/*text-decoration: underline;*/
 }
 .categoryInactive {
-	opacity: 0.5;
+	opacity: 0.3;
 }
 
 .breadcrumb {
