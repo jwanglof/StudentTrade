@@ -187,7 +187,7 @@ $dbh = null;
 							<?php
 								echo generateAdURL("ad_new", $city["short_name"], "Lägg upp annons",
 											(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-											(isset($_GET["type"]) ? $_GET["type"] : NULL));
+											(isset($_GET["type"]) ? $_GET["type"] : NULL), True);
 							?>
 							</li>
 						</ul>
