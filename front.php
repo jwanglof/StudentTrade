@@ -158,7 +158,7 @@ $dbh = null;
 				</div>
 
 				<div class="row">
-					<div class="col-xs-9 navbar" style="border: 0px solid #000; margin-top: 16px;">
+					<div class="col-xs-9 navbar" id="categories">
 				    	<div class="navbar-collapse collapse">
 							<ul class="nav nav-pills">
 								<?php
@@ -193,7 +193,8 @@ $dbh = null;
 						</ul>
 					</div>
 				</div>
-				<div class="row" style="position: relative; top: -41px; z-index: 3;">
+
+				<div class="row" style="position: relative; top: -41px; z-index: 3; border: 0px solid #000">
 					<ol class="breadcrumb">
 						<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>"><?php echo $city["city_name"]; ?></a></li>
 						<?php
