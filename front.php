@@ -108,7 +108,7 @@ $dbh = null;
 					<div class="col-xs-6">
 						<a href="index.php"><img src="StudentTrade/Img/ST_w_bubble.png" /></a>
 					</div>
-					<div class="col-xs-3 col-md-offset-3" id="campusChooser">
+					<div class="col-xs-3 col-xs-offset-3" id="campusChooser">
 						<div class="btn-group">
 							<a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>" class="btn btn-info">Se <?php echo $city["city_name"]; ?></a> 
 							<div class="btn-group">

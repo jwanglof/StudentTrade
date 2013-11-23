@@ -106,7 +106,7 @@ $dbh = null;
 				<div id="near-clouds" class="stage"></div>
 
 				<div class="row">
-					<div class="col-xs-6 col-md-offset-3">
+					<div class="col-xs-6 col-xs-offset-3">
 						<img src="StudentTrade/Img/studenttrade_logo.png" class="studenttrade_logo" />
 					</div>
 				</div>
