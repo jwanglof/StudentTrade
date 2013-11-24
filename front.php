@@ -209,7 +209,7 @@ $dbh = null;
 							else
 								echo "<li><a href=\"front.php?page=latest&city=". $city["short_name"] ."&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($adCampus["campus_name"]))) ."\">". $adCampus["campus_name"] ."</a></li>";
 
-							echo "<li><a href=\"front.php?page=latest&type=". $adCategory["name"] ."\">". $adCategory["description"] ."</a></li>";
+							echo "<li><a href=\"front.php?page=latest&city=". $city["short_name"] ."&type=". $adCategory["name"] ."\">". $adCategory["description"] ."</a></li>";
 							echo "<li><a href=\"#\">". $ad["title"] ."</a></li>";
 						} else {
 							if (isset($_GET["campus"])) {
