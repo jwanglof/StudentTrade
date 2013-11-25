@@ -114,6 +114,7 @@ $dbh = null;
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle campus" data-toggle="dropdown"></button>
 								<ul class="dropdown-menu">
+									<!-- cut:pizza -->
 									<?php
 									foreach ($campuses as $cam) {
 										foreach ($cam as $c) {
@@ -130,6 +131,7 @@ $dbh = null;
 										}
 									}
 									?>
+									<!-- /cut:pizza -->
 									<li class="divider"></li>
 									<li><a href="front.php?page=latest&city=<?php echo $city["short_name"]; ?>">Se alla</a></li>
 									<li class="divider"></li>
