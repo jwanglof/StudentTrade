@@ -61,7 +61,7 @@ if (isset($_POST["mail"])) {
 
 			$sendEmail->setRecipientEmail($adUserInfo["email"]);
 
-			echo $sendEmail->sendAdEmail($_POST["name"], $_POST["from_email"], nl2br($_POST["message"]));
+			echo $sendEmail->sendAdEmail($_POST["name"], $_POST["from_email"], nl2br($_POST["message"]), $_POST["aid"], $ad["title"], $_POST["city"]);
 		} else {
 			echo 2;
 		}
