@@ -49,6 +49,8 @@ $adtypes = $dbh->getAdCategories();
 $cityID = $city["id"];
 $cities = $dbh->getCityIDs();
 $dbh = null;
+
+print_r(strip_tags($_GET["searchString"]));
 ?>
 
 <html>
