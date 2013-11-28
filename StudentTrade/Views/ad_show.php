@@ -168,6 +168,7 @@ if (!empty($ad)) {
 								<form method="post" class="form-horizontal" role="form" id="adReplyForm">
 									<input type="hidden" id="mail" name="mail" value="adReply" />
 									<input type="hidden" id="aid" name="aid" value="<?php echo $_GET["aid"]; ?>" />
+									<input type="hidden" id="city" name="city" value="<?php echo $_GET["city"]; ?>" />
 
 									<fieldset>
 										<div class="form-group">

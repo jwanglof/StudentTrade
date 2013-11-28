@@ -87,7 +87,10 @@ class Email {
 			return True;
 	}
 
-	public function sendAdEmail($name, $from, $message) {
+	public function sendAdEmail($name, $from, $message, $adID, $adTitle, $adCity) {
+		$message .= "<br /><br /><b>Annonsen det gäller är: <i>". $adTitle ."</i>";
+		$message .= "<br />Du kan se den <a href=\"studenttrade.se/front.php?page=ad_show&city=". $adCity ."&aid=". $adID ."\">här</a></b>";
+
 		$this->mail->From 		= $from;
 		$this->mail->FromName 	= $name;
 
