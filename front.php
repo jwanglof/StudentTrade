@@ -7,54 +7,58 @@ header('Content-Type: text/html; charset=UTF-8');
 mb_internal_encoding("UTF-8");
 // include_once 'ChromePhp.php';
 
-// Auto load the classes that are called
-spl_autoload_register(function ($class) {
-	$base_dir = 'StudentTrade/';
-	$directories = array(
-		'Class/',
-		'Db/',
-		'Logic/'
-		// 'Views'
-	);
+// // Auto load the classes that are called
+// spl_autoload_register(function ($class) {
+// 	$base_dir = 'StudentTrade/';
+// 	$directories = array(
+// 		'Class/',
+// 		'Db/',
+// 		'Logic/'
+// 		// 'Views'
+// 	);
 
-	//for each directory
-	foreach($directories as $directory)
-	{
-		//see if the file exsists
-		if(file_exists($base_dir.$directory.$class . '.php'))
-		{
-			include($base_dir.$directory.$class . '.php');
-			//only require the class once, so quit after to save effort (if you got more, then name them something else
-			return;
-		}
-	}
-});
-require_once("StudentTrade/Includes/Functions.php");
+// 	//for each directory
+// 	foreach($directories as $directory)
+// 	{
+// 		//see if the file exsists
+// 		if(file_exists($base_dir.$directory.$class . '.php'))
+// 		{
+// 			include($base_dir.$directory.$class . '.php');
+// 			//only require the class once, so quit after to save effort (if you got more, then name them something else
+// 			return;
+// 		}
+// 	}
+// });
+// require_once("StudentTrade/Includes/Functions.php");
 
-if (!isset($_SESSION["sessProtector"])) {
-	$_SESSION["sessProtector"] = session_id();
-	session_write_close();
-}
+// if (!isset($_SESSION["sessProtector"])) {
+// 	$_SESSION["sessProtector"] = session_id();
+// 	session_write_close();
+// }
 
-$dbh = new DbSelect();
+// $dbh = new DbSelect();
 
-$city = (isset($_GET['city']) ? $dbh->getCity($_GET['city']) : $dbh->getCity("linkoping"));
-$universities = $dbh->getUniversitiesFromCityID($city["id"]);
-$campuses = array();
-foreach ($universities as $uni) {
-	array_push($campuses, $dbh->getCampusFromUniversityID($uni["id"]));
-}
+// $city = (isset($_GET['city']) ? $dbh->getCity($_GET['city']) : $dbh->getCity("linkoping"));
+// $universities = $dbh->getUniversitiesFromCityID($city["id"]);
+// $campuses = array();
+// foreach ($universities as $uni) {
+// 	array_push($campuses, $dbh->getCampusFromUniversityID($uni["id"]));
+// }
 
-$adtypes = $dbh->getAdCategories();
-$cityID = $city["id"];
-$cities = $dbh->getCityIDs();
-$dbh = null;
+// $adtypes = $dbh->getAdCategories();
+// $cityID = $city["id"];
+// $cities = $dbh->getCityIDs();
+// $dbh = null;
+
+
+
 ?>
 
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<title>StudentTrade.se - En Köp- och Sälj sajt för studenter</title>
+		<!-- <title>StudentTrade.se - En Köp- och Sälj sajt för studenter</title> -->
+		<title>{$title}</title>
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/non-responsive.css" />
 		<link rel="stylesheet" type="text/css" href="StudentTrade/Css/avgrund.css" />

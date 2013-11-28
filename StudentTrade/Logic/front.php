@@ -1,26 +1,22 @@
 <?php
-require("../Db/DbSelect.php");
-foreach ($campuses as $cam) {
-										foreach ($cam as $c) {
-											echo "<li>";
-											if (isset($_GET["campus"]) && compareString($_GET["campus"], $c["campus_name"])) {
-												echo generateCampusURL($city["short_name"], $c["campus_name"],
-													(isset($_GET["type"]) ? $_GET["type"] : NULL),
-													False);
-											} else {
-												echo generateCampusURL($city["short_name"], $c["campus_name"],
-													(isset($_GET["type"]) ? $_GET["type"] : NULL));
-											}
-											echo "</li>";
-										}
-									}
+error_reporting(-1);
+ini_set('display_errors', 1);
+require("../Class/vendor/autoload.php");
+use Rain/Tpl;
+$config = array(
+	// "tpl_dir"		=> "vendor/rain/raintpl/templates/test/",
+	// "cache_dir"		=> "vendor/rain/raintpl/cache/"
+	"tpl_dir"		=> "../StudentTrade/Views/",
+	"cache_dir"		=> "../Cache",
+	"debug"			=> true
+);
+Tpl::configure( $config );
 
-$dbh = new DbSelect();
+$variables = array(
+	"title"				=> "HEJHEJEHEJ"
+);
 
-$city = (isset($_GET['city']) ? $dbh->getCity($_GET['city']) : $dbh->getCity("linkoping"));
-$universities = $dbh->getUniversitiesFromCityID($city["id"]);
-$campuses = array();
-foreach ($universities as $uni) {
-	array_push($campuses, $dbh->getCampusFromUniversityID($uni["id"]));
-}
+$tpl = new Tpl;
+$tpl->assign($variables);
+echo $tpl->draw("front")
 ?>
