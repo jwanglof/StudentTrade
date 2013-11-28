@@ -128,7 +128,7 @@ $dbh = null;
 												<?php
 												foreach ($leftColumn as $value) {
 													$short_name = replaceSwedishLetters(strtolower($value["short_name"]));
-													echo "<li><a href=\"front.php?page=latest&city=". $short_name ."\">". $value["city_name"] ."</a></li>";
+													echo "<li><a href=\"StudentTrade/Logic/front.php?page=latest&city=". $short_name ."\">". $value["city_name"] ."</a></li>";
 												}
 												?>
 											</ul>
@@ -136,7 +136,7 @@ $dbh = null;
 												<?php
 												foreach ($rightColumn as $value) {
 													$short_name = replaceSwedishLetters(strtolower($value["short_name"]));
-													echo "<li><a href=\"front.php?page=latest&city=". $short_name ."\">". $value["city_name"] ."</a></li>";
+													echo "<li><a href=\"StudentTrade/Logic/front.php?page=latest&city=". $short_name ."\">". $value["city_name"] ."</a></li>";
 												}
 												?>
 											</ul>

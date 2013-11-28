@@ -6,7 +6,7 @@
 				</ul>
 			</div>
 			<div class="col-xs-4">
-				<img src="StudentTrade/Img/studenttrade_logo_grey.png" />
+				<img src="../Img/studenttrade_logo_grey.png" />
 			</div>
 			<div class="col-xs-4">
 				<ul>
