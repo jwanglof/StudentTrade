@@ -1,5 +1,5 @@
 <div class="col-xs-12 categoryHeading" style="<?php $this->eprint($this->adCategory["color"]); ?>">
-	<?php echo (isset($_GET["type"]) ? $adCategory["description"] : "Senaste annonserna"); ?>
+	<?php echo (isset($_GET["type"]) ? $this->eprint($this->adCategory["description"]) : "Senaste annonserna"); ?>
 </div>
 <div class="col-xs-12 categoryHeading search">
 	<div class="row">

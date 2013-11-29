@@ -96,10 +96,21 @@ if (isset($_GET["aid"])) {
 // $switchFile = "../Includes/Switch.php";
 
 if (isset($_GET["page"])) {
-	if ($_GET["page"] == "latest")
-		$showPage = "latest.php";
-	else if ($_GET["page"] == "ad_show")
-		$showPage = "ad_show.php";
+	switch ($_GET["page"]) {
+		case "latest":
+			$showPage = "latest.php";
+			break;
+		case "ad_show":
+			$showPage = "ad_show.php";
+			break;
+		case "ad_new":
+			$showPage = "ad_new.php";
+			break;
+		
+		default:
+			$showPage = "error.php";
+			break;
+	}
 }
 
 $tpl->city 				= $city;
