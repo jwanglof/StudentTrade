@@ -89,7 +89,7 @@
 			<div class="modal-body">
 				<form class="form-horizontal well" data-target="#adDeleteModal" method="post" id="adDeleteForm">
 					<input type="hidden" id="update" name="update" value="adActive" />
-					<input type="hidden" id="aid" name="aid" value="<?php echo $_GET["aid"]; ?>" />
+					<input type="hidden" id="aid" name="aid" value="<?php echo $this->eprint($_GET["aid"]); ?>" />
 					<input type="hidden" id="code" name="code" value="<?php echo $this->eprint($this->adFromID["password"]); ?>" />
 					<fieldset>
 						<div class="form-group">
@@ -123,8 +123,8 @@
 			<div class="modal-body">
 				<form method="post" class="form-horizontal" role="form" id="adReplyForm">
 					<input type="hidden" id="mail" name="mail" value="adReply" />
-					<input type="hidden" id="aid" name="aid" value="<?php echo $_GET["aid"]; ?>" />
-					<input type="hidden" id="city" name="city" value="<?php echo $_GET["city"]; ?>" />
+					<input type="hidden" id="aid" name="aid" value="<?php echo $this->eprint($_GET["aid"]); ?>" />
+					<input type="hidden" id="city" name="city" value="<?php echo $this->eprint($_GET["city"]); ?>" />
 
 					<fieldset>
 						<div class="form-group">
@@ -171,7 +171,7 @@
 			<div class="modal-body">
 				<form method="post" class="form-horizontal" role="form" id="adReportForm">
 					<input type="hidden" id="mail" name="mail" value="adReport" />
-					<input type="hidden" id="aid" name="aid" value="<?php echo $_GET["aid"]; ?>" />
+					<input type="hidden" id="aid" name="aid" value="<?php echo $this->eprint($_GET["aid"]); ?>" />
 
 					<fieldset>
 						<div class="form-group">
