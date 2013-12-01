@@ -159,13 +159,13 @@ function showCampuses(cityID) {
 	});
 	xhr.fail(function(jqXHR, textStatus, errorThrown) {
 		console.log(errorThrown);
-		// bootbox.alert("Something went wrong!");
 	});
 }
 
 function showAdCategoryInputs(adType) {
 	if (xhr && xhr.readystate != 4)
 		xhr.abort();
+	
 	// Clear the div
 	$("#adInput").empty();
 
@@ -226,7 +226,7 @@ $(document).on("click", "#how_it_works", function(e) {
 $(document).on("click", "#faq", function(e) {
 	bootbox.dialog({
 		title: "<h1>Vanliga frågor och svar</h1>",
-		message: "<h4>Kostar det något att lägga upp en annons?</h4> Nej, tillskillnad från andra säljsajter är det helt gratis att lägga upp en annons hos oss. Vi är också studenter och tycker inte man ska betala för att lägga upp en annons. <h4>Hur tar jag bort min annons?</h4> När du lägger upp din annons får du en fyrsiffrig kod till den e-mail adress du angett. Om du vill ta bort din annons går du in på den, klickar på ”Ta bort annons” och anger din kod. Snabbt och enkelt! <h4>Vad gör jag om jag tycker att en annons är olämplig?</h4> Om du ser en annons som du inte tycker är olämplig kan du anmäla den till oss. Vi ser då om den bryter mot ”Regler kring annonsering” och beslutar med detta som grund om hurvida annonser ska bli borttagen eller inte. Om du vill veta vilka regler som gäller kring annonsering så hittar du det <a href=\"front.php?page=rules\" style=\"color: #565656;text-decoration: underline\">här</a>",
+		message: "<h4>Kostar det något att lägga upp en annons?</h4> Nej, tillskillnad från andra säljsajter är det helt gratis att lägga upp en annons hos oss. Vi är också studenter och tycker inte man ska betala för att lägga upp en annons. <h4>Hur tar jag bort min annons?</h4> När du lägger upp din annons får du en fyrsiffrig kod till den e-mail adress du angett. Om du vill ta bort din annons går du in på den, klickar på ”Ta bort annons” och anger din kod. Snabbt och enkelt! <h4>Vad gör jag om jag tycker att en annons är olämplig?</h4> Om du ser en annons som du inte tycker är olämplig kan du anmäla den till oss. Vi ser då om den bryter mot ”Regler kring annonsering” och beslutar med detta som grund om hurvida annonser ska bli borttagen eller inte. Om du vill veta vilka regler som gäller kring annonsering så hittar du det <a href=\"rules.php?city="+ gup("city") +"\" style=\"color: #565656;text-decoration: underline\">här</a>",
 		onEscape: function() {},
 		backdrop: true,
 		closeButton: true,

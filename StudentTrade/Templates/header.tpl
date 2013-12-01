@@ -57,11 +57,11 @@
 					</div>
 					<div class="col-xs-3 col-xs-offset-3" id="campusChooser">
 						<div class="btn-group">
-							<a href="front.php?page=latest&city=<?php echo $this->eprint($this->city["short_name"]); ?>" class="btn btn-info">Se <?php echo $this->eprint($this->city["city_name"]); ?></a> 
+							<a href="front.php?city=<?php echo $this->eprint($this->city["short_name"]); ?>" class="btn btn-info">Se <?php echo $this->eprint($this->city["city_name"]); ?></a> 
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle campus" data-toggle="dropdown"></button>
 								<ul class="dropdown-menu">
-									<?php foreach ($this->campuses as $campus): ?>
+									<?php foreach ($this->campusURLs as $campus): ?>
 									<li><?php echo $campus; ?></li>
 									<?php endforeach; ?>
 									<li class="divider"></li>
@@ -111,7 +111,7 @@
 
 				<div class="row" style="position: relative; top: -41px; z-index: 3; border: 0px solid #000">
 					<ol class="breadcrumb">
-						<li><a href="front.php?page=latest&city=<?php $this->eprint($this->city["short_name"]); ?>"><?php $this->eprint($this->city["city_name"]); ?></a></li>
+						<li><a href="front.php?city=<?php $this->eprint($this->city["short_name"]); ?>"><?php $this->eprint($this->city["city_name"]); ?></a></li>
 						<?php echo $this->breadCampus; ?>
 						<?php echo $this->breadCategory; ?>
 						<?php echo $this->breadAdTitle; ?>

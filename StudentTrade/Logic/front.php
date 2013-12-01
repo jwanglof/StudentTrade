@@ -9,130 +9,160 @@ $config = array(
 	'template_path' => array('../Templates/')
 );
 
-$tpl = new Savant3($config);
+$front = new Savant3($config);
 $dbh = new DbSelect();
 
+// Set default values
+$adCategory = "";
 $city = (isset($_GET["city"]) ? $dbh->getCity($_GET["city"]) : $dbh->getCity("linkoping"));
+
+$searchActions = "";
+if (isset($_GET["campus"]))
+	$searchActions .= "<input type=\"hidden\" name=\"campus\" value=\"". replaceSwedishLetters(replaceSpecialChars(strtolower($_GET["campus"]))) ."\" />";
+if (isset($_GET["type"]))
+	$searchActions .= "<input type=\"hidden\" name=\"type\" value=\"". $_GET["type"] ."\" />";
 
 $title = "Senaste annonserna från ". $city["city_name"];
 
-// Need this because there might be more than one school in $city["id"]
-// E.g. Stockholm has KTH and Stockholms University
-// 
-// Replace generateCampusURL with code instead?
-$universities = $dbh->getUniversitiesFromCityID($city["id"]);
-$campuses = array();
-foreach ($universities as $uni) {
-	foreach ($dbh->getCampusFromUniversityID($uni["id"]) as $campus) {
-		// $chosenCampus = ()) ? True : False);
-		if (isset($_GET["campus"]) && compareString($_GET["campus"], $campus["campus_name"])) {
-			array_push($campuses, generateCampusURL($city["short_name"], $campus["campus_name"], (isset($_GET["type"]) ? $_GET["type"] : NULL), False));
-		} else {
-			array_push($campuses, generateCampusURL($city["short_name"], $campus["campus_name"], (isset($_GET["type"]) ? $_GET["type"] : NULL)));
-		}
-	}
+$proceed = True;
+
+$pageNo = 1;
+if (isset($_GET["pageNo"]) && $_GET["pageNo"] > 0)
+	$pageNo = $_GET["pageNo"];
+
+$paginationURL = "front.php?city=". $_GET["city"];
+$paginationURL .= isset($_GET["campus"]) ? "&campus=". $_GET["campus"] : "";
+$paginationURL .= isset($_GET["type"]) ? "&type=". $_GET["type"] : "";
+$paginationURL .= "&pageNo=";
+
+$pagination = new Pagination(10, $paginationURL);
+
+if (isset($_GET["type"], $_GET["campus"])) {
+	$adCategory = $dbh->getAdCategoryFromName($_GET["type"]);
+	$campus = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
+
+	if (empty($adCategory) || empty($campus))
+		$proceed = False;
+
+	$campusID = $campus["id"];
+
+	$pagination->setDbQuery("getAdsWithAdCategoryFromCampus", $city["id"], $campusID, $adCategory["id"]);
 }
 
-$cities = $dbh->getCityIDs();
-$citiesInformation = array();
-foreach ($cities as $cityInfo) {
-	$short_name = replaceSwedishLetters(strtolower($cityInfo["short_name"]));
-	array_push($citiesInformation, $tpl->ahref("front.php?page=latest&city=". $short_name, $cityInfo["city_name"]));
+else if (isset($_GET["type"]) && !isset($_GET["campus"])) {
+	$adCategory = $dbh->getAdCategoryFromName($_GET["type"]);
+
+	if (empty($adCategory))
+		$proceed = False;
+
+	$pagination->setDbQuery("getAdsWithAdCategoryIDFromCity", $city["id"], NULL, $adCategory["id"]);
 }
 
-$adCategories = $dbh->getAdCategories();
-$adCategory = array();
-foreach ($adCategories as $category) {
-	$tmpCategoryArray = array();
-	$tmpCategoryArray["background-color"] = $category["color"];
-	$tmpCategoryArray["url"] = generateAdURL("latest", $city["short_name"],
-			$category["description"], (isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-			$category["name"],
-			(isset($_GET["type"]) && $_GET["type"] == $category["name"]));
+else if (isset($_GET["campus"]) && !isset($_GET["type"])) {
+	$campus = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
 
-	array_push($adCategory, $tmpCategoryArray);
+	if (empty($campus))
+		$proceed = False;
+
+	$campusID = $campus["id"];
+
+	$pagination->setDbQuery("getAdsFromCampus", $city["id"], $campusID, NULL);
 }
 
-$adNewAdURL = generateAdURL("ad_new", $city["short_name"], "Lägg upp annons", (isset($_GET["campus"]) ? $_GET["campus"] : NULL), (isset($_GET["type"]) ? $_GET["type"] : NULL), True);
+else {
+	$pagination->setDbQuery("getAds", $city["id"], NULL, NULL);
+}
 
-/**
- * Code for breadcrumbs
- * NOT very pretty but it gets the work done
+$categoryColor = "#565656";
+$adQuery = $pagination->getCurrentAds();
+if (isset($_GET["type"])) {
+	$categoryHeading = $adCategory["description"];
+	$categoryColor = $adCategory["color"];
+}
+else if (isset($_GET["searchString"])) {
+	$adQuery = $dbh->searchAdsWithName("%". $_GET["searchString"] ."%", $city["id"]);
+	$categoryHeading = "Resultat av <i>". $_GET["searchString"] ."</i>";
+}
+else
+	$categoryHeading = "Senaste annonserna";
+
+$pagination->setLastPage();
+$pagination->setCurrentPage($pageNo);
+
+$ads = array();
+foreach ($adQuery as $ad) {
+	$adTmpArray = array();
+	$adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
+
+	$adTmpArray["url"] = "ad_show.php?city=". $_GET["city"];
+	if (isset($_GET["campus"]))
+		$adTmpArray["url"] .= "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($_GET["campus"])));
+	if (isset($_GET["type"]))
+		$adTmpArray["url"] .= "&type=". $_GET["type"];
+	$adTmpArray["url"] .= "&aid=". $ad["id"];
+
+	$adTmpArray["categoryName"] = $adCategory["name"];
+	$adTmpArray["adTitleLimited"] = limitStringLength($ad["title"]);
+
+	$adTmpArray["adType"] = $dbh->getAdTypeFromAdTypeID($ad["fk_ad_adType"]);
+
+	$adTmpArray["campus"] = $dbh->getCampusFromID($ad["fk_ad_campus"]);
+
+	$adTmpArray["dateCreated"] = date_format(date_create($ad["date_created"]), "Y-m-d");
+
+	$adTmpArray["price"] = $ad["price"];
+
+	array_push($ads, $adTmpArray);
+}
+
+/*
+ * Pagination
+ * TODO
+ * If someone has searched for something, searchString NEEDS to be in the pagination link!
  */
-$breadCampus = "";
-$breadCategory = "";
-$breadAdTitle = "";
-if (isset($_GET["aid"])) {
-	$ad = $dbh->getAdFromID($_GET["aid"]);
-	$aidAdCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
-	$aidAdCampus = $dbh->getCampusFromID($ad["fk_ad_campus"]);
+// Previous page
+if (empty($pagination->getPreviousPage()))
+	$paginationPrevPage = "<li class=\"disabled\"><span>&laquo;</span></li>";
+else
+	$paginationPrevPage = "<li><a href=\"". $pagination->getURL() . $pagination->getPreviousPage() ."\">&laquo;</a></li>";
 
-	if ($aidAdCampus["id"] == 999) {
-		$breadCampus = "<li>". $tpl->ahref("front.php?page=latest&city=". $city["short_name"], $aidAdCampus["campus_name"]) ."</li>";
-	} else {
-		$breadCampus = "<li>". $tpl->ahref("front.php?page=latest&city=". $city["short_name"] ."&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($aidAdCampus["campus_name"]))), $aidAdCampus["campus_name"]) ."</li>";
-	}
-
-	$breadCategory = "<li>". $tpl->ahref("front.php?page=latest&city=". $city["short_name"] ."&type=". $aidAdCategory["name"], $aidAdCategory["description"]) ."</li>";
-
-	$breadAdTitle = "<li>". $tpl->ahref("#", $ad["title"]) ."</li>";
-} else {
-	if (isset($_GET["campus"])) {
-		foreach ($campuses as $key => $value) {
-			if (replaceSwedishLetters(replaceSpecialChars(strtolower($value["campus_name"]))) == $_GET["campus"])
-				$breadCampus = "<li>". $tpl->ahref("front.php?page=latest&city=". $city["short_name"] ."&campus=". $_GET["campus"], $value["campus_name"]) ."</li>";
-		}
-	}
-
-	if (isset($_GET["type"])) {
-		$aidAdCategory = $dbh->getAdCategoryFromName($_GET["type"]);
-		$breadCategory = "<li>". generateAdURL("latest", $city["short_name"],
-				$aidAdCategory["description"],
-				(isset($_GET["campus"]) ? $_GET["campus"] : NULL),
-				$_GET["type"], True) ."</li>";
-	}
+// Total number of pages
+$paginationPages = array();
+foreach ($pagination->getPages() as $page) {
+	if ($pageNo == $page)
+		array_push($paginationPages, "<li class=\"active\"><a href=\"". $pagination->getURL() . $page ."\">". $page ."</a></li>");
+	else
+		array_push($paginationPages, "<li><a href=\"". $pagination->getURL() . $page ."\">". $page ."</a></li>");
 }
 
-// $switchFile = "../Includes/Switch.php";
-
-if (isset($_GET["page"])) {
-	switch ($_GET["page"]) {
-		case "latest":
-			$showPage = "latest.php";
-			break;
-		case "ad_show":
-			$showPage = "ad_show.php";
-			break;
-		case "ad_new":
-			$showPage = "ad_new.php";
-			break;
-		
-		default:
-			$showPage = "error.php";
-			break;
-	}
-}
-
-$tpl->city 				= $city;
-$tpl->title 			= $title;
-$tpl->campuses 			= $campuses;
-$tpl->citiesInformation = $citiesInformation;
-$tpl->adCategory 		= $adCategory;
-$tpl->adNewAdURL 		= $adNewAdURL;
-
-$tpl->breadCampus 		= $breadCampus;
-$tpl->breadCategory 	= $breadCategory;
-$tpl->breadAdTitle 		= $breadAdTitle;
+// Next page
+if (empty($pagination->getNextPage()))
+	$paginationNextPage = "<li class=\"disabled\"><span>&raquo;</span></li>";
+else
+	$paginationNextPage = "<li><a href=\"". $pagination->getURL() . $pagination->getNextPage() ."\">&raquo;</a></li>";
+/*
+ * Pagination
+ */
 
 
-$tpl->header 			= $tpl->fetch("header.tpl");
-$tpl->footer 			= $tpl->fetch("footer.tpl");
-// $tpl->switchFile		= $tpl->fetch("../Includes/Switch.php");
+$front->paginationURL			= $paginationURL;
+$front->proceed					= $proceed;
+$front->searchActions 			= $searchActions;
+$front->ads 					= $ads;
+$front->categoryHeading 		= $categoryHeading;
+$front->categoryColor 			= $categoryColor;
+$front->city  					= $city;
 
-$tpl->showPage 			= $tpl->fetch($showPage);
+$front->paginationPrevPage 		= $paginationPrevPage;
+$front->paginationPages 		= $paginationPages;
+$front->paginationNextPage		= $paginationNextPage;
 
-$tpl->display("front.tpl");
+$front->header 					= include 'header.php';
+$front->footer 					= $front->fetch("footer.tpl");
+$front->rightColumn 			= $front->fetch("right.tpl");
+
+$front->display("front.tpl");
 
 $dbh = null;
-$tpl = null;
+$front = null;
 ?>

@@ -1,10 +1,17 @@
 <?php
+error_reporting(-1);
+ini_set('display_errors', 1);
+
+require_once("autoload_classes.php");
+require_once("../Includes/Functions.php");
+
 $config = array(
 	'template_path' => array('../Templates/')
 );
 
 $adNew = new Savant3($config);
 $dbh = new DbSelect();
+$title = "Lägg upp annons";
 
 $cities = array();
 foreach ($dbh->getCityIDs() as $city) {
@@ -35,10 +42,16 @@ foreach ($dbh->getAdCategories() as $category) {
 }
 
 $dbh = null;
+$title = "Lägg upp annons";
 
-$adNew->cities = $cities;
-$adNew->adTypes = $adTypes;
-$adNew->adCategories = $adCategories;
+$adNew->cities 				= $cities;
+$adNew->adTypes 			= $adTypes;
+$adNew->adCategories 		= $adCategories;
+
+$adNew->header 				= include 'header.php';
+$adNew->footer 				= $adNew->fetch("footer.tpl");
+$adNew->rightColumn 		= $adNew->fetch("right.tpl");
+// $adNew->title 			= $title;
 
 $adNew->display("ad_new.tpl");
 ?>

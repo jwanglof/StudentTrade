@@ -56,7 +56,7 @@
 					</div>
 
 					<div class="modal-footer">
-						<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="contactUsForm" class="btn btn-primary">Skicka</button>
+						<img src="../Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="contactUsForm" class="btn btn-primary">Skicka</button>
 					</div>
 				</div>
 			</div>

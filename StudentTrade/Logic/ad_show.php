@@ -1,6 +1,13 @@
 <?php
+error_reporting(-1);
+ini_set('display_errors', 1);
+
+require_once("autoload_classes.php");
+require_once("../Includes/Functions.php");
+
 $dbh = new DbSelect();
 $adFromID = $dbh->getAdFromID($_GET["aid"]);
+$title = $adFromID["title"];
 
 if (!empty($adFromID)) {
 	$config = array(
@@ -34,6 +41,10 @@ if (!empty($adFromID)) {
 	$adShow->adCategory 		= $adCategory;
 	$adShow->adSubCategory 		= $adSubCategory;
 	$adShow->adType 			= $adType;
+
+	$adShow->header 			= include 'header.php';
+	$adShow->footer 			= $adShow->fetch("footer.tpl");
+	$adShow->rightColumn 		= $adShow->fetch("right.tpl");
 
 	$adShow->display("ad_show.tpl");
 } else {
