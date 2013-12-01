@@ -1,4 +1,4 @@
-<?php
+	<?php
 header("Content-Type: text/html; charset=utf-8");
 // error_reporting(-1);
 // ini_set("display_errors", 1);
@@ -128,7 +128,7 @@ $dbh = null;
 												<?php
 												foreach ($leftColumn as $value) {
 													$short_name = replaceSwedishLetters(strtolower($value["short_name"]));
-													echo "<li><a href=\"StudentTrade/Logic/front.php?page=latest&city=". $short_name ."\">". $value["city_name"] ."</a></li>";
+													echo "<li><a href=\"StudentTrade/Logic/front.php?city=". $short_name ."\">". $value["city_name"] ."</a></li>";
 												}
 												?>
 											</ul>
@@ -136,7 +136,7 @@ $dbh = null;
 												<?php
 												foreach ($rightColumn as $value) {
 													$short_name = replaceSwedishLetters(strtolower($value["short_name"]));
-													echo "<li><a href=\"StudentTrade/Logic/front.php?page=latest&city=". $short_name ."\">". $value["city_name"] ."</a></li>";
+													echo "<li><a href=\"StudentTrade/Logic/front.php?city=". $short_name ."\">". $value["city_name"] ."</a></li>";
 												}
 												?>
 											</ul>
@@ -194,7 +194,7 @@ $dbh = null;
 				</ul>
 			</div>
 
-				<?php include_once("StudentTrade/Views/footer.php"); ?>
+				<?php include_once("StudentTrade/Logic/footer.php"); ?>
 		</div>
 
 		<script src="StudentTrade/Scripts/jquery.min.js" type="text/javascript"></script>
