@@ -9,7 +9,7 @@
 			<div class="col-xs-12 categoryHeading search">
 				<div class="row">
 					<form action="front.php" method="get">
-						<?php echo $this->searchActions; ?>
+						<?php //echo $this->searchActions; ?>
 						<input type="hidden" name="city" value="<?php $this->eprint($this->city["short_name"]); ?>" />
 						<div class="input-group">
 							<input type="text" class="form-control" name="searchString" placeholder="Sök på annonstitel">

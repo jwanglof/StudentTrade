@@ -40,7 +40,7 @@ class Pagination extends DbSelect {
 			$this->currentPageNumber = $pageNumber;
 	}
 
- 	public function setDbQuery($queryType, $cityID=NULL, $campusID=NULL, $categoryID=NULL) {
+ 	public function setDbQuery($queryType, $cityID=NULL, $campusID=NULL, $categoryID=NULL, $searchString=NULL) {
  		$limit = ($this->currentPageNumber - 1) * $this->itemsPerPage;
 
  		parent::__construct();
@@ -52,6 +52,8 @@ class Pagination extends DbSelect {
 			$this->dbQuery = parent::getAdsFromCampus($campusID, $cityID);
 		else if ($queryType == "getAds")
 			$this->dbQuery = parent::getAds($cityID);
+		else if ($queryType == "searchAdsWithName")
+			$this->dbQuery = parent::searchAdsWithName($searchString, $cityID);
  	}
 
 	public function getCurrentAds() {
