@@ -22,14 +22,18 @@ spl_autoload_register(function ($class) {
 		}
 	}
 });
-require_once("StudentTrade/Class/Slim/Slim.php");
-\Slim\Slim::registerAutoloader();
+require("StudentTrade/Composer/vendor/autoload.php");
+$dbh 		= new DbSelect();
+$config = require_once(__DIR__ ."/config.php");
 require_once("StudentTrade/Includes/Functions.php");
 
-$slim = new \Slim\Slim();
-$slim->config("debug", true);
-$slim->config("templates.path", "StudentTrade/Templates");
+
+$slim = new \Slim\Slim($config["slim"]);
 // http://www.youtube.com/watch?v=yEA0VWHCFac
+$slim->get("/", function() use ($slim, $dbh) {
+	$cities = $dbh->getCityIDs();
+	$slim->render("front.tpl", array("cities" => $cities));
+});
 $slim->get("/index/city/:city", function() {
 	include_once("StudentTrade/Logic/front.php");
 });
@@ -39,7 +43,7 @@ $slim->get("/index/hello/:name", function($name) {
 
 $slim->run();
 
-$dbh 		= new DbSelect();
+
 $cities 	= $dbh->getCityIDs();
 
 $leftColumn = array();
