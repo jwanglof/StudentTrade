@@ -164,3 +164,35 @@ Stack trace:
 #12 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
 #13 /home/johan/Git/StudentTrade/index.php(44): Slim\Slim->run()
 #14 {main}
+ERROR - 2013-12-02T10:41:10+01:00 - exception 'InvalidArgumentException' with message 'Cannot append view data. Expected array argument.' in /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php:191
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(750): Slim\View->appendData(NULL)
+#1 /home/johan/Git/StudentTrade/index.php(35): Slim\Slim->render('front.tpl', NULL)
+#2 [internal function]: {closure}()
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#8 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#9 /home/johan/Git/StudentTrade/index.php(44): Slim\Slim->run()
+#10 {main}
+ERROR - 2013-12-02T10:52:39+01:00 - exception 'Twig_Error_Loader' with message 'Unable to find template "index.tpl" (looked into: /home/johan/Git/StudentTrade/StudentTrade/Templates).' in /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:202
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(138): Twig_Loader_Filesystem->findTemplate('index.tpl')
+#1 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(265): Twig_Loader_Filesystem->getCacheKey('index.tpl')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(323): Twig_Environment->getTemplateClass('index.tpl', NULL)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/views/Slim/Views/Twig.php(86): Twig_Environment->loadTemplate('index.tpl')
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(255): Slim\Views\Twig->render('index.tpl', NULL)
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(243): Slim\View->fetch('index.tpl', NULL)
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(751): Slim\View->display('index.tpl')
+#7 /home/johan/Git/StudentTrade/index.php(35): Slim\Slim->render('index.tpl', Array)
+#8 [internal function]: {closure}()
+#9 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#10 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#11 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#12 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#13 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#14 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#15 /home/johan/Git/StudentTrade/index.php(46): Slim\Slim->run()
+#16 {main}
