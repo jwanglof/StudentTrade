@@ -1,62 +1,55 @@
 <?php
-header("Content-Type: text/html; charset=utf-8");
 error_reporting(-1);
 ini_set("display_errors", 1);
 
-// Auto load the classes that are called
-spl_autoload_register(function ($class) {
-	$base_dir = "StudentTrade/";
-	$directories = array(
-		"Db/"
-	);
+date_default_timezone_set('UTC');
+define('APPLICATION_PATH', realpath(dirname(__DIR__)) ."/StudentTrade");
 
-	//for each directory
-	foreach($directories as $directory)
-	{
-		//see if the file exsists
-		if(file_exists($base_dir.$directory.$class . ".php"))
-		{
-			include($base_dir.$directory.$class . ".php");
-			//only require the class once, so quit after to save effort (if you got more, then name them something else
-			return;
-		}
-	}
-});
-require("StudentTrade/Composer/vendor/autoload.php");
-require_once("StudentTrade/Includes/Functions.php");
+use Slim\Slim;
+
+require_once(APPLICATION_PATH ."/StudentTrade/Composer/vendor/autoload.php");
+require_once(APPLICATION_PATH ."/StudentTrade/Includes/Functions.php");
+require_once(APPLICATION_PATH ."/StudentTrade/Includes/AutoClassLoader.php");
 
 $dbh = new DbSelect();
-$config = require_once(__DIR__ ."/config.php");
+$config = require_once(APPLICATION_PATH ."/config.php");
+$app = new Slim($config["slim"]);
 
+// $cities 	= $dbh->getCityIDs();
 
-$slim = new \Slim\Slim($config["slim"]);
+// $leftColumn = array();
+// $rightColumn = array();
+// for ($i = 0; $i < count($cities); $i++) {
+// 	if ($i < (count($cities)/2))
+// 		array_push($leftColumn, $cities[$i]);
+// 	else
+// 		array_push($rightColumn, $cities[$i]);
+// }
+
+// $dbh = null;
+// http://www.slimframework.com/news/how-to-organize-a-large-slim-framework-application
 // http://www.youtube.com/watch?v=yEA0VWHCFac
-$slim->get("/index", function() use ($slim, $dbh) {
+$app->get("/", function() use ($app, $dbh) {
 	$cities = $dbh->getCityIDs();
-	$slim->render("index.tpl", array("cities" => $cities));
+	$app->render("index.tpl", array("page_title" => "Startsidan"));
 });
 
-$slim->get("/index/city/:city", function($city) use ($slim) {
-	$slim->render("front.tpl", array("city" => $city));
+$app->get("/city/:city", function($city) use ($app) {
+	$app->render("front.tpl", array("city" => $city));
 });
 
-$slim->get("/index/hello/:name", function($name) {
+// $app->get('/page/:page', function ($page = 1) use ($app, $container) {
+$app->get("/index/hello/:name", function($name) use ($app) {
 	echo "Hello, $name";
 });
 
-$slim->run();
+$app->run();
+
+/*
+header("Content-Type: text/html; charset=utf-8");
 
 
-$cities 	= $dbh->getCityIDs();
 
-$leftColumn = array();
-$rightColumn = array();
-for ($i = 0; $i < count($cities); $i++) {
-	if ($i < (count($cities)/2))
-		array_push($leftColumn, $cities[$i]);
-	else
-		array_push($rightColumn, $cities[$i]);
-}
+*/
 
-$dbh = null;
 ?>

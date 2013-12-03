@@ -1,7 +1,7 @@
 <?php
 return array(
 	"slim" => array(
-		"templates.path" 	=> __DIR__ ."/StudentTrade/Templates",
+		"templates.path" 	=> __DIR__ ."/Public",
 		"log.level"			=> 4,
 		"log.enabled"		=> true,
 		"log.writer"		=> new \Slim\Extras\Log\DateTimeFileWriter(
@@ -14,6 +14,6 @@ return array(
 		"view"				=> new \Slim\Views\Twig()
 	),
 	"twig" => array(),
-	"cookies" => array(),
+	"cookies" => array()
 );
 ?>
