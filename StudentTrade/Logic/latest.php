@@ -1,14 +1,4 @@
 <?php
-error_reporting(-1);
-ini_set('display_errors', 1);
-
-// Set default values
-$adCategory = "";
-
-// require_once("../Class/Savant3.php");
-require_once("autoload_classes.php");
-require_once("../Includes/Functions.php");
-
 $config = array(
 	'template_path' => array('../Templates/')
 );
@@ -16,7 +6,11 @@ $config = array(
 $latest = new Savant3($config);
 $dbh = new DbSelect();
 
+// Set default values
+$adCategory = "";
 $city = (isset($_GET["city"]) ? $dbh->getCity($_GET["city"]) : $dbh->getCity("linkoping"));
+$searchAction = generateSearchInputs($city["short_name"], (isset($_GET["campus"]) ? $_GET["campus"] : NULL), (isset($_GET["type"]) ? $_GET["type"] : NULL));
+$proceed = True;
 
 $pageNo = 1;
 if (isset($_GET["pageNo"]) && $_GET["pageNo"] > 0)
@@ -28,8 +22,6 @@ $paginationURL .= isset($_GET["type"]) ? "&type=". $_GET["type"] : "";
 $paginationURL .= "&pageNo=";
 
 $pagination = new Pagination(20, $paginationURL);
-
-$proceed = True;
 
 if (isset($_GET["type"], $_GET["campus"])) {
 	$adCategory = $dbh->getAdCategoryFromName($_GET["type"]);
@@ -70,13 +62,8 @@ else {
 $pagination->setLastPage();
 $pagination->setCurrentPage($pageNo);
 
-// $categoryHeadingBackgroundColor = isset($_GET["type"]) ? $adCategory["color"] : "";
-
-$searchAction = generateSearchInputs($city["short_name"], (isset($_GET["campus"]) ? $_GET["campus"] : NULL), (isset($_GET["type"]) ? $_GET["type"] : NULL));
-
-$ads = $pagination->getCurrentAds();
-$allAds = array();
-foreach ($ads as $ad) {
+$ads = array();
+foreach ($pagination->getCurrentAds() as $ad) {
 	$adTmpArray = array();
 	$adCategory = $dbh->getAdCategoryFromID($ad["fk_ad_adCategory"]);
 
@@ -92,18 +79,53 @@ foreach ($ads as $ad) {
 
 	$adTmpArray["price"] = $ad["price"];
 
-	array_push($allAds, $adTmpArray);
+	array_push($ads, $adTmpArray);
 }
 
-$latest->paginationURL = $paginationURL;
-$latest->proceed = $proceed;
-$latest->ads = $ads;
-// $latest->categoryHeadingBackgroundColor = $categoryHeadingBackgroundColor;
-$latest->adCategory = $adCategory;
-$latest->searchAction = $searchAction;
-$latest->allAds = $allAds;
+/*
+ * Pagination
+ */
+// Previous page
+if (empty($pagination->getPreviousPage()))
+	$paginationPrevPage = "<li class=\"disabled\"><span>&laquo;</span></li>";
+else
+	$paginationPrevPage = "<li><a href=\"". $pagination->getURL() . $pagination->getPreviousPage() ."\">&laquo;</a></li>";
+
+// Total number of pages
+$paginationPages = array();
+foreach ($pagination->getPages() as $page) {
+	if ($pageNo == $page)
+		array_push($paginationPages, "<li class=\"active\"><a href=\"". $pagination->getURL() . $page ."\">". $page ."</a></li>");
+	else
+		array_push($paginationPages, "<li><a href=\"". $pagination->getURL() . $page ."\">". $page ."</a></li>");
+}
+
+// Next page
+if (empty($pagination->getNextPage()))
+	$paginationNextPage = "<li class=\"disabled\"><span>&raquo;</span></li>";
+else
+	$paginationNextPage = "<li><a href=\"". $pagination->getURL() . $pagination->getNextPage() ."\">&raquo;</a></li>";
+/*
+ * Pagination
+ */
+
+
+$latest->paginationURL				= $paginationURL;
+$latest->proceed					= $proceed;
+$latest->adCategory  				= $adCategory;
+$latest->searchAction 				= $searchAction;
+$latest->ads 						= $ads;
+
+$latest->paginationPrevPage 		= $paginationPrevPage;
+$latest->paginationPages 			= $paginationPages;
+$latest->paginationNextPage			= $paginationNextPage;
 
 // http://devzone.zend.com/1542/creating-modular-template-based-interfaces-with-savant/
 
-$latest->display("latest.tpl");
+if ($proceed)
+	$latest->display("latest.tpl");
+else
+	echo "<h2>Fel parametrar i URLn!</h2>";
+
+$dbh = null;
 ?>

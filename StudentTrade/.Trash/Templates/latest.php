@@ -1,4 +1,5 @@
 				<?php
+				echo "FEEEEEL!!!";
 				// $cityID and $city is from ad.php
 				
 				// Works, but I think I need to specify in MySQL Workbench that foreign keys are gonna be deleted when the table is

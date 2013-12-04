@@ -2,7 +2,6 @@
 error_reporting(-1);
 ini_set('display_errors', 1);
 
-// require_once("../Class/Savant3.php");
 require_once("autoload_classes.php");
 require_once("../Includes/Functions.php");
 
@@ -94,20 +93,30 @@ if (isset($_GET["aid"])) {
 	}
 }
 
-$switchFile = "../Includes/Switch.php";
+// $switchFile = "../Includes/Switch.php";
 
-$tpl->city = $city;
-$tpl->title = $title;
-$tpl->campuses = $campuses;
+if (isset($_GET["page"])) {
+	if ($_GET["page"] == "latest")
+		$showPage = "latest.php";
+}
+
+$tpl->city 				= $city;
+$tpl->title 			= $title;
+$tpl->campuses 			= $campuses;
 $tpl->citiesInformation = $citiesInformation;
-$tpl->adCategory = $adCategory;
-$tpl->adNewAdURL = $adNewAdURL;
+$tpl->adCategory 		= $adCategory;
+$tpl->adNewAdURL 		= $adNewAdURL;
 
-$tpl->breadCampus = $breadCampus;
-$tpl->breadCategory = $breadCategory;
-$tpl->breadAdTitle = $breadAdTitle;
+$tpl->breadCampus 		= $breadCampus;
+$tpl->breadCategory 	= $breadCategory;
+$tpl->breadAdTitle 		= $breadAdTitle;
 
-$tpl->switchFile = $switchFile;
+
+$tpl->header 			= $tpl->fetch("header.tpl");
+$tpl->footer 			= $tpl->fetch("footer.tpl");
+// $tpl->switchFile		= $tpl->fetch("../Includes/Switch.php");
+
+$tpl->showPage 			= $tpl->fetch($showPage);
 
 $tpl->display("front.tpl");
 
