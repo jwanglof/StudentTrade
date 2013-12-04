@@ -68,19 +68,19 @@ if (isset($_GET["aid"])) {
 	$aidAdCampus = $dbh->getCampusFromID($ad["fk_ad_campus"]);
 
 	if ($aidAdCampus["id"] == 999) {
-		$breadCampus = "<li>". $this->ahref("front.php?page=latest&city=". $city["short_name"], $aidAdCampus["campus_name"]) ."</li>";
+		$breadCampus = "<li>". $tpl->ahref("front.php?page=latest&city=". $city["short_name"], $aidAdCampus["campus_name"]) ."</li>";
 	} else {
-		$breadCampus = "<li>". $this->ahref("front.php?page=latest&city=". $city["short_name"] ."&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($aidAdCampus["campus_name"]))), $aidAdCampus["campus_name"]) ."</li>";
+		$breadCampus = "<li>". $tpl->ahref("front.php?page=latest&city=". $city["short_name"] ."&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($aidAdCampus["campus_name"]))), $aidAdCampus["campus_name"]) ."</li>";
 	}
 
-	$breadCategory = "<li>". $this->ahref("front.php?page=latest&city=". $city["short_name"] ."&type=". $aidAdCategory["name"], $aidAdCategory["description"]) ."</li>";
+	$breadCategory = "<li>". $tpl->ahref("front.php?page=latest&city=". $city["short_name"] ."&type=". $aidAdCategory["name"], $aidAdCategory["description"]) ."</li>";
 
-	$breadAdTitle = "<li>". $this->ahref("#", $ad["title"]) ."</li>";
+	$breadAdTitle = "<li>". $tpl->ahref("#", $ad["title"]) ."</li>";
 } else {
 	if (isset($_GET["campus"])) {
 		foreach ($campuses as $key => $value) {
 			if (replaceSwedishLetters(replaceSpecialChars(strtolower($value["campus_name"]))) == $_GET["campus"])
-				$breadCampus = "<li>". $this->tpl("front.php?page=latest&city=". $city["short_name"] ."&campus=". $_GET["campus"], $value["campus_name"]) ."</li>";
+				$breadCampus = "<li>". $tpl->ahref("front.php?page=latest&city=". $city["short_name"] ."&campus=". $_GET["campus"], $value["campus_name"]) ."</li>";
 		}
 	}
 
@@ -98,6 +98,8 @@ if (isset($_GET["aid"])) {
 if (isset($_GET["page"])) {
 	if ($_GET["page"] == "latest")
 		$showPage = "latest.php";
+	else if ($_GET["page"] == "ad_show")
+		$showPage = "ad_show.php";
 }
 
 $tpl->city 				= $city;
