@@ -1,17 +1,15 @@
 {% extends "layout.tpl" %}
 
-{% block page_title %}Senaste annonserna från {{ city.city_name }}{% endblock %}
+{% block page_title %}Senaste annonserna från {{ header.city.city_name }}{% endblock %}
 
 {% block content %}
-<div class="col-xs-8">
-	<div class="col-xs-12 categoryHeading" style="background-color: <?php $this->eprint($this->categoryColor); ?>">
-		<?php echo $this->categoryHeading; ?>
+	<div class="col-xs-12 categoryHeading" style="background-color: {{ adCategory.color }}">
+		{{ adCategory.description }}
 	</div>
 	<div class="col-xs-12 categoryHeading search">
 		<div class="row">
 			<form action="front.php" method="get">
-				<?php //echo $this->searchActions; ?>
-				<input type="hidden" name="city" value="<?php $this->eprint($this->city["short_name"]); ?>" />
+				<input type="hidden" name="city" value="{{ header.city.short_name }}" />
 				<div class="input-group">
 					<input type="text" class="form-control" name="searchString" placeholder="Sök på annonstitel">
 					<span class="input-group-btn">
@@ -48,5 +46,4 @@
 			</ul>
 		</div>
 	</div>
-</div>
 {% endblock %}

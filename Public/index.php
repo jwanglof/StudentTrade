@@ -23,31 +23,44 @@ $app->configureMode("development", function() use ($app, $env) {
 	$app->config("debug", true);
 });
 
-// $headerValues = array();
-// Need this because there might be more than one school in $city["id"]
-// E.g. Stockholm has KTH and Stockholms University
-// 
-// $campuses is for breadcrumbs
-// $campusURLs is for the scroll down on the website
-// $universities = $dbh->getUniversitiesFromCityID($city["id"]);
-// $campuses = array();
-// $campusURLs = array();
-// foreach ($universities as $uni) {
-// 	foreach ($dbh->getCampusFromUniversityID($uni["id"]) as $campus) {
-// 		// $campusName = replaceSwedishLetters(replaceSpecialChars(strtolower($campus["campus_name"])));
-// 		// $campusURL = "front.php?city=". $_GET["city"];
-// 		// $campusURL .= "&campus=". $campusName;
-// 		// if (isset($_GET["type"]))
-// 		// 	$campusURL .= "&type=". $_GET["type"];
-
-// 		array_push($campusURLs, $header->ahref($campusURL, $campus["campus_name"], "id=". $campusName));
-// 		array_push($campuses, $campus["campus_name"]);
-// 	}
-// }
-// $headerValues["campuses"] = $campuses;
-
 // http://www.slimframework.com/news/how-to-organize-a-large-slim-framework-application
 // http://www.youtube.com/watch?v=yEA0VWHCFac
+
+/*
+ * Ze header
+ */
+function setHeader($app, $_city, $_campus, $_category, $_aid) {
+	$header = new Header();
+	$header->setCurrentCity($_city);
+
+	$currentCity = $header->getCurrentCity();
+
+	$currentUrl = $app->request()->getRootUri() ."/city/". $currentCity["short_name"];
+	if (!empty($_campus))
+		$currentUrl .= "/campus/". $_campus;
+	if (!empty($_category))
+		$currentUrl .= "/category/". $_category;
+	if (!empty($_aid))
+		$currentUrl .= "/ad/". $_aid;
+
+	$headerVars = array(
+		"city"			=> $currentCity,
+		"dir" 			=> substr($app->request()->getRootUri(), 0, -9),
+		"base_url"		=> $app->request()->getRootUri() ."/city/". $currentCity["short_name"],
+		"current_url" 	=> $currentUrl,
+		"campuses" 		=> $header->getCampuses(),
+		"cities" 		=> $header->getCities(),
+		"adCategories"	=> $header->getCategories($_category),
+		"newAd"			=> $header->getAddNewAdURL($_category, $_campus),
+		"breadcrumbs"	=> $header->getBreadcrumbs($_category, $_campus, $_aid)
+	);
+
+	return $headerVars;
+}
+/*
+ * End
+ * Ze header
+ */
 
 $app->get("/", function() use ($app) {
 	$index = new Index();
@@ -55,34 +68,26 @@ $app->get("/", function() use ($app) {
 	$app->render("index.tpl", array("dir" => WEB_PATH, "leftColumn" => $index->getLeftColumn(), "rightColumn" => $index->getRightColumn()));
 });
 
-$app->get("/city/:city(/campus/:campus)(/category/:category)(/ad/:aid)", function($_city, $_campus=NULL, $_category=NULL, $_aid=NULL) use ($app) {
-	$city = new City($_city, $_campus, $_category);
-	$general = new General();
-	$general->setCurrentCity($_city);
-
-	$currentCity = $general->getCurrentCity();
-
-	$current_url = $app->request()->getRootUri() ."/city/". $currentCity["short_name"];
-	if ($_campus != NULL)
-		$current_url .= "/campus/". $_campus;
+$app->get("/city/:city(/campus/:campus)(/category/:category)(/ad/:aid)(/page/:page)", function($_city, $_campus=NULL, $_category=NULL, $_aid=NULL, $_page=1) use ($app) {
+	$city = new City();
+	$headerArray = setHeader($app, $_city, $_campus, $_category, $_aid);
 	if ($_category != NULL)
-		$current_url .= "/category/". $_category;
-	if ($_aid != NULL)
-		$current_url .= "/ad/". $_aid;
+		$city->setCategory($_category);
+	
+	$pagination = new Pagination(10);
+	$pagination->setURL($headerArray["current_url"]);
+	$pagination->setLastPage();
+	$pagination->setDbQuery($_city, $_campus, $_category); //TODO: ADD SEARCH-STRING
+	$pagination->setCurrentPage($_page);
+
+	// print_r();
 
 	$app->render("city.tpl", array(
-			"city"			=> $currentCity,
-			"dir" 			=> substr($app->request()->getRootUri(), 0, -9),
-			"base_url"		=> $app->request()->getRootUri() ."/city/". $currentCity["short_name"],
-			"current_url" 	=> $current_url,
-			"campuses" 		=> $general->getCampuses(),
-			"cities" 		=> $general->getCities(),
-			"adCategories"	=> $general->getCategories($_category),
-			"newAd"			=> $general->getAddNewAdURL($_category, $_campus),
-			"breadcrumbs"	=> $general->getBreadcrumbs($_category, $_campus, $_aid)
+			"header" 			=> $headerArray,
+			"adCategory"		=> $city->getCategory()
 		)
 	);
-});
+})->conditions(array("page" => "[0-9]*"));
 
 $app->run();
 ?>

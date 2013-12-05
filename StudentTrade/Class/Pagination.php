@@ -22,6 +22,15 @@ class Pagination extends DbSelect {
 		$this->itemsPerPage = $itemsPerPage;
 	}
 
+	private function mempty() {
+		foreach(func_get_args() as $arg)
+			if(empty($arg))
+				continue;
+			else
+				return false;
+		return true;
+	}
+
 	public function setURL($URL) {
 		$this->URL = $URL ."&pageNo=";
 	}
@@ -43,20 +52,21 @@ class Pagination extends DbSelect {
 			$this->currentPageNumber = $pageNumber;
 	}
 
- 	public function setDbQuery($queryType, $cityID=NULL, $campusID=NULL, $categoryID=NULL, $searchString=NULL) {
+ 	public function setDbQuery($cityID, $campusID, $categoryID, $searchString=NULL) {
  		$limit = ($this->currentPageNumber - 1) * $this->itemsPerPage;
 
  		parent::__construct();
-		if ($queryType == "getAdsWithAdCategoryFromCampus")
+		if (!$this->mempty($cityID, $campusID, $categoryID))
 			$this->dbQuery = parent::getAdsWithAdCategoryFromCampus($categoryID, $campusID, $cityID);
-		else if ($queryType == "getAdsWithAdCategoryIDFromCity")
+		else if (!$this->mempty($categoryID, $cityID))
 			$this->dbQuery = parent::getAdsWithAdCategoryIDFromCity($categoryID, $cityID);
-		else if ($queryType == "getAdsFromCampus")
+		else if ($this->mempty($campusID, $cityID))
 			$this->dbQuery = parent::getAdsFromCampus($campusID, $cityID);
-		else if ($queryType == "getAds")
-			$this->dbQuery = parent::getAds($cityID);
-		else if ($queryType == "searchAdsWithName")
+		else if ($this->mempty($searchString, $cityID))
 			$this->dbQuery = parent::searchAdsWithName($searchString, $cityID);
+		else
+			$this->dbQuery = parent::getAds($cityID);
+		parent::__destruct();
  	}
 
 	public function getCurrentAds() {

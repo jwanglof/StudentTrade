@@ -2,15 +2,15 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<title>StudentTrade - {% block page_title %}{% endblock %}</title>
-		<link rel="stylesheet" type="text/css" href="{{ dir }}Css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="{{ dir }}Css/non-responsive.css" />
-		<link rel="stylesheet" type="text/css" href="{{ dir }}Css/style.css" />
-		<link rel="stylesheet" type="text/css" href="{{ dir }}Css/style_footer.css" />
+		<link rel="stylesheet" type="text/css" href="{{ header.dir }}Css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="{{ header.dir }}Css/non-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="{{ header.dir }}Css/style.css" />
+		<link rel="stylesheet" type="text/css" href="{{ header.dir }}Css/style_footer.css" />
 		{% block add_css %}{% endblock %}
 
 		<link href="http://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
 
-		<link rel="shortcut icon" href="{{ dir }}Img/favicon.ico" />
+		<link rel="shortcut icon" href="{{ header.dir }}Img/favicon.ico" />
 	</head>
 	<body>
 		<?php include_once("../GoogleAnalytics.php"); ?>
@@ -53,19 +53,19 @@
 			<div class="col-xs-12 top">
 				<div class="row">
 					<div class="col-xs-6">
-						<a href="{{ dir }}index.php"><img src="{{ dir }}Img/ST_w_bubble.png" /></a>
+						<a href="{{ header.dir }}index.php"><img src="{{ header.dir }}Img/ST_w_bubble.png" /></a>
 					</div>
 					<div class="col-xs-3 col-xs-offset-3" id="campusChooser">
 						<div class="btn-group">
-							<a href="{{ base_url }}" class="btn btn-info">Se {{ city.city_name }}</a> 
+							<a href="{{ header.base_url }}" class="btn btn-info">Se {{ header.city.city_name }}</a> 
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle campus" data-toggle="dropdown"></button>
 								<ul class="dropdown-menu">
-									{% for campus in campuses %}
-										<li><a href="{{ base_url }}/campus/{{ campus.short_name }}" class="{{ campus.short_name }}">{{ campus.campus_name }}</a></li>
+									{% for campus in header.campuses %}
+										<li><a href="{{ header.base_url }}/campus/{{ campus.short_name }}" class="{{ campus.short_name }}">{{ campus.campus_name }}</a></li>
 									{% endfor %}
 									<li class="divider"></li>
-									<li><a href="{{ base_url }}">Se alla</a></li>
+									<li><a href="{{ header.base_url }}">Se alla</a></li>
 									<li class="divider"></li>
 									<li><a data-toggle="modal" href="#requestCampusModal">Mitt campus saknas!</a></li>
 								</ul>
@@ -79,8 +79,8 @@
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Välj stad <span class="caret"></span></button>
 								<ul class="dropdown-menu">
-								{% for city in cities %}
-									<li><a href="{{ dir }}index.php/city/{{ city.short_name }}">{{ city.city_name }}</a></li>
+								{% for city in header.cities %}
+									<li><a href="{{ header.dir }}index.php/city/{{ city.short_name }}">{{ city.city_name }}</a></li>
 								{% endfor %}
 								</ul>
 							</div>
@@ -92,9 +92,9 @@
 					<div class="col-xs-9 navbar" id="categories">
 				    	<div class="navbar-collapse collapse">
 							<ul class="nav nav-pills">
-								{% for category in adCategories %}
+								{% for category in header.adCategories %}
 									<li class="category" style="background-color: {{ category.color }}">
-										<a href="{{ base_url }}/category/{{ category.name }}" class="{{ category.linkClass }}">{{ category.description }}</a>
+										<a href="{{ header.base_url }}/category/{{ category.name }}" class="{{ category.linkClass }}">{{ category.description }}</a>
 									</li>
 								{% endfor %}
 							</ul>
@@ -103,7 +103,7 @@
 					<div class="navbar col-xs-3">
 						<ul class="nav nav-pills">
 							<li class="category" style="background-color: #39b54a; float: right; width: 250px; height: 80px; text-align: center; font-size: 25px; line-height: 60px;">
-								<a href="{{ base_url }}/addNew">Lägg upp annons</a>
+								<a href="{{ header.base_url }}/addNew">Lägg upp annons</a>
 							</li>
 						</ul>
 					</div>
@@ -111,14 +111,14 @@
 
 				<div class="row" style="position: relative; top: -41px; z-index: 3; border: 0px solid #000">
 					<ol class="breadcrumb">
-						<li><a href="{{ city.short_name }}">{{ city.city_name }}</a></li>
-						{% if breadcrumbs.category %}
-							<li><a href="{{ base_url }}/category/{{ breadcrumbs.category.name }}">{{ breadcrumbs.category.description }}</a></li>
+						<li><a href="{{ header.city.short_name }}">{{ header.city.city_name }}</a></li>
+						{% if header.breadcrumbs.category %}
+							<li><a href="{{ header.base_url }}/category/{{ header.breadcrumbs.category.name }}">{{ header.breadcrumbs.category.description }}</a></li>
 						{% endif %}
-						{% if breadcrumbs.campus %}
-							<li><a href="{{ base_url }}/campus/{{ breadcrumbs.campus.short_name }}">{{ breadcrumbs.campus.campus_name }}</a></li>
+						{% if header.breadcrumbs.campus %}
+							<li><a href="{{ header.base_url }}/campus/{{ header.breadcrumbs.campus.short_name }}">{{ header.breadcrumbs.campus.campus_name }}</a></li>
 						{% endif %}
-						{% if breadcrumbs.ad %}
+						{% if header.breadcrumbs.ad %}
 							<li><a href="#">{{ breadcrumbs.ad.id }}</a></li>
 						{% endif %}
 					</ol>
@@ -127,8 +127,12 @@
 		</div>
 
 		<div class="content">		
-			<div class="row">{% block content %}{% endblock %}</div>
-			<div class="col-xs-4 rightColumn"><?php echo $this->rightColumn; ?></div>
+			<div class="row">
+				<div class="col-xs-8" style="border: 1px solid #000;">
+				{% block content %}{% endblock %}
+				</div>
+				<div class="col-xs-4 rightColumn"><?php echo $this->rightColumn; ?></div>
+			</div>
 		</div>
 
 		<div class="col-xs-12 row footer">
@@ -174,7 +178,7 @@
 					</div>
 
 					<div class="modal-body">
-						Hos oss är det lätt att både lägga upp annons och att hitta det du söker. Börja med att välja din studentstad på startsidan. Väl inne på sidan kan du sedan lätt sortera annonserna efter kategori och lägga upp annons genom att klicka på ”Lägg upp annons”. Annonsen kommer direkt upp i flödet och blir tillgänlig för andra studenter.
+						Hos oss är det lätt att både lägga upp annons och att hitta det du söker. Börja med att välja din studentstad på startsidan. Väl inne på sidan kan du sedan lätt sortera annonserna efter kategori och lägga upp annons genom att klicka på ”Lägg upp annons”. Annonsen kommer header.direkt upp i flödet och blir tillgänlig för andra studenter.
 					</div>
 				</div>
 			</div>
@@ -247,13 +251,13 @@
 			</div>
 		</div>
 		
-		<script src="{{ dir }}Scripts/jquery.min.js" type="text/javascript"></script>
-		<script src="{{ dir }}Scripts/bootstrap.min.js" type="text/javascript"></script>
-		<script src="{{ dir }}Scripts/bootbox.min.js" type="text/javascript"></script>
-		<script src="{{ dir }}Scripts/jquery.validate.min.js" type="text/javascript"></script>
-		<script src="{{ dir }}Scripts/ad_new.js" type="text/javascript"></script>
-		<script src="{{ dir }}Scripts/scripts.js" type="text/javascript"></script>
-		<script src="{{ dir }}Scripts/forms.js" type="text/javascript"></script>
+		<script src="{{ header.dir }}Scripts/jquery.min.js" type="text/javascript"></script>
+		<script src="{{ header.dir }}Scripts/bootstrap.min.js" type="text/javascript"></script>
+		<script src="{{ header.dir }}Scripts/bootbox.min.js" type="text/javascript"></script>
+		<script src="{{ header.dir }}Scripts/jquery.validate.min.js" type="text/javascript"></script>
+		<script src="{{ header.dir }}Scripts/ad_new.js" type="text/javascript"></script>
+		<script src="{{ header.dir }}Scripts/scripts.js" type="text/javascript"></script>
+		<script src="{{ header.dir }}Scripts/forms.js" type="text/javascript"></script>
 		{% block add_scripts %}{% endblock %}
 	</body>
 </html>

@@ -67,7 +67,7 @@ else if (isset($_GET["type"]) && !isset($_GET["campus"])) {
 	$pagination->setDbQuery("getAdsWithAdCategoryIDFromCity", $city["id"], NULL, $adCategory["id"]);
 }
 else if (isset($_GET["campus"]) && !isset($_GET["type"])) {
-	$campus = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
+	$campus = $dbh->getCampusFromName(replaceSpecialChars($_GET3["campus"], True));
 
 	if (empty($campus))
 		$proceed = False;

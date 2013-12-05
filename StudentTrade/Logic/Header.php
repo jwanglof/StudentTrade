@@ -1,5 +1,5 @@
 <?php
-class General extends DbSelect {
+class Header extends DbSelect {
 	private $rootDir;
 	private $universities = array();
 	private $universityCampuses = array();
@@ -35,9 +35,8 @@ class General extends DbSelect {
 	}
 	public function getCategories($_category) {
 		$categories = array();
-
 		foreach (parent::getAdCategories() as $category) {
-			if (isset($_category)) {
+			if (!empty($_category)) {
 				if ($_category == $category["name"])
 					$category["linkClass"] = "categoryActive";
 				else
@@ -53,7 +52,7 @@ class General extends DbSelect {
 	public function getBreadcrumbs($category, $campus, $adID) {
 		$breadcrumbs = array();
 		
-		if (isset($adID)) {
+		if (!empty($adID)) {
 			$breadcrumbs["ad"] = parent::getAdFromID($adID);
 			$breadcrumbs["category"] = parent::getAdCategoryFromID($ad["fk_ad_adCategory"]);
 			$breadcrumbs["campus"] = parent::getCampusFromID($ad["fk_ad_campus"]);
@@ -75,6 +74,8 @@ class General extends DbSelect {
 	public function setCurrentCity($currentCity) {		
 		$this->currentCity = parent::getCity($currentCity);
 
+		// Need this because there might be more than one school in $city["id"]
+		// E.g. Stockholm has KTH and Stockholms University
 		foreach (parent::getUniversitiesFromCityID($this->currentCity["id"]) as $university) {
 			array_push($this->universities, $university);
 			foreach (parent::getCampusFromUniversityID($university["id"]) as $campus) {
