@@ -118,6 +118,7 @@
 		<script src="../Scripts/bootstrap.min.js" type="text/javascript"></script>
 		<script src="../Scripts/bootbox.min.js" type="text/javascript"></script>
 		<script src="../Scripts/jquery.validate.min.js" type="text/javascript"></script>
+		<script src="../Scripts/ad_new.js" type="text/javascript"></script>
 		<script src="../Scripts/scripts.js" type="text/javascript"></script>
 		<script src="../Scripts/forms.js" type="text/javascript"></script>
 	</body>
