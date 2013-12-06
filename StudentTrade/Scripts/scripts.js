@@ -125,9 +125,9 @@ function getURL(path) {
 	var url;
 	if (window.location.origin == "http://localhost") {
 		// console.log(window.location.origin);
-		url = "http://localhost/~johan/StudentTrade/front.php?"+ path;
+		url = "http://localhost/~johan/StudentTrade/StudentTrade/Logic/"+ path;
 	} else {
-		url = window.location.origin +"/front.php?"+ path;
+		url = window.location.origin +"/StudentTrade/Logic/"+ path;
 	};
 	return url;
 }

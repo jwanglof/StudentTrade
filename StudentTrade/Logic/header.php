@@ -1,10 +1,23 @@
 <?php
+ob_start();
+session_start();
+header('Content-Type: text/html; charset=UTF-8');
+mb_internal_encoding("UTF-8");
+
 $header = new Savant3($config);
 
 // Since header.php is included in all files it will get $dbh from the parent
 // $dbh = new DbSelect();
 
-$city = (isset($_GET["city"]) ? $dbh->getCity($_GET["city"]) : $dbh->getCity("linkoping"));
+if (!isset($_SESSION["sessProtector"])) {
+	$_SESSION["sessProtector"] = session_id();
+	session_write_close();
+}
+
+if (isset($_GET["city"]))
+	$city = $dbh->getCity($_GET["city"]);
+else
+	$city = $dbh->getCity("linkoping");
 
 // Need this because there might be more than one school in $city["id"]
 // E.g. Stockholm has KTH and Stockholms University

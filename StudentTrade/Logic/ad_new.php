@@ -41,7 +41,6 @@ foreach ($dbh->getAdCategories() as $category) {
 	array_push($adCategories, "<option value=\"". $category["id"] ."\" $selected>". $category["description"] ."</option>");
 }
 
-$dbh = null;
 $title = "Lägg upp annons";
 
 $adNew->cities 				= $cities;

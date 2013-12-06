@@ -3,7 +3,7 @@
 <div class="content">		
 	<div class="row">
 		<div class="col-xs-8">
-			<form method="post" action="front.php?page=ad_add" class="form-horizontal" role="form" id="addNewAd">
+			<form method="post" class="form-horizontal" role="form" id="addNewAd">
 				<input type="hidden" id="mail" name="mail" value="adAddNew" />
 				<fieldset>
 					<legend>Personuppgifter</legend>
@@ -33,9 +33,7 @@
 						<label for="city" class="col-xs-1 control-label"><img src="../Img/ajax-loader.gif" class="ajaxLoader ajaxCity" /> Stad *</label>
 						<div class="col-xs-5">
 							<select id="city" name="city" class="form-control">
-								<?php foreach ($this->cities as $city): ?>
-									<?php echo $city; ?>
-								<?php endforeach; ?>
+								<?php foreach ($this->cities as $city): echo $city; endforeach; ?>
 							</select>
 						</div>
 					</div>
@@ -56,9 +54,7 @@
 							<label for="adType" class="col-xs-1 control-label">Typ av annons *</label>
 							<div class="col-xs-5">
 								<select id="adType" name="adType" class="form-control">
-									<?php foreach ($this->adTypes as $type): ?>
-										<?php echo $type; ?>
-									<?php endforeach; ?>
+									<?php foreach ($this->adTypes as $type): echo $type; endforeach; ?>
 								</select>
 							</div>
 						</div>
@@ -69,9 +65,7 @@
 						<div class="col-xs-5">
 							<select id="adCategory" name="adCategory" class="form-control">
 								<option value="">Kategori</option>
-								<?php foreach ($this->adCategories as $category): ?>
-									<?php echo $category; ?>
-								<?php endforeach; ?>
+								<?php foreach ($this->adCategories as $category): echo $category; endforeach; ?>
 							</select>
 						</div>
 					</div>

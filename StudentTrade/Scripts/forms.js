@@ -75,7 +75,7 @@ $(document).ready(function() {
 				$("#adDeleteModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\" id=\"okButton\">OK</button>");
 				// window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=latest";
 				$("#okButton").on("click", function() {
-					window.location.href = getURL("page=latest&city="+ gup("city"));
+					window.location.href = getURL("front.php?city="+ gup("city"));
 				});
 			}
 			else {
@@ -163,7 +163,8 @@ $(document).ready(function() {
 
 	$("#addNewAd").on("submit", function(event) {
 		$(".ajaxSubmit").show();
-		$(this).find(".btn-primary").button("disable");
+		var submitButton = $(this).find(".btn-primary");
+		submitButton.button("disable");
 
 		request = sendWithAjax($(this), "mail");
 
@@ -175,11 +176,11 @@ $(document).ready(function() {
 					$("#errorMsg").find(".col-xs-5").html("Du måste fylla i alla obligatoriska (*) fält!")
 
 				$(".ajaxSubmit").hide();
-				$(this).find(".btn-primary").button("enable");
+				submitButton.button("enable");
 				$("#errorMsg").show();
 			} else {
 				// window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=ad_show&city="+ gup("city") +"&aid="+ response;
-				window.location.href = getURL("page=ad_show&city="+ gup("city") +"&aid="+ response);
+				window.location.href = getURL("ad_show.php?city="+ gup("city") +"&aid="+ response);
 			}
 		});
 
