@@ -1,7 +1,7 @@
-	<?php
+<?php
 header("Content-Type: text/html; charset=utf-8");
-// error_reporting(-1);
-// ini_set("display_errors", 1);
+error_reporting(-1);
+ini_set("display_errors", 1);
 
 // Auto load the classes that are called
 spl_autoload_register(function ($class) {
@@ -22,10 +22,25 @@ spl_autoload_register(function ($class) {
 		}
 	}
 });
+require_once("StudentTrade/Class/Slim/Slim.php");
+\Slim\Slim::registerAutoloader();
 require_once("StudentTrade/Includes/Functions.php");
 
-$dbh = new DbSelect();
-$cities = $dbh->getCityIDs();
+$slim 		= new \Slim\Slim();
+$slim->config("debug", true);
+$slim->config("templates.path", "StudentTrade/Templates");
+
+$slim->get("/", function() {
+	echo "HEJ";
+});
+$slim->get("/hello/:name", function($name) {
+	echo "Hello, $name";
+});
+
+$slim->run();
+
+$dbh 		= new DbSelect();
+$cities 	= $dbh->getCityIDs();
 
 $leftColumn = array();
 $rightColumn = array();

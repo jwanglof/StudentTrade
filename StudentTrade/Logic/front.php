@@ -9,8 +9,9 @@ $config = array(
 	'template_path' => array('../Templates/')
 );
 
-$front = new Savant3($config);
-$dbh = new DbSelect();
+$front 	= new Savant3($config);
+$dbh 	= new DbSelect();
+$slim 	= new \Slim\Slim();
 
 // Set default values
 $adCategory = "";
