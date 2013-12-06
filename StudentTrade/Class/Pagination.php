@@ -18,9 +18,12 @@ class Pagination extends DbSelect {
 
 	private $dbQuery;
 
-	public function __construct($itemsPerPage, $URL) {
+	public function __construct($itemsPerPage) {
 		$this->itemsPerPage = $itemsPerPage;
-		$this->URL = $URL;
+	}
+
+	public function setURL($URL) {
+		$this->URL = $URL ."&pageNo=";
 	}
 
 	public function setLastPage() {

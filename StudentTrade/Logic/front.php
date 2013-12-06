@@ -34,12 +34,8 @@ $pageNo = 1;
 if (isset($_GET["pageNo"]) && $_GET["pageNo"] > 0)
 	$pageNo = $_GET["pageNo"];
 
+$pagination = new Pagination(10);
 $paginationURL = "front.php?city=". $_GET["city"];
-$paginationURL .= isset($_GET["campus"]) ? "&campus=". $_GET["campus"] : "";
-$paginationURL .= isset($_GET["type"]) ? "&type=". $_GET["type"] : "";
-$paginationURL .= "&pageNo=";
-
-$pagination = new Pagination(10, $paginationURL);
 
 if (isset($_GET["type"], $_GET["campus"])) {
 	$adCategory = $dbh->getAdCategoryFromName($_GET["type"]);
@@ -53,9 +49,10 @@ if (isset($_GET["type"], $_GET["campus"])) {
 
 	$campusID = $campus["id"];
 
+	$paginationURL .= "&campus=". $_GET["campus"];
+	$paginationURL .= "$type=". $_GET["type"];
 	$pagination->setDbQuery("getAdsWithAdCategoryFromCampus", $city["id"], $campusID, $adCategory["id"]);
 }
-
 else if (isset($_GET["type"]) && !isset($_GET["campus"])) {
 	$adCategory = $dbh->getAdCategoryFromName($_GET["type"]);
 
@@ -65,9 +62,9 @@ else if (isset($_GET["type"]) && !isset($_GET["campus"])) {
 	if (empty($adCategory))
 		$proceed = False;
 
+	$paginationURL .= "&type=". $_GET["type"];
 	$pagination->setDbQuery("getAdsWithAdCategoryIDFromCity", $city["id"], NULL, $adCategory["id"]);
 }
-
 else if (isset($_GET["campus"]) && !isset($_GET["type"])) {
 	$campus = $dbh->getCampusFromName(replaceSpecialChars($_GET["campus"], True));
 
@@ -76,17 +73,20 @@ else if (isset($_GET["campus"]) && !isset($_GET["type"])) {
 
 	$campusID = $campus["id"];
 
+	$paginationURL .= "&campus=". $_GET["campus"];
 	$pagination->setDbQuery("getAdsFromCampus", $city["id"], $campusID, NULL);
 }
 else if (isset($_GET["searchString"])) {
-	$pagination->setDbQuery("searchAdsWithName", $city["id"], NULL, NULL, $_GET["searchString"]);
 	$categoryHeading = "Resultat av <i>". $_GET["searchString"] ."</i>";
-}
 
+	$paginationURL .= "&searchString=". $_GET["searchString"];
+	$pagination->setDbQuery("searchAdsWithName", $city["id"], NULL, NULL, $_GET["searchString"]);
+}
 else {
 	$pagination->setDbQuery("getAds", $city["id"], NULL, NULL);
 }
 
+$pagination->setURL($paginationURL);
 $pagination->setLastPage();
 $pagination->setCurrentPage($pageNo);
 $ads = array();
@@ -118,17 +118,12 @@ foreach ($pagination->getCurrentAds() as $ad) {
 /*
  * Pagination
  * TODO
- * If someone has searched for something, searchString NEEDS to be in the pagination link!
  */
 // Previous page
 if (empty($pagination->getPreviousPage()))
 	$paginationPrevPage = "<li class=\"disabled\"><span>&laquo;</span></li>";
 else {
-	if (isset($_GET["searchString"]))
-		$prevURL = $front->ahref($pagination->getURL() ."&searchString=". $_GET["searchString"] ."&". $pagination->getPreviousPage(), "&laquo;");
-	else
-		$prevURL = $front->ahref($pagination->getURL() . $pagination->getPreviousPage(), "&laquo;");
-	$paginationPrevPage = "<li>". $prevURL ."</li>";
+	$paginationPrevPage = "<li>". $front->ahref($pagination->getURL() . $pagination->getPreviousPage(), "&laquo;") ."</li>";
 }
 
 // Total number of pages
