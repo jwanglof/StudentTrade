@@ -202,34 +202,3 @@ function gup(name) {
 	else
 		return results[1];
 }
-
-$(document).on("click", "#about_us", function(e) {
-	bootbox.dialog({
-		title: "<h1>Om oss</h1>",
-		message: "StudentTrade.se är en köp- och sälj sajt enbart för studenter. Hos oss kan du köpa och sälja saker som har studentlivet till. StudentTrade.se startades hösten 2013 av tre stundenter på Linköpings Universitet.",
-		onEscape: function() {},
-		backdrop: true,
-		closeButton: true,
-		animate: true
-	});
-});
-$(document).on("click", "#how_it_works", function(e) {
-	bootbox.dialog({
-		title: "<h1>Så fungerar det</h1>",
-		message: "Hos oss är det lätt att både lägga upp annons och att hitta det du söker. Börja med att välja din studentstad på startsidan. Väl inne på sidan kan du sedan lätt sortera annonserna efter kategori och lägga upp annons genom att klicka på ”Lägg upp annons”. Annonsen kommer direkt upp i flödet och blir tillgänlig för andra studenter.",
-		onEscape: function() {},
-		backdrop: true,
-		closeButton: true,
-		animate: true
-	});
-});
-$(document).on("click", "#faq", function(e) {
-	bootbox.dialog({
-		title: "<h1>Vanliga frågor och svar</h1>",
-		message: "<h4>Kostar det något att lägga upp en annons?</h4> Nej, tillskillnad från andra säljsajter är det helt gratis att lägga upp en annons hos oss. Vi är också studenter och tycker inte man ska betala för att lägga upp en annons. <h4>Hur tar jag bort min annons?</h4> När du lägger upp din annons får du en fyrsiffrig kod till den e-mail adress du angett. Om du vill ta bort din annons går du in på den, klickar på ”Ta bort annons” och anger din kod. Snabbt och enkelt! <h4>Vad gör jag om jag tycker att en annons är olämplig?</h4> Om du ser en annons som du inte tycker är olämplig kan du anmäla den till oss. Vi ser då om den bryter mot ”Regler kring annonsering” och beslutar med detta som grund om hurvida annonser ska bli borttagen eller inte. Om du vill veta vilka regler som gäller kring annonsering så hittar du det <a href=\"rules.php?city="+ gup("city") +"\" style=\"color: #565656;text-decoration: underline\">här</a>",
-		onEscape: function() {},
-		backdrop: true,
-		closeButton: true,
-		animate: true
-	});
-});
