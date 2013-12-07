@@ -4,7 +4,6 @@ spl_autoload_register(function ($class) {
 	$base_dir = '../';
 	$directories = array(
 		'Class/',
-		'Class/Slim/',
 		'Db/',
 		// 'Views'
 	);

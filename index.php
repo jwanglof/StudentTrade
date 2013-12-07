@@ -26,14 +26,14 @@ require_once("StudentTrade/Class/Slim/Slim.php");
 \Slim\Slim::registerAutoloader();
 require_once("StudentTrade/Includes/Functions.php");
 
-$slim 		= new \Slim\Slim();
+$slim = new \Slim\Slim();
 $slim->config("debug", true);
 $slim->config("templates.path", "StudentTrade/Templates");
-
-$slim->get("/", function() {
-	echo "HEJ";
+// http://www.youtube.com/watch?v=yEA0VWHCFac
+$slim->get("/index/city/:city", function() {
+	include_once("StudentTrade/Logic/front.php");
 });
-$slim->get("/hello/:name", function($name) {
+$slim->get("/index/hello/:name", function($name) {
 	echo "Hello, $name";
 });
 

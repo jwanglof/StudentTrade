@@ -11,7 +11,6 @@ $config = array(
 
 $front 	= new Savant3($config);
 $dbh 	= new DbSelect();
-$slim 	= new \Slim\Slim();
 
 // Set default values
 $adCategory = "";
