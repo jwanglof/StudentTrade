@@ -1,10 +1,18 @@
 <?php
+ob_start();
+session_start();
+
 error_reporting(-1);
 ini_set("display_errors", 1);
 
 date_default_timezone_set('UTC');
 define('APPLICATION_PATH', realpath(dirname(__DIR__)) ."/StudentTrade");
 define("WEB_PATH", realpath(dirname(__FILE__)));
+
+if (empty($_SESSION["campus"]) && empty($_SESSION["category"])) {
+	$_SESSION["campus"] = "";
+	$_SESSION["category"] = "";
+}
 
 use Slim\Slim;
 
@@ -29,7 +37,7 @@ $app->configureMode("development", function() use ($app, $env) {
 /*
  * Ze header
  */
-function setHeader($app, $_city, $_campus, $_category, $_aid) {
+function setHeader($app, $_city, $_campus, $_category, $_aid=NULL) {
 	$header = new Header();
 	$header->setCurrentCity($_city);
 
@@ -68,19 +76,49 @@ $app->get("/", function() use ($app) {
 	$app->render("index.tpl", array("dir" => WEB_PATH, "leftColumn" => $index->getLeftColumn(), "rightColumn" => $index->getRightColumn()));
 });
 
+$app->get("/city/:city/ad/:aid", function($_city, $_aid) use ($app) {
+	$showAd = new ShowAd();
+	$showAd->setAd($_aid);
+
+	print_r($showAd->getAdInfo());
+	echo "<br />";
+	print_r($showAd->getAdSubCategory());
+
+	$app->render("showAd.tpl", array(
+			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"]),
+			"ad" 				=> $showAd->getAd(),
+			"adInfo" 			=> $showAd->getAdInfo(),
+			"userInfo"			=> $showAd->getUserInfo(),
+			"adCategory" 		=> $showAd->getAdCategory(),
+			"adSubCategory"		=> $showAd->getAdSubCategory(),
+			"adType"			=> $showAd->getAdType()
+		)
+	);
+});
+
 // Should really make this more module!
-$app->get("/city/:city(/campus/:campus)(/category/:category)(/ad/:aid)(/page/:page)", function($_city, $_campus=NULL, $_category=NULL, $_aid=NULL, $_page=1) use ($app) {
+$app->get("/city/:city(/campus/:campus)(/category/:category)(/page/:page)", function($_city, $_campus=NULL, $_category=NULL, $_page=1) use ($app) {
+	// Put everything below in City()????
+	// Since I don't use anything in here except on this page!
 	$city = new City();
 	if ($_category != NULL)
 		$city->setCategory($_category);
 
-	$headerArray = setHeader($app, $_city, $_campus, $_category, $_aid);
+	// Set the sessions so they don't have to be in the URL all the time
+	if ($_SESSION["campus"] != $_campus)
+		$_SESSION["campus"] = $_campus;
+	if ($_SESSION["category"] != $_category)
+		$_SESSION["category"] = $_category;
+
+	$headerArray = setHeader($app, $_city, $_campus, $_category);
 	$_campusInfo = searchMultiArray($_campus, "short_name", $headerArray["campuses"]);
 	$_categoryInfo = searchMultiArray($_category, "name", $headerArray["adCategories"]);
 
+	/*
+	 * Pagination
+	 */
 	$pagination = new Pagination(10);
 	$pagination->setURL($headerArray["current_url"]);
-	// echo $_city ." --- ". $_campus ." --- ". $_category;
 	$pagination->setDbQuery($headerArray["city"]["id"], $_campusInfo["id"], $_categoryInfo["id"]); //TODO: ADD SEARCH-STRING
 	$pagination->setLastPage();
 	$pagination->setCurrentPage($_page);
@@ -100,18 +138,44 @@ $app->get("/city/:city(/campus/:campus)(/category/:category)(/ad/:aid)(/page/:pa
 
 		$adTmpArray["price"] = $ad["price"];
 
+		$adTmpArray["id"] = $ad["id"];
+
 		array_push($ads, $adTmpArray);
 	}
+
+	// Previous page
+	if (empty($pagination->getPreviousPage()))
+		$paginationPrevPage = "<li class=\"disabled\"><span>&laquo;</span></li>";
+	else
+		$paginationPrevPage = "<li><a href=\"". $pagination->getURL() . $pagination->getPreviousPage() ."\">&laquo;</a></li>";
+
+	// Total number of pages
+	$paginationPages = array();
+	foreach ($pagination->getPages() as $page) {
+		if ($_page == $page)
+			array_push($paginationPages, "<li class=\"active\"><a href=\"". $pagination->getURL() . $page ."\">". $page ."</a></li>");
+		else
+			array_push($paginationPages, "<li><a href=\"". $pagination->getURL() . $page ."\">". $page ."</a></li>");
+	}
+
+	// Next page
+	if (empty($pagination->getNextPage()))
+		$paginationNextPage = "<li class=\"disabled\"><span>&raquo;</span></li>";
+	else
+		$paginationNextPage = "<li><a href=\"". $pagination->getURL() . $pagination->getNextPage() ."\">&raquo;</a></li>";
+	/*
+	 * END
+	 * Pagination
+	 */
 
 	$app->render("city.tpl", array(
 			"header" 			=> $headerArray,
 			"adCategory"		=> $city->getCategory(),
 			"ads" 				=> $ads,
 
-			$front->paginationURL			= $paginationURL;
-			$front->paginationPrevPage 		= $paginationPrevPage;
-			$front->paginationPages 		= $paginationPages;
-			$front->paginationNextPage		= $paginationNextPage;
+			"paginationPrevPage"=> $paginationPrevPage,
+			"paginationNextPage"=> $paginationNextPage,
+			"paginationPages" 	=> $paginationPages
 		)
 	);
 })->conditions(array("page" => "[0-9]*"));

@@ -1,47 +1,57 @@
-<?php $this->header; ?>
+{% extends "layout.tpl" %}
 
-<div id="fb-root"></div>
+{% block page_title %}{{ ad.title }}{% endblock %}
+
+{% block content %}
+<!-- <div id="fb-root"></div>
 <script type="text/javascript">(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>
 <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<div class="content">		
-	<div class="row">
-		<div class="col-xs-8">
+ -->
 			<div class="col-xs-3">
-				<p style="width: 100%; height: 200px; background-color: <?php echo $this->eprint($this->adCategory["color"]); ?>" class="categoryIcon icon <?php echo $this->eprint($this->adCategory["name"]); ?>"></p>
-				<p style="width: 100%; height: 30px; font-size: 1.35em; text-align: center;" class="adType <?php echo $this->eprint($this->adType["short_name"]); ?>"><?php echo $this->eprint($this->adType["name"]); ?></p>
+				<p style="width: 100%; height: 200px; background-color: {{ adCategory.color }}" class="categoryIcon icon {{ adCategory.name }}"></p>
+				<p style="width: 100%; height: 30px; font-size: 1.35em; text-align: center;" class="adType {{ adType.short_name }}">{{ adType.name }}</p>
 				<p>
 					Pris:
 					<br />
-					<span class="adShowInfo"><?php echo $this->eprint($this->adFromID["price"]); ?> SEK</span>
+					<span class="adShowInfo">{{ adFromID.price }} SEK</span>
 				</p>
 				<p>
 					Kategori:
 					<br />
-					<span class="adShowInfo"><?php echo $this->eprint($this->adCategory["description"]); ?></span>
+					<span class="adShowInfo">{{ adCategory.description }}</span>
 				</p>
 				<p>
 					Upplagd:
 					<br />
 					<span class="adShowInfo">
-						<?php echo date_format(date_create($this->adFromID["date_created"]), "Y-m-d"); ?>
+						{{ adFromID.date_created|date("Y-m-d") }}
 						<br />
-						<?php echo date_format(date_create($this->adFromID["date_created"]), "H:i"); ?>
+						{{ adFromID.date_created|date("H:i") }}
 					</span>
 				</p>
 				<p>
 					Säljes av:
 					<br />
 					<span class="adShowInfo">
-						<?php echo $this->eprint($this->adUserInfo["name"]); ?>
-						<?php echo (!empty($this->eprint($this->adUserInfo["phonenumber"])) ? "<br /> (". $this->eprint($this->adUserInfo["phonenumber"]). ")" : "");  ?>
+						{{ userInfo.name }}
+						{{ userInfo.phonenumber }}
 					</span>
 				</p>
 				<p>
+				{% for info in adInfo %}
+					{% for subCat in adSubCategory %}
+						{% if info.fk_adInfo_adSubCategory == subCat.id %}
+							{{ subCat.name }}:
+							<br />
+							<span class="adShowInfo">{{ info.sub_category_value }}</span>
+						{% endif %}
+					{% endfor %}
+				{% endfor %}
 				<?php
 				foreach ($this->adInfo as $info) {
 					foreach ($this->adSubCategory as $subCategory) {
-						if ($info["fk_adInfo_adSubCategory"] == $subCategory["id"]) {
-							echo $subCategory["name"] .":<br /><span class=\"adShowInfo\">". $info["sub_category_value"] ."</span><br />";
+						if ($info.fk_adInfo_adSubCategory == $subCategory.id) {
+							echo $subCategory.name .":<br /><span class=\"adShowInfo\">". $info.sub_category_value ."</span><br />";
 						}
 					}
 				}
@@ -49,8 +59,8 @@
 				</p>
 			</div>
 			<div class="col-xs-9">
-				<h1><?php echo $this->eprint($this->adFromID["title"]); ?></h1>
-				<?php echo $this->eprint($this->adFromID["info"]); ?>
+				<h1>{{ adFromID.title }}</h1>
+				{{ adFromID.info }}
 
 				<hr />
 
@@ -82,14 +92,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-xs-4 rightColumn">
-			<?php echo $this->rightColumn; ?>
-		</div>
-	</div>
-</div>
 
-<?php echo $this->footer; ?>
 
 <div class="fade modal" id="adDeleteModal" tabindex="-1" role="dialog" aria-labelledby="adDeleteModal" aria-hidden="true">
 	<div class="modal-dialog">
@@ -102,8 +105,8 @@
 			<div class="modal-body">
 				<form class="form-horizontal well" data-target="#adDeleteModal" method="post" id="adDeleteForm">
 					<input type="hidden" id="update" name="update" value="adActive" />
-					<input type="hidden" id="aid" name="aid" value="<?php echo $this->eprint($_GET["aid"]); ?>" />
-					<input type="hidden" id="code" name="code" value="<?php echo $this->eprint($this->adFromID["password"]); ?>" />
+					<input type="hidden" id="aid" name="aid" value="<?php echo $this->eprint($_GET.aid }}" />
+					<input type="hidden" id="code" name="code" value="{{ adFromID.password }}" />
 					<fieldset>
 						<div class="form-group">
 							<label for="removeCode" class="col-lg-1 control-label">Borttagningskod *</label>
@@ -136,8 +139,8 @@
 			<div class="modal-body">
 				<form method="post" class="form-horizontal" role="form" id="adReplyForm">
 					<input type="hidden" id="mail" name="mail" value="adReply" />
-					<input type="hidden" id="aid" name="aid" value="<?php echo $this->eprint($_GET["aid"]); ?>" />
-					<input type="hidden" id="city" name="city" value="<?php echo $this->eprint($_GET["city"]); ?>" />
+					<input type="hidden" id="aid" name="aid" value="<?php echo $this->eprint($_GET.aid }}" />
+					<input type="hidden" id="city" name="city" value="<?php echo $this->eprint($_GET.city }}" />
 
 					<fieldset>
 						<div class="form-group">
@@ -184,7 +187,7 @@
 			<div class="modal-body">
 				<form method="post" class="form-horizontal" role="form" id="adReportForm">
 					<input type="hidden" id="mail" name="mail" value="adReport" />
-					<input type="hidden" id="aid" name="aid" value="<?php echo $this->eprint($_GET["aid"]); ?>" />
+					<input type="hidden" id="aid" name="aid" value="<?php echo $this->eprint($_GET.aid }}" />
 
 					<fieldset>
 						<div class="form-group">
@@ -205,3 +208,4 @@
 		</div>
 	</div>
 </div>
+{% endblock %}

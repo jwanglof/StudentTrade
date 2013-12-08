@@ -33,7 +33,7 @@ class Pagination extends DbSelect {
 	}
 
 	public function setURL($URL) {
-		$this->URL = $URL ."&pageNo=";
+		$this->URL = $URL ."/page/";
 	}
 
 	public function setLastPage() {

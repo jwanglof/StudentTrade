@@ -90,7 +90,7 @@
 
 				<div class="row">
 					<div class="col-xs-9 navbar" id="categories">
-				    	<div class="navbar-collapse collapse">
+						<div class="navbar-collapse collapse">
 							<ul class="nav nav-pills">
 								{% for category in header.adCategories %}
 									<li class="category" style="background-color: {{ category.color }}">
@@ -126,32 +126,36 @@
 			</div>
 		</div>
 
-		<div class="content">		
+		<div class="container">
 			<div class="row">
-				<div class="col-xs-8" style="border: 1px solid #000;">
-				{% block content %}{% endblock %}
+				<div class="col-xs-8">
+					{% block content %}{% endblock %}
 				</div>
-				<div class="col-xs-4 rightColumn"><?php echo $this->rightColumn; ?></div>
+				<div class="col-xs-4 rightColumn">
+					<img src="{{ header.dir }}/Img/Spons/StudentTrade.jpg" width="95%" />
+				</div>
 			</div>
 		</div>
 
-		<div class="col-xs-12 row footer">
-			<div class="col-xs-4">
-				<ul>
-					<li data-toggle="modal" data-target="#aboutUsModal">Om oss</li>
-					<li data-toggle="modal" data-target="#howItWorksModal">Så fungerar det</li>
-				</ul>
+		<div class="container">
+			<div class="col-xs-12 row footer">
+				<div class="col-xs-4">
+					<ul>
+						<li data-toggle="modal" data-target="#aboutUsModal">Om oss</li>
+						<li data-toggle="modal" data-target="#howItWorksModal">Så fungerar det</li>
+					</ul>
+				</div>
+				<div class="col-xs-4">
+					<img src="{{ header.dir }}/Img/studenttrade_logo_grey.png" />
+				</div>
+				<div class="col-xs-4">
+					<ul>
+						<li data-toggle="modal" data-target="#faqModal">Vanliga frågor</li>
+						<li data-toggle="modal" data-target="#contactUsModal" id="contact_us">Kontakta oss</li>
+					</ul>
+				</div>
+				<p class="copyright">Copyright &copy2013 StudentTrade</p>
 			</div>
-			<div class="col-xs-4">
-				<img src="../Img/studenttrade_logo_grey.png" />
-			</div>
-			<div class="col-xs-4">
-				<ul>
-					<li data-toggle="modal" data-target="#faqModal">Vanliga frågor</li>
-					<li data-toggle="modal" data-target="#contactUsModal" id="contact_us">Kontakta oss</li>
-				</ul>
-			</div>
-			<p class="copyright">Copyright &copy2013 StudentTrade</p>
 		</div>
 
 		<div class="fade modal" id="aboutUsModal" tabindex="-1" role="dialog" aria-labelledby="aboutUsModal" aria-hidden="true">

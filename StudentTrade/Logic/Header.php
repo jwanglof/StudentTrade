@@ -54,8 +54,8 @@ class Header extends DbSelect {
 		
 		if (!empty($adID)) {
 			$breadcrumbs["ad"] = parent::getAdFromID($adID);
-			$breadcrumbs["category"] = parent::getAdCategoryFromID($ad["fk_ad_adCategory"]);
-			$breadcrumbs["campus"] = parent::getCampusFromID($ad["fk_ad_campus"]);
+			$breadcrumbs["category"] = parent::getAdCategoryFromID($breadcrumbs["ad"]["fk_ad_adCategory"]);
+			$breadcrumbs["campus"] = parent::getCampusFromID($breadcrumbs["ad"]["fk_ad_campus"]);
 		} else {
 			if (isset($category))
 				$breadcrumbs["category"] = parent::getAdCategoryFromName($category);

@@ -22,7 +22,7 @@
 	<div class="row" id="latestAd">
 		{% for ad in ads %}
 			<div class="latestAd">
-				<a href="#">
+				<a href="{{ header.base_url }}/ad/{{ ad.id }}">
 				<div class="col-xs-1 categoryIcon icon {{ ad.category.name }}"></div>
 					<div class="col-xs-4 newAdInfo">
 						<h4>{{ ad.adTitleLimited }}</h4>
@@ -36,29 +36,15 @@
 				</a>
 			</div>
 		{% endfor %}
-		<?php foreach ($this->ads as $ad): ?>
-			<div class="latestAd">
-				<a href="<?php echo $ad["url"]; ?>">
-					<div class="col-xs-1 categoryIcon icon <?php $this->eprint($ad["categoryName"]); ?>"></div>
-					<div class="col-xs-4 newAdInfo">
-						<h4><?php echo $this->eprint($ad["adTitleLimited"]); ?></h4>
-					</div>
-					<div class="col-xs-3 newAdInfo">
-						<span class="adType <?php echo $this->eprint($ad["adType"]["short_name"]); ?>"><?php echo $this->eprint($ad["adType"]["name"]); ?></span>
-						<span class="where"><?php echo $this->eprint($ad["campus"]["campus_name"]); ?></span>
-					</div>
-					<div class="col-xs-2 newAdInfo date"><?php echo $this->eprint($ad["dateCreated"]); ?></div>
-					<div class="col-xs-2 newAdInfo price"><?php echo $this->eprint($ad["price"]); ?> SEK</div>
-				</a>
-			</div>
-		<?php endforeach; ?>
 		<div class="pagination">
 			<ul class="pagination">
-				<?php echo $this->paginationPrevPage; ?>
-				<?php foreach ($this->paginationPages as $pageNo): ?>
-					<?php echo $pageNo; ?>
-				<?php endforeach; ?>
-				<?php echo $this->paginationNextPage; ?>
+				{% autoescape false %}
+				{{ paginationPrevPage }}
+				{% for pageNo in paginationPages %}
+					{{ pageNo }}
+				{% endfor %}
+				{{ paginationNextPage }}
+				{% endautoescape %}
 			</ul>
 		</div>
 	</div>
