@@ -1,0 +1,78 @@
+ERROR - 2013-12-08T15:15:01+01:00 - exception 'ErrorException' with message 'Array to string conversion' in /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code:19
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(19): Slim\Slim::handleErrors(8, 'Array to string...', '/home/johan/Git...', 19, Array)
+#1 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(276): __TwigTemplate_2c07db41ff1eedf29b7448e711b8b0b4863639050c8790318639b741df57f71a->doDisplay(Array, Array)
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(261): Twig_Template->display(Array)
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/views/Slim/Views/Twig.php(88): Twig_Template->render(Array, NULL)
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(255): Slim\Views\Twig->render('index.tpl', NULL)
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(243): Slim\View->fetch('index.tpl', NULL)
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(751): Slim\View->display('index.tpl')
+#8 /home/johan/Git/StudentTrade/index.php(36): Slim\Slim->render('index.tpl', Array)
+#9 [internal function]: {closure}()
+#10 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#11 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#12 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#13 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#14 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#15 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#16 /home/johan/Git/StudentTrade/index.php(47): Slim\Slim->run()
+#17 {main}
+
+Next exception 'Twig_Error_Runtime' with message 'An exception has been thrown during the rendering of a template ("Array to string conversion") in "index.tpl" at line 1.' in /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php:291
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#1 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(261): Twig_Template->display(Array)
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/views/Slim/Views/Twig.php(88): Twig_Template->render(Array, NULL)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(255): Slim\Views\Twig->render('index.tpl', NULL)
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(243): Slim\View->fetch('index.tpl', NULL)
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(751): Slim\View->display('index.tpl')
+#6 /home/johan/Git/StudentTrade/index.php(36): Slim\Slim->render('index.tpl', Array)
+#7 [internal function]: {closure}()
+#8 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#9 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#10 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#11 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#12 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#13 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#14 /home/johan/Git/StudentTrade/index.php(47): Slim\Slim->run()
+#15 {main}
+ERROR - 2013-12-08T15:16:19+01:00 - exception 'ErrorException' with message 'Array to string conversion' in /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code:23
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(23): Slim\Slim::handleErrors(8, 'Array to string...', '/home/johan/Git...', 23, Array)
+#1 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(276): __TwigTemplate_2c07db41ff1eedf29b7448e711b8b0b4863639050c8790318639b741df57f71a->doDisplay(Array, Array)
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(261): Twig_Template->display(Array)
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/views/Slim/Views/Twig.php(88): Twig_Template->render(Array, NULL)
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(255): Slim\Views\Twig->render('index.tpl', NULL)
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(243): Slim\View->fetch('index.tpl', NULL)
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(751): Slim\View->display('index.tpl')
+#8 /home/johan/Git/StudentTrade/index.php(36): Slim\Slim->render('index.tpl', Array)
+#9 [internal function]: {closure}()
+#10 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#11 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#12 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#13 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#14 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#15 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#16 /home/johan/Git/StudentTrade/index.php(47): Slim\Slim->run()
+#17 {main}
+
+Next exception 'Twig_Error_Runtime' with message 'An exception has been thrown during the rendering of a template ("Array to string conversion") in "index.tpl" at line 2.' in /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php:291
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#1 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(261): Twig_Template->display(Array)
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/views/Slim/Views/Twig.php(88): Twig_Template->render(Array, NULL)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(255): Slim\Views\Twig->render('index.tpl', NULL)
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(243): Slim\View->fetch('index.tpl', NULL)
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(751): Slim\View->display('index.tpl')
+#6 /home/johan/Git/StudentTrade/index.php(36): Slim\Slim->render('index.tpl', Array)
+#7 [internal function]: {closure}()
+#8 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#9 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#10 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#11 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#12 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#13 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#14 /home/johan/Git/StudentTrade/index.php(47): Slim\Slim->run()
+#15 {main}

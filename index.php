@@ -23,19 +23,20 @@ spl_autoload_register(function ($class) {
 	}
 });
 require("StudentTrade/Composer/vendor/autoload.php");
-$dbh 		= new DbSelect();
-$config = require_once(__DIR__ ."/config.php");
 require_once("StudentTrade/Includes/Functions.php");
+
+$dbh = new DbSelect();
+$config = require_once(__DIR__ ."/config.php");
 
 
 $slim = new \Slim\Slim($config["slim"]);
 // http://www.youtube.com/watch?v=yEA0VWHCFac
-$slim->get("/", function() use ($slim, $dbh) {
+$slim->get("/index", function() use ($slim, $dbh) {
 	$cities = $dbh->getCityIDs();
 	$slim->render("index.tpl", array("cities" => $cities));
 });
 
-$slim->get("/city/:city", function($city) use ($slim) {
+$slim->get("/index/city/:city", function($city) use ($slim) {
 	$slim->render("front.tpl", array("city" => $city));
 });
 
