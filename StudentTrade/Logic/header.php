@@ -47,39 +47,6 @@ foreach ($cities as $cityInfo) {
 	array_push($citiesInformation, $header->ahref("front.php?city=". $short_name, $cityInfo["city_name"]));
 }
 
-$adCategories = $dbh->getAdCategories();
-$adCategory = array();
-
-foreach ($adCategories as $category) {
-	$tmpCategoryArray = array();
-	$tmpCategoryArray["background-color"] = $category["color"];
-
-	$tmpCategoryArray["url"] = "front.php?city=". $_GET["city"];
-	if (isset($_GET["campus"]))
-		$tmpCategoryArray["url"] .= "&campus=". $_GET["campus"];
-	$tmpCategoryArray["url"] .= "&type=". $category["name"];
-
-	if (isset($_GET["type"])) {
-		if ($_GET["type"] == $category["name"])
-			$categoryLinkActive = "categoryActive";
-		else
-			$categoryLinkActive = "categoryInactive";
-	} else
-		$categoryLinkActive = "categoryActive";
-
-	$tmpCategoryArray["url"] = $header->ahref($tmpCategoryArray["url"], $category["description"], "class=". $categoryLinkActive);
-
-	array_push($adCategory, $tmpCategoryArray);
-}
-
-$adNewAdURL = "ad_new.php?city=". $_GET["city"];
-if (isset($_GET["campus"]))
-	$adNewAdURL .= "&campus=". $_GET["campus"];
-if (isset($_GET["type"]))
-	$adNewAdURL .= "&type=". $_GET["type"];
-
-$adNewAdURL = $header->ahref($adNewAdURL, "Lägg upp annons");
-
 /**
  * Code for breadcrumbs
  * NOT very pretty but it gets the work done

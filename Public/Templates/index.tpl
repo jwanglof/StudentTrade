@@ -1,39 +1,46 @@
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<title>StudentTrade - {% block page_title %}{% endblock %}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>StudentTrade.se - En Köp- och Sälj sajt för studenter</title>
 		<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="Css/non-responsive.css" />
-		<link rel="stylesheet" type="text/css" href="Css/avgrund.css" />
-		<link rel="stylesheet" type="text/css" href="Css/style.css" />
+		<link rel="stylesheet" type="text/css" href="Css/style_index.css" />
 		<link rel="stylesheet" type="text/css" href="Css/style_footer.css" />
-
-		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
-
-		<link rel="shortcut icon" href="Img/favicon.ico" />
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://fonts.googleapis.com/css?family=Lato:400,700,900|Gochi+Hand" rel="stylesheet" type="text/css">
+		<style type="text/css">
+			.stage {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				z-index: -100;
+			}
+			#far-clouds {
+				background: transparent url("Img/far-clouds.png") 305px 52px repeat-x;
+			}
+			#near-clouds {
+				background: transparent url("Img/near-clouds.png") 305px 172px repeat-x;
+			}
+		</style>
 	</head>
 	<body>
-		<?php include_once("../Includes/GoogleAnalytics.php"); ?>
-		<div class="fade modal" id="requestCampusModal" tabindex="-1" role="dialog" aria-labelledby="requestCampusModal" aria-hidden="true">
+		<div class="fade modal" id="requestCityModal" tabindex="-1" role="dialog" aria-labelledby="requestCityModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-						<h2>Förfråga att lägga till campus</h2>
+						<h2>Förfråga att lägga till stad</h2>
 					</div>
 
 					<div class="modal-body">
-						<form class="form-horizontal well" data-async data-target="#requestCampusModal" method="post" id="requestCampusForm">
-							<input type="hidden" id="mail" name="mail" value="requestCampus" />
+						<form class="form-horizontal well" data-async data-target="#requestCityModal" method="post" id="requestCityForm">
+							<input type="hidden" id="mail" name="mail" value="requestCity" />
 							<fieldset>
 								<div class="form-group">
-									<label for="campus_name" class="col-lg-1 control-label">Namn på campus *</label>
-									<div class="col-lg-5">
-										<input type="text" class="form-control" id="campus_name" name="campus_name" placeholder="Campusnamn" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="city_name" class="col-lg-1 control-label">Ligger i stad *</label>
+									<label for="city_name" class="col-lg-1 control-label">Stadnamn *</label>
 									<div class="col-lg-5">
 										<input type="text" class="form-control" id="city_name" name="city_name" placeholder="Stadsnamn" />
 									</div>
@@ -43,91 +50,102 @@
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" form="requestCampusForm" class="btn btn-primary">Skicka förfrågan</button>
+						<button type="submit" form="requestCityForm" class="btn btn-primary">Skicka förfrågan</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="container">
-			<div class="col-xs-12 top">
+			<div class="col-xs-12 top row">
+				<noscript><h2>Vi ser att du inte har JavaScript aktiverat. Då StudentTrade.se använder väldigt mycket JavaScript ber vi därför dig att aktivera det för att kunna använda StudentTrade.se!</h2></noscript>
+				<div id="far-clouds" class="stage"></div>
+				<div id="near-clouds" class="stage"></div>
+
 				<div class="row">
-					<div class="col-xs-6">
-						<a href="../../index.php"><img src="../Img/ST_w_bubble.png" /></a>
-					</div>
-					<div class="col-xs-3 col-xs-offset-3" id="campusChooser">
-						<div class="btn-group">
-							<a href="front.php?city=<?php echo $this->eprint($this->city["short_name"]); ?>" class="btn btn-info">Se <?php echo $this->eprint($this->city["city_name"]); ?></a> 
-							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle campus" data-toggle="dropdown"></button>
-								<ul class="dropdown-menu">
-									<?php foreach ($this->campusURLs as $campus): ?>
-									<li><?php echo $campus; ?></li>
-									<?php endforeach; ?>
-									<li class="divider"></li>
-									<li><a href="front.php?page=latest&city=<?php echo $this->city["short_name"]; ?>">Se alla</a></li>
-									<li class="divider"></li>
-									<li><a data-toggle="modal" href="#requestCampusModal">Mitt campus saknas!</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<br /><br />
-
-						<div class="btn-group">
-							<span class="btn btn-info">Byt stad</span>
-							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Välj stad <span class="caret"></span></button>
-								<ul class="dropdown-menu">
-								<?php foreach ($this->citiesInformation as $city): ?>
-									<li><?php echo $city; ?></li>
-								<?php endforeach; ?>
-								</ul>
-							</div>
-						</div>
+					<div class="col-xs-6 col-xs-offset-3">
+						<img src="Img/studenttrade_logo.png" class="studenttrade_logo" />
 					</div>
 				</div>
 
 				<div class="row">
-					<div class="col-xs-9 navbar" id="categories">
-				    	<div class="navbar-collapse collapse">
-							<ul class="nav nav-pills">
-								<?php foreach ($this->adCategory as $category): ?>
-								<li class="category" style="background-color: <?php $this->eprint($category["background-color"]); ?>">
-									<?php echo $category["url"]; ?>
-								</li>
-								<?php endforeach; ?>
-							</ul>
-						</div>
+					<div class="col-xs-4" id="infoText">
+						<span class="info info1">KÖP OCH SÄLJ BEGAGNAD KURSLITTERATUR</span>
+						<span class="info info2">HITTA OCH HYR UT STUDENTBOSTAD</span>
+						<span class="info info3">CYKLAR, MÖBLER, BILJETTER OCH MYCKET MER</span>
 					</div>
-					<div class="navbar col-xs-3">
-						<ul class="nav nav-pills">
-							<li class="category" style="background-color: #39b54a; float: right; width: 250px; height: 80px; text-align: center; font-size: 25px; line-height: 60px;">
-							<?php echo $this->adNewAdURL; ?>
+					<div class="col-xs-4" id="selectCity">
+						<ul id="multicol-menu" class="btn-group list-unstyled">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Välj din stad <b class="caret whiteCaret"></b></a>
+								<ul class="dropdown-menu" style="margin-top: 15px; width: 395px;">
+									<li>
+										<div class="row">
+											<ul class="list-unstyled col-xs-6">
+												{% for lefty in leftColumn %}
+													<li><a href="index.php/city/{{ lefty.short_name }}">{{ lefty.city_name }}</li>
+												{% endfor %}
+											</ul>
+											<ul class="list-unstyled col-xs-6">
+												{% for righty in rightColumn %}
+													<li><a href="index.php/city/{{ righty.short_name }}">{{ righty.city_name }}</li>
+												{% endfor %}
+											</ul>
+										</div>
+									</li>
+								</ul>
 							</li>
-						</ul>
+						</ul> <!-- End of dropdown -->
+						<div>Saknar du din stad? <a data-toggle="modal" href="#requestCityModal">Klicka då här!</a></div>
 					</div>
 				</div>
-
-				<div class="row" style="position: relative; top: -41px; z-index: 3; border: 0px solid #000">
-					<ol class="breadcrumb">
-						<li><a href="front.php?city=<?php $this->eprint($this->city["short_name"]); ?>"><?php $this->eprint($this->city["city_name"]); ?></a></li>
-						<?php echo $this->breadCampus; ?>
-						<?php echo $this->breadCategory; ?>
-						<?php echo $this->breadAdTitle; ?>
-					</ol>
-				</div>
 			</div>
-		</div>
 
-		<div class="content">		
-			<div class="row">{% block content %}{% endblock %}</div>
-			<div class="col-xs-4 rightColumn">
-				<?php echo $this->rightColumn; ?>
+			<div class="content">
+				<ul id="hover-img">
+					<li class="col-xs-4">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3>Helt gratis</h3>
+								Vi vet att ekonomin kan vara knapp som student. Många utekvällar och fredagspizzor äter snabbt upp CSN. Så varför betala 50kr för att lägga upp en annons någon annanstans när du kan göra det gratis hos oss? Hos oss visas bara relevanta annonser – från student till student.
+							</div>
+							<div class="caption-btm">
+								<h3>Helt gratis</h3>
+								Det kostar ingenting för dig <br />
+								<img src="Img/circle_with_plus_sign.png" />
+							</div>
+						</div>
+					</li>
+					<li class="col-xs-4">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3>Snabbt och enkelt</h3>
+								Hos oss är det enkelt att lägga upp en annons. Välj din studentstad och klicka på ”Lägg upp annons”. Annonsen kommer direkt upp i flödet och kan lätt hittas av sökande.
+							</div>
+							<div class="caption-btm">
+								<h3>Snabbt och enkelt</h3>
+								Det ska vara lättåtkomligt och enkelt för dig <br />
+								<img src="Img/circle_with_plus_sign.png" />
+							</div>
+						</div>
+					</li>
+					<li class="col-xs-4">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3>Hitta det du söker</h3>
+								Söker du en studentbostad eller kanske kurslitteratur till en ny kurs. Kolla alltid hos oss först. Hos oss hittar du alltid annonser från studenter från just ditt universitet vilket gör kontakten lätt – bara att träffas på t.ex. lunchen i skolan.
+							</div>
+							<div class="caption-btm">
+								<h3>Hitta det du söker</h3>
+								Det finns ett stort utbud <br />
+								<img src="Img/circle_with_plus_sign.png" />
+							</div>
+						</div>
+					</li>
+				</ul>
 			</div>
-		</div>
 
-		<div class="col-xs-12 row footer">
+					<div class="col-xs-12 row footer">
 			<div class="col-xs-4">
 				<ul>
 					<li data-toggle="modal" data-target="#aboutUsModal">Om oss</li>
@@ -135,7 +153,7 @@
 				</ul>
 			</div>
 			<div class="col-xs-4">
-				<img src="../Img/studenttrade_logo_grey.png" />
+				<img src="Img/studenttrade_logo_grey.png" />
 			</div>
 			<div class="col-xs-4">
 				<ul>
@@ -250,5 +268,23 @@
 		<script src="../Scripts/ad_new.js" type="text/javascript"></script>
 		<script src="../Scripts/scripts.js" type="text/javascript"></script>
 		<script src="../Scripts/forms.js" type="text/javascript"></script>
+	</body>
+</html>
+		</div>
+
+		<script src="Scripts/jquery.min.js" type="text/javascript"></script>
+		<script src="Scripts/jquery.spritely.js" type="text/javascript"></script>
+		<script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+		<script src="Scripts/bootbox.min.js" type="text/javascript"></script>
+		<script src="Scripts/jquery.validate.min.js" type="text/javascript"></script>
+		<script src="Scripts/scripts.js" type="text/javascript"></script>
+		<script src="Scripts/forms.js" type="text/javascript"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#far-clouds").pan({fps: 30, speed: 0.7, dir: "left", depth: 30});
+				$("#near-clouds").pan({fps: 30, speed: 1, dir: "right", depth: 70});
+			});
+		</script>
 	</body>
 </html>

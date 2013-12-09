@@ -1,16 +1,17 @@
 <?php
-error_reporting(-1);
-ini_set('display_errors', 1);
+// error_reporting(-1);
+// ini_set('display_errors', 1);
 
-require_once("autoload_classes.php");
-require_once("../Includes/Functions.php");
+// require_once("autoload_classes.php");
+// require_once("../Includes/Functions.php");
 
-$config = array(
-	'template_path' => array('../Templates/')
-);
+// $config = array(
+// 	'template_path' => array('../Templates/')
+// );
 
-$front 	= new Savant3($config);
-$dbh 	= new DbSelect();
+// $front 	= new Savant3($config);
+// $dbh 	= new DbSelect();
+// require_once(APPLICATION_PATH ."/StudentTrade/Includes/AutoClassLoader.php");
 
 // Set default values
 $adCategory = "";

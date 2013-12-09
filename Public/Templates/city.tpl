@@ -1,6 +1,6 @@
-{% extends 'layout.tpl' %}
+{% extends "layout.tpl" %}
 
-{% block page_title %}Senaste annonserna{% endblock %}
+{% block page_title %}Senaste annonserna från {{ city.city_name }}{% endblock %}
 
 {% block content %}
 <div class="col-xs-8">
