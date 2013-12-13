@@ -1,0 +1,63 @@
+ERROR - 2013-12-13T08:08:35+00:00 - exception 'ErrorException' with message 'Array to string conversion' in /home/johan/Git/StudentTrade/StudentTrade/Class/Pagination.php:26
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Class/Pagination.php(26): Slim\Slim::handleErrors(8, 'Array to string...', '/home/johan/Git...', 26, Array)
+#1 /home/johan/Git/StudentTrade/StudentTrade/Class/Pagination.php(60): Pagination->mempty('linkoping', NULL, NULL)
+#2 /home/johan/Git/StudentTrade/Public/index.php(82): Pagination->setDbQuery('linkoping', NULL, NULL)
+#3 [internal function]: {closure}('linkoping')
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#8 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#9 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#10 /home/johan/Git/StudentTrade/Public/index.php(120): Slim\Slim->run()
+#11 {main}
+ERROR - 2013-12-13T08:21:32+00:00 - exception 'ErrorException' with message 'print_r() expects at least 1 parameter, 0 given' in /home/johan/Git/StudentTrade/Public/index.php:78
+Stack trace:
+#0 [internal function]: Slim\Slim::handleErrors(2, 'print_r() expec...', '/home/johan/Git...', 78, Array)
+#1 /home/johan/Git/StudentTrade/Public/index.php(78): print_r()
+#2 [internal function]: {closure}('linkoping')
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#8 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#9 /home/johan/Git/StudentTrade/Public/index.php(122): Slim\Slim->run()
+#10 {main}
+ERROR - 2013-12-13T08:30:53+00:00 - exception 'ErrorException' with message 'Array to string conversion' in /home/johan/Git/StudentTrade/Public/index.php:78
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(78): Slim\Slim::handleErrors(8, 'Array to string...', '/home/johan/Git...', 78, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(124): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-13T08:32:04+00:00 - exception 'ErrorException' with message 'Undefined variable: dbh' in /home/johan/Git/StudentTrade/Public/index.php:91
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(91): Slim\Slim::handleErrors(8, 'Undefined varia...', '/home/johan/Git...', 91, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(122): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-13T08:35:23+00:00 - exception 'ErrorException' with message 'Array to string conversion' in /home/johan/Git/StudentTrade/Public/index.php:90
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(90): Slim\Slim::handleErrors(8, 'Array to string...', '/home/johan/Git...', 90, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(123): Slim\Slim->run()
+#9 {main}

@@ -20,6 +20,22 @@
 		</div>
 	</div>
 	<div class="row" id="latestAd">
+		{% for ad in ads %}
+			<div class="latestAd">
+				<a href="#">
+				<div class="col-xs-1 categoryIcon icon {{ ad.category.name }}"></div>
+					<div class="col-xs-4 newAdInfo">
+						<h4>{{ ad.adTitleLimited }}</h4>
+					</div>
+					<div class="col-xs-3 newAdInfo">
+						<span class="adType {{ ad.adType.short_name }}">{{ ad.adType.name }}</span>
+						<span class="where">{{ ad.campus.campus_name }}</span>
+					</div>
+					<div class="col-xs-2 newAdInfo date">{{ ad.dateCreated }}</div>
+					<div class="col-xs-2 newAdInfo price">{{ ad.price }} SEK</div>
+				</a>
+			</div>
+		{% endfor %}
 		<?php foreach ($this->ads as $ad): ?>
 			<div class="latestAd">
 				<a href="<?php echo $ad["url"]; ?>">

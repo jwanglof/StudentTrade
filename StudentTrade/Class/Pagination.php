@@ -28,6 +28,7 @@ class Pagination extends DbSelect {
 				continue;
 			else
 				return false;
+		
 		return true;
 	}
 
@@ -36,6 +37,7 @@ class Pagination extends DbSelect {
 	}
 
 	public function setLastPage() {
+		// Check if dbQuery is 0 and return an error if it is
 		$this->lastPageNumber = ceil(count($this->dbQuery) / $this->itemsPerPage);
 
 		// Make sure the last page is not lower than 1
@@ -56,19 +58,21 @@ class Pagination extends DbSelect {
  		$limit = ($this->currentPageNumber - 1) * $this->itemsPerPage;
 
  		parent::__construct();
-		if (!$this->mempty($cityID, $campusID, $categoryID))
+		if (!empty($cityID) && !empty($campusID) && !empty($categoryID))
 			$this->dbQuery = parent::getAdsWithAdCategoryFromCampus($categoryID, $campusID, $cityID);
-		else if (!$this->mempty($categoryID, $cityID))
+		else if (!empty($cityID) && !empty($categoryID))
 			$this->dbQuery = parent::getAdsWithAdCategoryIDFromCity($categoryID, $cityID);
-		else if ($this->mempty($campusID, $cityID))
+		else if (!empty($cityID) && !empty($campusID))
 			$this->dbQuery = parent::getAdsFromCampus($campusID, $cityID);
-		else if ($this->mempty($searchString, $cityID))
+		else if (!empty($cityID) && !empty($searchString))
 			$this->dbQuery = parent::searchAdsWithName($searchString, $cityID);
 		else
 			$this->dbQuery = parent::getAds($cityID);
-		parent::__destruct();
  	}
 
+ 	// I believe this is very ineffective since it needs to do a new full query each time
+ 	// Maybe limit the query direct when it is made?
+ 	// Or cache the whole query
 	public function getCurrentAds() {
 		$limit = ($this->currentPageNumber - 1) * $this->itemsPerPage;
 
@@ -110,6 +114,11 @@ class Pagination extends DbSelect {
 		}
 
 		return $pages;
+	}
+
+	public function getAdType($adID) {
+		parent::__construct();
+		return parent::getAdTypeFromAdTypeID($adID);
 	}
 }
 ?>

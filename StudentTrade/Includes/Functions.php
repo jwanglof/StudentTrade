@@ -15,11 +15,11 @@
 	// 	return "<a href=\"../Logic/front.php?page=$page&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) ."" : "") ."". (($type != NULL) ? "&type=$type" : "") ."\" class=\"". ($active ? "categoryActive" : ((isset($_GET["type"]) && $type != NULL) ? "categoryInactive" : "")) ."\">$name_on_url</a>";
 	// }
 
-	function generateCampusURL($city, $name_on_url, $type=NULL, $showCampus=True) {
-		$campus = replaceSwedishLetters(replaceSpecialChars(strtolower($name_on_url)));
+	// function generateCampusURL($city, $name_on_url, $type=NULL, $showCampus=True) {
+	// 	$campus = replaceSwedishLetters(replaceSpecialChars(strtolower($name_on_url)));
 		
-		return "<a href=\"../Logic/front.php?page=latest&city=$city". ($showCampus ? "&campus=$campus" : "") ."". (($type != NULL) ? "&type=$type" : "") ."\" id=\"$campus\">$name_on_url</a>";
-	}
+	// 	return "<a href=\"../Logic/front.php?page=latest&city=$city". ($showCampus ? "&campus=$campus" : "") ."". (($type != NULL) ? "&type=$type" : "") ."\" id=\"$campus\">$name_on_url</a>";
+	// }
 
 	// function generateShowAdURL($city, $name_on_url, $campus=NULL, $type=NULL, $adID) {
 	// 	// $name_on_url = ((strlen($name_on_url) > 10) ? substr($name_on_url, 0, 25) ."..." : $name_on_url);
@@ -27,15 +27,15 @@
 	// 	return "../Logic/front.php?page=ad_show&city=$city". (($campus != NULL) ? "&campus=". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) : "") ."". (($type != NULL) ? "&type=". $type : "") ."&aid=". $adID;
 	// }
 
-	function generateSearchInputs($city, $campus=NULL, $type=NULL) {
-		$searchInput = "<input type=\"hidden\" name=\"page\" value=\"search\" />";
-		$searchInput .= "<input type=\"hidden\" name=\"city\" value=\"". $city ."\" />";
-		if ($campus != NULL)
-			$searchInput .= "<input type=\"hidden\" name=\"campus\" value=\"". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) ."\" />";
-		if ($type != NULL)
-			$searchInput .= "<input type=\"hidden\" name=\"type\" value=\"". $type ."\" />";
-		return $searchInput;
-	}
+	// function generateSearchInputs($city, $campus=NULL, $type=NULL) {
+	// 	$searchInput = "<input type=\"hidden\" name=\"page\" value=\"search\" />";
+	// 	$searchInput .= "<input type=\"hidden\" name=\"city\" value=\"". $city ."\" />";
+	// 	if ($campus != NULL)
+	// 		$searchInput .= "<input type=\"hidden\" name=\"campus\" value=\"". replaceSwedishLetters(replaceSpecialChars(strtolower($campus))) ."\" />";
+	// 	if ($type != NULL)
+	// 		$searchInput .= "<input type=\"hidden\" name=\"type\" value=\"". $type ."\" />";
+	// 	return $searchInput;
+	// }
 
 	function generateRandomString($length = 10, $characters) {
 		// $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -101,5 +101,13 @@
 		$string = htmlspecialchars($string, ENT_QUOTES, "UTF-8");
 		$string = nl2br($string);
 		return $string;
+	}
+
+	function searchMultiArray($value, $key, $array) {
+		foreach ($array as $k => $val) {
+			if ($val[$key] == $value)
+				return $val;
+		}
+		return NULL;
 	}
 ?>

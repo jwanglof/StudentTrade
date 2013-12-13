@@ -73,14 +73,14 @@ class Header extends DbSelect {
 	 */
 	public function setCurrentCity($currentCity) {		
 		$this->currentCity = parent::getCity($currentCity);
+		array_push($this->universityCampuses, array("id" => 999, "campus_name" => "Alla campus", "short_name" => "alla_campus", "fk_campus_university" => 1 ));
 
 		// Need this because there might be more than one school in $city["id"]
 		// E.g. Stockholm has KTH and Stockholms University
 		foreach (parent::getUniversitiesFromCityID($this->currentCity["id"]) as $university) {
 			array_push($this->universities, $university);
-			foreach (parent::getCampusFromUniversityID($university["id"]) as $campus) {
+			foreach (parent::getCampusFromUniversityID($university["id"]) as $campus)
 				array_push($this->universityCampuses, $campus);
-			}
 		}
 	}
 

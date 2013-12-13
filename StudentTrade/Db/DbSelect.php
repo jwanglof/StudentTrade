@@ -157,9 +157,10 @@ class DbSelect extends DbConfig {
 		try {
 			if (!$cityID)
 				$stmt = $this->dbh->prepare("SELECT * FROM ad ORDER BY id DESC");
-			else
+			else {
 				$stmt = $this->dbh->prepare("SELECT * FROM ad WHERE fk_ad_city=:cityID AND active=1 ORDER BY id DESC");
-			$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
+				$stmt->bindValue(":cityID", $cityID, PDO::PARAM_INT);
+			}
 			
 			$stmt->execute();
 
