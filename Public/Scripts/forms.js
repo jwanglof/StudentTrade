@@ -73,10 +73,8 @@ $(document).ready(function() {
 				$("#adDeleteModal").find(".modal-body").html("Annonsen är nu borttagen!");
 				$("#adDeleteModal").find(".modal-footer").empty();
 				$("#adDeleteModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\" id=\"okButton\">OK</button>");
-				// window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=latest";
 				$("#okButton").on("click", function() {
-					// Need to change from gup() to something else!
-					window.location.href = getURL("front.php?city="+ gup("city"));
+					window.location.href = getURL("index.php/city/"+ getCity());
 				});
 			}
 			else {
@@ -180,9 +178,7 @@ $(document).ready(function() {
 				submitButton.button("enable");
 				$("#errorMsg").show();
 			} else {
-				// window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=ad_show&city="+ gup("city") +"&aid="+ response;
-				// Need to change from gup() to something else!
-				window.location.href = getURL("ad_show.php?city="+ gup("city") +"&aid="+ response);
+				window.location.href = getURL("index.php/city/"+ getCity() +"/ad/"+ response);
 			}
 		});
 
@@ -198,4 +194,21 @@ function sendWithAjax(_form, _url) {
 		url: getAjaxURL(_url),
 		data: $form.serialize()
 	});
+}
+
+function getURL(path) {
+	var url;
+	if (window.location.origin == "http://localhost") {
+		url = "http://localhost/~johan/StudentTrade/Public/"+ path;
+	} else {
+		url = window.location.origin +"/Public/"+ path;
+	};
+	return url;
+}
+
+function getCity() {
+	var city = window.location.href;
+	var regexp = /\/city\/([a-z]+)\/?/;
+	var result = city.match(regexp);
+	return result[1];
 }

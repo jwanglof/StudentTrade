@@ -31,7 +31,7 @@
 		</div>
 
 		<div class="form-group">
-			<label for="city" class="col-xs-1 control-label"><img src="../Img/ajax-loader.gif" class="ajaxLoader ajaxCity" /> Stad *</label>
+			<label for="city" class="col-xs-1 control-label"><img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader ajaxCity" /> Stad *</label>
 			<div class="col-xs-5">
 				<select id="city" name="city" class="form-control">
 					{% for city in header.cities %}
@@ -69,7 +69,7 @@
 		</div>
 
 		<div class="form-group">
-			<label for="adCategory" class="col-xs-1 control-label"><img src="../Img/ajax-loader.gif" class="ajaxLoader ajaxCategory" /> Kategori *</label>
+			<label for="adCategory" class="col-xs-1 control-label"><img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader ajaxCategory" /> Kategori *</label>
 			<div class="col-xs-5">
 				<select id="adCategory" name="adCategory" class="form-control">
 					<option value="">Kategori</option>
@@ -113,7 +113,7 @@
 		<button type="submit" class="btn btn-primary btn-sm">Lägg upp annons</button>
 		<button type="reset" class="btn btn-default btn-sm">Rensa alla fält</button>
 
-		<img src="../Img/ajax-loader.gif" class="ajaxSubmit" />
+		<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxSubmit" />
 	</fieldset>
 </form>
 {% endblock %}
