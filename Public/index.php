@@ -13,6 +13,10 @@ if (empty($_SESSION["campus"]) && empty($_SESSION["category"])) {
 	$_SESSION["campus"] = "";
 	$_SESSION["category"] = "";
 }
+if (empty($_SESSION["sessProtector"])) {
+        $_SESSION["sessProtector"] = session_id();
+        session_write_close();
+}
 
 use Slim\Slim;
 
@@ -88,6 +92,17 @@ $app->get("/city/:city/ad/:aid", function($_city, $_aid) use ($app) {
 			"adCategory" 		=> $showAd->getAdCategory(),
 			"adSubCategory"		=> $showAd->getAdSubCategory(),
 			"adType"			=> $showAd->getAdType()
+		)
+	);
+});
+
+$app->get("/city/:city/addNew", function($_city) use ($app) {
+	$newAd = new NewAd();
+
+	$app->render("newAd.tpl", array(
+			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"]),
+			"adTypes" 			=> $newAd->getAdTypes(),
+			"adCategories" 		=> $newAd->getAdCategories()
 		)
 	);
 });

@@ -91,7 +91,6 @@ $(document).ready(function() {
 function getAjaxURL(file) {
 	var url;
 	if (window.location.origin == "http://localhost") {
-		// console.log(window.location.origin);
 		url = "http://localhost/~johan/StudentTrade/StudentTrade/Ajax/"+ file +".php";
 	} else {
 		url = window.location.origin +"/StudentTrade/Ajax/"+ file +".php";
@@ -114,6 +113,7 @@ var xhr;
 function showCampuses(cityID) {
 	if (xhr && xhr.readystate != 4)
 		xhr.abort();
+
 	$("#campus").empty();
 
 	$(".ajaxCity").show();
@@ -125,7 +125,7 @@ function showCampuses(cityID) {
 	});
 
 	xhr.done(function(response, textStatus, jqXHR) {
-		// console.log(response);
+		console.log(response);
 		$(".ajaxCity").hide();
 		var objs = JSON.parse(response);
 		$("#campus").append("<option value=\"999\">Alla campus</option>");

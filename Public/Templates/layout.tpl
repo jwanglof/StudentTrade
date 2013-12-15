@@ -261,7 +261,6 @@
 		<script src="{{ header.dir }}Scripts/jquery.validate.min.js" type="text/javascript"></script>
 		<script src="{{ header.dir }}Scripts/ad_new.js" type="text/javascript"></script>
 		<script src="{{ header.dir }}Scripts/scripts.js" type="text/javascript"></script>
-		<script src="{{ header.dir }}Scripts/forms.js" type="text/javascript"></script>
 		{% block add_scripts %}{% endblock %}
 	</body>
 </html>
