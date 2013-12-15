@@ -39,11 +39,11 @@
 		<div class="pagination">
 			<ul class="pagination">
 				{% autoescape false %}
-				{{ paginationPrevPage }}
-				{% for pageNo in paginationPages %}
-					{{ pageNo }}
-				{% endfor %}
-				{{ paginationNextPage }}
+					{{ paginationPrevPage }}
+					{% for pageNo in paginationPages %}
+						{{ pageNo }}
+					{% endfor %}
+					{{ paginationNextPage }}
 				{% endautoescape %}
 			</ul>
 		</div>

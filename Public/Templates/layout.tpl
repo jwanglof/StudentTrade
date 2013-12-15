@@ -62,7 +62,7 @@
 								<button type="button" class="btn btn-default dropdown-toggle campus" data-toggle="dropdown"></button>
 								<ul class="dropdown-menu">
 									{% for campus in header.campuses %}
-										<li><a href="{{ header.base_url }}/campus/{{ campus.short_name }}" class="{{ campus.short_name }}">{{ campus.campus_name }}</a></li>
+										<li><a href="{{ header.base_url }}/campus/{{ campus.short_name }}" id="{{ campus.short_name }}">{{ campus.campus_name }}</a></li>
 									{% endfor %}
 									<li class="divider"></li>
 									<li><a href="{{ header.base_url }}">Se alla</a></li>

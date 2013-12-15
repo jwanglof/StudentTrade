@@ -75,6 +75,7 @@ $(document).ready(function() {
 				$("#adDeleteModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\" id=\"okButton\">OK</button>");
 				// window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=latest";
 				$("#okButton").on("click", function() {
+					// Need to change from gup() to something else!
 					window.location.href = getURL("front.php?city="+ gup("city"));
 				});
 			}
@@ -180,6 +181,7 @@ $(document).ready(function() {
 				$("#errorMsg").show();
 			} else {
 				// window.location.href = "http://localhost/~johan/StudentTrade/front.php?page=ad_show&city="+ gup("city") +"&aid="+ response;
+				// Need to change from gup() to something else!
 				window.location.href = getURL("ad_show.php?city="+ gup("city") +"&aid="+ response);
 			}
 		});

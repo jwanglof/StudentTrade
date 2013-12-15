@@ -1,7 +1,11 @@
 $(document).ready(function() {
-	if (gup("campus") != "") {		
-		var campus = gup("campus");
-		$("#campusChooser .campus").html($("#"+ campus).text() +"<span class=\"caret\"></span>");
+	// Change the text in "Välj campus" chooser
+	if (window.location.href.indexOf("campus/") > -1) {
+		var campus = window.location.href;
+		var regexp = /\/campus\/([a-z]+)\/?/;
+		var result = campus.match(regexp);
+
+		$("#campusChooser .campus").html($("#"+ result[1]).text() +"<span class=\"caret\"></span>");
 	} else {
 		$("#campusChooser .campus").html("Välj campus<span class=\"caret\"></span>");
 	}
@@ -163,15 +167,4 @@ function showAdCategoryInputs(adType) {
 	xhr.fail(function(jqXHR, textStatus, errorThrown) {
 			console.log(errorThrown);
 	});
-}
-
-function gup(name) {
-	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-	var regexS = "[\\?&]" + name + "=([^&#]*)";
-	var regex = new RegExp(regexS);
-	var results = regex.exec(window.location.href);
-	if (results == null)
-		return "";
-	else
-		return results[1];
 }

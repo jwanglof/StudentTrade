@@ -80,12 +80,8 @@ $app->get("/city/:city/ad/:aid", function($_city, $_aid) use ($app) {
 	$showAd = new ShowAd();
 	$showAd->setAd($_aid);
 
-	print_r($showAd->getAdInfo());
-	echo "<br />";
-	print_r($showAd->getAdSubCategory());
-
 	$app->render("showAd.tpl", array(
-			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"]),
+			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"], $_aid),
 			"ad" 				=> $showAd->getAd(),
 			"adInfo" 			=> $showAd->getAdInfo(),
 			"userInfo"			=> $showAd->getUserInfo(),
