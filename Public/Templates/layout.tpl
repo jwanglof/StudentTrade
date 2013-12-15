@@ -13,7 +13,17 @@
 		<link rel="shortcut icon" href="{{ header.dir }}Img/favicon.ico" />
 	</head>
 	<body>
-		<?php include_once("../GoogleAnalytics.php"); ?>
+		<!--
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-45885013-1', 'studenttrade.se');
+			ga('send', 'pageview');
+		</script>
+		-->
 		<div class="fade modal" id="requestCampusModal" tabindex="-1" role="dialog" aria-labelledby="requestCampusModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -119,7 +129,7 @@
 							<li><a href="{{ header.base_url }}/campus/{{ header.breadcrumbs.campus.short_name }}">{{ header.breadcrumbs.campus.campus_name }}</a></li>
 						{% endif %}
 						{% if header.breadcrumbs.ad %}
-							<li><a href="#">{{ breadcrumbs.ad.id }}</a></li>
+							<li><a href="#">{{ header.breadcrumbs.ad.title }}</a></li>
 						{% endif %}
 					</ol>
 				</div>
