@@ -121,7 +121,7 @@
 
 				<div class="row" style="position: relative; top: -41px; z-index: 3; border: 0px solid #000">
 					<ol class="breadcrumb">
-						<li><a href="{{ header.city.short_name }}">{{ header.city.city_name }}</a></li>
+						<li><a href="{{ header.base_url }}">{{ header.city.city_name }}</a></li>
 						{% if header.breadcrumbs.category %}
 							<li><a href="{{ header.base_url }}/category/{{ header.breadcrumbs.category.name }}">{{ header.breadcrumbs.category.description }}</a></li>
 						{% endif %}

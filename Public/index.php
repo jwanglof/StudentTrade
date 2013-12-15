@@ -128,7 +128,7 @@ $app->get("/city/:city(/campus/:campus)(/category/:category)(/page/:page)", func
 	/*
 	 * Pagination
 	 */
-	$pagination = new Pagination(10);
+	$pagination = new Pagination(20);
 	$pagination->setURL($headerArray["current_url"]);
 	$pagination->setDbQuery($headerArray["city"]["id"], $_campusInfo["id"], $_categoryInfo["id"]); //TODO: ADD SEARCH-STRING
 	$pagination->setLastPage();
