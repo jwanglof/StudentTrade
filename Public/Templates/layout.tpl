@@ -214,7 +214,7 @@
 						När du lägger upp din annons får du en fyrsiffrig kod till den e-mail adress du angett. Om du vill ta bort din annons går du in på den, klickar på ”Ta bort annons” och anger din kod. Snabbt och enkelt!
 
 						<h4>Vad gör jag om jag tycker att en annons är olämplig?</h4>
-						Om du ser en annons som du inte tycker är olämplig kan du anmäla den till oss. Vi ser då om den bryter mot ”Regler kring annonsering” och beslutar med detta som grund om hurvida annonser ska bli borttagen eller inte. Om du vill veta vilka regler som gäller kring annonsering så hittar du det <a href="rules.php?city=<?php echo $_GET["city"]; ?>" style="color: #565656;text-decoration: underline">här</a>.
+						Om du ser en annons som du inte tycker är olämplig kan du anmäla den till oss. Vi ser då om den bryter mot ”Regler kring annonsering” och beslutar med detta som grund om hurvida annonser ska bli borttagen eller inte. Om du vill veta vilka regler som gäller kring annonsering så hittar du det <a href="{{ header.base_url }}/rules" style="color: #565656;text-decoration: underline">här</a>.
 					</div>
 				</div>
 			</div>

@@ -80,6 +80,13 @@ $app->get("/", function() use ($app) {
 	$app->render("index.tpl", array("dir" => WEB_PATH, "leftColumn" => $index->getLeftColumn(), "rightColumn" => $index->getRightColumn()));
 });
 
+$app->get("/city/:city/rules", function($_city) use ($app) {
+	$app->render("rules.tpl", array(
+			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"])
+		)
+	);
+});
+
 $app->get("/city/:city/ad/:aid", function($_city, $_aid) use ($app) {
 	$showAd = new ShowAd();
 	$showAd->setAd($_aid);
