@@ -135,7 +135,7 @@ function getAjaxURL(file) {
 // document.querySelector("form input[type=file]").addEventListener("change", function(event) {
 $("#pictureInputs").on("change", function(event) {
 	var files = event.target.files;
-
+	// Need to make it impossible to upload multiple images from the same input
 	for (var i = 0; i < files.length; i++) {
 		// Load image
 		var reader = new FileReader();
@@ -176,7 +176,6 @@ $("#pictureInputs").on("change", function(event) {
 					// Update progress
 					xhr.upload.addEventListener("progress", function(event) {
 						var percent = parseInt(event.loaded / event.total * 100);
-						console.log(percent);
 						progressElement.style.width = percent +"%";
 					}, false);
 
