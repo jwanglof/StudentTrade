@@ -227,3 +227,42 @@ span.adShowInfo {
 }
 
 .btn-info, .btn-default {width: 140px;}
+
+/*#pictureInputs { display: none; }*/
+
+form div.photos {
+	border: 1px solid #000;
+	margin-right: -19px;
+	overflow: hidden;
+}
+form div.photos > div {
+	border: 1px solid #c0c0c0;
+	border-radius: 3px;
+	float: left;
+	height: 90px;
+	margin: 19px 19px 0 0;
+	width: 120px;
+}
+form div.photos > div.uploading {
+	border: 2px #ccc solid;
+}
+form div.photos > div.uploaded {
+	border: 1px solid #ff0;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+form div.photos > div.uploading span.progress {
+	border: 1px solid #0ff;
+	background: white;
+	border-radius: 2px;
+	display: block;
+	height: 10px;
+	margin: 40px 5px;
+	overflow: hidden;
+}
+form div.photos > div.uploading span.progress span {
+	background: #999;
+	display: block;
+	height: 100%;
+}

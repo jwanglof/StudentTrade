@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 error_reporting(-1);
 ini_set('display_errors', 1);
 if (isset($_POST["mail"])) {
@@ -92,46 +94,45 @@ if (isset($_POST["mail"])) {
 	}
 
 	else if ($_POST["mail"] == "adAddNew") {
-		$checkInput = checkRequiredInput($_POST, array("name", "email", "city", "adType", "title", "info", "adCategory"));
+		$checkInput = checkRequiredInput($_SESSION["newAd"], array("name", "email", "city", "adType", "title", "info", "adCategory"));
 		if ($checkInput == 0) {
 			/*
 			 * Check the input values so it doesn't contain any illegal characters
 			 */
-			foreach ($_POST as $key => $value) {
-				$_POST[$key] = checkPOSTInput($_POST[$key]);
+			foreach ($_SESSION["newAd"] as $key => $value) {
+				$_SESSION["newAd"][$key] = checkPOSTInput($_SESSION["newAd"][$key]);
 			}
 			$dbInsert = new DbInsert();
 
 			$password = generateRandomString(4, "0123456789");
 			$encryptedPassword = $cipher->encrypt($password);
 
-			$adID = $dbInsert->insertIntoAd($_POST["title"], nl2br($_POST["info"]), $encryptedPassword, $_POST["price"], 
-				date("Y-m-d H:i:s"), $_POST["adCategory"], $_POST["campus"], $_POST["city"], $_POST["adType"]);
-			$adUserInfoID = $dbInsert->insertIntoAdUserInfo($_POST["name"], $_POST["email"], $_POST["phonenumber"], $adID);
+			$adID = $dbInsert->insertIntoAd($_SESSION["newAd"]["title"], nl2br($_SESSION["newAd"]["info"]), $encryptedPassword, $_SESSION["newAd"]["price"], date("Y-m-d H:i:s"), $_SESSION["newAd"]["adCategory"], $_SESSION["newAd"]["campus"], $_SESSION["newAd"]["city"], $_SESSION["newAd"]["adType"]);
+			$adUserInfoID = $dbInsert->insertIntoAdUserInfo($_SESSION["newAd"]["name"], $_SESSION["newAd"]["email"], $_SESSION["newAd"]["phonenumber"], $adID);
 
 			/*
 			 * Insert the adInfo
 			 * Loop through all ad types, 
-			 * and then check if the type is present in $_POST,
+			 * and then check if the type is present in $_SESSION["newAd"],
 			 * and then add it to the DB
 			 */
 			foreach($dbh->getAdSubCategoryShortNames() as $val) {
 				foreach ($val as $value) {
-					if (!empty($_POST[$value]) ) {
+					if (!empty($_SESSION["newAd"][$value]) ) {
 						$adTypeInfoID = $dbh->getAdSubCategoryIDFromAdSubCategoryName($value);
 						$adTypeInfoID = $adTypeInfoID["id"];
-						$dbInsert->insertIntoAdInfo($_POST[$value], $adTypeInfoID, $adID);
+						$dbInsert->insertIntoAdInfo($_SESSION["newAd"][$value], $adTypeInfoID, $adID);
 					}
 				}
 			}
 
-			$cityShortName = $dbh->getCityFromID($_POST["city"]);
+			$cityShortName = $dbh->getCityFromID($_SESSION["newAd"]["city"]);
 			$dbInsert = null;
 
-			$city = $dbh->getCityFromID($_POST["city"]);
+			$city = $dbh->getCityFromID($_SESSION["newAd"]["city"]);
 
-			$sendEmail->setRecipientEmail($_POST["email"]);
-			$sendEmail->sendNewAdEmail($password, $adID, $_POST["adType"], $city["short_name"]);
+			// $sendEmail->setRecipientEmail($_SESSION["newAd"]["email"]);
+			// $sendEmail->sendNewAdEmail($password, $adID, $_SESSION["newAd"]["adType"], $city["short_name"]);
 
 			echo $adID;
 		} else {

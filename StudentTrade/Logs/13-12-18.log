@@ -1,0 +1,504 @@
+ERROR - 2013-12-18T20:09:54+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(203): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:09:55+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(203): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:10:01+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(203): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:10:09+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(203): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:10:10+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(203): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:11:15+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(203): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:11:16+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(203): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:11:25+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(203): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:12:24+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(201): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:24:56+00:00 - exception 'Twig_Error_Syntax' with message 'Unexpected token "end of template" of value "" ("end of statement block" expected) in "uploadImages.tpl" at line 11' in /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/TokenStream.php:88
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/TokenParser/Block.php(58): Twig_TokenStream->expect(3)
+#1 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Parser.php(187): Twig_TokenParser_Block->parse(Object(Twig_Token))
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Parser.php(95): Twig_Parser->subparse(NULL, false)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(507): Twig_Parser->parse(Object(Twig_TokenStream))
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(559): Twig_Environment->parse(Object(Twig_TokenStream))
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331): Twig_Environment->compileSource('{% extends "lay...', 'uploadImages.tp...')
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/views/Slim/Views/Twig.php(86): Twig_Environment->loadTemplate('uploadImages.tp...')
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(255): Slim\Views\Twig->render('uploadImages.tp...', NULL)
+#8 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(243): Slim\View->fetch('uploadImages.tp...', NULL)
+#9 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(751): Slim\View->display('uploadImages.tp...')
+#10 /home/johan/Git/StudentTrade/Public/index.php(125): Slim\Slim->render('uploadImages.tp...', Array)
+#11 [internal function]: {closure}('linkoping')
+#12 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#13 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#14 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#15 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#16 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#17 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#18 /home/johan/Git/StudentTrade/Public/index.php(212): Slim\Slim->run()
+#19 {main}
+ERROR - 2013-12-18T20:32:37+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:34:12+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:39:03+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:39:04+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:39:04+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:39:12+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:39:13+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:42:15+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:42:16+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:42:16+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:42:17+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:42:20+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:42:40+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:43:19+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:43:20+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:43:20+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:43:21+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:43:42+00:00 - exception 'ErrorException' with message 'Undefined variable: _step' in /home/johan/Git/StudentTrade/Public/index.php:109
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(109): Slim\Slim::handleErrors(8, 'Undefined varia...', '/home/johan/Git...', 109, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:43:58+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:44:57+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:44:59+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:46:08+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T20:46:09+00:00 - exception 'ErrorException' with message 'Missing argument 2 for {closure}()' in /home/johan/Git/StudentTrade/Public/index.php:106
+Stack trace:
+#0 /home/johan/Git/StudentTrade/Public/index.php(106): Slim\Slim::handleErrors(2, 'Missing argumen...', '/home/johan/Git...', 106, Array)
+#1 [internal function]: {closure}('linkoping')
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#8 /home/johan/Git/StudentTrade/Public/index.php(214): Slim\Slim->run()
+#9 {main}
+ERROR - 2013-12-18T21:04:22+00:00 - exception 'ErrorException' with message 'Array to string conversion' in /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code:57
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(57): Slim\Slim::handleErrors(8, 'Array to string...', '/home/johan/Git...', 57, Array)
+#1 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(142): __TwigTemplate_e5da5b9cda691fe78d2e7be14fdda2b5dd173e4fe538e6f9ca1084eb239cb4d7->block_content(Array, Array)
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(290): Twig_Template->displayBlock('content', Array, Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(276): __TwigTemplate_694409c45e97f2abb09732c3008184224b81fd4f184b0b82bd76907b1d6cc4d3->doDisplay(Array, Array)
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(26): Twig_Template->display(Array, Array)
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(276): __TwigTemplate_e5da5b9cda691fe78d2e7be14fdda2b5dd173e4fe538e6f9ca1084eb239cb4d7->doDisplay(Array, Array)
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#8 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(261): Twig_Template->display(Array)
+#9 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/views/Slim/Views/Twig.php(88): Twig_Template->render(Array, NULL)
+#10 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(255): Slim\Views\Twig->render('uploadImages.tp...', NULL)
+#11 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(243): Slim\View->fetch('uploadImages.tp...', NULL)
+#12 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(751): Slim\View->display('uploadImages.tp...')
+#13 /home/johan/Git/StudentTrade/Public/index.php(125): Slim\Slim->render('uploadImages.tp...', Array)
+#14 [internal function]: {closure}('linkoping', '2')
+#15 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#16 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#17 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#18 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#19 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#20 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#21 /home/johan/Git/StudentTrade/Public/index.php(212): Slim\Slim->run()
+#22 {main}
+
+Next exception 'Twig_Error_Runtime' with message 'An exception has been thrown during the rendering of a template ("Array to string conversion") in "uploadImages.tpl" at line 13.' in /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php:146
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(290): Twig_Template->displayBlock('content', Array, Array)
+#1 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(276): __TwigTemplate_694409c45e97f2abb09732c3008184224b81fd4f184b0b82bd76907b1d6cc4d3->doDisplay(Array, Array)
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(26): Twig_Template->display(Array, Array)
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(276): __TwigTemplate_e5da5b9cda691fe78d2e7be14fdda2b5dd173e4fe538e6f9ca1084eb239cb4d7->doDisplay(Array, Array)
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(261): Twig_Template->display(Array)
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/views/Slim/Views/Twig.php(88): Twig_Template->render(Array, NULL)
+#8 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(255): Slim\Views\Twig->render('uploadImages.tp...', NULL)
+#9 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(243): Slim\View->fetch('uploadImages.tp...', NULL)
+#10 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(751): Slim\View->display('uploadImages.tp...')
+#11 /home/johan/Git/StudentTrade/Public/index.php(125): Slim\Slim->render('uploadImages.tp...', Array)
+#12 [internal function]: {closure}('linkoping', '2')
+#13 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#14 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#15 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#16 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#17 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#18 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#19 /home/johan/Git/StudentTrade/Public/index.php(212): Slim\Slim->run()
+#20 {main}
+ERROR - 2013-12-18T21:04:27+00:00 - exception 'ErrorException' with message 'Array to string conversion' in /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code:57
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(57): Slim\Slim::handleErrors(8, 'Array to string...', '/home/johan/Git...', 57, Array)
+#1 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(142): __TwigTemplate_e5da5b9cda691fe78d2e7be14fdda2b5dd173e4fe538e6f9ca1084eb239cb4d7->block_content(Array, Array)
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(290): Twig_Template->displayBlock('content', Array, Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(276): __TwigTemplate_694409c45e97f2abb09732c3008184224b81fd4f184b0b82bd76907b1d6cc4d3->doDisplay(Array, Array)
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(26): Twig_Template->display(Array, Array)
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(276): __TwigTemplate_e5da5b9cda691fe78d2e7be14fdda2b5dd173e4fe538e6f9ca1084eb239cb4d7->doDisplay(Array, Array)
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#8 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(261): Twig_Template->display(Array)
+#9 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/views/Slim/Views/Twig.php(88): Twig_Template->render(Array, NULL)
+#10 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(255): Slim\Views\Twig->render('uploadImages.tp...', NULL)
+#11 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(243): Slim\View->fetch('uploadImages.tp...', NULL)
+#12 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(751): Slim\View->display('uploadImages.tp...')
+#13 /home/johan/Git/StudentTrade/Public/index.php(125): Slim\Slim->render('uploadImages.tp...', Array)
+#14 [internal function]: {closure}('linkoping', '2')
+#15 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#16 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#17 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#18 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#19 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#20 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#21 /home/johan/Git/StudentTrade/Public/index.php(212): Slim\Slim->run()
+#22 {main}
+
+Next exception 'Twig_Error_Runtime' with message 'An exception has been thrown during the rendering of a template ("Array to string conversion") in "uploadImages.tpl" at line 13.' in /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php:146
+Stack trace:
+#0 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(290): Twig_Template->displayBlock('content', Array, Array)
+#1 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(276): __TwigTemplate_694409c45e97f2abb09732c3008184224b81fd4f184b0b82bd76907b1d6cc4d3->doDisplay(Array, Array)
+#2 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#3 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Environment.php(331) : eval()'d code(26): Twig_Template->display(Array, Array)
+#4 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(276): __TwigTemplate_e5da5b9cda691fe78d2e7be14fdda2b5dd173e4fe538e6f9ca1084eb239cb4d7->doDisplay(Array, Array)
+#5 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(250): Twig_Template->displayWithErrorHandling(Array, Array)
+#6 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/twig/twig/lib/Twig/Template.php(261): Twig_Template->display(Array)
+#7 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/views/Slim/Views/Twig.php(88): Twig_Template->render(Array, NULL)
+#8 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(255): Slim\Views\Twig->render('uploadImages.tp...', NULL)
+#9 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/View.php(243): Slim\View->fetch('uploadImages.tp...', NULL)
+#10 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(751): Slim\View->display('uploadImages.tp...')
+#11 /home/johan/Git/StudentTrade/Public/index.php(125): Slim\Slim->render('uploadImages.tp...', Array)
+#12 [internal function]: {closure}('linkoping', '2')
+#13 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Route.php(441): call_user_func_array(Object(Closure), Array)
+#14 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1314): Slim\Route->dispatch()
+#15 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#16 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#17 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#18 /home/johan/Git/StudentTrade/StudentTrade/Composer/vendor/slim/slim/Slim/Slim.php(1261): Slim\Middleware\PrettyExceptions->call()
+#19 /home/johan/Git/StudentTrade/Public/index.php(212): Slim\Slim->run()
+#20 {main}

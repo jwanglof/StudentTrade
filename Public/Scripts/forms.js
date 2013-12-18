@@ -10,7 +10,7 @@ $(document).ready(function() {
 			campus_name: {required: true}
 		}
 	});
-	$("#addNewAd").validate({
+	$("#newAdInfo").validate({
 		// errorClass: "inputError",
 		rules: {
 			name: {required: true},
@@ -162,10 +162,12 @@ $(document).ready(function() {
 
 	$("#addNewAd").on("submit", function(event) {
 		$(".ajaxSubmit").show();
+
+		// Does not work??
 		var submitButton = $(this).find(".btn-primary");
 		submitButton.button("disable");
 
-		request = sendWithAjax($(this), "mail");
+		// request = sendWithAjax($(this), "mail");
 
 		request.done(function(response, textStatus, jqXHR) {
 			if (!response || response == 2) {
@@ -178,7 +180,9 @@ $(document).ready(function() {
 				submitButton.button("enable");
 				$("#errorMsg").show();
 			} else {
-				window.location.href = getURL("index.php/city/"+ getCity() +"/ad/"+ response);
+				console.log(response);
+				alert("Ad added!");
+				// window.location.href = getURL("index.php/city/"+ getCity() +"/ad/"+ response);
 			}
 		});
 

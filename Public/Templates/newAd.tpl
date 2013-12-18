@@ -2,31 +2,33 @@
 
 {% block page_title %}Lägg upp annons{% endblock %}
 
-{% block add_scripts %}<script src="{{ header.dir }}Scripts/forms.js" type="text/javascript"></script>{% endblock %}
+{% block add_scripts %}
+	<script src="{{ header.dir }}Scripts/forms.js" type="text/javascript"></script>
+	<script src="{{ header.dir }}Scripts/addNew.js" type="text/javascript"></script>
+{% endblock %}
 
 {% block content %}
-<form method="post" class="form-horizontal" role="form" id="addNewAd">
-	<input type="hidden" id="mail" name="mail" value="adAddNew" />
+<form method="post" action="{{ header.base_url }}/addNew/2" enctype="multipart/form-data" class="form-horizontal" role="form" id="newAdInfo">
 	<fieldset>
 		<legend>Personuppgifter</legend>
 		<div class="form-group">
 			<label for="name" class="col-xs-1 control-label">Namn *</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="name" name="name" placeholder="Namn">
+				<input type="text" class="form-control" id="name" name="name" value="hejhej" placeholder="Namn">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label for="email" class="col-xs-1 control-label">E-post *</label>
 			<div class="col-xs-5">
-				<input type="email" class="form-control" id="email" name="email" placeholder="E-post">
+				<input type="email" class="form-control" id="email" name="email" value="hejhej@gmail.com" placeholder="E-post">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label for="phonenumber" class="col-xs-1 control-label">Telefonnummer</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="Telefonnummer">
+				<input type="text" class="form-control" id="phonenumber" name="phonenumber" value="0706665544" placeholder="Telefonnummer">
 			</div>
 		</div>
 
@@ -94,26 +96,19 @@
 		<div class="form-group">
 			<label for="title" class="col-xs-1 control-label">Rubrik *</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="title" name="title" placeholder="Rubrik">
+				<input type="text" class="form-control" id="title" name="title" value="hejhej" placeholder="Rubrik">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label for="info" class="col-xs-1 control-label">Beskrivning *</label>
 			<div class="col-xs-5">
-				<textarea id="info" name="info" class="form-control"></textarea>
+				<textarea id="info" name="info" class="form-control">HEJHEJ</textarea>
 			</div>
 		</div>
 
-		<div class="form-group" id="errorMsg">
-			<label for="info" class="col-xs-1 control-label">Felmeddelande:</label>
-			<div class="col-xs-5"></div>
-		</div>
-
-		<button type="submit" class="btn btn-primary btn-sm">Lägg upp annons</button>
+		<button type="submit" class="btn btn-primary btn-sm">Nästa steg: Ladda upp bilder</button>
 		<button type="reset" class="btn btn-default btn-sm">Rensa alla fält</button>
-
-		<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxSubmit" />
 	</fieldset>
 </form>
 {% endblock %}

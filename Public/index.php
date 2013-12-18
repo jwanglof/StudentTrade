@@ -103,16 +103,24 @@ $app->get("/city/:city/ad/:aid", function($_city, $_aid) use ($app) {
 	);
 });
 
-$app->get("/city/:city/addNew", function($_city) use ($app) {
+$app->get("/city/:city/addNew(/:step)", function($_city, $_step=NULL) use ($app) {
 	$newAd = new NewAd();
 
-	$app->render("newAd.tpl", array(
+	$_SESSION["newAd"] = "";
+
+	$renderTpl = "newAd.tpl";
+	if ($_step == 2) {
+		$_SESSION["newAd"] = $_POST;
+		$renderTpl = "uploadImages.tpl";
+	}
+
+	$app->render($renderTpl, array(
 			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"]),
 			"adTypes" 			=> $newAd->getAdTypes(),
 			"adCategories" 		=> $newAd->getAdCategories()
 		)
 	);
-});
+})->conditions(array("step" => "2"))->via("GET", "POST");
 
 // Should really make this more module!
 $app->get("/city/:city(/campus/:campus)(/category/:category)(/page/:page)", function($_city, $_campus=NULL, $_category=NULL, $_page=1) use ($app) {
