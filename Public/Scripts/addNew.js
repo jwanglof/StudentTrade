@@ -55,9 +55,13 @@ $(document).ready(function() {
 		}
 	});
 	$("#addMorePictures").on("click", function() {
+		$("#uploadImagesButton").text("Ladda upp bilder");
+
 		if (pictureCounter <= 5) {
-			$("#pictureInputs").append("<div class=\"form-group\"><label for=\"picture\" class=\"col-xs-1 control-label\">Bild #"+ pictureCounter +"</label><div class=\"col-xs-5\"><input type=\"file\" name=\"picture_"+ pictureCounter +"\" id=\"picture_"+ pictureCounter +"\" /></div></div>");
+			$("#pictureInputs").append("<div class=\"form-group\"><label for=\"picture\" class=\"col-xs-1 control-label\">Bild #"+ pictureCounter +"</label><div class=\"col-xs-3\"><input type=\"file\" name=\"picture_"+ pictureCounter +"\" id=\"picture_"+ pictureCounter +"\" /></div></div>");
 			pictureCounter += 1;
+		// name=\"picture_"+ pictureCounter +"\" id=\"picture_"+ pictureCounter +"\"
+		// name=\"pictures[]\" id=\"pictures[]\"
 		}
 	});
 });
@@ -132,76 +136,89 @@ function getAjaxURL(file) {
 	return url;
 }
 
-// document.querySelector("form input[type=file]").addEventListener("change", function(event) {
+var target;
+var canvas;
 $("#pictureInputs").on("change", function(event) {
-	var files = event.target.files;
-	// Need to make it impossible to upload multiple images from the same input
-	for (var i = 0; i < files.length; i++) {
-		// Load image
-		var reader = new FileReader();
-		reader.onload = function (readerEvent) {
-			var image = new Image();
-			image.onload = function (imageEvent) {
-				var imageElement = document.createElement("div");
-				imageElement.classList.add("uploading");
-				imageElement.innerHTML = "<span class=\"progress\"><span></span></span>";
-				var progressElement = imageElement.querySelector("span.progress span");
-				progressElement.style.width = 0;
-				document.querySelector("form div.photos").appendChild(imageElement);
+	// files = event.target.files;
+	target = event.target;
 
-				var canvas = document.createElement("canvas");
-				var max_size = 100;
-				var width = image.width;
-				var height = image.height;
+	for (var i = 0; i < target.files.length; i++) {
+		if (target.files[i].type.match(/image.*/)) {
+			var fr = new FileReader();
+			fr.onload = function (frEvent) {
+				
+				var image = new Image();
+				image.onload = function (imageEvent) {
+					// Create a canvas to resize the image
+					canvas = document.createElement("canvas");
+					var maxSize = 400;
+					var width = image.width;
+					var height = image.height;
 
-				if (width > height) {
-					if (width > max_size) {
-						height *= max_size / width;
-						width = max_size;
-					}
-				} else {
-					if (height > max_size) {
-						width *= max_size / height;
-						height = max_size;
-					}
-				}
-
-				canvas.width = width;
-				canvas.height = height;
-				canvas.getContext("2d").drawImage(image, 0, 0, width, height);
-
-				// Upload image
-				var xhr = new XMLHttpRequest();
-				if (xhr.upload) {
-					// Update progress
-					xhr.upload.addEventListener("progress", function(event) {
-						var percent = parseInt(event.loaded / event.total * 100);
-						progressElement.style.width = percent +"%";
-					}, false);
-
-					// File uploaded / failed
-					xhr.onreadystatechange = function(event) {
-						if (xhr.readyState == 4) {
-							if (xhr.status == 200) {
-								imageElement.classList.remove("uploading");
-								imageElement.classList.add("uploaded");
-								imageElement.style.backgroundImage = "url("+ xhr.responseText +")";
-
-								console.log("Image uploaded to: "+ xhr.responseText);
-							} else {
-								imageElement.parentNode.removeChild(imageElement);
-							}
+					if (width > height) {
+						if (width > maxSize) {
+							height *= maxSize / width;
+							width = maxSize;
+						}
+					} else {
+						if (height > maxSize) {
+							width *= maxSize / height;
+							height = maxSize;
 						}
 					}
 
-					xhr.open("post", "http://localhost/~johan/StudentTrade/StudentTrade/Logic/Process.php", true);
-					xhr.send(canvas.toDataURL("image/jpeg"));
+					canvas.width = width;
+					canvas.height = height;
+					canvas.getContext("2d").drawImage(image, 0, 0, width, height);
+				}
+				image.src = frEvent.target.result;
+			}
+			fr.readAsDataURL(target.files[i]);
+		}
+	}
+});
+
+function uploadProgress(evt) {
+	if (evt.lengthComputable) {
+		var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+		console.log(percentComplete.toString() +"%");
+	} else {
+		console.log("NOPE");
+	}
+}
+
+$("#uploadImagesButton").on("click", function(event) {
+	console.log("Ze other files: "+ target.files.length);
+
+	// Disable the upload button
+	// Disable upload by a session var as well?
+	// Set a session with the ID of the new ad
+	$(event.target).attr("disabled", "disabled");
+
+	for (var i = 0; i < target.files.length; i++) {
+		var xhr = new XMLHttpRequest();
+
+		if (xhr.upload) {
+			xhr.upload.addEventListener("progress", uploadProgress, false);
+
+			xhr.onreadystatechange = function(event) {
+				if (xhr.readyState == 4) {
+					if (xhr.status == 200) {
+						var filename = "http://localhost/~johan/StudentTrade/StudentTrade/Logic/images/"+ xhr.responseText;
+						console.log(filename);
+						$(".uploadProgress2").append("<div style=\"background-image: url("+ filename +"); height: 300px; width: 300px;\">hej</div>");
+					} else {
+						console.log("Image could not be uploaded.");
+					}
 				}
 			}
-			image.src = readerEvent.target.result;
+
+			xhr.open("post", "http://localhost/~johan/StudentTrade/StudentTrade/Logic/Process.php", true);
+			xhr.send(canvas.toDataURL("image/jpeg"));
 		}
-		reader.readAsDataURL(files[i]);
 	}
 
-	// event.target.value = "";
+	target = "";
+	event.preventDefault();
 });
+

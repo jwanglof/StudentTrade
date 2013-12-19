@@ -114,6 +114,8 @@ $app->get("/city/:city/addNew(/:step)", function($_city, $_step=NULL) use ($app)
 		$renderTpl = "uploadImages.tpl";
 	}
 
+	print_r($_SESSION["newAd"]);
+
 	$app->render($renderTpl, array(
 			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"]),
 			"adTypes" 			=> $newAd->getAdTypes(),
