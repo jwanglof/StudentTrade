@@ -6,6 +6,7 @@ class ShowAd extends DbSelect {
 	private $adCategory;
 	private $adSubCategory;
 	private $adType;
+	private $pictures;
 
 	public function __construct() {
 		parent::__construct();
@@ -21,6 +22,7 @@ class ShowAd extends DbSelect {
 		$this->adCategory 		= parent::getAdCategoryFromID($this->ad["fk_ad_adCategory"]);
 		$this->adSubCategory 	= parent::getAdSubCategoryFromAdCategoryID($this->ad["fk_ad_adCategory"]);
 		$this->adType 			= parent::getAdTypeFromAdTypeID($this->ad["fk_ad_adType"]);
+		$this->pictures 		= parent::getPicturesFromAdID($this->ad["id"]);
 	}
 
 	public function getAd() 			{ return $this->ad; }
@@ -29,5 +31,6 @@ class ShowAd extends DbSelect {
 	public function getAdCategory() 	{ return $this->adCategory; }
 	public function getAdSubCategory() 	{ return $this->adSubCategory; }
 	public function getAdType() 		{ return $this->adType; }
+	public function getPictures()		{ return $this->pictures; }
 }
 ?>

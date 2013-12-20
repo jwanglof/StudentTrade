@@ -98,7 +98,8 @@ $app->get("/city/:city/ad/:aid", function($_city, $_aid) use ($app) {
 			"userInfo"			=> $showAd->getUserInfo(),
 			"adCategory" 		=> $showAd->getAdCategory(),
 			"adSubCategory"		=> $showAd->getAdSubCategory(),
-			"adType"			=> $showAd->getAdType()
+			"adType"			=> $showAd->getAdType(),
+			"pictures"			=> $showAd->getPictures()
 		)
 	);
 });

@@ -349,5 +349,22 @@ class DbSelect extends DbConfig {
 			return $e;
 		}
 	}
+
+	/**************************************
+	 *************				***********
+	 *************   Pictures	***********
+	 *************				***********
+	 **************************************/
+	public function getPicturesFromAdID($adID) {
+		try {
+			$stmt = $this->dbh->prepare("SELECT id,filename FROM pictures WHERE fk_pictures_ad=:adID");
+			$stmt->bindValue(":adID", $adID, PDO::PARAM_INT);
+			$stmt->execute();
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			return $e;
+		}
+	}
 }
 ?>

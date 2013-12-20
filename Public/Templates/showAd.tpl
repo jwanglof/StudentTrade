@@ -6,9 +6,13 @@
 <!-- <div id="fb-root"></div>
 <script type="text/javascript">(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>
 <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
- -->
+-->
 <div class="col-xs-3">
-	<p style="width: 100%; height: 200px; background-color: {{ adCategory.color }}" class="categoryIcon icon {{ adCategory.name }}"></p>
+	<p style="width: 100%; height: 200px; background-color: {{ adCategory.color }}" class="categoryIcon icon {{ adCategory.name }}">
+		{% for picture in pictures %}
+		 	<img src="{{ header.dir }}Upload/{{ picture.filename }}" />
+		 {% endfor %}
+	</p>
 	<p style="width: 100%; height: 30px; font-size: 1.35em; text-align: center;" class="adType {{ adType.short_name }}">{{ adType.name }}</p>
 	<p>
 		Pris:
