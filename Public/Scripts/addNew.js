@@ -223,7 +223,6 @@ $("#uploadImagesButton").on("click", function(event) {
 					if (xhr.readyState == 4) {
 						if (xhr.status == 200) {
 							alert("All pictures were uploaded!");
-							console.log(xhr.responseText);
 						} else {
 							console.log("Image could not be uploaded.");
 						}
