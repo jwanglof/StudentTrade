@@ -21,7 +21,7 @@
 
 		<div class="form-group">
 			<label for="picture" class="col-xs-1 control-label">Bild #1</label>
-			<div class="col-xs-3">
+			<div class="col-xs-5">
 				<input type="file" name="picture_1" id="picture_1" />
 			</div>
 		</div>
@@ -30,6 +30,9 @@
 	<div class="form-group">
 		<div class="col-xs-3">
 			<button id="uploadImagesButton">Ladda upp bild</button>
+		</div>
+		<div class="col-xs-4 row">
+			<div id="bajs">0%</div>
 		</div>
 	</div>
 

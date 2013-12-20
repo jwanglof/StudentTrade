@@ -55,13 +55,15 @@ $(document).ready(function() {
 		}
 	});
 	$("#addMorePictures").on("click", function() {
-		$("#uploadImagesButton").text("Ladda upp bilder");
+		if (!$("#uploadImagesButton").is(":disabled")) {
+			$("#uploadImagesButton").text("Ladda upp bilder");
 
-		if (pictureCounter <= 5) {
-			$("#pictureInputs").append("<div class=\"form-group\"><label for=\"picture\" class=\"col-xs-1 control-label\">Bild #"+ pictureCounter +"</label><div class=\"col-xs-3\"><input type=\"file\" name=\"picture_"+ pictureCounter +"\" id=\"picture_"+ pictureCounter +"\" /></div></div>");
-			pictureCounter += 1;
-		// name=\"picture_"+ pictureCounter +"\" id=\"picture_"+ pictureCounter +"\"
-		// name=\"pictures[]\" id=\"pictures[]\"
+			if (pictureCounter <= 5) {
+				$("#pictureInputs").append("<div class=\"form-group\"><label for=\"picture\" class=\"col-xs-1 control-label\">Bild #"+ pictureCounter +"</label><div class=\"col-xs-5\"><input type=\"file\" name=\"picture_"+ pictureCounter +"\" id=\"picture_"+ pictureCounter +"\" /></div></div>");
+				pictureCounter += 1;
+			// name=\"picture_"+ pictureCounter +"\" id=\"picture_"+ pictureCounter +"\"
+			// name=\"pictures[]\" id=\"pictures[]\"
+			}
 		}
 	});
 });
@@ -136,89 +138,113 @@ function getAjaxURL(file) {
 	return url;
 }
 
-var target;
-var canvas;
+// var target = new Array();
+var canvas = new Array();
+var uploadedFilenames = new Array();
 $("#pictureInputs").on("change", function(event) {
-	// files = event.target.files;
-	target = event.target;
+	// target.push(event.target);
 
-	for (var i = 0; i < target.files.length; i++) {
-		if (target.files[i].type.match(/image.*/)) {
-			var fr = new FileReader();
-			fr.onload = function (frEvent) {
-				
-				var image = new Image();
-				image.onload = function (imageEvent) {
-					// Create a canvas to resize the image
-					canvas = document.createElement("canvas");
-					var maxSize = 400;
-					var width = image.width;
-					var height = image.height;
+	// Check that there is a file in the input
+	// and check that that file is an image
+	// if (target[target.length-1].files[0] != undefined && target[target.length-1].files[0].type.match(/image.*/)) {
+	if (event.target.files[0] != undefined && event.target.files[0].type.match(/image.*/)) {
+		
+		var fr = new FileReader();
+		// console.log("new FileReader");
+		fr.onload = function (frEvent) {
+			// console.log("Inside frEvent");
+			var image = new Image();
+			image.onload = function (imageEvent) {
+				// console.log("Inside imageEvent");
 
-					if (width > height) {
-						if (width > maxSize) {
-							height *= maxSize / width;
-							width = maxSize;
-						}
-					} else {
-						if (height > maxSize) {
-							width *= maxSize / height;
-							height = maxSize;
-						}
+				// Create a canvas to resize the image
+				var newCanvas = document.createElement("canvas");
+				var maxSize = 400;
+				var width = image.width;
+				var height = image.height;
+
+				if (width > height) {
+					if (width > maxSize) {
+						height *= maxSize / width;
+						width = maxSize;
 					}
-
-					canvas.width = width;
-					canvas.height = height;
-					canvas.getContext("2d").drawImage(image, 0, 0, width, height);
+				} else {
+					if (height > maxSize) {
+						width *= maxSize / height;
+						height = maxSize;
+					}
 				}
-				image.src = frEvent.target.result;
+
+				newCanvas.width = width;
+				newCanvas.height = height;
+				newCanvas.getContext("2d").drawImage(image, 0, 0, width, height);
+
+				// Push the new canvas to the array
+				canvas.push(newCanvas);
+				// console.log(canvas[canvas.length-1]);
 			}
-			fr.readAsDataURL(target.files[i]);
-		}
+			image.src = frEvent.target.result;
+		} 
+		// Git/StudentTrade/StudentTrade/Logic/images/
+		fr.readAsDataURL(event.target.files[0]);
+
 	}
 });
 
 function uploadProgress(evt) {
 	if (evt.lengthComputable) {
 		var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-		console.log(percentComplete.toString() +"%");
+		var percentCompleteString = percentComplete.toString() +"%";
+
+		$("#bajs").css("background-color", "#a3a3a3");
+		$("#bajs").text(percentCompleteString);
+		$("#bajs").width(percentCompleteString);
 	} else {
 		console.log("NOPE");
 	}
 }
 
 $("#uploadImagesButton").on("click", function(event) {
-	console.log("Ze other files: "+ target.files.length);
+	if (event.target != undefined) {
+		// console.log("CAAAANVAS: "+ canvas);
+		// console.log("Ze other files: "+ target.length);
 
-	// Disable the upload button
-	// Disable upload by a session var as well?
-	// Set a session with the ID of the new ad
-	$(event.target).attr("disabled", "disabled");
+		// Disable the upload button
+		// Disable upload by a session var as well?
+		// Set a session with the ID of the new ad
+		$(event.target).attr("disabled", "disabled");
+		for (var o = 1; o <= 5; o++) {
+			$("#picture_"+ o).attr("disabled", "disabled");
+		}
 
-	for (var i = 0; i < target.files.length; i++) {
-		var xhr = new XMLHttpRequest();
+		for (var i = 0; i < canvas.length; i++) {
+			var xhr = new XMLHttpRequest();
+			var filename;
+			if (xhr.upload) {
+				xhr.upload.addEventListener("progress", uploadProgress, false);
 
-		if (xhr.upload) {
-			xhr.upload.addEventListener("progress", uploadProgress, false);
+				xhr.addEventListener("load", function(event) {
+					// Add the new filename to the array
+					uploadedFilenames.push(event.target.responseText);
+				});
 
-			xhr.onreadystatechange = function(event) {
-				if (xhr.readyState == 4) {
-					if (xhr.status == 200) {
-						var filename = "http://localhost/~johan/StudentTrade/StudentTrade/Logic/images/"+ xhr.responseText;
-						console.log(filename);
-						$(".uploadProgress2").append("<div style=\"background-image: url("+ filename +"); height: 300px; width: 300px;\">hej</div>");
-					} else {
-						console.log("Image could not be uploaded.");
+				xhr.onreadystatechange = function(event) {
+					if (xhr.readyState == 4) {
+						if (xhr.status == 200) {
+							alert("All pictures were uploaded!");
+						} else {
+							console.log("Image could not be uploaded.");
+						}
 					}
 				}
+				xhr.open("post", "http://localhost/~johan/StudentTrade/StudentTrade/Logic/Process.php", true);
+				xhr.send(canvas[i].toDataURL("image/jpeg"));
 			}
-
-			xhr.open("post", "http://localhost/~johan/StudentTrade/StudentTrade/Logic/Process.php", true);
-			xhr.send(canvas.toDataURL("image/jpeg"));
 		}
-	}
 
-	target = "";
+		// target = "";
+	} else {
+		alert("You must choose at least one picture before uploading!");
+	}
 	event.preventDefault();
 });
-
