@@ -98,8 +98,8 @@
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="col-xs-9 navbar" id="categories">
+				<div class="row" style="border: 0px solid #f00;">
+					<div class="col-xs-9 navbar" id="categories" style="border: 0px solid #ff0;">
 						<div class="navbar-collapse collapse">
 							<ul class="nav nav-pills">
 								{% for category in header.adCategories %}
@@ -110,7 +110,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="navbar col-xs-3">
+					<div class="navbar col-xs-3" style="border: 0px solid #c0c0c0;">
 						<ul class="nav nav-pills">
 							<li class="category" style="background-color: #39b54a; float: right; width: 250px; height: 80px; text-align: center; font-size: 25px; line-height: 60px;">
 								<a href="{{ header.base_url }}/addNew">Lägg upp annons</a>

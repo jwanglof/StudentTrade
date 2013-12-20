@@ -43,4 +43,12 @@ $(document).ready(function() {
 	$("#requestCampus").click(function() {
 		$("#requestCampusModal").modal('show');
 	});
+
+	$(".uploadedImages img").on("click", function(event) {
+		// Get the clicked picture's source
+		var imgSrc = event.target.src;
+
+		// Change the source of the big picture
+		$("#imageShown")[0].src = imgSrc;
+	})
 });

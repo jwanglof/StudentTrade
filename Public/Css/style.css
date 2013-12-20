@@ -14,14 +14,10 @@ a:visited {color: #565656;}
 	background-repeat: repeat-x, no-repeat;
 	background-position: bottom, right bottom;
 
-	height: 262px;
+	height: 250px;
 	margin: 0px;
 	padding: 0px;
 	/*border: 1px solid #ff0;*/
-}
-
-.top img {
-	margin-top: 10px;
 }
 
 #campusChooser {
@@ -72,9 +68,6 @@ a:visited {color: #565656;}
 	font-size: 10px;
 }
 
-.categoryActive {
-	/*text-decoration: underline;*/
-}
 .categoryInactive {
 	opacity: 0.3;
 }
@@ -235,4 +228,22 @@ span.adShowInfo {
 	border-radius: 6px;
 	padding-left: 10px;
 	text-align: left;
+}
+
+.uploadedImages {
+	border-bottom: 2px solid #565656;
+	padding: 0px 0px 5px 0px;
+	margin: 0px 0px 5px 0px;
+}
+
+.uploadedImages img {
+	width: 18.7%;
+	display: inline-block;
+	border: 0px solid #000;
+	height: 30px;
+}
+
+.adImage {
+	text-align: center;
+	min-height: 150px;
 }

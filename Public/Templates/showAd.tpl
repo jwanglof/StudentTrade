@@ -8,11 +8,16 @@
 <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 -->
 <div class="col-xs-3">
-	<p style="width: 100%; height: 200px; background-color: {{ adCategory.color }}" class="categoryIcon icon {{ adCategory.name }}">
+	<div class="uploadedImages">
 		{% for picture in pictures %}
-		 	<img src="{{ header.dir }}Upload/{{ picture.filename }}" />
-		 {% endfor %}
-	</p>
+			<img src="{{ header.dir }}Upload/{{ picture.filename }}" />
+		{% endfor %}
+	</div>
+	<!-- <p style="width: 100%; height: 200px; background-color: {{ adCategory.color }}" class="categoryIcon icon {{ adCategory.name }}"> -->
+	<div class="adImage">
+		<img src="{{ header.dir }}Upload/{{ pictures[0].filename }}" width="100%" id="imageShown" />
+	</div>
+	<!-- </p> -->
 	<p style="width: 100%; height: 30px; font-size: 1.35em; text-align: center;" class="adType {{ adType.short_name }}">{{ adType.name }}</p>
 	<p>
 		Pris:
@@ -119,7 +124,7 @@
 
 			<div class="modal-footer">
 				<button type="submit" class="btn btn-primary" id="forgotCode">Glömt koden? Tryck här!</button>
-				<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adDeleteForm" class="btn btn-primary">Ta bort annons</button>
+				<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adDeleteForm" class="btn btn-primary">Ta bort annons</button>
 			</div>
 		</div>
 	</div>
@@ -167,7 +172,7 @@
 			</div>
 
 			<div class="modal-footer">
-				<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adReplyForm" class="btn btn-primary">Skicka meddelandet</button>
+				<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adReplyForm" class="btn btn-primary">Skicka meddelandet</button>
 			</div>
 		</div>
 	</div>
@@ -200,7 +205,7 @@
 			</div>
 
 			<div class="modal-footer">
-				<img src="StudentTrade/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adReportForm" class="btn btn-primary">Skicka anmälan</button>
+				<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adReportForm" class="btn btn-primary">Skicka anmälan</button>
 			</div>
 		</div>
 	</div>
