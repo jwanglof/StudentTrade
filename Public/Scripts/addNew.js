@@ -138,17 +138,13 @@ function getAjaxURL(file) {
 	return url;
 }
 
-// var target = new Array();
 var canvas = new Array();
 var uploadedFilenames = new Array();
 $("#pictureInputs").on("change", function(event) {
-	// target.push(event.target);
-
 	// Check that there is a file in the input
 	// and check that that file is an image
 	// if (target[target.length-1].files[0] != undefined && target[target.length-1].files[0].type.match(/image.*/)) {
 	if (event.target.files[0] != undefined && event.target.files[0].type.match(/image.*/)) {
-		
 		var fr = new FileReader();
 		// console.log("new FileReader");
 		fr.onload = function (frEvent) {
@@ -185,9 +181,7 @@ $("#pictureInputs").on("change", function(event) {
 			}
 			image.src = frEvent.target.result;
 		} 
-		// Git/StudentTrade/StudentTrade/Logic/images/
 		fr.readAsDataURL(event.target.files[0]);
-
 	}
 });
 
@@ -196,9 +190,9 @@ function uploadProgress(evt) {
 		var percentComplete = Math.round(evt.loaded * 100 / evt.total);
 		var percentCompleteString = percentComplete.toString() +"%";
 
-		$("#bajs").css("background-color", "#a3a3a3");
-		$("#bajs").text(percentCompleteString);
-		$("#bajs").width(percentCompleteString);
+		$("#uploadProgress").css("background-color", "#a3a3a3");
+		$("#uploadProgress").text(percentCompleteString);
+		$("#uploadProgress").width(percentCompleteString);
 	} else {
 		console.log("NOPE");
 	}
@@ -206,16 +200,13 @@ function uploadProgress(evt) {
 
 $("#uploadImagesButton").on("click", function(event) {
 	if (event.target != undefined) {
-		// console.log("CAAAANVAS: "+ canvas);
-		// console.log("Ze other files: "+ target.length);
-
-		// Disable the upload button
-		// Disable upload by a session var as well?
-		// Set a session with the ID of the new ad
+		// Disable the upload button and the file inputs
 		$(event.target).attr("disabled", "disabled");
 		for (var o = 1; o <= 5; o++) {
 			$("#picture_"+ o).attr("disabled", "disabled");
 		}
+		// Disable upload by a session var as well?
+		// Set a session with the ID of the new ad
 
 		for (var i = 0; i < canvas.length; i++) {
 			var xhr = new XMLHttpRequest();
@@ -232,19 +223,41 @@ $("#uploadImagesButton").on("click", function(event) {
 					if (xhr.readyState == 4) {
 						if (xhr.status == 200) {
 							alert("All pictures were uploaded!");
+							console.log(xhr.responseText);
 						} else {
 							console.log("Image could not be uploaded.");
 						}
 					}
 				}
+
 				xhr.open("post", "http://localhost/~johan/StudentTrade/StudentTrade/Logic/Process.php", true);
 				xhr.send(canvas[i].toDataURL("image/jpeg"));
 			}
 		}
-
-		// target = "";
 	} else {
 		alert("You must choose at least one picture before uploading!");
 	}
 	event.preventDefault();
 });
+
+function addFilesToDB() {
+	xhr = $.ajax({
+			type: "post",
+			url: getAjaxURL("get"),
+			data: {get: "adTypeInfo", adType: adType}
+	});
+
+	xhr.done(function(response, textStatus, jqXHR) {
+			$(".ajaxCategory").hide();
+			// console.log(response);
+			var objs = JSON.parse(response);
+			for (var value in objs) {
+					$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
+					$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\""+ objs[value]["type"] +"\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
+					$("#adInput").append("<br /><br />");
+			}
+	});
+	xhr.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log(errorThrown);
+	});
+}

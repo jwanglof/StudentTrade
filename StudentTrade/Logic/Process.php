@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 error_reporting(-1);
 ini_set("display_errors", 1);
 
@@ -16,6 +18,8 @@ if (!file_put_contents('images/'.$filename, $image)) {
         header('HTTP/1.1 503 Service Unavailable');
         exit();
 }
+
+array_push($_SESSION["newPictures"], $filename);
 
 // Clean up memory
 unset($data);

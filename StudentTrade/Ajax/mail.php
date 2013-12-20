@@ -126,6 +126,15 @@ if (isset($_POST["mail"])) {
 				}
 			}
 
+			// Add the pictures if there are any
+			if (!empty($_SESSION["newPictures"])) {
+				foreach ($_SESSION["newPictures"] as $filename) {
+					$dbInsert->insertIntoPictures($filename, $adID);
+				}
+				// Reset the array
+				$_SESSION["newPictures"] = array();
+			}
+
 			$cityShortName = $dbh->getCityFromID($_SESSION["newAd"]["city"]);
 			$dbInsert = null;
 
@@ -136,7 +145,7 @@ if (isset($_POST["mail"])) {
 
 			echo $adID;
 		} else {
-			echo 2;
+			echo -1;
 		}
 	}
 

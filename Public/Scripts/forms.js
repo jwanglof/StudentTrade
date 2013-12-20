@@ -167,13 +167,13 @@ $(document).ready(function() {
 		var submitButton = $(this).find(".btn-primary");
 		submitButton.button("disable");
 
-		// request = sendWithAjax($(this), "mail");
+		request = sendWithAjax($(this), "mail");
 
 		request.done(function(response, textStatus, jqXHR) {
-			if (!response || response == 2) {
+			if (!response || response == -1) {
 				if (!response)
 					$("#errorMsg").find(".col-xs-5").html("Något gick fel. Var vänlig försök igen.")
-				else if (response == 2)
+				else if (response == -1)
 					$("#errorMsg").find(".col-xs-5").html("Du måste fylla i alla obligatoriska (*) fält!")
 
 				$(".ajaxSubmit").hide();

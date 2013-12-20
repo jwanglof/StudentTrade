@@ -32,7 +32,7 @@
 			<button id="uploadImagesButton">Ladda upp bild</button>
 		</div>
 		<div class="col-xs-4 row">
-			<div id="bajs">0%</div>
+			<div id="uploadProgress">0%</div>
 		</div>
 	</div>
 

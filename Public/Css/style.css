@@ -228,10 +228,11 @@ span.adShowInfo {
 
 .btn-info, .btn-default {width: 140px;}
 
-#bajs {
-	width: 40px;
+#uploadProgress {
+	width: 44px;
 	height: 23px;
 	border: 2px solid #c0c0c0;
 	border-radius: 6px;
 	padding-left: 10px;
+	text-align: left;
 }

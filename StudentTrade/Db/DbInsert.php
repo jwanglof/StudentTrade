@@ -83,5 +83,25 @@ class DbInsert extends DbConfig {
 			return $e;
 		}
 	}
+
+	public function insertIntoPictures($filename, $fk_adID) {
+		try {
+			$this->dbh->beginTransaction();
+
+			$stmt = $this->dbh->prepare("INSERT INTO pictures(`filename`, `fK_pictures_ad`) VALUES(:filename, :fk_adID)");
+			$stmt->bindParam(":filename", $filename, PDO::PARAM_STR);
+			$stmt->bindParam(":fk_adID", $fk_adID, PDO::PARAM_INT);
+			$stmt->execute();
+	
+			$newID = $this->dbh->lastInsertId();
+			
+			$this->dbh->commit();
+
+			return $newID;
+		} catch (PDOException $e) {
+			$this->dbh->rollback();
+			return $e;
+		}
+	}
 }
 ?>
