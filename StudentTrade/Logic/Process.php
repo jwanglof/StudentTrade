@@ -28,4 +28,8 @@ unset($image);
 
 // Return file URL
 echo $filename;
+
+/*
+	NEED TO MAKE A CHECK THAT THE FILE IS REALLY AN IMAGE!
+*/
 ?>
