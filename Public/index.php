@@ -74,6 +74,10 @@ function setHeader($app, $_city, $_campus, $_category, $_aid=NULL) {
  * Ze header
  */
 
+$app->get("/StudentTrade/:var", function($var) use ($app) {
+	echo $var;
+});
+
 $app->get("/", function() use ($app) {
 	$index = new Index();
 

@@ -2,15 +2,15 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<title>StudentTrade - {% block page_title %}{% endblock %}</title>
-		<link rel="stylesheet" type="text/css" href="{{ header.dir }}Css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="{{ header.dir }}Css/non-responsive.css" />
-		<link rel="stylesheet" type="text/css" href="{{ header.dir }}Css/style.css" />
-		<link rel="stylesheet" type="text/css" href="{{ header.dir }}Css/style_footer.css" />
+		<link rel="stylesheet" type="text/css" href="/Css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/Css/non-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="/Css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/Css/style_footer.css" />
 		{% block add_css %}{% endblock %}
 
 		<link href="http://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
 
-		<link rel="shortcut icon" href="{{ header.dir }}Img/favicon.ico" />
+		<link rel="shortcut icon" href="/Img/favicon.ico" />
 	</head>
 	<body>
 		<!--
@@ -63,7 +63,7 @@
 			<div class="col-xs-12 top">
 				<div class="row">
 					<div class="col-xs-6">
-						<a href="{{ header.dir }}index.php"><img src="{{ header.dir }}Img/ST_w_bubble.png" /></a>
+						<a href="/index.php"><img src="/Img/ST_w_bubble.png" /></a>
 					</div>
 					<div class="col-xs-3 col-xs-offset-3" id="campusChooser">
 						<div class="btn-group">
@@ -90,7 +90,7 @@
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Välj stad <span class="caret"></span></button>
 								<ul class="dropdown-menu">
 								{% for city in header.cities %}
-									<li><a href="{{ header.dir }}index.php/city/{{ city.short_name }}">{{ city.city_name }}</a></li>
+									<li><a href="/index.php/city/{{ city.short_name }}">{{ city.city_name }}</a></li>
 								{% endfor %}
 								</ul>
 							</div>
@@ -142,7 +142,8 @@
 					{% block content %}{% endblock %}
 				</div>
 				<div class="col-xs-4 rightColumn">
-					<img src="{{ header.dir }}/Img/Spons/StudentTrade.jpg" width="95%" />
+					<img src="/Img/Spons/StudentTrade.jpg" width="95%" />
+					
 				</div>
 			</div>
 		</div>
@@ -156,7 +157,7 @@
 					</ul>
 				</div>
 				<div class="col-xs-4">
-					<img src="{{ header.dir }}/Img/studenttrade_logo_grey.png" />
+					<img src="/Img/studenttrade_logo_grey.png" />
 				</div>
 				<div class="col-xs-4">
 					<ul>
@@ -259,16 +260,16 @@
 					</div>
 
 					<div class="modal-footer">
-						<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="contactUsForm" class="btn btn-primary">Skicka</button>
+						<img src="/Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="contactUsForm" class="btn btn-primary">Skicka</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		
-		<script src="{{ header.dir }}Scripts/jquery.min.js" type="text/javascript"></script>
-		<script src="{{ header.dir }}Scripts/bootstrap.min.js" type="text/javascript"></script>
-		<script src="{{ header.dir }}Scripts/jquery.validate.min.js" type="text/javascript"></script>
-		<script src="{{ header.dir }}Scripts/scripts.js" type="text/javascript"></script>
+		<script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+		<script src="/Scripts/bootstrap.min.js" type="text/javascript"></script>
+		<script src="/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+		<script src="/Scripts/scripts.js" type="text/javascript"></script>
 		{% block add_scripts %}{% endblock %}
 	</body>
 </html>

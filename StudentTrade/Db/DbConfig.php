@@ -9,14 +9,18 @@ class DbConfig {
 			PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'",
 			PDO::MYSQL_ATTR_FOUND_ROWS => true);
 	
-	private $getLocalConfig = True;
+	private $connectionConfig = "local";
 
 	public function __construct() {
-		if ($this->getLocalConfig) {
+		if ($this->connectionConfig == "local") {
 			$this->dsn = "mysql:host=localhost;dbname=db1162056_st;charset=utf8";
 			$this->username = "jwanglof";
 			$this->password = "testtest";
-		} else {
+		} else if ($this->connectionConfig == "jumpstarter") {
+			$this->dsn = "mysql:host=127.0.0.1;port=3306;dbname=db1162056_st;charset=utf8";
+			$this->username = "root";
+			$this->password = "";
+		} else if ($this->connectionConfig == "crystone") {
 			$this->dsn = "mysql:host=83.168.227.176;port=3306;dbname=db1162056_st;charset=utf8";
 			$this->username = "u1162056_st";
 			$this->password = "&fdpni50{g";

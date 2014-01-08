@@ -255,27 +255,15 @@
 					</div>
 
 					<div class="modal-footer">
-						<img src="../Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="contactUsForm" class="btn btn-primary">Skicka</button>
+						<img src="Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="contactUsForm" class="btn btn-primary">Skicka</button>
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<script src="../Scripts/jquery.min.js" type="text/javascript"></script>
-		<script src="../Scripts/bootstrap.min.js" type="text/javascript"></script>
-		<script src="../Scripts/bootbox.min.js" type="text/javascript"></script>
-		<script src="../Scripts/jquery.validate.min.js" type="text/javascript"></script>
-		<script src="../Scripts/ad_new.js" type="text/javascript"></script>
-		<script src="../Scripts/scripts.js" type="text/javascript"></script>
-		<script src="../Scripts/forms.js" type="text/javascript"></script>
-	</body>
-</html>
 		</div>
 
 		<script src="Scripts/jquery.min.js" type="text/javascript"></script>
 		<script src="Scripts/jquery.spritely.js" type="text/javascript"></script>
 		<script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
-		<script src="Scripts/bootbox.min.js" type="text/javascript"></script>
 		<script src="Scripts/jquery.validate.min.js" type="text/javascript"></script>
 		<script src="Scripts/scripts.js" type="text/javascript"></script>
 		<script src="Scripts/forms.js" type="text/javascript"></script>

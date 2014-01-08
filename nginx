@@ -1,0 +1,48 @@
+server {
+       listen 0.0.0.0;
+       root /home/http/Public;
+       index index.php index.html index.htm;
+
+       access_log /var/log/nginx/example.access.log;
+       error_log /var/log/nginx/example.error.log;
+
+       location ^~ /StudentTrade/ {
+               deny all;
+               #root /home/http;
+               #autoindex off;
+               #try_files $uri $uri/;
+       }
+
+       location / {
+               try_files $uri $uri/ /index.php?$args;
+       }
+
+       location = /favicon.ico {
+                log_not_found off;
+                access_log off;
+       }
+
+       location = /robots.txt {
+               allow all;
+               log_not_found off;
+               access_log off;
+       }
+
+       location ~* \\.(js|css|png|jpg|jpeg|gif|ico)$ {
+                expires 2w;
+       }
+
+       location ~* \\.php$ {
+                fastcgi_index index.php;
+                fastcgi_pass unix:/var/run/php-fpm.sock;
+                include /etc/nginx/fastcgi_params;
+                fastcgi_param PHP_VALUE "
+                display_errors=On
+                display_startup_errors=On
+                error_reporting=30719
+                ";
+       }
+
+       # this prevents hidden files (beginning with a period) from being served
+       location ~ /\.          { access_log off; log_not_found off; deny all; }
+}
