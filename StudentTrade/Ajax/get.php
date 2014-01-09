@@ -1,7 +1,9 @@
 <?php
 session_start();
 
-if (isset($_POST["get"]) && $_SESSION["sessProtector"] == $_COOKIE["PHPSESSID"]) {
+// if (isset($_POST["get"]) && $_SESSION["sessProtector"] == $_COOKIE["PHPSESSID"]) {
+if (isset($_POST["get"])) {
+	echo 222;
 	require("../Db/DbConfig.php");
 	require("../Db/DbSelect.php");
 

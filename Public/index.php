@@ -73,9 +73,14 @@ function setHeader($app, $_city, $_campus, $_category, $_aid=NULL) {
  * End
  * Ze header
  */
+$app->post("/ajax/get", function() use($app) {
+	$ajax = new Ajax();
+	echo $ajax->get($_POST);
+});
 
-$app->get("/StudentTrade/:var", function($var) use ($app) {
-	echo $var;
+$app->post("/ajax/mail", function() use ($app) {
+	$ajax = new Ajax();
+	echo $ajax->mail($_POST);
 });
 
 $app->get("/", function() use ($app) {

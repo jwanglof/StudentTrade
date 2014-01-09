@@ -79,8 +79,8 @@ function showCampuses(cityID) {
 	$(".ajaxCity").show();
 
 	xhr = $.ajax({
-		type: "post",
-		url: getAjaxURL("get"),
+		type: "post"
+		url: "/ajax/get",
 		data: {get: "campuses", cityID: cityID}
 	});
 
@@ -109,7 +109,7 @@ function showAdCategoryInputs(adType) {
 
 	xhr = $.ajax({
 			type: "post",
-			url: getAjaxURL("get"),
+			url: "/ajax/get",
 			data: {get: "adTypeInfo", adType: adType}
 	});
 
@@ -126,16 +126,6 @@ function showAdCategoryInputs(adType) {
 	xhr.fail(function(jqXHR, textStatus, errorThrown) {
 			console.log(errorThrown);
 	});
-}
-
-function getAjaxURL(file) {
-	var url;
-	if (window.location.origin == "http://localhost") {
-		url = "http://localhost/~johan/StudentTrade/StudentTrade/Ajax/"+ file +".php";
-	} else {
-		url = window.location.origin +"/StudentTrade/Ajax/"+ file +".php";
-	};
-	return url;
 }
 
 var canvas = new Array();
@@ -242,7 +232,7 @@ $("#uploadImagesButton").on("click", function(event) {
 function addFilesToDB() {
 	xhr = $.ajax({
 			type: "post",
-			url: getAjaxURL("get"),
+			url: "/ajax/get",
 			data: {get: "adTypeInfo", adType: adType}
 	});
 

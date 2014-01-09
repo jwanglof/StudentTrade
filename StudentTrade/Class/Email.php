@@ -1,6 +1,7 @@
 <?php
 include_once("PHPMailer/PHPMailerAutoload.php");
 
+// Should probably extend this with PHPMailer?
 class Email {
 	// Random names:
 	// http://fantasynamegenerators.com/dwarf_wow_names.php#.UodGCHX4bMU

@@ -45,7 +45,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$("form[data-async]").on("submit", function(event) {
+	/*$("form[data-async]").on("submit", function(event) {
 		request = sendWithAjax($(this), "mail");
 
 		request.done(function(response, textStatus, jqXHR) {
@@ -59,7 +59,7 @@ $(document).ready(function() {
 		});
 		
 		event.preventDefault();
-	});
+	});*/
 
 	$("#adDeleteForm").on("submit", function(event) {
 		$(".modal-footer").find(".ajaxLoader").show();
@@ -195,7 +195,8 @@ function sendWithAjax(_form, _url) {
 
 	return $.ajax({
 		type: $form.attr("method"),
-		url: getAjaxURL(_url),
+		// url: getAjaxURL(_url),
+		url: "/ajax/"+ _url,
 		data: $form.serialize()
 	});
 }

@@ -7,10 +7,13 @@ server {
        error_log /var/log/nginx/example.error.log;
 
        location ^~ /StudentTrade/ {
+               root /home/http;
+               autoindex off;
+               try_files $uri $uri/;
+       }
+
+       location ^~ /StudentTrade/Db/ {
                deny all;
-               #root /home/http;
-               #autoindex off;
-               #try_files $uri $uri/;
        }
 
        location / {
