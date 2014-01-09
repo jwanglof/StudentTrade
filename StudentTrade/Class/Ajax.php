@@ -1,4 +1,6 @@
 <?php
+include "Email.php";
+
 class Ajax extends DbSelect {
 	public function __construct() {
 		parent::__construct();
@@ -29,6 +31,8 @@ class Ajax extends DbSelect {
 	}
 
 	public function mail($postValues) {
+		$sendEmail = new Email();
+		
 		if ($postValues["mail"] == "requestCampus") {
 			$checkInput = checkRequiredInput($_POST, array("campus_name", "city_name"));
 			if ($checkInput == 0) {
