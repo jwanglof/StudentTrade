@@ -103,7 +103,8 @@ $app->post("/upload", function() use ($app) {
 	$image = file_get_contents('data://'. substr($data, 5));
 
 	// Save to disk
-	if (!file_put_contents(realpath("../.."). "/StudentTrade/Public/Upload/". $filename, $image)) {
+	// if (!file_put_contents(realpath("../.."). "/Public/Upload/". $filename, $image)) {
+	if (!file_put_contents("/home/http/Public/Upload/". $filename, $image)) {
 	        header('HTTP/1.1 503 Service Unavailable');
 	        exit();
 	}
