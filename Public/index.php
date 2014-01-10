@@ -143,6 +143,7 @@ $app->get("/city/:city/addNew(/:step)", function($_city, $_step=NULL) use ($app)
 
 // Should really make this more module!
 $app->get("/city/:city(/campus/:campus)(/category/:category)(/page/:page)", function($_city, $_campus=NULL, $_category=NULL, $_page=1) use ($app) {
+	echo realpath("../..") ."/StudentTrade/Public/Upload/";
 	// Put everything below in City()????
 	// Since I don't use anything in here except on this page!
 	$city = new City();

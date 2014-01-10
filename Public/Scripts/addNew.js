@@ -81,7 +81,7 @@ $(document).ready(function() {
 			url: "/ajax/mail",
 			data: {mail: "adAddNew"}
 		});
-
+		console.log(request);
 		request.done(function(response, textStatus, jqXHR) {
 			if (!response || response == -1) {
 				if (!response)
@@ -93,9 +93,7 @@ $(document).ready(function() {
 				submitButton.button("enable");
 				$("#errorMsg").show();
 			} else {
-				alert("Ad added!");
-				console.log(response);
-				// window.location.href = getURL("index.php/city/"+ getCity() +"/ad/"+ response);
+				window.location.href = getURL("index.php/city/"+ getCity() +"/ad/"+ response);
 			}
 		});
 
@@ -128,7 +126,6 @@ function showCampuses(cityID) {
 		var objs = JSON.parse(response);
 		$("#campus").append("<option value=\"999\">Alla campus</option>");
 		for (var key in objs) {
-			// console.log(key +" -- "+ objs[key]);
 			$("#campus").append("<option value=\""+ key +"\">"+ objs[key] +"</option>");
 		};
 	});
@@ -157,9 +154,9 @@ function showAdCategoryInputs(adType) {
 			// console.log(response);
 			var objs = JSON.parse(response);
 			for (var value in objs) {
-					$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
-					$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\""+ objs[value]["type"] +"\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
-					$("#adInput").append("<br /><br />");
+				$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
+				$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\""+ objs[value]["type"] +"\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
+				$("#adInput").append("<br /><br />");
 			}
 	});
 	xhr.fail(function(jqXHR, textStatus, errorThrown) {
@@ -206,7 +203,6 @@ $("#pictureInputs").on("change", function(event) {
 
 				// Push the new canvas to the array
 				canvas.push(newCanvas);
-				// console.log(canvas[canvas.length-1]);
 			}
 			image.src = frEvent.target.result;
 		} 
@@ -249,16 +245,21 @@ $("#uploadImagesButton").on("click", function(event) {
 				});
 
 				xhr.onreadystatechange = function(event) {
+					console.log(xhr);
+					console.log(xhr.responseText);
 					if (xhr.readyState == 4) {
 						if (xhr.status == 200) {
 							alert("All pictures were uploaded!");
 						} else {
+							console.log(xhr.status);
 							console.log("Image could not be uploaded.");
 						}
 					}
 				}
 
-				xhr.open("post", "http://localhost/~johan/StudentTrade/StudentTrade/Logic/Process.php", true);
+				// xhr.open("post", "http://localhost/~johan/StudentTrade/StudentTrade/Logic/Process.php", true);
+				xhr.open("post", "http://127.0.0.1/StudentTrade/Logic/Process.php", true);
+				// xhr.open("post", "http://studen0.onjumpstarter.io/StudentTrade/Logic/Process.php", true);
 				xhr.send(canvas[i].toDataURL("image/jpeg"));
 			}
 		}
