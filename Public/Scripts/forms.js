@@ -45,6 +45,26 @@ $(document).ready(function() {
 		}
 	});
 
+	$("#requestCityModal").on("submit", function(event) {
+		request = $.ajax({
+			type: "post",
+			url: "/ajax/mail",
+			data: {mail: "requestCity", city_name: $("#city_name").val()}
+		});
+
+		request.done(function(response, textStatus, jqXHR) {
+			if (response == 1) {
+				$("#requestCityModal").find(".modal-body").html("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
+				$("#requestCityModal").find(".modal-footer").empty();
+				$("#requestCityModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\" id=\"okButton\">OK</button>");
+			} else {
+				$("#requestCityModal").find(".modal-body-error").html("Servern kunde inte skicka ditt e-mail just nu. Var vänlig försök igen!").fadeIn("slow").delay(5000).fadeOut("slow");
+			}
+		});
+
+		event.preventDefault();
+	});
+
 	$("#requestCampusModal").on("submit", function(event) {
 		request = $.ajax({
 			type: "post",
@@ -58,7 +78,7 @@ $(document).ready(function() {
 				$("#requestCampusModal").find(".modal-footer").empty();
 				$("#requestCampusModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\" id=\"okButton\">OK</button>");
 			} else {
-				$("#requestCampusModal").find(".modal-body-error").html("Fel kod angiven. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
+				$("#requestCampusModal").find(".modal-body-error").html("Servern kunde inte skicka ditt e-mail just nu. Var vänlig försök igen!").fadeIn("slow").delay(5000).fadeOut("slow");
 			}
 		});
 

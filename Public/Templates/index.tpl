@@ -36,8 +36,7 @@
 					</div>
 
 					<div class="modal-body">
-						<form class="form-horizontal well" data-async data-target="#requestCityModal" method="post" id="requestCityForm">
-							<input type="hidden" id="mail" name="mail" value="requestCity" />
+						<form class="form-horizontal well" data-target="#requestCityModal" method="post" id="requestCityForm">
 							<fieldset>
 								<div class="form-group">
 									<label for="city_name" class="col-lg-1 control-label">Stadnamn *</label>
@@ -47,6 +46,8 @@
 								</div>
 							</fieldset>
 						</form>
+
+						<div class="modal-body-error"></div>
 					</div>
 
 					<div class="modal-footer">
