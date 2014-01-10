@@ -3,7 +3,6 @@
 {% block page_title %}Lägg upp annons{% endblock %}
 
 {% block add_scripts %}
-	<script src="{{ header.dir }}Scripts/forms.js" type="text/javascript"></script>
 	<script src="{{ header.dir }}Scripts/addNew.js" type="text/javascript"></script>
 {% endblock %}
 
@@ -21,7 +20,7 @@
 		<div class="form-group">
 			<label for="email" class="col-xs-1 control-label">E-post *</label>
 			<div class="col-xs-5">
-				<input type="email" class="form-control" id="email" name="email" value="hejhej@gmail.com" placeholder="E-post">
+				<input type="email" class="form-control" id="email" name="email" value="jwanglof@gmail.com" placeholder="E-post">
 			</div>
 		</div>
 

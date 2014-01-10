@@ -76,11 +76,19 @@ function setHeader($app, $_city, $_campus, $_category, $_aid=NULL) {
 $app->post("/ajax/get", function() use($app) {
 	$ajax = new Ajax();
 	echo $ajax->get($_POST);
+	$ajax = null;
 });
 
 $app->post("/ajax/mail", function() use ($app) {
 	$ajax = new Ajax();
 	echo $ajax->mail($_POST);
+	$ajax = null;
+});
+
+$app->post("/ajax/update", function() use ($app) {
+	$ajax = new Ajax();
+	echo $ajax->update($_POST);
+	$ajax = null;
 });
 
 $app->get("/", function() use ($app) {
@@ -106,7 +114,7 @@ $app->get("/city/:city/ad/:aid", function($_city, $_aid) use ($app) {
 			"adInfo" 			=> $showAd->getAdInfo(),
 			"userInfo"			=> $showAd->getUserInfo(),
 			"adCategory" 		=> $showAd->getAdCategory(),
-			"adSubCategory"		=> $showAd->getAdSubCategory(),
+			"adSubCategory"	=> $showAd->getAdSubCategory(),
 			"adType"			=> $showAd->getAdType(),
 			"pictures"			=> $showAd->getPictures()
 		)
@@ -119,6 +127,7 @@ $app->get("/city/:city/addNew(/:step)", function($_city, $_step=NULL) use ($app)
 	$_SESSION["newAd"] = "";
 
 	$renderTpl = "newAd.tpl";
+
 	if ($_step == 2) {
 		$_SESSION["newAd"] = $_POST;
 		$renderTpl = "uploadImages.tpl";

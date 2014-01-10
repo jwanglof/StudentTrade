@@ -3,7 +3,6 @@
 {% block page_title %}Lägg in bilder{% endblock %}
 
 {% block add_scripts %}
-	<script src="{{ header.dir }}Scripts/forms.js" type="text/javascript"></script>
 	<script src="{{ header.dir }}Scripts/addNew.js" type="text/javascript"></script>
 {% endblock %}
 

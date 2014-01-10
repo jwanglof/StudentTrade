@@ -1,6 +1,7 @@
 <?php
 class Cipher {
-    private $securekey, $iv;
+    private $securekey;
+    private $iv;
     
     function __construct($textkey) {
         $this->securekey = hash('sha256', $textkey, TRUE);

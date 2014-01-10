@@ -33,7 +33,7 @@
 					</div>
 
 					<div class="modal-body">
-						<form class="form-horizontal well" data-async data-target="#requestCampusModal" method="post" id="requestCampusForm">
+						<form class="form-horizontal well" data-target="#requestCampusModal" method="post" id="requestCampusForm">
 							<input type="hidden" id="mail" name="mail" value="requestCampus" />
 							<fieldset>
 								<div class="form-group">
@@ -50,6 +50,8 @@
 								</div>
 							</fieldset>
 						</form>
+
+						<div class="modal-body-error"></div>
 					</div>
 
 					<div class="modal-footer">
@@ -270,6 +272,7 @@
 		<script src="/Scripts/bootstrap.min.js" type="text/javascript"></script>
 		<script src="/Scripts/jquery.validate.min.js" type="text/javascript"></script>
 		<script src="/Scripts/scripts.js" type="text/javascript"></script>
+		<script src="/Scripts/forms.js" type="text/javascript"></script>
 		{% block add_scripts %}{% endblock %}
 	</body>
 </html>

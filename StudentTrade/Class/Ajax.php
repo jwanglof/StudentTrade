@@ -1,29 +1,35 @@
 <?php
-include "Email.php";
+require_once("Email.php");
+require_once("Cipher.php");
+require_once("Db/DbConfig.php");
+require_once("Db/DbUpdate.php");
+require_once("Db/DbSelect.php");
 
-class Ajax extends DbSelect {
+class Ajax {
+	private $dbSelect;
+
 	public function __construct() {
-		parent::__construct();
+		$this->dbSelect = new DbSelect();
 	}
 
 	public function __destruct() {}
 
 	public function get($postValues) {
 		if ($postValues["get"] == "campuses") {
-			$universities = parent::getUniversitiesFromCityID($postValues["cityID"]);
+			$universities = $this->dbSelect->getUniversitiesFromCityID($postValues["cityID"]);
 			$campuses = array();
 			foreach ($universities as $key) {
-				$campus = parent::getCampusFromUniversityID($key["id"]);
+				$campus = $this->dbSelect->getCampusFromUniversityID($key["id"]);
 				foreach ($campus as $value) {
 					$campuses[$value["id"]] = $value["campus_name"];
 				}
 			}
 			return json_encode($campuses);
 		} else if ($postValues["get"] == "adTypeInfo") {
-			$adType = parent::getAdSubCategoryFromAdCategoryID($postValues["adType"]);
+			$adType = $this->dbSelect->getAdSubCategoryFromAdCategoryID($postValues["adType"]);
 			return json_encode($adType);
 	 	} else if ($postValues["get"] == "search") {
-	 		$searchResult = parent::searchAdsWithName($postValues["search"]);
+	 		$searchResult = $this->dbSelect->searchAdsWithName($postValues["search"]);
 	 		return json_encode($searchResult);
 	 	} else {
 	 		return false;
@@ -32,74 +38,76 @@ class Ajax extends DbSelect {
 
 	public function mail($postValues) {
 		$sendEmail = new Email();
-		
+		$cipher = new Cipher("JFKs3ef03J");
+
 		if ($postValues["mail"] == "requestCampus") {
-			$checkInput = checkRequiredInput($_POST, array("campus_name", "city_name"));
+			$checkInput = checkRequiredInput($postValues, array("campus_name", "city_name"));
 			if ($checkInput == 0) {
 				$sendEmail->setRecipientEmail("request@studenttrade.se");
-				echo $sendEmail->sendRequestEmail($_POST["campus_name"], $_POST["city_name"]);
+				return $sendEmail->sendRequestEmail($postValues["campus_name"], $postValues["city_name"]);
 			}
 		} else if ($postValues["mail"] == "requestCity") {
-			$checkInput = checkRequiredInput($_POST, array("city_name"));
+			$checkInput = checkRequiredInput($postValues, array("city_name"));
 			if ($checkInput == 0) {
 				$sendEmail->setRecipientEmail("request@studenttrade.se");
-				echo $sendEmail->sendRequestEmail("Inget, vill lägga till stad", $_POST["city_name"]);
+				return $sendEmail->sendRequestEmail("Inget, vill lägga till stad", $postValues["city_name"]);
 			}
 		} else if ($postValues["mail"] == "forgotCode") {
-			$ad = $dbh->getAdFromID($_POST["aid"]);
+			$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
 
 			// Allow the code to only be sent one time per hour
 			if (date("H:i:s", strtotime($ad["request_code"] ."+1 hour")) <= date("H:i:s")) {
-				$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($_POST["aid"]);
+				$adUserInfo = $this->dbSelect->getAdUserInfoFromAdUserInfoID($postValues["aid"]);
 
 				$dbUpdate = new DbUpdate();
-				$dbUpdate->updateAdRequestCodeTime($_POST["aid"], date("Y-m-d H:i:s", strtotime("+1 hour")));
+				$dbUpdate->updateAdRequestCodeTime($postValues["aid"], date("Y-m-d H:i:s", strtotime("+1 hour")));
 				$dbUpdate = null;
 
 				$password = $cipher->decrypt($ad["password"]);
 
 				$sendEmail->setRecipientEmail($adUserInfo["email"]);
 
-				echo $sendEmail->resendCode($_POST["aid"], $password);
+				return $sendEmail->resendCode($postValues["aid"], $password);
 			} else {
-				echo 2;
+				return 2;
 			}
 
 		} else if ($postValues["mail"] == "adReply") {
-			$checkInput = checkRequiredInput($_POST, array("name", "from_email", "message"));
-
+			$checkInput = checkRequiredInput($postValues, array("name", "from_email", "message"));
+			
 			if ($checkInput == 0) {
-				$ad = $dbh->getAdFromID($_POST["aid"]);
-				$adUserInfo = $dbh->getAdUserInfoFromAdUserInfoID($_POST["aid"]);
+				$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
+				$adUserInfo = $this->dbSelect->getAdUserInfoFromAdUserInfoID($postValues["aid"]);
 
 				$sendEmail->setRecipientEmail($adUserInfo["email"]);
 
-				echo $sendEmail->sendAdEmail($_POST["name"], $_POST["from_email"], nl2br($_POST["message"]), $_POST["aid"], $ad["title"], $_POST["city"]);
+				return $sendEmail->sendAdEmail($postValues["name"], $postValues["from_email"], nl2br($postValues["message"]), $postValues["aid"], $ad["title"], $postValues["city"]);
 			} else {
-				echo 2;
+				return 2;
 			}
 		} else if ($postValues["mail"] == "adReport") {
-			$checkInput = checkRequiredInput($_POST, array("message"));
+			$checkInput = checkRequiredInput($postValues, array("message"));
 
 			if ($checkInput == 0) {
 				$sendEmail->setRecipientEmail("abuse@studenttrade.se");
 
-				echo $sendEmail->sendReportAdEmail($_POST["aid"], nl2br($_POST["message"]));
+				return $sendEmail->sendReportAdEmail($postValues["aid"], nl2br($postValues["message"]));
 			} else {
-				echo 2;
+				return 2;
 			}
 		} else if ($postValues["mail"] == "contactUs") {
-			$checkInput = checkRequiredInput($_POST, array("name", "from_email", "message"));
+			$checkInput = checkRequiredInput($postValues, array("name", "from_email", "message"));
 
 			if ($checkInput == 0) {
 				$sendEmail->setRecipientEmail("kontakt@studenttrade.se");
 
-				echo $sendEmail->sendContactEmail($_POST["name"], $_POST["from_email"], nl2br($_POST["message"]));
+				return $sendEmail->sendContactEmail($postValues["name"], $postValues["from_email"], nl2br($postValues["message"]));
 			} else {
-				echo 2;
+				return 2;
 			}
 		} else if ($postValues["mail"] == "adAddNew") {
 			$checkInput = checkRequiredInput($_SESSION["newAd"], array("name", "email", "city", "adType", "title", "info", "adCategory"));
+
 			if ($checkInput == 0) {
 				/*
 				 * Check the input values so it doesn't contain any illegal characters
@@ -121,10 +129,10 @@ class Ajax extends DbSelect {
 				 * and then check if the type is present in $_SESSION["newAd"],
 				 * and then add it to the DB
 				 */
-				foreach($dbh->getAdSubCategoryShortNames() as $val) {
+				foreach($this->dbSelect->getAdSubCategoryShortNames() as $val) {
 					foreach ($val as $value) {
 						if (!empty($_SESSION["newAd"][$value]) ) {
-							$adTypeInfoID = $dbh->getAdSubCategoryIDFromAdSubCategoryName($value);
+							$adTypeInfoID = $this->dbSelect->getAdSubCategoryIDFromAdSubCategoryName($value);
 							$adTypeInfoID = $adTypeInfoID["id"];
 							$dbInsert->insertIntoAdInfo($_SESSION["newAd"][$value], $adTypeInfoID, $adID);
 						}
@@ -140,19 +148,40 @@ class Ajax extends DbSelect {
 					$_SESSION["newPictures"] = array();
 				}
 
-				$cityShortName = $dbh->getCityFromID($_SESSION["newAd"]["city"]);
-				$dbInsert = null;
+				$cityShortName = $this->dbSelect->getCityFromID($_SESSION["newAd"]["city"]);
 
-				$city = $dbh->getCityFromID($_SESSION["newAd"]["city"]);
+				$city = $this->dbSelect->getCityFromID($_SESSION["newAd"]["city"]);
 
-				// $sendEmail->setRecipientEmail($_SESSION["newAd"]["email"]);
-				// $sendEmail->sendNewAdEmail($password, $adID, $_SESSION["newAd"]["adType"], $city["short_name"]);
+				$sendEmail->setRecipientEmail($_SESSION["newAd"]["email"]);
+				$sendEmail->sendNewAdEmail($password, $adID, $_SESSION["newAd"]["adType"], $city["short_name"]);
 
-				echo $adID;
+				return $adID;
 			} else {
-				echo -1;
+				return -1;
 			}
 		} else {
+			return false;
+		}
+	}
+
+	public function update($postValues) {
+		$dbUpdate = new DbUpdate();
+		$cipher = new Cipher("JFKs3ef03J");
+
+		if ($postValues["update"] == "adActive") {
+			$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
+		
+			if ($ad["password"] == $cipher->encrypt($postValues["removeCode"])) {
+				if ($dbUpdate->updateAdActiveWithAdID($postValues["aid"]) > 0) 
+					return true;
+				else
+					return false;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
 			return false;
 		}
 	}

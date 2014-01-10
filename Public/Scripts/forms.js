@@ -45,26 +45,34 @@ $(document).ready(function() {
 		}
 	});
 
-	/*$("form[data-async]").on("submit", function(event) {
-		request = sendWithAjax($(this), "mail");
+	$("#requestCampusModal").on("submit", function(event) {
+		request = $.ajax({
+			type: "post",
+			url: "/ajax/mail",
+			data: {mail: "requestCampus", campus_name: $("#campus_name").val(), city_name: $("#city_name").val()}
+		});
 
 		request.done(function(response, textStatus, jqXHR) {
 			if (response == 1) {
-				$(".modal-body").html("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
-				$(".modal-footer").empty();
-				$(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
+				$("#requestCampusModal").find(".modal-body").html("Tack för ditt mail. Vi på StudentTrade.se kollar på det så snabbt vi bara kan!");
+				$("#requestCampusModal").find(".modal-footer").empty();
+				$("#requestCampusModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\" id=\"okButton\">OK</button>");
+			} else {
+				$("#requestCampusModal").find(".modal-body-error").html("Fel kod angiven. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
 			}
-			else
-				$(".modal-body").html("Något gick fel när servern försökte skicka ditt e-mail. Vi ber om ursäkt för detta, försök gärna igen.");
 		});
-		
+
 		event.preventDefault();
-	});*/
+	});
 
 	$("#adDeleteForm").on("submit", function(event) {
 		$(".modal-footer").find(".ajaxLoader").show();
 
-		request = sendWithAjax($(this), "update");
+		request = $.ajax({
+			type: "post",
+			url: "/ajax/update",
+			data: {update: "adActive", aid: $("#aid").val(), removeCode: $("#removeCode").val()}
+		});
 
 		request.done(function(response, textStatus, jqXHR) {
 			$(".modal-footer").find(".ajaxLoader").hide();
@@ -76,10 +84,13 @@ $(document).ready(function() {
 				$("#okButton").on("click", function() {
 					window.location.href = getURL("index.php/city/"+ getCity());
 				});
-			}
-			else {
+			} else {
 				$("#adDeleteModal").find(".modal-body-error").html("Fel kod angiven. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
 			}
+		});
+
+		request.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log(errorThrown);
 		});
 		
 		event.preventDefault();
@@ -88,7 +99,7 @@ $(document).ready(function() {
 	$("#forgotCode").on("click", function() {
 		request = $.ajax({
 			type: "post",
-			url: getAjaxURL("mail"),
+			url: "/ajax/mail",
 			data: {mail: "forgotCode", aid: $("#aid").val()}
 		});
 
@@ -104,7 +115,11 @@ $(document).ready(function() {
 	});
 
 	$("#adReplyForm").on("submit", function(event) {
-		request = sendWithAjax($(this), "mail");
+		request = $.ajax({
+			type: "post",
+			url: "/ajax/mail",
+			data: {mail: "adReply", aid: $("#aid").val(), city: $("#city").val(), name: $("#name").val(), from_email: $("#from_email").val(), message: $("#message").val()}
+		});
 
 		request.done(function(response, textStatus, jqXHR) {
 			if (response == 1) {
@@ -118,12 +133,20 @@ $(document).ready(function() {
 				$("#adReplyModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
 			}
 		});
+
+		request.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log(errorThrown);
+		});
 		
 		event.preventDefault();
 	});
 
 	$("#adReportForm").on("submit", function(event) {
-		request = sendWithAjax($(this), "mail");
+		request = $.ajax({
+			type: "post",
+			url: "/ajax/mail",
+			data: {mail: "adReport", aid: $("#aid").val(), message: $("#message").val()}
+		});
 
 		request.done(function(response, textStatus, jqXHR) {
 			if (response == 1) {
@@ -142,15 +165,18 @@ $(document).ready(function() {
 	});
 
 	$("#contactUsForm").on("submit", function(event) {
-		request = sendWithAjax($(this), "mail");
+		request = $.ajax({
+			type: "post",
+			url: "/ajax/mail",
+			data: {mail: "contactUs", name: $("#name").val(), from_email: $("#from_email").val(), message: $("#message").val()}
+		});
 
 		request.done(function(response, textStatus, jqXHR) {
 			if (response == 1) {
 				$("#contactUsModal").find(".modal-body").fadeIn("slow").html("Meddelande skickat. Vi på StudentTrade svarar på det så fort som möjligt!");
 				$("#contactUsModal").find(".modal-footer").empty();
 				$("#contactUsModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
-			}
-			else if (response == 2) {
+			} else if (response == 2) {
 				$("#contactUsModal").find(".modal-body-error").html("Du måste fylla i alla fält.").fadeIn("slow").delay(5000).fadeOut("slow");
 			} else {
 				$("#contactUsModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
@@ -159,54 +185,14 @@ $(document).ready(function() {
 		
 		event.preventDefault();
 	});
-
-	$("#addNewAd").on("submit", function(event) {
-		$(".ajaxSubmit").show();
-
-		// Does not work??
-		var submitButton = $(this).find(".btn-primary");
-		submitButton.button("disable");
-
-		request = sendWithAjax($(this), "mail");
-
-		request.done(function(response, textStatus, jqXHR) {
-			if (!response || response == -1) {
-				if (!response)
-					$("#errorMsg").find(".col-xs-5").html("Något gick fel. Var vänlig försök igen.")
-				else if (response == -1)
-					$("#errorMsg").find(".col-xs-5").html("Du måste fylla i alla obligatoriska (*) fält!")
-
-				$(".ajaxSubmit").hide();
-				submitButton.button("enable");
-				$("#errorMsg").show();
-			} else {
-				console.log(response);
-				alert("Ad added!");
-				// window.location.href = getURL("index.php/city/"+ getCity() +"/ad/"+ response);
-			}
-		});
-
-		event.preventDefault();
-	});
 });
-
-function sendWithAjax(_form, _url) {
-	var $form = _form;
-
-	return $.ajax({
-		type: $form.attr("method"),
-		// url: getAjaxURL(_url),
-		url: "/ajax/"+ _url,
-		data: $form.serialize()
-	});
-}
 
 function getURL(path) {
 	var url;
 	if (window.location.origin == "http://localhost") {
 		url = "http://localhost/~johan/StudentTrade/Public/"+ path;
 	} else {
-		url = window.location.origin +"/Public/"+ path;
+		url = window.location.origin +"/"+ path;
 	};
 	return url;
 }

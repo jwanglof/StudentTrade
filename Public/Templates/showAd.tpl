@@ -108,7 +108,6 @@
 				<form class="form-horizontal well" data-target="#adDeleteModal" method="post" id="adDeleteForm">
 					<input type="hidden" id="update" name="update" value="adActive" />
 					<input type="hidden" id="aid" name="aid" value="{{ ad.id }}" />
-					<input type="hidden" id="code" name="code" value="{{ ad.password }}" />
 					<fieldset>
 						<div class="form-group">
 							<label for="removeCode" class="col-lg-1 control-label">Borttagningskod *</label>

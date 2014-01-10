@@ -66,6 +66,45 @@ $(document).ready(function() {
 			}
 		}
 	});
+
+	// Submit form
+	$("#addNewAd").on("submit", function(event) {
+		$(".ajaxSubmit").show();
+
+		// Does not work??
+		var submitButton = $(this).find(".btn-primary");
+		submitButton.button("disable");
+		
+		// request = sendWithAjax($(this), "mail");
+		request = $.ajax({
+			type: "post",
+			url: "/ajax/mail",
+			data: {mail: "adAddNew"}
+		});
+
+		request.done(function(response, textStatus, jqXHR) {
+			if (!response || response == -1) {
+				if (!response)
+					$("#errorMsg").find(".col-xs-5").html("Något gick fel. Var vänlig försök igen.")
+				else if (response == -1)
+					$("#errorMsg").find(".col-xs-5").html("Du måste fylla i alla obligatoriska (*) fält!")
+
+				$(".ajaxSubmit").hide();
+				submitButton.button("enable");
+				$("#errorMsg").show();
+			} else {
+				alert("Ad added!");
+				console.log(response);
+				// window.location.href = getURL("index.php/city/"+ getCity() +"/ad/"+ response);
+			}
+		});
+
+		request.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log(errorThrown);
+		});
+
+		event.preventDefault();
+	});
 });
 
 // xhr prevents the script from adding multiple values to the dynamic input-fields
@@ -79,7 +118,7 @@ function showCampuses(cityID) {
 	$(".ajaxCity").show();
 
 	xhr = $.ajax({
-		type: "post"
+		type: "post",
 		url: "/ajax/get",
 		data: {get: "campuses", cityID: cityID}
 	});

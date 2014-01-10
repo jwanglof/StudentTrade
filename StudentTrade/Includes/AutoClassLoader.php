@@ -3,8 +3,8 @@
 spl_autoload_register(function ($class) {
 	$base_dir = realpath(dirname(__DIR__)) ."/";
 	$directories = array(
-		"Db/",
 		"Class/",
+		"Class/Db/",
 		"Logic/"
 	);
 
