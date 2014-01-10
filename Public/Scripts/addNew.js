@@ -81,7 +81,7 @@ $(document).ready(function() {
 			url: "/ajax/mail",
 			data: {mail: "adAddNew"}
 		});
-		console.log(request);
+
 		request.done(function(response, textStatus, jqXHR) {
 			if (!response || response == -1) {
 				if (!response)
@@ -241,12 +241,13 @@ $("#uploadImagesButton").on("click", function(event) {
 
 				xhr.addEventListener("load", function(event) {
 					// Add the new filename to the array
+					console.log(event.target.responseText);
 					uploadedFilenames.push(event.target.responseText);
 				});
 
 				xhr.onreadystatechange = function(event) {
-					console.log(xhr);
-					console.log(xhr.responseText);
+					// console.log(xhr);
+					// console.log(xhr.responseText);
 					if (xhr.readyState == 4) {
 						if (xhr.status == 200) {
 							alert("All pictures were uploaded!");
@@ -258,7 +259,8 @@ $("#uploadImagesButton").on("click", function(event) {
 				}
 
 				// xhr.open("post", "http://localhost/~johan/StudentTrade/StudentTrade/Logic/Process.php", true);
-				xhr.open("post", "http://127.0.0.1/StudentTrade/Logic/Process.php", true);
+				// xhr.open("post", "http://127.0.0.1/StudentTrade/Logic/Process.php", true);
+				xhr.open("post", "/upload", true);
 				// xhr.open("post", "http://studen0.onjumpstarter.io/StudentTrade/Logic/Process.php", true);
 				xhr.send(canvas[i].toDataURL("image/jpeg"));
 			}
@@ -271,22 +273,22 @@ $("#uploadImagesButton").on("click", function(event) {
 
 function addFilesToDB() {
 	xhr = $.ajax({
-			type: "post",
-			url: "/ajax/get",
-			data: {get: "adTypeInfo", adType: adType}
+		type: "post",
+		url: "/ajax/get",
+		data: {get: "adTypeInfo", adType: adType}
 	});
 
 	xhr.done(function(response, textStatus, jqXHR) {
-			$(".ajaxCategory").hide();
-			// console.log(response);
-			var objs = JSON.parse(response);
-			for (var value in objs) {
-					$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
-					$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\""+ objs[value]["type"] +"\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
-					$("#adInput").append("<br /><br />");
-			}
+		$(".ajaxCategory").hide();
+		// console.log(response);
+		var objs = JSON.parse(response);
+		for (var value in objs) {
+				$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
+				$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\""+ objs[value]["type"] +"\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
+				$("#adInput").append("<br /><br />");
+		}
 	});
 	xhr.fail(function(jqXHR, textStatus, errorThrown) {
-			console.log(errorThrown);
+		console.log(errorThrown);
 	});
 }

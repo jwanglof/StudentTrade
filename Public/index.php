@@ -17,6 +17,9 @@ if (empty($_SESSION["sessProtector"])) {
         $_SESSION["sessProtector"] = session_id();
         session_write_close();
 }
+if (empty($_SESSION["newPictures"])) {
+	$_SESSION["newPictures"] = [];
+}
 
 use Slim\Slim;
 
@@ -91,6 +94,30 @@ $app->post("/ajax/update", function() use ($app) {
 	$ajax = null;
 });
 
+$app->post("/upload", function() use ($app) {
+	// Generate filename
+	$filename = md5(mt_rand()). '.jpg';
+	// Read RAW data
+	$data = file_get_contents('php://input');
+	// Read string as an image file
+	$image = file_get_contents('data://'. substr($data, 5));
+
+	// Save to disk
+	if (!file_put_contents(realpath("../.."). "/StudentTrade/Public/Upload/". $filename, $image)) {
+	        header('HTTP/1.1 503 Service Unavailable');
+	        exit();
+	}
+
+	array_push($_SESSION["newPictures"], $filename);
+
+	// Clean up memory
+	unset($data);
+	unset($image);
+
+	// Return file URL
+	echo $filename;
+});
+
 $app->get("/", function() use ($app) {
 	$index = new Index();
 
@@ -143,7 +170,6 @@ $app->get("/city/:city/addNew(/:step)", function($_city, $_step=NULL) use ($app)
 
 // Should really make this more module!
 $app->get("/city/:city(/campus/:campus)(/category/:category)(/page/:page)", function($_city, $_campus=NULL, $_category=NULL, $_page=1) use ($app) {
-	echo realpath("../..") ."/StudentTrade/Public/Upload/";
 	// Put everything below in City()????
 	// Since I don't use anything in here except on this page!
 	$city = new City();
