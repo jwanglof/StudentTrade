@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="Css/non-responsive.css" />
 		<link rel="stylesheet" type="text/css" href="Css/style_index.css" />
 		<link rel="stylesheet" type="text/css" href="Css/style_footer.css" />
-		<link rel="shortcut icon" href="favicon.ico" />
+		<link rel="shortcut icon" href="Img/favicon.ico" />
 		<link href="http://fonts.googleapis.com/css?family=Lato:400,700,900|Gochi+Hand" rel="stylesheet" type="text/css">
 		<style type="text/css">
 			.stage {

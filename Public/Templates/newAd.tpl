@@ -13,21 +13,21 @@
 		<div class="form-group">
 			<label for="name" class="col-xs-1 control-label">Namn *</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="name" name="name" value="hejhej" placeholder="Namn">
+				<input type="text" class="form-control" id="name" name="name" placeholder="Namn">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label for="email" class="col-xs-1 control-label">E-post *</label>
 			<div class="col-xs-5">
-				<input type="email" class="form-control" id="email" name="email" value="jwanglof@gmail.com" placeholder="E-post">
+				<input type="email" class="form-control" id="email" name="email" placeholder="E-post">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label for="phonenumber" class="col-xs-1 control-label">Telefonnummer</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="phonenumber" name="phonenumber" value="0706665544" placeholder="Telefonnummer">
+				<input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="Telefonnummer">
 			</div>
 		</div>
 
@@ -95,14 +95,14 @@
 		<div class="form-group">
 			<label for="title" class="col-xs-1 control-label">Rubrik *</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="title" name="title" value="hejhej" placeholder="Rubrik">
+				<input type="text" class="form-control" id="title" name="title" placeholder="Rubrik">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label for="info" class="col-xs-1 control-label">Beskrivning *</label>
 			<div class="col-xs-5">
-				<textarea id="info" name="info" class="form-control">HEJHEJ</textarea>
+				<textarea id="info" name="info" class="form-control"></textarea>
 			</div>
 		</div>
 
