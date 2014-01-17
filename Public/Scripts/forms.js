@@ -15,7 +15,7 @@ $(document).ready(function() {
 		rules: {
 			name: {required: true},
 			email: {required: true, email: true},
-			phonenumber: {required: false},
+			phonenumber: {required: false, digits: true},
 			city: {required: true},
 			campus: {required: false},
 			adType: {required: true},
