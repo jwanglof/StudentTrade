@@ -78,7 +78,7 @@ class Email {
 
 	public function sendNewAdEmail($password, $adID, $adType, $city) {
 		$message = "Tack för att du använder StudentTrade.se!";
-		$message .= "<p>Du kan se din annons <a href=\"http://www.studenttrade.se/front.php?page=ad_show&city=". $city ."&aid=". $adID ."\">här</a></p>";
+		$message .= "<p>Du kan se din annons <a href=\"http://www.studenttrade.se/index.php/city/". $city ."/ad/". $adID ."\">här</a></p>";
 		$message .= "<p>";
 
 		if ($adType == 1)

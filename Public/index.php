@@ -1,4 +1,6 @@
 <?php
+// phpinfo();
+mcrypt_create_iv(32);
 ob_start();
 session_start();
 
@@ -95,6 +97,7 @@ $app->post("/ajax/update", function() use ($app) {
 });
 
 $app->post("/upload", function() use ($app) {
+	// Need to make this more secure!
 	// Generate filename
 	$filename = md5(mt_rand()). '.jpg';
 	// Read RAW data
@@ -104,7 +107,13 @@ $app->post("/upload", function() use ($app) {
 
 	// Save to disk
 	// if (!file_put_contents(realpath("../.."). "/Public/Upload/". $filename, $image)) {
-	if (!file_put_contents("/home/http/Public/Upload/". $filename, $image)) {
+	$getDir = "local";
+	if ($getDir == "local")
+		$uploadDir = "/home/johan/Git/StudentTrade/Public/Upload/";
+	else if ($getDir == "jumpstarter")
+		$uploadDir = "/home/http/Public/Upload/";
+
+	if (!file_put_contents($uploadDir . $filename, $image)) {
 	        header('HTTP/1.1 503 Service Unavailable');
 	        exit();
 	}

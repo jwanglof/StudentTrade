@@ -1,3 +1,7 @@
+// TODO
+// Need to empty the picture buffer if the picture is not uploaded
+// And if the picture is uploaded but the ad isn't added the picture should be removed
+
 $(document).ready(function() {
 	var currentCategory;
 	var currentCity;
@@ -93,7 +97,8 @@ $(document).ready(function() {
 				submitButton.button("enable");
 				$("#errorMsg").show();
 			} else {
-				window.location.href = getURL("index.php/city/"+ getCity() +"/ad/"+ response);
+				console.log(response);
+				window.location.href = "/index.php/city/"+ getCity() +"/ad/"+ response;
 			}
 		});
 

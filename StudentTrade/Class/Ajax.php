@@ -71,7 +71,6 @@ class Ajax {
 			} else {
 				return 2;
 			}
-
 		} else if ($postValues["mail"] == "adReply") {
 			$checkInput = checkRequiredInput($postValues, array("name", "from_email", "message"));
 			

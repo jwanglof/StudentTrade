@@ -13,11 +13,11 @@ class DbConfig {
 
 	public function __construct() {
 		if ($this->connectionConfig == "local") {
-			$this->dsn = "mysql:host=localhost;dbname=db1162056_st;charset=utf8";
-			$this->username = "jwanglof";
-			$this->password = "testtest";
+			$this->dsn = "mysql:host=localhost;dbname=studenttrade;charset=utf8";
+			$this->username = "root";
+			$this->password = "geanbe33";
 		} else if ($this->connectionConfig == "jumpstarter") {
-			$this->dsn = "mysql:host=127.0.0.1;port=3306;dbname=db1162056_st;charset=utf8";
+			$this->dsn = "mysql:host=127.0.0.1;port=3306;dbname=studenttrade;charset=utf8";
 			$this->username = "root";
 			$this->password = "";
 		} else if ($this->connectionConfig == "crystone") {
