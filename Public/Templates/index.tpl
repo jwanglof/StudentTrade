@@ -84,12 +84,12 @@
 										<div class="row">
 											<ul class="list-unstyled col-xs-6">
 												{% for lefty in leftColumn %}
-													<li><a href="index.php/city/{{ lefty.short_name }}">{{ lefty.city_name }}</li>
+													<li><a href="index.php/city/{{ lefty.short_name }}">{{ lefty.city_name }}</a></li>
 												{% endfor %}
 											</ul>
 											<ul class="list-unstyled col-xs-6">
 												{% for righty in rightColumn %}
-													<li><a href="index.php/city/{{ righty.short_name }}">{{ righty.city_name }}</li>
+													<li><a href="index.php/city/{{ righty.short_name }}">{{ righty.city_name }}</a></li>
 												{% endfor %}
 											</ul>
 										</div>
