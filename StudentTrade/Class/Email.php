@@ -95,11 +95,11 @@ class Email {
 		$message .= "</p>";
 		$message .= "MVH StudentTrade.se";
 
-		$this->mail->From 		= $this->noReplyEmail;;
-		$this->mail->FromName 	= $this->noReplyName;;
+		$this->mail->From 			= $this->noReplyEmail;
+		$this->mail->FromName 	= $this->noReplyName;
 
-		$this->mail->Subject 	= "Din borttagningskod till din annons på StudentTrade.se";
-		$this->mail->Body 		= $message;
+		$this->mail->Subject 		= "Din borttagningskod till din annons på StudentTrade.se";
+		$this->mail->Body 			= $message;
 		
 		if(!$this->mail->Send())
 			return $this->mail->ErrorInfo;
@@ -108,15 +108,19 @@ class Email {
 	}
 
 	public function sendAdEmail($name, $from, $message, $adID, $adTitle, $adCity) {
+		// $handler->debug($from, 'sendAdEmail');
+
 		$message .= "<br /><br /><b>Annonsen det gäller är: <i>". $adTitle ."</i>";
-		// $message .= "<br />Du kan se den <a href=\"studenttrade.se/front.php?page=ad_show&city=". $adCity ."&aid=". $adID ."\">här</a></b>";
 		$message .= "<br />Du kan se den <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/ad/". $adID ."\">här</a></b>";
 
-		$this->mail->From 		= $from;
-		$this->mail->FromName 	= $name;
+		// $this->mail->From 			= $from;
+		// $this->mail->FromName 	= $name;
 
-		$this->mail->Subject 	= $name ." är intresserad av din annons på StudentTrade.se";
-		$this->mail->Body 		= $message;
+		$this->mail->SetFrom($from, $name);
+		$this->mail->AddReplyTo($from, $name);
+
+		$this->mail->Subject 		= $name ." är intresserad av din annons på StudentTrade.se";
+		$this->mail->Body 			= $message;
 
 		if(!$this->mail->Send())
 			return $this->mail->ErrorInfo;

@@ -37,6 +37,8 @@ class Ajax {
 	}
 
 	public function mail($postValues) {
+		// $handler->debug($postValues, 'postValues');
+
 		$sendEmail = new Email();
 		$cipher = new Cipher("JFKs3ef03J");
 
@@ -75,6 +77,7 @@ class Ajax {
 			$checkInput = checkRequiredInput($postValues, array("name", "from_email", "message"));
 			
 			if ($checkInput == 0) {
+				// $handler->debug($postValues["from_email"], 'adReply');
 				$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
 				$adUserInfo = $this->dbSelect->getAdUserInfoFromAdUserInfoID($postValues["aid"]);
 

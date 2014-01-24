@@ -141,6 +141,7 @@ $(document).ready(function() {
 			data: {mail: "adReply", aid: $("#aid").val(), city: $("#city").val(), name: $("#name").val(), from_email: $("#from_email").val(), message: $("#message").val()}
 		});
 
+
 		request.done(function(response, textStatus, jqXHR) {
 			if (response == 1) {
 				$("#adReplyModal").find(".modal-body").fadeIn("slow").html("Meddelande skickat!");
