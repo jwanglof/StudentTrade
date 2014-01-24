@@ -7,20 +7,24 @@
 <script type="text/javascript">(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>
 <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 <div class="col-xs-3">
+
+	{# 
+		Check if the ad contains any images or not.
+		If it doesn't it will just choose the default icon
+	#}
 	{% if pictures|length > 0 %}
-	<div class="uploadedImages">
-		{% for picture in pictures %}
-			<img src="{{ header.dir }}Upload/{{ picture.filename }}" />
-		{% endfor %}
-	</div>
-	<!-- <p style="width: 100%; height: 200px; background-color: {{ adCategory.color }}" class="categoryIcon icon {{ adCategory.name }}"> -->
-	<div class="adImage">
-		<img src="{{ header.dir }}Upload/{{ pictures[0].filename }}" width="100%" id="imageShown" />
-	</div>
+		<div class="uploadedImages">
+			{% for picture in pictures %}
+				<img src="{{ header.dir }}Upload/{{ picture.filename }}" />
+			{% endfor %}
+		</div>
+		<div class="adImage">
+			<img src="{{ header.dir }}Upload/{{ pictures[0].filename }}" width="100%" id="imageShown" />
+		</div>
 	{% else %}
-	<p style="width: 100%; height: 200px; background-color: {{ adCategory.color }}" class="categoryIcon icon {{ adCategory.name }}"></p>
+		<p  class="categoryIcon bigIcon icon {{ adCategory.name }}"></p>
 	{% endif %}
-	<!-- </p> -->
+
 	<p style="width: 100%; height: 30px; font-size: 1.35em; text-align: center;" class="adType {{ adType.short_name }}">{{ adType.name }}</p>
 	<p>
 		Pris:
@@ -57,6 +61,7 @@
 				{{ subCat.name }}:
 				<br />
 				<span class="adShowInfo">{{ info.sub_category_value }}</span>
+				<br />
 			{% endif %}
 		{% endfor %}
 	{% endfor %}

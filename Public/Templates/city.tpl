@@ -22,7 +22,7 @@
 		{% for ad in ads %}
 			<div class="latestAd">
 				<a href="{{ header.base_url }}/ad/{{ ad.id }}">
-				<div class="col-xs-1 categoryIcon icon {{ ad.category.name }}"></div>
+					<div class="col-xs-1 categoryIcon icon {{ ad.category.name }}"></div>
 					<div class="col-xs-4 newAdInfo">
 						<h4>{{ ad.adTitleLimited }}</h4>
 					</div>

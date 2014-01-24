@@ -149,6 +149,11 @@ a:visited {color: #565656;}
 	font-weight: bold;
 }
 
+.bigIcon {
+	width: 100%;
+	height: 200px; 
+}
+
 .icon.tickets {background: #f5634a url('../Img/Icons/icon_ticket.png') no-repeat center;}
 .icon.literature {background: #f2c14b url('../Img/Icons/icon_literature.png') no-repeat center;}
 .icon.house {background: #7cc576 url('../Img/Icons/icon_house.png') no-repeat center;}
