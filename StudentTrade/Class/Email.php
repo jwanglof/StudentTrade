@@ -64,8 +64,11 @@ class Email {
 	}
 
 	public function sendContactEmail($name, $from, $message) {
-		$this->mail->From 		= $from;
-		$this->mail->FromName 	= $name;
+		// $this->mail->From 		= $from;
+		// $this->mail->FromName 	= $name;
+
+		$this->mail->SetFrom($from, $name);
+		$this->mail->AddReplyTo($from, $name);
 
 		$this->mail->Subject 	= $name ." har något viktigt att säga!";
 		$this->mail->Body 		= $message;
@@ -95,8 +98,11 @@ class Email {
 		$message .= "</p>";
 		$message .= "MVH StudentTrade.se";
 
-		$this->mail->From 			= $this->noReplyEmail;
-		$this->mail->FromName 	= $this->noReplyName;
+		// $this->mail->From 			= $this->noReplyEmail;
+		// $this->mail->FromName 	= $this->noReplyName;
+
+		$this->mail->SetFrom($this->noReplyEmail, $this->noReplyName);
+		$this->mail->AddReplyTo($this->noReplyEmail, $this->noReplyName);
 
 		$this->mail->Subject 		= "Din borttagningskod till din annons på StudentTrade.se";
 		$this->mail->Body 			= $message;
@@ -129,8 +135,11 @@ class Email {
 	}
 
 	public function sendReportAdEmail($adID, $message) {
-		$this->mail->From 		= $this->abuseEmail;
-		$this->mail->FromName 	= $this->abuseName;
+		// $this->mail->From 		= $this->abuseEmail;
+		// $this->mail->FromName 	= $this->abuseName;
+
+		$this->mail->SetFrom($this->abuseEmail, $this->abuseName);
+		$this->mail->AddReplyTo($this->abuseEmail, $this->abuseName);
 
 		$this->mail->Subject 	= "En anmälan mot en annons";
 		$this->mail->Body 		= $message ."<br /> Annonsen det gäller har ID: ". $adID;
@@ -147,8 +156,11 @@ class Email {
 					Och i följande stad: <br />
 					<b>". $cityName ."</b>";
 
-		$this->mail->From 		= $this->requestEmail;
-		$this->mail->FromName 	= $this->requestName;
+		// $this->mail->From 		= $this->requestEmail;
+		// $this->mail->FromName 	= $this->requestName;
+
+		$this->mail->SetFrom($this->requestEmail, $this->requestName);
+		$this->mail->AddReplyTo($this->requestEmail, $this->requestName);
 
 		$this->mail->Subject 	= "Förfrågan om att lägga till campus";
 		$this->mail->Body 		= $message;
@@ -170,8 +182,11 @@ class Email {
 		</p>
 		MVH StudentTrade.se";
 
-		$this->mail->From 		= $this->noReplyEmail;
-		$this->mail->FromName 	= $this->noReplyName;
+		// $this->mail->From 		= $this->noReplyEmail;
+		// $this->mail->FromName 	= $this->noReplyName;
+
+		$this->mail->SetFrom($this->noReplyEmail, $this->noReplyName);
+		$this->mail->AddReplyTo($this->noReplyEmail, $this->noReplyName);
 
 		$this->mail->Subject 	= "Din borttagningskod till din annons på StudentTrade.se";
 		$this->mail->Body 		= $message;
