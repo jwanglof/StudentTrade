@@ -11,4 +11,5 @@ return array(
     'Slim\\Views' => array($vendorDir . '/slim/views'),
     'Slim\\Extras' => array($vendorDir . '/slim/extras'),
     'Slim' => array($vendorDir . '/slim/slim'),
+    'PhpConsole' => array($vendorDir . '/php-console/php-console/src'),
 );
