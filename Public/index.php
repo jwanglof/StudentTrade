@@ -178,8 +178,18 @@ $app->get("/city/:city/addNew(/:step)", function($_city, $_step=NULL) use ($app)
 	);
 })->conditions(array("step" => "2"))->via("GET", "POST");
 
+// $app->post("/city/:city/search", function($_city) use ($app) {
+// 	$searchString = $app->request()->params("searchString");
+
+// });
+
 // Should really make this more module!
-$app->get("/city/:city(/campus/:campus)(/category/:category)(/page/:page)", function($_city, $_campus=NULL, $_category=NULL, $_page=1) use ($app) {
+$app->map("/city/:city(/campus/:campus)(/category/:category)(/page/:page)(/search)", function($_city, $_campus=NULL, $_category=NULL, $_page=1) use ($app) {
+	if ($app->request()->params("searchString"))
+		$searchString = $app->request()->params("searchString");
+	else
+		$searchString = NULL;
+
 	// Put everything below in City()????
 	// Since I don't use anything in here except on this page!
 	$city = new City();
@@ -201,7 +211,7 @@ $app->get("/city/:city(/campus/:campus)(/category/:category)(/page/:page)", func
 	 */
 	$pagination = new Pagination(20);
 	$pagination->setURL($headerArray["current_url"]);
-	$pagination->setDbQuery($headerArray["city"]["id"], $_campusInfo["id"], $_categoryInfo["id"]); //TODO: ADD SEARCH-STRING
+	$pagination->setDbQuery($headerArray["city"]["id"], $_campusInfo["id"], $_categoryInfo["id"], $searchString); //TODO: ADD SEARCH-STRING
 	$pagination->setLastPage();
 	$pagination->setCurrentPage($_page);
 
@@ -260,7 +270,7 @@ $app->get("/city/:city(/campus/:campus)(/category/:category)(/page/:page)", func
 			"paginationPages" 	=> $paginationPages
 		)
 	);
-})->conditions(array("page" => "[0-9]*"));
+})->conditions(array("page" => "[0-9]*"))->via("GET", "POST");
 
 $app->run();
 ?>

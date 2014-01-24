@@ -8,8 +8,7 @@
 	</div>
 	<div class="col-xs-12 categoryHeading search">
 		<div class="row">
-			<form action="front.php" method="get">
-				<input type="hidden" name="city" value="{{ header.city.short_name }}" />
+			<form action="/index.php/city/{{ header.city.short_name }}/search" method="post">
 				<div class="input-group">
 					<input type="text" class="form-control" name="searchString" placeholder="Sök på annonstitel">
 					<span class="input-group-btn">
