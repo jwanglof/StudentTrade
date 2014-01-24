@@ -120,7 +120,7 @@ $(document).ready(function() {
 		request = $.ajax({
 			type: "post",
 			url: "/ajax/mail",
-			data: {mail: "forgotCode", aid: $("#aid").val()}
+			data: {mail: "forgotCode", aid: $("#aid").val(), city: $("#city").val()}
 		});
 
 		request.done(function(response, textStatus, jqXHR) {

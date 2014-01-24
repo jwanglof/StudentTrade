@@ -38,6 +38,8 @@ class Ajax {
 
 	public function mail($postValues) {
 		// $handler->debug($postValues, 'postValues');
+		$handler = PhpConsole\Handler::getInstance();
+		$handler->start();
 
 		$sendEmail = new Email();
 		$cipher = new Cipher("JFKs3ef03J");
@@ -69,7 +71,7 @@ class Ajax {
 
 				$sendEmail->setRecipientEmail($adUserInfo["email"]);
 
-				return $sendEmail->resendCode($postValues["aid"], $password);
+				return $sendEmail->resendCode($postValues["aid"], $password, $postValues["city"]);
 			} else {
 				return 2;
 			}

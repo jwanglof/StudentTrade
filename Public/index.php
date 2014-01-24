@@ -38,10 +38,6 @@ $app->configureMode("development", function() use ($app, $env) {
 	$app->config("debug", true);
 });
 
-
-$handler = PhpConsole\Handler::getInstance();
-$handler->start();
-
 // http://www.slimframework.com/news/how-to-organize-a-large-slim-framework-application
 // http://www.youtube.com/watch?v=yEA0VWHCFac
 

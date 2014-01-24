@@ -171,14 +171,14 @@ class Email {
 			return True;
 	}
 
-	public function resendCode($adID, $password) {
+	public function resendCode($adID, $password, $adCity) {
 		$message = "Hejsan!
 		<p>
 			Din borttagningskod är: ". $password ." <br />
 			Du kan även trycka <a href=\"http://www.studenttrade.se/front.php?page=ad_delete&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.
 		</p>
 		<p>
-			Du kan se din annons <a href=\"http://www.studenttrade.se/front.php?page=ad_show&city=linkoping&aid=". $adID ."\">här</a>
+			Du kan se din annons <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/ad/". $adID ."\">här</a>
 		</p>
 		MVH StudentTrade.se";
 
