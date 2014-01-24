@@ -39,7 +39,7 @@
 		</span>
 	</p>
 	<p>
-		Säljes av:
+		{{ adType.name }} av:
 		<br />
 		<span class="adShowInfo">
 			{{ userInfo.name }}

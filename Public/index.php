@@ -144,7 +144,7 @@ $app->get("/city/:city/rules", function($_city) use ($app) {
 $app->get("/city/:city/ad/:aid", function($_city, $_aid) use ($app) {
 	$showAd = new ShowAd();
 	$showAd->setAd($_aid);
-
+	
 	$app->render("showAd.tpl", array(
 			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"], $_aid),
 			"ad" 				=> $showAd->getAd(),
