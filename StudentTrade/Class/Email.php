@@ -90,6 +90,7 @@ class Email {
 		else if ($adType == 4)
 			$message .= "Om du har bytt din vara";
 
+		// $message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.";
 		$message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.";
 		$message .= "</p>";
 		$message .= "MVH StudentTrade.se";
@@ -108,7 +109,8 @@ class Email {
 
 	public function sendAdEmail($name, $from, $message, $adID, $adTitle, $adCity) {
 		$message .= "<br /><br /><b>Annonsen det gäller är: <i>". $adTitle ."</i>";
-		$message .= "<br />Du kan se den <a href=\"studenttrade.se/front.php?page=ad_show&city=". $adCity ."&aid=". $adID ."\">här</a></b>";
+		// $message .= "<br />Du kan se den <a href=\"studenttrade.se/front.php?page=ad_show&city=". $adCity ."&aid=". $adID ."\">här</a></b>";
+		$message .= "<br />Du kan se den <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/ad/". $adID ."\">här</a></b>";
 
 		$this->mail->From 		= $from;
 		$this->mail->FromName 	= $name;
