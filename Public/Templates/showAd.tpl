@@ -8,6 +8,7 @@
 <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 -->
 <div class="col-xs-3">
+	{% if pictures|length > 0 %}
 	<div class="uploadedImages">
 		{% for picture in pictures %}
 			<img src="{{ header.dir }}Upload/{{ picture.filename }}" />
@@ -17,6 +18,9 @@
 	<div class="adImage">
 		<img src="{{ header.dir }}Upload/{{ pictures[0].filename }}" width="100%" id="imageShown" />
 	</div>
+	{% else %}
+	<p style="width: 100%; height: 200px; background-color: {{ adCategory.color }}" class="categoryIcon icon {{ adCategory.name }}"></p>
+	{% endif %}
 	<!-- </p> -->
 	<p style="width: 100%; height: 30px; font-size: 1.35em; text-align: center;" class="adType {{ adType.short_name }}">{{ adType.name }}</p>
 	<p>

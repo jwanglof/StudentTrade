@@ -1,6 +1,4 @@
 <?php
-// phpinfo();
-mcrypt_create_iv(32);
 ob_start();
 session_start();
 
