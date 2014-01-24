@@ -46,6 +46,7 @@
 		<br />
 		<span class="adShowInfo">
 			{{ userInfo.name }}
+			<br />
 			{{ userInfo.phonenumber }}
 		</span>
 	</p>
