@@ -97,7 +97,7 @@ $app->post("/ajax/update", function() use ($app) {
 $app->post("/upload", function() use ($app) {
 	// Need to make this more secure!
 
-	$upload = new Uploader(__DIR__ ."/");
+	$upload = new Uploader(__DIR__ ."/Upload/");
 
 	// Generate filename
 	$upload->setFilename();
