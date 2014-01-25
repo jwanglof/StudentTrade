@@ -10,12 +10,8 @@
 <form method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="addNewAd">
 	<input type="hidden" id="mail" name="mail" value="adAddNew" />
 	<div id="pictureInputs">
-		<div class="form-group">
-			<div id="addMorePictures" class="col-xs-8">
-				Du kan maximalt ha 5st bilder.
-				<br />
-				Tryck för att lägga till fler bilder.
-			</div>
+		<div class="form-group col-xs-12">
+			Du kan maximalt ha 5st bilder.
 		</div>
 
 		<div class="form-group">
@@ -23,6 +19,13 @@
 			<div class="col-xs-5">
 				<input type="file" name="picture_1" id="picture_1" />
 			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div id="addMorePictures" class="col-xs-8">
+			<span style="font-size: 40px; font-weight: bold;">+</span>
+			Tryck för att lägga till fler bilder.
 		</div>
 	</div>
 
