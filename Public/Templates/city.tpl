@@ -24,7 +24,7 @@
 				<a href="{{ header.base_url }}/ad/{{ ad.id }}">
 					<div class="col-xs-1 categoryIcon icon {{ ad.category.name }}"></div>
 					<div class="col-xs-4 newAdInfo">
-						<h4>{{ ad.adTitleLimited }}</h4>
+						<h4>{{ ad.adTitleLimited|raw }}</h4>
 					</div>
 					<div class="col-xs-3 newAdInfo">
 						<span class="adType {{ ad.adType.short_name }}">{{ ad.adType.name }}</span>
