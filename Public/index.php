@@ -97,15 +97,13 @@ $app->post("/ajax/update", function() use ($app) {
 $app->post("/upload", function() use ($app) {
 	// Need to make this more secure!
 
-	$upload = new Uploader();
+	$upload = new Uploader(__DIR__ ."/");
 
 	// Generate filename
 	$upload->setFilename();
+	$upload->saveToDisk();
 
-	// Change to "jumpstarter" when uploading!
-	$upload->saveToDisk("local");
-	
-	// Return file URL
+	// Return filename
 	echo $upload->getFilename();
 });
 

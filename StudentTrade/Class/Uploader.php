@@ -2,13 +2,16 @@
 class Uploader extends DbUpdate {
 	private $data;
 	private $image;
+	private $fullPath;
 	private $filename;
 
-	public function __construct() {
+	public function __construct($path) {
 		// Read RAW data
 		$this->data = file_get_contents('php://input');
 		// Read string as an image file
 		$this->image = file_get_contents('data://'. substr($this->data, 5));
+
+		$this->fullPath = $path;
 	}
 
 	public function __destruct() {
@@ -25,13 +28,8 @@ class Uploader extends DbUpdate {
 		return $this->filename;
 	}
 
-	public function saveToDisk($uploadDirConfig) {
-		if ($uploadDirConfig == "local")
-			$uploadDir = "/home/johan/Git/StudentTrade/Public/Upload/";
-		else if ($uploadDirConfig == "jumpstarter")
-			$uploadDir = "/home/http/Public/Upload/";
-
-		if (!file_put_contents($uploadDir . $this->filename, $this->image)) {
+	public function saveToDisk() {
+		if (!file_put_contents($this->fullPath . $this->filename, $this->image)) {
 		        header('HTTP/1.1 503 Service Unavailable');
 		        exit();
 		}
