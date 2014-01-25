@@ -76,6 +76,13 @@ function setHeader($app, $_city, $_campus, $_category, $_aid=NULL) {
  * End
  * Ze header
  */
+
+$app->get("/", function() use ($app) {
+	$index = new Index();
+
+	$app->render("index.tpl", array("dir" => WEB_PATH, "leftColumn" => $index->getLeftColumn(), "rightColumn" => $index->getRightColumn()));
+});
+
 $app->post("/ajax/get", function() use($app) {
 	$ajax = new Ajax();
 	echo $ajax->get($_POST);
@@ -105,12 +112,6 @@ $app->post("/upload", function() use ($app) {
 
 	// Return filename
 	echo $upload->getFilename();
-});
-
-$app->get("/", function() use ($app) {
-	$index = new Index();
-
-	$app->render("index.tpl", array("dir" => WEB_PATH, "leftColumn" => $index->getLeftColumn(), "rightColumn" => $index->getRightColumn()));
 });
 
 $app->get("/city/:city/rules", function($_city) use ($app) {
@@ -157,10 +158,10 @@ $app->get("/city/:city/addNew(/:step)", function($_city, $_step=NULL) use ($app)
 	);
 })->conditions(array("step" => "2"))->via("GET", "POST");
 
-// $app->post("/city/:city/search", function($_city) use ($app) {
-// 	$searchString = $app->request()->params("searchString");
-
-// });
+$app->get("/city/:city/remove/:ad/code/:code", function($_city, $_ad, $_code) use ($app) {
+	$removeAd = new RemoveAd($_ad, $_code);
+	echo 22;
+})->conditions(array("ad" => "[0-9]+", "code" => "[0-9]+"));
 
 // Should really make this more module!
 $app->map("/city/:city(/campus/:campus)(/category/:category)(/page/:page)(/search)", function($_city, $_campus=NULL, $_category=NULL, $_page=1) use ($app) {

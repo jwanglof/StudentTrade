@@ -79,9 +79,9 @@ class Email {
 			return True;
 	}
 
-	public function sendNewAdEmail($password, $adID, $adType, $city) {
+	public function sendNewAdEmail($password, $adID, $adType, $adCity) {
 		$message = "Tack för att du använder StudentTrade.se!";
-		$message .= "<p>Du kan se din annons <a href=\"http://www.studenttrade.se/index.php/city/". $city ."/ad/". $adID ."\">här</a></p>";
+		$message .= "<p>Du kan se din annons <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/ad/". $adID ."\">här</a></p>";
 		$message .= "<p>";
 
 		if ($adType == 1)
@@ -94,7 +94,7 @@ class Email {
 			$message .= "Om du har bytt din vara";
 
 		// $message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.";
-		$message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.";
+		$message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/remove/". $adID ."/code/". $password ."\">här</a> för att ta bort annonsen direkt.";
 		$message .= "</p>";
 		$message .= "MVH StudentTrade.se";
 
