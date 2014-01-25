@@ -49,7 +49,7 @@
 		{{ adType.name }} av:
 		<br />
 		<span class="adShowInfo">
-			{{ userInfo.name }}
+			{{ userInfo.name|raw }}
 			<br />
 			{{ userInfo.phonenumber }}
 		</span>
@@ -60,7 +60,7 @@
 			{% if info.fk_adInfo_adSubCategory == subCat.id %}
 				{{ subCat.name }}:
 				<br />
-				<span class="adShowInfo">{{ info.sub_category_value }}</span>
+				<span class="adShowInfo">{{ info.sub_category_value|raw }}</span>
 				<br />
 			{% endif %}
 		{% endfor %}
