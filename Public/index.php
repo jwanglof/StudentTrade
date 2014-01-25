@@ -96,34 +96,17 @@ $app->post("/ajax/update", function() use ($app) {
 
 $app->post("/upload", function() use ($app) {
 	// Need to make this more secure!
+
+	$upload = new Uploader();
+
 	// Generate filename
-	$filename = md5(mt_rand()). '.jpg';
-	// Read RAW data
-	$data = file_get_contents('php://input');
-	// Read string as an image file
-	$image = file_get_contents('data://'. substr($data, 5));
+	$upload->setFilename();
 
-	// Save to disk
-	// if (!file_put_contents(realpath("../.."). "/Public/Upload/". $filename, $image)) {
-	$getDir = "local";
-	if ($getDir == "local")
-		$uploadDir = "/home/johan/Git/StudentTrade/Public/Upload/";
-	else if ($getDir == "jumpstarter")
-		$uploadDir = "/home/http/Public/Upload/";
-
-	if (!file_put_contents($uploadDir . $filename, $image)) {
-	        header('HTTP/1.1 503 Service Unavailable');
-	        exit();
-	}
-
-	array_push($_SESSION["newPictures"], $filename);
-
-	// Clean up memory
-	unset($data);
-	unset($image);
-
+	// Change to "jumpstarter" when uploading!
+	$upload->saveToDisk("local");
+	
 	// Return file URL
-	echo $filename;
+	echo $upload->getFilename();
 });
 
 $app->get("/", function() use ($app) {
