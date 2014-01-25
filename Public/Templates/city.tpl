@@ -28,7 +28,13 @@
 					</div>
 					<div class="col-xs-3 newAdInfo">
 						<span class="adType {{ ad.adType.short_name }}">{{ ad.adType.name }}</span>
-						<span class="where">{{ ad.campus.campus_name }}</span>
+						<span class="where">
+						{% if ad.campus.campus_name %}
+							{{ ad.campus.campus_name }}
+						{% else %}
+							Alla campus
+						{% endif %}
+						</span>
 					</div>
 					<div class="col-xs-2 newAdInfo date">{{ ad.dateCreated }}</div>
 					<div class="col-xs-2 newAdInfo price">{{ ad.price }} SEK</div>
