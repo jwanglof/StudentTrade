@@ -50,5 +50,11 @@ $(document).ready(function() {
 
 		// Change the source of the big picture
 		$("#imageShown")[0].src = imgSrc;
-	})
+	});
+
+	// Show the selected picture in a modal
+	$("#imageShown").on("click", function() {
+		var imgSrc = $("#imageShown")[0].src;
+		$("#showImageModal").find(".modal-body").html("<img src="+ imgSrc +" />");
+	});
 });

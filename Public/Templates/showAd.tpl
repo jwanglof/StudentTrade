@@ -19,7 +19,7 @@
 			{% endfor %}
 		</div>
 		<div class="adImage">
-			<img src="{{ header.dir }}Upload/{{ pictures[0].filename }}" width="100%" id="imageShown" />
+			<img data-toggle="modal" data-target="#showImageModal" src="{{ header.dir }}Upload/{{ pictures[0].filename }}" width="100%" id="imageShown" />
 		</div>
 	{% else %}
 		<p  class="categoryIcon bigIcon icon {{ adCategory.name }}"></p>
@@ -104,6 +104,24 @@
 	</div>
 </div>
 
+<div class="fade modal" id="showImageModal" tabindex="-1" role="dialog" aria-labelledby="showImageModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h2>Ange den borttagningskod som du fått via e-post</h2>
+			</div> -->
+
+			<div class="modal-body" style="text-align: center;">
+			</div>
+
+			<!-- <div class="modal-footer">
+				<button type="submit" class="btn btn-primary" id="forgotCode">Glömt koden? Tryck här!</button>
+				<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adDeleteForm" class="btn btn-primary">Ta bort annons</button>
+			</div> -->
+		</div>
+	</div>
+</div>
 
 <div class="fade modal" id="adDeleteModal" tabindex="-1" role="dialog" aria-labelledby="adDeleteModal" aria-hidden="true">
 	<div class="modal-dialog">
