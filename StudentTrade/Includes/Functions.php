@@ -77,7 +77,7 @@
 	}
 
 	function limitStringLength($string, $length=23) {
-		return ((mb_strlen($string) > $length) ? mb_substr($string, 0, $length) ."..." : $string);
+		return ((mb_strlen($string) > $length) ? mb_substr($string, 0, $length, "UTF-8") ."..." : $string);
 	}
 
 	function utf8_wordwrap($string, $width=75, $break="\n", $cut=false) {
