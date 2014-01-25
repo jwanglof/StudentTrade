@@ -160,7 +160,19 @@ $app->get("/city/:city/addNew(/:step)", function($_city, $_step=NULL) use ($app)
 
 $app->get("/city/:city/remove/:ad/code/:code", function($_city, $_ad, $_code) use ($app) {
 	$removeAd = new RemoveAd($_ad, $_code);
-	echo 22;
+
+	if ($removeAd->removeAd())
+		$message = "Annonsen borttagen.";
+	else if (!$removeAd->removeAd())
+		$message = "Kunde ej ta bort annonsen. Var vänlig försök igen!";
+	else
+		$message = "Fel kod angiven. Var vänlig försök igen!";
+
+	$app->render("message.tpl", array(
+			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"]),
+			"message"			 => $message
+		)
+	);
 })->conditions(array("ad" => "[0-9]+", "code" => "[0-9]+"));
 
 // Should really make this more module!
