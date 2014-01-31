@@ -38,8 +38,8 @@ class Ajax {
 
 	public function mail($postValues) {
 		// $handler->debug($postValues, 'postValues');
-		$handler = PhpConsole\Handler::getInstance();
-		$handler->start();
+		// $handler = PhpConsole\Handler::getInstance();
+		// $handler->start();
 
 		$sendEmail = new Email();
 		$cipher = new Cipher("JFKs3ef03J");

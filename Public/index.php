@@ -128,18 +128,27 @@ $app->get("/city/:city/rules", function($_city) use ($app) {
 $app->get("/city/:city/ad/:aid", function($_city, $_aid) use ($app) {
 	$showAd = new ShowAd();
 	$showAd->setAd($_aid);
-	
-	$app->render("showAd.tpl", array(
-			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"], $_aid),
-			"ad" 				=> $showAd->getAd(),
-			"adInfo" 			=> $showAd->getAdInfo(),
-			"userInfo"			=> $showAd->getUserInfo(),
-			"adCategory" 		=> $showAd->getAdCategory(),
-			"adSubCategory"	=> $showAd->getAdSubCategory(),
-			"adType"			=> $showAd->getAdType(),
-			"pictures"			=> $showAd->getPictures()
-		)
-	);
+	$ad = $showAd->getAd();
+
+	if ($ad) {
+		$app->render("showAd.tpl", array(
+				"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"], $_aid),
+				"ad" 				=> $ad,
+				"adInfo" 			=> $showAd->getAdInfo(),
+				"userInfo"			=> $showAd->getUserInfo(),
+				"adCategory" 		=> $showAd->getAdCategory(),
+				"adSubCategory"	=> $showAd->getAdSubCategory(),
+				"adType"			=> $showAd->getAdType(),
+				"pictures"			=> $showAd->getPictures()
+			)
+		);
+	} else {
+		$app->render("message.tpl", array(
+				"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"]),
+				"message"			=> "Denna annons finns inte."
+			)
+		);
+	}
 });
 
 $app->get("/city/:city/addNew(/:step)", function($_city, $_step=NULL) use ($app) {
@@ -164,7 +173,19 @@ $app->get("/city/:city/addNew(/:step)", function($_city, $_step=NULL) use ($app)
 
 $app->get("/city/:city/remove/:ad/code/:code", function($_city, $_ad, $_code) use ($app) {
 	$removeAd = new RemoveAd($_ad, $_code);
-	echo 22;
+	
+	if ($removeAd->removeAd() == 1)
+		$message = "Annonsen borttagen.";
+	else if ($removeAd->removeAd() == 0)
+		$message = "Kunde ej ta bort annonsen. Var vänlig försök igen!";
+	else
+		$message = "Fel kod angiven. Var vänlig försök igen!";
+
+	$app->render("message.tpl", array(
+			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"]),
+			"message"			=> $message
+		)
+	);
 })->conditions(array("ad" => "[0-9]+", "code" => "[0-9]+"));
 
 // Should really make this more module!
@@ -245,13 +266,13 @@ $app->map("/city/:city(/campus/:campus)(/category/:category)(/page/:page)(/searc
 	 */
 
 	$app->render("city.tpl", array(
-			"header" 			=> $headerArray,
-			"adCategory"		=> $city->getCategory(),
-			"ads" 				=> $ads,
+			"header" 				=> $headerArray,
+			"adCategory"			=> $city->getCategory(),
+			"ads" 					=> $ads,
 
-			"paginationPrevPage"=> $paginationPrevPage,
-			"paginationNextPage"=> $paginationNextPage,
-			"paginationPages" 	=> $paginationPages
+			"paginationPrevPage"	=> $paginationPrevPage,
+			"paginationNextPage"	=> $paginationNextPage,
+			"paginationPages" 		=> $paginationPages
 		)
 	);
 })->conditions(array("page" => "[0-9]*"))->via("GET", "POST");
