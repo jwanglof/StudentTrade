@@ -58,7 +58,7 @@ $(document).ready(function() {
 				$("#requestCityModal").find(".modal-footer").empty();
 				$("#requestCityModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\" id=\"okButton\">OK</button>");
 			} else {
-				$("#requestCityModal").find(".modal-body-error").html("Servern kunde inte skicka ditt e-mail just nu. Var vänlig försök igen!").fadeIn("slow").delay(5000).fadeOut("slow");
+				errorMsg("#requestCityModal", "Servern kunde inte skicka ditt e-mail just nu. Var vänlig försök igen!");
 			}
 		});
 
@@ -78,7 +78,7 @@ $(document).ready(function() {
 				$("#requestCampusModal").find(".modal-footer").empty();
 				$("#requestCampusModal").find(".modal-footer").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\" id=\"okButton\">OK</button>");
 			} else {
-				$("#requestCampusModal").find(".modal-body-error").html("Servern kunde inte skicka ditt e-mail just nu. Var vänlig försök igen!").fadeIn("slow").delay(5000).fadeOut("slow");
+				errorMsg("#requestCampusModal", "Servern kunde inte skicka ditt e-mail just nu. Var vänlig försök igen!");
 			}
 		});
 
@@ -97,7 +97,6 @@ $(document).ready(function() {
 		request.done(function(response, textStatus, jqXHR) {
 			if (response == 2) {
 				errorMsg("#adEditModal", "Fel kod angiven.");
-				// $().find(".modal-body-error").html().fadeIn("slow").delay(5000).fadeOut("slow");
 			} else {
 				window.location.href = getURL("index.php/city/"+ getCity() +"/edit/"+ $("#aid").val() +"/code/"+ $("#adCodez").val());
 			}
@@ -131,7 +130,7 @@ $(document).ready(function() {
 					window.location.href = getURL("index.php/city/"+ getCity());
 				});
 			} else {
-				$("#adDeleteModal").find(".modal-body-error").html("Fel kod angiven. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
+				errorMsg("#adDeleteModal", "Fel kod angiven. Var vänlig försök igen.");
 			}
 		});
 
@@ -151,11 +150,11 @@ $(document).ready(function() {
 
 		request.done(function(response, textStatus, jqXHR) {
 			if (response == 1) {
-				$("#adDeleteModal").find(".modal-body-error").html("Koden är nu skickad!").fadeIn("slow").delay(5000).fadeOut("slow");
+				errorMsg("#adDeleteModal", "Koden är nu skickad!");
 			} else if(response == 2) {
-				$("#adDeleteModal").find(".modal-body-error").html("Du har redan skickat efter koden. Om du inte har fått den kan du försöka igen senare.").fadeIn("slow");
+				errorMsg("#adDeleteModal", "Du har redan skickat efter koden. Om du inte har fått den kan du försöka igen senare.");
 			} else {
-				$("#adDeleteModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
+				errorMsg("#adDeleteModal", "Något gick fel. Var vänlig försök igen.");
 			}
 		});
 	});
@@ -175,9 +174,9 @@ $(document).ready(function() {
 				$("#adReplyModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
 			}
 			else if (response == 2) {
-				$("#adReplyModal").find(".modal-body-error").html("Du måste fylla i alla fält.").fadeIn("slow").delay(5000).fadeOut("slow");
+				errorMsg("#adReplyModal", "Du måste fylla i alla fält.");
 			} else {
-				$("#adReplyModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
+				errorMsg("#adReplyModal", "Något gick fel. Var vänlig försök igen.");
 			}
 		});
 
@@ -202,9 +201,9 @@ $(document).ready(function() {
 				$("#adReportModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
 			}
 			else if (response == 2) {
-				$("#adReportModal").find(".modal-body-error").html("Du måste ange varför du anmäler annonsen.").fadeIn("slow").delay(5000).fadeOut("slow");
+				errorMsg("#adReportModal", "Du måste ange varför du anmäler annonsen.");
 			} else {
-				$("#adReportModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
+				errorMsg("#adReportModal", "Något gick fel. Var vänlig försök igen.");
 			}
 		});
 		
@@ -224,9 +223,9 @@ $(document).ready(function() {
 				$("#contactUsModal").find(".modal-footer").empty();
 				$("#contactUsModal").find(".modal-footer").fadeIn("slow").html("<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">OK</button>");
 			} else if (response == 2) {
-				$("#contactUsModal").find(".modal-body-error").html("Du måste fylla i alla fält.").fadeIn("slow").delay(5000).fadeOut("slow");
+				errorMsg("#contactUsModal", "Du måste fylla i alla fält.");
 			} else {
-				$("#contactUsModal").find(".modal-body-error").html("Något gick fel. Var vänlig försök igen.").fadeIn("slow").delay(5000).fadeOut("slow");
+				errorMsg("#contactUsModal", "Något gick fel. Var vänlig försök igen.");
 			}
 		});
 		
