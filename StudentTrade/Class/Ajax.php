@@ -31,6 +31,18 @@ class Ajax {
 	 	} else if ($postValues["get"] == "search") {
 	 		$searchResult = $this->dbSelect->searchAdsWithName($postValues["search"]);
 	 		return json_encode($searchResult);
+	 	} else if ($postValues["get"] == "ad") {
+	 		$cipher = new Cipher("JFKs3ef03J");
+
+	 		$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
+
+	 		if ($ad["password"] == $cipher->encrypt($postValues["adCode"])) {
+		 		$cipher = null;
+		 		return true;
+		 	}
+
+	 		$cipher = null;
+	 		return 2;
 	 	} else {
 	 		return false;
 	 	}

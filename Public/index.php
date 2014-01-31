@@ -114,7 +114,7 @@ $app->post("/upload", function() use ($app) {
 	echo $upload->getFilename();
 });
 
-$app->get("/city/:city/edit/:aid", function($_city, $_aid) use ($app) {
+$app->get("/city/:city/edit/:aid/code/:code", function($_city, $_aid, $_code) use ($app) {
 	
 });
 

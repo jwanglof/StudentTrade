@@ -118,7 +118,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h2>Ange den borttagningskod som du fått via e-post</h2>
+				<h2>Ange annonskod för att ta bort annonsen</h2>
 			</div>
 
 			<div class="modal-body">
@@ -130,7 +130,7 @@
 						<div class="form-group">
 							<label for="removeCode" class="col-lg-1 control-label">Ange annonskod</label>
 							<div class="col-lg-5">
-								<input type="text" class="form-control" id="removeCode" name="removeCode" placeholder="Borttagningskod" />
+								<input type="text" class="form-control" id="removeCode" name="removeCode" placeholder="Annonskod" />
 							</div>
 						</div>
 					</fieldset>
@@ -233,18 +233,18 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h2>Anmäl annons</h2>
+				<h2>Ange annonskod för att redigera din annons</h2>
 			</div>
 
 			<div class="modal-body">
-				<form method="post" class="form-horizontal" role="form" id="adEditForm">
+				<form method="post" class="form-horizontal well" id="adEditForm" data-target="#adEditModal">
 					<input type="hidden" id="aid" name="aid" value="{{ ad.id }}" />
 
 					<fieldset>
 						<div class="form-group">
-							<label for="message" class="col-lg-1 control-label">Ange annonskod</label>
+							<label for="adCodez" class="col-lg-1 control-label">Ange annonskod (5782)</label>
 							<div class="col-lg-5">
-								<textarea class="form-control" name="message" id="message" rows="5"></textarea>
+								<input type="text" class="form-control" name="adCodez" id="adCodez" placeholder="Annonskod" />
 							</div>
 						</div>
 					</fieldset>
@@ -254,7 +254,7 @@
 			</div>
 
 			<div class="modal-footer">
-				<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adEditForm" class="btn btn-primary">Skicka anmälan</button>
+				<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adEditForm" class="btn btn-primary">Redigera</button>
 			</div>
 		</div>
 	</div>

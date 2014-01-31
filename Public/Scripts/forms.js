@@ -85,6 +85,32 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 
+	$("#adEditModal").on("submit", function(event) {
+		$(".modal-footer").find(".ajaxLoader").show();
+
+		request = $.ajax({
+			type: "post",
+			url: "/ajax/get",
+			data: {get: "ad", aid: $("#aid").val(), adCode: $("#adCodez").val()}
+		});
+
+		request.done(function(response, textStatus, jqXHR) {
+			if (response == 2) {
+				errorMsg("#adEditModal", "Fel kod angiven.");
+				// $().find(".modal-body-error").html().fadeIn("slow").delay(5000).fadeOut("slow");
+			} else {
+				window.location.href = getURL("index.php/city/"+ getCity() +"/edit/"+ $("#aid").val() +"/code/"+ $("#adCodez").val());
+			}
+		});
+
+		request.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log(errorThrown);
+		});
+
+		$(".modal-footer").find(".ajaxLoader").hide();
+		event.preventDefault();
+	});
+
 	$("#adDeleteForm").on("submit", function(event) {
 		$(".modal-footer").find(".ajaxLoader").show();
 
@@ -223,4 +249,8 @@ function getCity() {
 	var regexp = /\/city\/([a-z]+)\/?/;
 	var result = city.match(regexp);
 	return result[1];
+}
+
+function errorMsg(targetDivID, message) {
+	$(targetDivID).find(".modal-body-error").html(message).fadeIn("slow").delay(5000).fadeOut("slow");
 }
