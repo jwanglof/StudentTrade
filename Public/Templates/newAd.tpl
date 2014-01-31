@@ -56,16 +56,14 @@
 		</div>
 
 		<legend>Annonsuppgifter</legend>
-		<div id="adInfo">
-			<div class="form-group">
-				<label for="adType" class="col-xs-1 control-label">Typ av annons *</label>
-				<div class="col-xs-5">
-					<select id="adType" name="adType" class="form-control">
-						{% for type in adTypes %}
-							<option value="{{ type.id }}">{{ type.name }}</option>
-						{% endfor %}
-					</select>
-				</div>
+		<div class="form-group">
+			<label for="adType" class="col-xs-1 control-label">Typ av annons *</label>
+			<div class="col-xs-5">
+				<select id="adType" name="adType" class="form-control">
+					{% for type in adTypes %}
+						<option value="{{ type.id }}">{{ type.name }}</option>
+					{% endfor %}
+				</select>
 			</div>
 		</div>
 
