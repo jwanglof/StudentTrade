@@ -100,9 +100,9 @@
 		</div>
 
 		<div class="form-group">
-			<label for="info" class="col-xs-1 control-label">Beskrivning *</label>
+			<label for="adInfo" class="col-xs-1 control-label">Beskrivning *</label>
 			<div class="col-xs-5">
-				<textarea id="info" name="info" class="form-control"></textarea>
+				<textarea id="adInfo" name="adInfo" class="form-control"></textarea>
 			</div>
 		</div>
 
