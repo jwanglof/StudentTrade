@@ -94,7 +94,11 @@ class Email {
 			$message .= "Om du har bytt din vara";
 
 		// $message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.";
-		$message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/remove/". $adID ."/code/". $password ."\">här</a> för att ta bort annonsen direkt.";
+		$message .= "eller av någon annan anledning vill ta bort denna annons, eller ändra innehållet använd denna kod: ". $password;
+		$message .= "</p>";
+		$message .= "<p>";
+		$message .= "Tryck <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/remove/". $adID ."/code/". $password ."\">här</a> för att ta bort annonsen direkt.";
+		$message .= "Tryck <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/edit/". $adID ."/code/". $password ."\">här</a> för att redigera annons.";
 		$message .= "</p>";
 		$message .= "MVH StudentTrade.se";
 
