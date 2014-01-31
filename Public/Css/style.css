@@ -110,6 +110,10 @@ a:visited {color: #565656;}
 	float: left;
 }
 
+#adInfo {
+	height: 150px;
+}
+
 .newAdInfo {
 	background-color: #dbcab5;
 	height: 100%;

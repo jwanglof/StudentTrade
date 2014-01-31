@@ -231,6 +231,21 @@ $(document).ready(function() {
 		
 		event.preventDefault();
 	});
+
+	$("#editAdForm").on("submit", function(event) {
+		console.log($(this));
+		request = $.ajax({
+			type: "post",
+			url: "/ajax/update",
+			data: {update: "adUpdate", data: $(this)}
+		});
+
+		request.done(function(response, textStatus, jqXHR) {
+			console.log(response);
+		});
+
+		event.preventDefault();
+	});
 });
 
 function getURL(path) {

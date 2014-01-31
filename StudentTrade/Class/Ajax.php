@@ -25,9 +25,9 @@ class Ajax {
 				}
 			}
 			return json_encode($campuses);
-		} else if ($postValues["get"] == "adTypeInfo") {
-			$adType = $this->dbSelect->getAdSubCategoryFromAdCategoryID($postValues["adType"]);
-			return json_encode($adType);
+		} else if ($postValues["get"] == "adSubCategories") {
+			$adCategory = $this->dbSelect->getAdSubCategoryFromAdCategoryID($postValues["adCategory"]);
+			return json_encode($adCategory);
 	 	} else if ($postValues["get"] == "search") {
 	 		$searchResult = $this->dbSelect->searchAdsWithName($postValues["search"]);
 	 		return json_encode($searchResult);
