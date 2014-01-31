@@ -71,7 +71,7 @@
 			<label for="adCategory" class="col-xs-1 control-label"><img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader ajaxCategory" /> Kategori *</label>
 			<div class="col-xs-5">
 				<select id="adCategory" name="adCategory" class="form-control">
-					<option value="">Kategori</option>
+					<option>Kategori</option>
 					{% for category in adCategories %}
 						<option value="{{ category.id }}">{{ category.description }}</option>
 					{% endfor %}
