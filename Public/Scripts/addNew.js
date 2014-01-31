@@ -25,20 +25,20 @@ $(document).ready(function() {
 			showAdCategoryInputs($('#adCategory').children(':selected').val());
 		}
 	});
+	$("#adCategory").on("change", function() {
+		// Select the correct category if a category is chosen in $_GET
+		console.log($(this).val());
+		if (currentCategory != $(this).val()) {
+			currentCategory = $(this).val();
+			showAdCategoryInputs($(this).val());
+		}
+	});
 
 	$("#city").ready(function() {
 		// Select the correct city if a city is chosen in $_GET
 		if ($('#city').children(':selected').val() > 0) {
 			currentCity = $('#city').children(':selected').val(); 
 			showCampuses($('#city').children(':selected').val());
-		}
-	});
-
-	$("#adCategory").on("change", function() {
-		// Select the correct category if a category is chosen in $_GET
-		if (currentCategory != $(this).val()) {
-			currentCategory = $(this).val();
-			showAdCategoryInputs($(this).val());
 		}
 	});
 	$("#city").on("change", function() {
@@ -139,7 +139,7 @@ function showCampuses(cityID) {
 	});
 }
 
-function showAdCategoryInputs(adType) {
+function showAdCategoryInputs(adCategory) {
 	if (xhr && xhr.readystate != 4)
 		xhr.abort();
 	
@@ -151,8 +151,10 @@ function showAdCategoryInputs(adType) {
 	xhr = $.ajax({
 			type: "post",
 			url: "/ajax/get",
-			data: {get: "adTypeInfo", adType: adType}
+			data: {get: "adSubCategories", adCategory: adCategory}
 	});
+
+	console.log(xhr);
 
 	xhr.done(function(response, textStatus, jqXHR) {
 			$(".ajaxCategory").hide();
