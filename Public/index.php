@@ -115,7 +115,15 @@ $app->post("/upload", function() use ($app) {
 });
 
 $app->get("/city/:city/edit/:aid/code/:code", function($_city, $_aid, $_code) use ($app) {
-	
+	$editAd = new EditAd();
+	$editAd->setAd($_aid);
+	$ad = $editAd->getAd();
+	print_r($ad);
+
+	$app->render("editAd.tpl", array(
+			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"])
+		)
+	);
 });
 
 $app->get("/city/:city/rules", function($_city) use ($app) {

@@ -236,7 +236,7 @@ $(document).ready(function() {
 function getURL(path) {
 	var url;
 	if (window.location.origin == "http://localhost") {
-		url = "http://localhost/~johan/StudentTrade/Public/"+ path;
+		url = "http://localhost/"+ path;
 	} else {
 		url = window.location.origin +"/"+ path;
 	};
