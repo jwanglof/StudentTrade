@@ -10,7 +10,7 @@ $(document).ready(function() {
 		$("#campusChooser .campus").html("Välj campus<span class=\"caret\"></span>");
 	}
 
-	$(".footer li, #adAnswer, #adReport, #adDelete, #requestCampus").hover(
+	$(".footer li, #adAnswer, #adReport, #adDelete, #adEdit, #requestCampus").hover(
 		function() {
 			$(this).css('cursor', 'pointer');
 			$(this).css('text-decoration', 'underline');

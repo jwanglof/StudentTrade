@@ -78,8 +78,9 @@
 	<div data-toggle="modal" data-target="#adReplyModal" id="adAnswer">Svara på annonsen</div>
 
 	<div class="row">
-		<div class="col-xs-6" data-toggle="modal" data-target="#adReportModal" id="adReport">Anmäl denna annons</div>
-		<div class="col-xs-6" data-toggle="modal" data-target="#adDeleteModal" id="adDelete">Ta bort annonsen</div>
+		<div class="col-xs-3" data-toggle="modal" data-target="#adReportModal" id="adReport">Anmäl annons</div>
+		<div class="col-xs-3" data-toggle="modal" data-target="#adEditModal" id="adEdit">Redigera annons</div>
+		<div class="col-xs-3" data-toggle="modal" data-target="#adDeleteModal" id="adDelete">Ta bort annonsen</div>
 	</div>
 	
 	<div class="row" style="margin-top: 30px;">
@@ -91,7 +92,7 @@
 
 	<div class="row">
 		<div class="col-xs-6">
-			Välj att dela med dig av din annons på sociala medier. Någon i din vänskapskrets kanske är intresserad.
+			Välj att dela med dig av din annons på sociala medier. Någon i din vänskapskrets kanske är intresserad!
 		</div>
 		<div class="col-xs-6">
 			<div class="col-xs-6">
@@ -107,18 +108,7 @@
 <div class="fade modal" id="showImageModal" tabindex="-1" role="dialog" aria-labelledby="showImageModal" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<!-- <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h2>Ange den borttagningskod som du fått via e-post</h2>
-			</div> -->
-
-			<div class="modal-body" style="text-align: center;">
-			</div>
-
-			<!-- <div class="modal-footer">
-				<button type="submit" class="btn btn-primary" id="forgotCode">Glömt koden? Tryck här!</button>
-				<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adDeleteForm" class="btn btn-primary">Ta bort annons</button>
-			</div> -->
+			<div class="modal-body" style="text-align: center;"></div>
 		</div>
 	</div>
 </div>
@@ -138,7 +128,7 @@
 					<input type="hidden" id="city" name="city" value="{{ header.city.short_name }}" />
 					<fieldset>
 						<div class="form-group">
-							<label for="removeCode" class="col-lg-1 control-label">Borttagningskod *</label>
+							<label for="removeCode" class="col-lg-1 control-label">Ange annonskod</label>
 							<div class="col-lg-5">
 								<input type="text" class="form-control" id="removeCode" name="removeCode" placeholder="Borttagningskod" />
 							</div>
@@ -233,6 +223,38 @@
 
 			<div class="modal-footer">
 				<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adReportForm" class="btn btn-primary">Skicka anmälan</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="fade modal" id="adEditModal" tabindex="-1" role="dialog" aria-labelledby="adEditModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h2>Anmäl annons</h2>
+			</div>
+
+			<div class="modal-body">
+				<form method="post" class="form-horizontal" role="form" id="adEditForm">
+					<input type="hidden" id="aid" name="aid" value="{{ ad.id }}" />
+
+					<fieldset>
+						<div class="form-group">
+							<label for="message" class="col-lg-1 control-label">Ange annonskod</label>
+							<div class="col-lg-5">
+								<textarea class="form-control" name="message" id="message" rows="5"></textarea>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+
+				<div class="modal-body-error"></div>
+			</div>
+
+			<div class="modal-footer">
+				<img src="{{ header.dir }}Img/ajax-loader.gif" class="ajaxLoader" /> <button type="submit" form="adEditForm" class="btn btn-primary">Skicka anmälan</button>
 			</div>
 		</div>
 	</div>

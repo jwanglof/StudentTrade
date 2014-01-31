@@ -114,6 +114,10 @@ $app->post("/upload", function() use ($app) {
 	echo $upload->getFilename();
 });
 
+$app->get("/city/:city/edit/:aid", function($_city, $_aid) use ($app) {
+	
+});
+
 $app->get("/city/:city/rules", function($_city) use ($app) {
 	$app->render("rules.tpl", array(
 			"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"])
