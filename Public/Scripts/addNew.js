@@ -27,7 +27,6 @@ $(document).ready(function() {
 	});
 	$("#adCategory").on("change", function() {
 		// Select the correct category if a category is chosen in $_GET
-		console.log($(this).val());
 		if (currentCategory != $(this).val()) {
 			currentCategory = $(this).val();
 			showAdCategoryInputs($(this).val());
@@ -97,7 +96,6 @@ $(document).ready(function() {
 				submitButton.button("enable");
 				$("#errorMsg").show();
 			} else {
-				console.log(response);
 				window.location.href = "/index.php/city/"+ getCity() +"/ad/"+ response;
 			}
 		});
@@ -154,20 +152,19 @@ function showAdCategoryInputs(adCategory) {
 			data: {get: "adSubCategories", adCategory: adCategory}
 	});
 
-	console.log(xhr);
-
 	xhr.done(function(response, textStatus, jqXHR) {
-			$(".ajaxCategory").hide();
-			// console.log(response);
-			var objs = JSON.parse(response);
-			for (var value in objs) {
-				$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
-				$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\""+ objs[value]["type"] +"\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
-				$("#adInput").append("<br /><br />");
-			}
+		$(".ajaxCategory").hide();
+		// console.log(response);
+		var objs = JSON.parse(response);
+		for (var value in objs) {
+			$("#adInput").append("<label for=\""+ objs[value]["short_name"] +"\" class=\"col-lg-1 control-label\">"+ objs[value]["name"] +"</label>");
+			$("#adInput").append("<div class=\"col-lg-5\" style=\"\"><input type=\""+ objs[value]["type"] +"\" class=\"form-control\" id=\""+ objs[value]["short_name"] +"\" name=\""+ objs[value]["short_name"] +"\" placeholder=\""+ objs[value]["name"] +"\"></div>");
+			$("#adInput").append("<br /><br />");
+		}
 	});
 	xhr.fail(function(jqXHR, textStatus, errorThrown) {
-			console.log(errorThrown);
+		$(".ajaxCategory").hide();
+		console.log(errorThrown);
 	});
 }
 
