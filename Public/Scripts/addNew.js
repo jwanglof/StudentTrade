@@ -7,6 +7,41 @@ $(document).ready(function() {
 	var currentCity;
 	var pictureCounter = 2;
 
+	$("#newAdInfo").add("#editAdInfo").validate({
+		// errorClass: "inputError",
+		rules: {
+			name: {required: true},
+			email: {required: true, email: true},
+			phonenumber: {required: false, digits: true},
+			city: {required: true},
+			campus: {required: false},
+			adType: {required: true},
+			title: {required: true},
+			info: {required: true},
+			price: {required: true},
+			adCategory: {required: true}
+		},
+		// messages: {
+		// 	name: "Ange ditt namn",
+		// 	email: "Ange din e-post",
+		// 	city: "Ange din stad",
+		// 	adType: "Välj annonskategori",
+		// 	title: "Ange annonsens rubrik",
+		// 	info: "Ange beskrivning av"
+		// },
+		highlight: function(element, errorClass) {
+			$(element).addClass("error");
+			$(element).closest(".form-group").children("label").addClass("errorText");
+		},
+		unhighlight: function(element, errorClass) {
+			$(element).removeClass("error");
+			$(element).closest(".form-group").children("label").removeClass("errorText");
+		},
+		errorPlacement: function(error, element) {
+			return true;
+		}
+	});
+
 	$("#adInfo").ready(function() {
 		$("#adType").click(function() {
 			var extraInfo = [1,2];
@@ -147,9 +182,9 @@ function showAdCategoryInputs(adCategory) {
 	$(".ajaxCategory").show();
 
 	xhr = $.ajax({
-			type: "post",
-			url: "/ajax/get",
-			data: {get: "adSubCategories", adCategory: adCategory}
+		type: "post",
+		url: "/ajax/get",
+		data: {get: "adSubCategories", adCategory: adCategory}
 	});
 
 	xhr.done(function(response, textStatus, jqXHR) {
@@ -162,6 +197,7 @@ function showAdCategoryInputs(adCategory) {
 			$("#adInput").append("<br /><br />");
 		}
 	});
+
 	xhr.fail(function(jqXHR, textStatus, errorThrown) {
 		$(".ajaxCategory").hide();
 		console.log(errorThrown);

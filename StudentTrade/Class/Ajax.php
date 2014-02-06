@@ -35,7 +35,7 @@ class Ajax {
 	 		$cipher = new Cipher("JFKs3ef03J");
 
 	 		$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
-
+	 		// echo $ad["password"] ."  ------  ". $cipher->encrypt($postValues["adCode"]);
 	 		if ($ad["password"] == $cipher->encrypt($postValues["adCode"])) {
 		 		$cipher = null;
 		 		return true;
@@ -122,8 +122,7 @@ class Ajax {
 				return 2;
 			}
 		} else if ($postValues["mail"] == "adAddNew") {
-			$checkInput = checkRequiredInput($_SESSION["newAd"], array("name", "email", "city", "adType", "title", "info", "adCategory"));
-
+			$checkInput = checkRequiredInput($_SESSION["newAd"], array("name", "email", "city", "adType", "title", "adInfo", "adCategory"));
 			if ($checkInput == 0) {
 				/*
 				 * Check the input values so it doesn't contain any illegal characters
@@ -136,7 +135,7 @@ class Ajax {
 				$password = generateRandomString(4, "0123456789");
 				$encryptedPassword = $cipher->encrypt($password);
 
-				$adID = $dbInsert->insertIntoAd($_SESSION["newAd"]["title"], nl2br($_SESSION["newAd"]["info"]), $encryptedPassword, $_SESSION["newAd"]["price"], date("Y-m-d H:i:s"), $_SESSION["newAd"]["adCategory"], $_SESSION["newAd"]["campus"], $_SESSION["newAd"]["city"], $_SESSION["newAd"]["adType"]);
+				$adID = $dbInsert->insertIntoAd($_SESSION["newAd"]["title"], nl2br($_SESSION["newAd"]["adInfo"]), $encryptedPassword, $_SESSION["newAd"]["price"], date("Y-m-d H:i:s"), $_SESSION["newAd"]["adCategory"], $_SESSION["newAd"]["campus"], $_SESSION["newAd"]["city"], $_SESSION["newAd"]["adType"]);
 				$adUserInfoID = $dbInsert->insertIntoAdUserInfo($_SESSION["newAd"]["name"], $_SESSION["newAd"]["email"], $_SESSION["newAd"]["phonenumber"], $adID);
 
 				/*
@@ -196,8 +195,9 @@ class Ajax {
 			else {
 				return false;
 			}
-		}
-		else {
+		} else if ($postValues["update"] == "adUpdate") {
+			print_r($postValues);
+		} else {
 			return false;
 		}
 	}

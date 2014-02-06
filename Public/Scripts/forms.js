@@ -10,40 +10,6 @@ $(document).ready(function() {
 			campus_name: {required: true}
 		}
 	});
-	$("#newAdInfo").validate({
-		// errorClass: "inputError",
-		rules: {
-			name: {required: true},
-			email: {required: true, email: true},
-			phonenumber: {required: false, digits: true},
-			city: {required: true},
-			campus: {required: false},
-			adType: {required: true},
-			title: {required: true},
-			info: {required: true},
-			price: {required: true},
-			adCategory: {required: true}
-		},
-		// messages: {
-		// 	name: "Ange ditt namn",
-		// 	email: "Ange din e-post",
-		// 	city: "Ange din stad",
-		// 	adType: "Välj annonskategori",
-		// 	title: "Ange annonsens rubrik",
-		// 	info: "Ange beskrivning av"
-		// },
-		highlight: function(element, errorClass) {
-			$(element).addClass("error");
-			$(element).closest(".form-group").children("label").addClass("errorText");
-		},
-		unhighlight: function(element, errorClass) {
-			$(element).removeClass("error");
-			$(element).closest(".form-group").children("label").removeClass("errorText");
-		},
-		errorPlacement: function(error, element) {
-			return true;
-		}
-	});
 
 	$("#requestCityModal").on("submit", function(event) {
 		request = $.ajax({
@@ -95,6 +61,7 @@ $(document).ready(function() {
 		});
 
 		request.done(function(response, textStatus, jqXHR) {
+			console.log(response);
 			if (response == 2) {
 				errorMsg("#adEditModal", "Fel kod angiven.");
 			} else {
@@ -206,6 +173,10 @@ $(document).ready(function() {
 				errorMsg("#adReportModal", "Något gick fel. Var vänlig försök igen.");
 			}
 		});
+
+		request.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log(errorThrown);
+		});
 		
 		event.preventDefault();
 	});
@@ -228,20 +199,27 @@ $(document).ready(function() {
 				errorMsg("#contactUsModal", "Något gick fel. Var vänlig försök igen.");
 			}
 		});
+
+		request.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log(errorThrown);
+		});
 		
 		event.preventDefault();
 	});
 
 	$("#editAdForm").on("submit", function(event) {
-		console.log($(this));
 		request = $.ajax({
 			type: "post",
 			url: "/ajax/update",
-			data: {update: "adUpdate", data: $(this)}
+			data: {update: "adUpdate", data: $("#editAdForm").serialize()}
 		});
 
 		request.done(function(response, textStatus, jqXHR) {
 			console.log(response);
+		});
+
+		request.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log(errorThrown);
 		});
 
 		event.preventDefault();
