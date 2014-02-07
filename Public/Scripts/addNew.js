@@ -119,7 +119,7 @@ $(document).ready(function() {
 			url: "/ajax/mail",
 			data: {mail: "adAddNew"}
 		});
-
+		
 		request.done(function(response, textStatus, jqXHR) {
 			if (!response || response == -1) {
 				if (!response)

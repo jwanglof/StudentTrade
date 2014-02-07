@@ -48,7 +48,7 @@ class Email {
 
 		$this->mail->CharSet = "utf-8";
 		$this->mail->WordWrap = 50;
-		$this->mail->isHTML(true);
+		$this->mail->IsHTML(true);
 
 		// Set to 2 for debugging information
 		$this->mail->SMTPDebug  = 0;
@@ -93,17 +93,14 @@ class Email {
 		else if ($adType == 4)
 			$message .= "Om du har bytt din vara";
 
-		// $message .= "eller av någon annan anledning vill ta bort denna annons, använd denna kod: ". $password .", <br />eller tryck <a href=\"http://www.studenttrade.se/front.php?page=ad_remove&aid=". $adID ."&code=". $password ."\">här</a> för att ta bort annonsen direkt.";
-		$message .= "eller av någon annan anledning vill ta bort denna annons, eller ändra innehållet använd denna kod: ". $password;
+		$message .= "eller av någon annan anledning vill ta bort denna annons eller ändra innehållet, använd denna kod: ". $password;
 		$message .= "</p>";
 		$message .= "<p>";
-		$message .= "Tryck <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/remove/". $adID ."/code/". $password ."\">här</a> för att ta bort annonsen direkt.";
-		$message .= "Tryck <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/edit/". $adID ."/code/". $password ."\">här</a> för att redigera annons.";
+		$message .= "Tryck <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/remove/". $adID ."/code/". $password ."\">här</a> för att ta bort din annons direkt.";
+		$message .= "<br />";
+		$message .= "Tryck <a href=\"http://www.studenttrade.se/index.php/city/". $adCity ."/edit/". $adID ."/code/". $password ."\">här</a> för att redigera din annons.";
 		$message .= "</p>";
 		$message .= "MVH StudentTrade.se";
-
-		// $this->mail->From 			= $this->noReplyEmail;
-		// $this->mail->FromName 	= $this->noReplyName;
 
 		$this->mail->SetFrom($this->noReplyEmail, $this->noReplyName);
 		$this->mail->AddReplyTo($this->noReplyEmail, $this->noReplyName);

@@ -97,7 +97,7 @@ class Ajax {
 
 				$sendEmail->setRecipientEmail($adUserInfo["email"]);
 
-				return $sendEmail->sendAdEmail($postValues["name"], $postValues["from_email"], nl2br($postValues["message"]), $postValues["aid"], $ad["title"], $postValues["city"]);
+				return $sendEmail->sendAdEmail($postValues["name"], $postValues["from_email"], nl2br($postValues["message"]), $postValues["aid"], $ad["adTitle"], $postValues["city"]);
 			} else {
 				return 2;
 			}
@@ -135,7 +135,7 @@ class Ajax {
 				$password = generateRandomString(4, "0123456789");
 				$encryptedPassword = $cipher->encrypt($password);
 
-				$adID = $dbInsert->insertIntoAd($_SESSION["newAd"]["title"], nl2br($_SESSION["newAd"]["adInfo"]), $encryptedPassword, $_SESSION["newAd"]["price"], date("Y-m-d H:i:s"), $_SESSION["newAd"]["adCategory"], $_SESSION["newAd"]["campus"], $_SESSION["newAd"]["city"], $_SESSION["newAd"]["adType"]);
+				$adID = $dbInsert->insertIntoAd($_SESSION["newAd"]["adTitle"], nl2br($_SESSION["newAd"]["adInfo"]), $encryptedPassword, $_SESSION["newAd"]["price"], date("Y-m-d H:i:s"), $_SESSION["newAd"]["adCategory"], $_SESSION["newAd"]["campus"], $_SESSION["newAd"]["city"], $_SESSION["newAd"]["adType"]);
 				$adUserInfoID = $dbInsert->insertIntoAdUserInfo($_SESSION["newAd"]["name"], $_SESSION["newAd"]["email"], $_SESSION["newAd"]["phonenumber"], $adID);
 
 				/*
