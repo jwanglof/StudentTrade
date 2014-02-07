@@ -54,5 +54,23 @@ class DbUpdate extends DbConfig {
 			$this->errors = $e->getMessage();
 		}
 	}
+
+	public function updateAd($values) {
+		return true;
+		// try {
+		// 	$stmt = $this->dbh->prepare("UPDATE `ad` SET `request_code`=:setTime WHERE `id`=:adID");
+		// 	$stmt->bindValue(":setTime", $setTime, PDO::PARAM_STR);
+		// 	$stmt->bindValue(":adID", $adID, PDO::PARAM_INT);
+
+		// 	$stmt->execute();
+
+		// 	$affectedRows = $stmt->rowCount();
+
+		// 	return $affectedRows;
+		// } catch (PDOException $e) {
+		// 	$this->dbh->rollback();
+		// 	$this->errors = $e->getMessage();
+		// }
+	}
 }
 ?>

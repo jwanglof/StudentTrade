@@ -122,7 +122,7 @@ class Ajax {
 				return 2;
 			}
 		} else if ($postValues["mail"] == "adAddNew") {
-			$checkInput = checkRequiredInput($_SESSION["newAd"], array("name", "email", "city", "adType", "title", "adInfo", "adCategory"));
+			$checkInput = checkRequiredInput($_SESSION["newAd"], array("name", "email", "city", "adType", "adTitle", "adInfo", "adCategory"));
 			if ($checkInput == 0) {
 				/*
 				 * Check the input values so it doesn't contain any illegal characters
@@ -196,7 +196,21 @@ class Ajax {
 				return false;
 			}
 		} else if ($postValues["update"] == "adUpdate") {
+			$checkInput = checkRequiredInput($postValues, array("city", "adType", "adCategory", "price", "adTitle", "adInfo"));
 			print_r($postValues);
+			if ($checkInput == 0) {
+				$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
+
+				if ($ad["password"] == $cipher->encrypt($postValues["code"])) {
+					if ($dbUpdate->updateAd($postValues) > 0)
+						return true;
+					else
+						return false;
+				} else
+					return 2;
+			} else {
+				return -1;
+			}
 		} else {
 			return false;
 		}

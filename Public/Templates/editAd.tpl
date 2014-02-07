@@ -8,6 +8,7 @@
 
 {% block content %}
 <form method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="editAdForm">
+	<input type="hidden" id="aid" name="aid" value="{{ ad.id }}" />
 	<fieldset>
 		<legend>Personuppgifter</legend>
 		<div class="form-group">
@@ -99,9 +100,9 @@
 		</div>
 
 		<div class="form-group">
-			<label for="title" class="col-xs-1 control-label">Rubrik *</label>
+			<label for="adTitle" class="col-xs-1 control-label">Rubrik *</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="title" name="title" placeholder="Rubrik" value="{{ ad['title'] }}">
+				<input type="text" class="form-control" id="adTitle" name="adTitle" placeholder="Rubrik" value="{{ ad['title'] }}">
 			</div>
 		</div>
 
@@ -110,6 +111,11 @@
 			<div class="col-xs-5">
 				<textarea id="adInfo" name="adInfo" class="form-control">{{ ad['info'] }}</textarea>
 			</div>
+		</div>
+
+		<div class="form-group" id="errorMsg">
+			<label for="info" class="col-xs-1 control-label">Felmeddelande:</label>
+			<div class="col-xs-5"></div>
 		</div>
 
 		<button type="submit" class="btn btn-primary btn-sm">Ändra annons</button>
