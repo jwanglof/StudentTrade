@@ -123,9 +123,9 @@ $(document).ready(function() {
 		request.done(function(response, textStatus, jqXHR) {
 			if (!response || response == -1) {
 				if (!response)
-					$("#errorMsg").find(".col-xs-5").html("Något gick fel. Var vänlig försök igen.")
+					$("#errorMsg").find(".col-xs-5").html("Något gick fel. Var vänlig försök igen.");
 				else if (response == -1)
-					$("#errorMsg").find(".col-xs-5").html("Du måste fylla i alla obligatoriska (*) fält!")
+					$("#errorMsg").find(".col-xs-5").html("Du måste fylla i alla obligatoriska (*) fält!");
 
 				$(".ajaxSubmit").hide();
 				submitButton.button("enable");
