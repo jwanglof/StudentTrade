@@ -91,9 +91,9 @@
 		</div>
 
 		<div class="form-group">
-			<label for="title" class="col-xs-1 control-label">Rubrik *</label>
+			<label for="adTitle" class="col-xs-1 control-label">Rubrik *</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="title" name="title" placeholder="Rubrik">
+				<input type="text" class="form-control" id="adTitle" name="adTitle" placeholder="Rubrik">
 			</div>
 		</div>
 
