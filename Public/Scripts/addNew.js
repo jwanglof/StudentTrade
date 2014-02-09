@@ -266,9 +266,9 @@ function uploadProgress(evt) {
 $("#uploadImagesButton").on("click", function(event) {
 	if (event.target != undefined) {
 		// Disable the upload button and the file inputs
-		$(event.target).attr("disabled", "disabled");
+		$(event.target).prop("disabled", true);
 		for (var o = 1; o <= 5; o++) {
-			$("#picture_"+ o).attr("disabled", "disabled");
+			$("#picture_"+ o).prop("disabled", true);
 		}
 		// Disable upload by a session var as well?
 		// Set a session with the ID of the new ad
