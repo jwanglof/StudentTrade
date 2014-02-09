@@ -212,6 +212,8 @@ $(document).ready(function() {
 		
 		var code = window.location.href.match(/\/code\/([0-9]+)\/?/)[1];
 
+		$("#editAdButton").prop("disabled", true);
+
 		request = $.ajax({
 			type: "post",
 			url: "/ajax/update",
@@ -223,10 +225,12 @@ $(document).ready(function() {
 			if (response == -1) {
 				$("#errorMsg").find(".col-xs-5").html("Du måste fylla i alla obligatoriska (*) fält!");
 				$("#errorMsg").show();
+				$("#editAdButton").prop("disabled", false);
 			} else if (response == 2) {
 				$("#errorMsg").find(".col-xs-5").html("Du har angett fel annonskod i adressfältet!");
 				$("#errorMsg").show();
-			} else {
+				$("#editAdButton").prop("disabled", false);
+			} else if (response == 1) {
 				window.location.href = "/index.php/city/"+ getCity() +"/ad/"+ $("#aid").val();
 			}
 		});

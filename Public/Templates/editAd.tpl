@@ -118,7 +118,7 @@
 			<div class="col-xs-5"></div>
 		</div>
 
-		<button type="submit" class="btn btn-primary btn-sm">Ändra annons</button>
+		<button type="submit" class="btn btn-primary btn-sm" id="editAdButton">Ändra annons</button>
 	</fieldset>
 </form>
 {% endblock %}

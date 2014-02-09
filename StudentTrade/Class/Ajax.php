@@ -187,7 +187,7 @@ class Ajax {
 			$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
 		
 			if ($ad["password"] == $cipher->encrypt($postValues["removeCode"])) {
-				if ($dbUpdate->updateAdActiveWithAdID($postValues["aid"]) > 0) 
+				if ($dbUpdate->updateAdActiveWithAdID($postValues["aid"]) > 0)
 					return true;
 				else
 					return false;
@@ -197,13 +197,17 @@ class Ajax {
 			}
 		} else if ($postValues["update"] == "adUpdate") {
 			$checkInput = checkRequiredInput($postValues, array("city", "adType", "adCategory", "price", "adTitle", "adInfo"));
-			print_r($postValues);
+			// print_r($postValues);
 			if ($checkInput == 0) {
 				$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
 
 				if ($ad["password"] == $cipher->encrypt($postValues["code"])) {
-					if ($dbUpdate->updateAd($postValues) > 0)
-						return true;
+					if ($dbUpdate->updateAd($postValues) > 0) {
+						if ($dbUpdate->updateAdUserInfo($postValues) > 0)
+							return true;
+						else
+							return false;
+					}
 					else
 						return false;
 				} else

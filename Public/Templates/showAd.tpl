@@ -242,7 +242,7 @@
 
 					<fieldset>
 						<div class="form-group">
-							<label for="adCodez" class="col-lg-1 control-label">Ange annonskod (9872)</label>
+							<label for="adCodez" class="col-lg-1 control-label">Ange annonskod</label>
 							<div class="col-lg-5">
 								<input type="text" class="form-control" name="adCodez" id="adCodez" placeholder="Annonskod" />
 							</div>

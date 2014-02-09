@@ -56,21 +56,43 @@ class DbUpdate extends DbConfig {
 	}
 
 	public function updateAd($values) {
-		return true;
-		// try {
-		// 	$stmt = $this->dbh->prepare("UPDATE `ad` SET `request_code`=:setTime WHERE `id`=:adID");
-		// 	$stmt->bindValue(":setTime", $setTime, PDO::PARAM_STR);
-		// 	$stmt->bindValue(":adID", $adID, PDO::PARAM_INT);
+		try {
+			$stmt = $this->dbh->prepare("UPDATE `ad` SET `title`=:title, `info`=:info, `price`=:price, `fk_ad_adCategory`=:fk_ad_adCategory, `fk_ad_campus`=:fk_ad_campus, `fk_ad_city`=:fk_ad_city, `fk_ad_adType`=:fk_ad_adType WHERE `id`=:adID");
+			$stmt->bindValue(":title", $values["adTitle"], PDO::PARAM_STR);
+			$stmt->bindValue(":info", nl2br($values["adInfo"]), PDO::PARAM_STR);
+			$stmt->bindValue(":price", $values["price"], PDO::PARAM_INT);
+			$stmt->bindValue(":fk_ad_adCategory", $values["adCategory"], PDO::PARAM_INT);
+			$stmt->bindValue(":fk_ad_campus", $values["campus"], PDO::PARAM_INT);
+			$stmt->bindValue(":fk_ad_city", $values["city"], PDO::PARAM_INT);
+			$stmt->bindValue(":fk_ad_adType", $values["adType"], PDO::PARAM_INT);
+			$stmt->bindValue(":adID", $values["aid"], PDO::PARAM_INT);
 
-		// 	$stmt->execute();
+			$stmt->execute();
 
-		// 	$affectedRows = $stmt->rowCount();
+			$affectedRows = $stmt->rowCount();
 
-		// 	return $affectedRows;
-		// } catch (PDOException $e) {
-		// 	$this->dbh->rollback();
-		// 	$this->errors = $e->getMessage();
-		// }
+			return $affectedRows;
+		} catch (PDOException $e) {
+			$this->dbh->rollback();
+			$this->errors = $e->getMessage();
+		}
+	}
+
+	public function updateAdUserInfo($values) {
+		try {
+			$stmt = $this->dbh->prepare("UPDATE `adUserInfo` SET `phonenumber`=:phonenumber WHERE `fk_adUserInfo_ad`=:adID");
+			$stmt->bindValue(":phonenumber", $values["phonenumber"], PDO::PARAM_INT);
+			$stmt->bindValue(":adID", $values["aid"], PDO::PARAM_INT);
+
+			$stmt->execute();
+
+			$affectedRows = $stmt->rowCount();
+
+			return $affectedRows;
+		} catch (PDOException $e) {
+			$this->dbh->rollback();
+			$this->errors = $e->getMessage();
+		}
 	}
 }
 ?>

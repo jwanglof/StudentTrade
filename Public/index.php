@@ -126,8 +126,9 @@ $app->get("/city/:city/edit/:aid/code/:code", function($_city, $_aid, $_code) us
 
 	// $handler->debug("SOME", 'adReply');
 
-	// echo 2;
-	
+	// Removes all <br /> from adInfo
+	$ad["info"] = preg_replace("#<br\s*/?>#i", "", $ad["info"]);
+
 	if ($editAd->convertPassword($ad["password"]) == $_code) {
 		$app->render("editAd.tpl", array(
 				"header" 			=> setHeader($app, $_city, $_SESSION["campus"], $_SESSION["category"]),
