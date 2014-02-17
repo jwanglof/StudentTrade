@@ -106,6 +106,10 @@ $app->post("/ajax/update", function() use ($app) {
 	$ajax = null;
 });
 
+$app->get("/admin", function() use ($app) {
+	$adminDir = APPLICATION_PATH ."/Admin";
+});
+
 $app->post("/upload", function() use ($app) {
 	// Need to make this more secure!
 
