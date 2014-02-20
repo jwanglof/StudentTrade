@@ -3,6 +3,7 @@
 {% block page_title %}Lägg upp annons{% endblock %}
 
 {% block add_scripts %}
+	<script src="{{ header.dir }}Scripts/Class/Ad.js" type="text/javascript"></script>
 	<script src="{{ header.dir }}Scripts/addNew.js" type="text/javascript"></script>
 {% endblock %}
 

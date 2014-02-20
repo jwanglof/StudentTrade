@@ -61,7 +61,6 @@ $(document).ready(function() {
 		});
 
 		request.done(function(response, textStatus, jqXHR) {
-			console.log(response);
 			if (response == 2) {
 				errorMsg("#adEditModal", "Fel kod angiven.");
 			} else {
@@ -205,39 +204,6 @@ $(document).ready(function() {
 		});
 		
 		event.preventDefault();
-	});
-
-	$("#editAdForm").on("submit", function(event) {
-		event.preventDefault();
-		
-		var code = window.location.href.match(/\/code\/([0-9]+)\/?/)[1];
-
-		$("#editAdButton").prop("disabled", true);
-
-		request = $.ajax({
-			type: "post",
-			url: "/ajax/update",
-			data: {update: "adUpdate", aid: $("#aid").val(), code: code, phonenumber: $("#phonenumber").val(), city: $("#city").val(), campus: $("#campus").val(), adType: $("#adType").val(), adCategory: $("#adCategory").val(), price: $("#price").val(), adTitle: $("#adTitle").val(), adInfo: $("#adInfo").val()}
-		});
-
-		request.done(function(response, textStatus, jqXHR) {
-			console.log(response);
-			if (response == -1) {
-				$("#errorMsg").find(".col-xs-5").html("Du måste fylla i alla obligatoriska (*) fält!");
-				$("#errorMsg").show();
-				$("#editAdButton").prop("disabled", false);
-			} else if (response == 2) {
-				$("#errorMsg").find(".col-xs-5").html("Du har angett fel annonskod i adressfältet!");
-				$("#errorMsg").show();
-				$("#editAdButton").prop("disabled", false);
-			} else if (response == 1) {
-				window.location.href = "/index.php/city/"+ getCity() +"/ad/"+ $("#aid").val();
-			}
-		});
-
-		request.fail(function(jqXHR, textStatus, errorThrown) {
-			console.log(errorThrown);
-		});
 	});
 });
 

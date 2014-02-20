@@ -35,10 +35,19 @@ class Ajax {
 	 		$cipher = new Cipher("JFKs3ef03J");
 
 	 		$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
-	 		// echo $ad["password"] ."  ------  ". $cipher->encrypt($postValues["adCode"]);
 	 		if ($ad["password"] == $cipher->encrypt($postValues["adCode"])) {
 		 		$cipher = null;
 		 		return true;
+		 	}
+
+	 		$cipher = null;
+	 		return 2;
+	 	} else if ($postValues["get"] == "adCategoryValues") {
+	 		$cipher = new Cipher("JFKs3ef03J");
+
+	 		$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
+	 		if ($ad["password"] == $cipher->encrypt($postValues["adCode"])) {
+		 		return json_encode($this->dbSelect->getAdInfoFromAdID($postValues["aid"]));
 		 	}
 
 	 		$cipher = null;
@@ -201,7 +210,7 @@ class Ajax {
 			if ($checkInput == 0) {
 				$ad = $this->dbSelect->getAdFromID($postValues["aid"]);
 
-				if ($ad["password"] == $cipher->encrypt($postValues["code"])) {
+				if ($ad["password"] == $cipher->encrypt($postValues["adCode"])) {
 					if ($dbUpdate->updateAd($postValues) > 0) {
 						if ($dbUpdate->updateAdUserInfo($postValues) > 0)
 							return true;
